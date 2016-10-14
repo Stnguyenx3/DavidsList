@@ -1,24 +1,33 @@
 CREATE TABLE `student_`.`users` (
-  `email` text COLLATE utf8_unicode_ci NOT NULL,
-  'studentID' text COLLATE utf8_unicode_ci,
-  `phone` text COLLATE utf8_unicode_ci ,
-  `bio` text COLLATE utf8_unicode_ci ,
-  `image` LONGBLOB,
+  `email` VARCHAR(100) NOT NULL,
+  'password' VARCHAR(64) NOT NULL,
+  'studentID' VARCHAR(8),
+  `phone` VARCHAR(10),
+  `bio` VARCHAR(2000),
   'renter' TINYINT(1), 
   'owner' TINYINT(1),
  );
+
+CREATE TABLE 'student_'.'userImages'(
+	'email' VARCHAR(100) NOT NUll,
+	'image' LONGBLOB,
+);
 CREATE TABLE 'student_'.'listings' (
-	'email' text COLLATE utf8_unicode_ci NOT NULL,
-	'numberOfBedrooms' text COLLATE utf8_unicode_ci NOT NULL,
-	'numberOfBathrooms' text COLLATE utf8_unicode_ci NOT NULL,
+	'email' VARCHAR(100) NOT NULL,
+	'numberOfBedrooms' INT(4) NOT NULL,
+	'numberOfBathrooms' INT(4) NOT NULL,
 	'internet' TINYINT(1) ,
-	'petPolicy' text COLLATE utf8_unicode_ci NOT NULL,
+	'petPolicy' VARCHAR(100) NOT NULL,
 	'elevatorAccess' text COLLATE utf8_unicode_ci NOT NULL,
 	'furnishing' TINYINT(1),
 	'airConditioning' TINYINT(1),
-	'address' text COLLATE utf8_unicode_ci NOT NULL,
-	'description' text COLLATE utf8_unicode_ci NOT NULL,
-	'listingImage' LONGBLOB,
+	'address' VARCHAR(100) NOT NULL,
+	'description' VARCHAR(2000) NOT NULL,
+);
+
+CREATE TABLE 'student_'.'listingImages'(
+	'email' VARCHAR(100) NOT NULL,
+	'image' LONGBLOB,
 
   PRIMARY KEY (`email`),
   UNIQUE KEY `email` (`email`)
