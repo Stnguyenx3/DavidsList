@@ -23,14 +23,14 @@ class Listing{
 
 interface UserRepoInterface{
 	public function find($email);
-	public function save(User $user);
-	public function remove(User $user);
+	public function save($user);
+	public function remove($user);
 }
 
 interface ListingRepoInterface{
 	public function find($email);
-	public function save(Listing $listing);
-	public function remove(Listing, $listing);
+	public function save($listing);
+	public function remove($listing);
 }
 
 
@@ -45,11 +45,11 @@ class SQLUserRepo implements UserRepoInterface{
 		return $this->db->find($email, 'users', 'User');
 	}
 
-	public function save(User $user){
+	public function save($user){
 		$this->db->save($user, 'users');
 	}
 
-	public function remove (User $user){
+	public function remove ($user){
 		$this->db->remove($user, 'users');
 	}
 
@@ -66,11 +66,11 @@ class SQLListingRepo implements ListingRepoInterface{
 		return $this->db->find($email, 'listings', 'Listing');
 	}
 
-	public function save(Listing $listing){
+	public function save($listing){
 		$this->db->save($listing, 'listings');
 	}
 
-	public function remove(Listing $listing){
+	public function remove($listing){
 		$this->db->remove($listing, 'listings');
 	}
 
@@ -87,7 +87,7 @@ interface AllListingQueryInterface{
 class AllUsersQuery implements AllUsersQueryInterface{
 	protected $db;
 	
-	public function __construct(Database $db){
+	public function __construct($db){
 		$this->db = $db;
 	}
 
@@ -100,7 +100,7 @@ class AllUsersQuery implements AllUsersQueryInterface{
 class AllListingQuery implements AllListingQueryInterface{
 	protected $db;
 
-	public function __construct(Database $db){
+	public function __construct($db){
 		$this->db = $db;
 	}
 
