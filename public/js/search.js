@@ -59,7 +59,7 @@ function uploadImage() {
 	// var logo = document.getElementById("test-image").files[0]; 
 	var reader = new FileReader();
 	reader.onload = function(data) {
-		console.log(data.target.result);
+
 		var imageQuery = {
 			name:"test.jpg",
 			imageData: data.target.result
@@ -70,12 +70,18 @@ function uploadImage() {
 			url: url+"/search/testimage/",
 			data: imageQuery,
 			success: function(event) {
-
+				
 			},
 			error: function(xhr, err, errThrown) {
 
 			}
 		});
+
+		// var img = $('<img id="new-image">');
+		// img.attr('src', data.target.result);
+		// img.appendTo('#image-container');
+		// console.log(img);
+
 	}
 	reader.readAsDataURL(logo);
 }
