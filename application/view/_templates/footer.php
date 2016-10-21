@@ -16,5 +16,6 @@
 
     <!-- our JavaScript -->
     <script src="<?php echo URL; ?>js/application.js"></script>
+    <script src="<?php echo URL; ?>js/search.js"></script>
 </body>
 </html>

@@ -19,9 +19,4 @@ class Home extends Controller{
         require APP . 'view/home/index.php';
         require APP . 'view/_templates/footer.php';
     }
-
-    public function search(){
-        echo  "Shit";
-    }
-
 }

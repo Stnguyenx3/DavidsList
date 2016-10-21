@@ -3,7 +3,7 @@
     <p>In a real application this could be the homepage.</p>
 </div>
 
-<form action="<?php echo URL; ?>home/search" method="POST">
-  First name: <input type="text" name="fname"><br>
-  <input type="submit" value="Submit">
+<form >
+  First name: <input type="text" name="fname" id="test-input"><br>
+  <input type="submit" value="Submit" id='search-button'>
 </form>

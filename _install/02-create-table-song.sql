@@ -15,8 +15,10 @@ CREATE TABLE 'student_'.'userImages'(
 CREATE TABLE 'student_'.'listings' (
 	'id' INT(4) NOT NULL,
 	'listingID' INT(4) NOT NULL AUTO_INCREMENT,
+	'price' INT(4) NOT NULL,
 	'numberOfBedrooms' INT(4) NOT NULL,
 	'numberOfBathrooms' INT(4) NOT NULL,
+	'type' VARCHAR(100) NOT NULL,
 	'internet' TINYINT(1) ,
 	'petPolicy' VARCHAR(100) NOT NULL,
 	'elevatorAccess' text COLLATE utf8_unicode_ci NOT NULL,
