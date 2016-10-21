@@ -7,3 +7,8 @@
 <button id="search-get" type="submit" onclick='onGetClick()'>GET REQUEST</button>
 <button id="search-post" type="submit" onclick='onPostClick()'>POST REQUEST</button>
 <button id="search-json" type="submit" onclick='onGetJsonClick()'>GET JSON BACK</button>
+
+<br>
+
+<input type="file" id="test-image"/>
+<button id="search-upload" type="submit" onclick='uploadImage()'>UPLOAD IMAGE</button>

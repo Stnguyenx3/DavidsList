@@ -34,4 +34,12 @@ class Search extends Controller {
 		header('Content-Type: application/json');
 		echo json_encode($data);
     }
+
+    public function testImage() {
+    	
+    }
+
+    public function searchApartments($param) {
+
+    }
 }

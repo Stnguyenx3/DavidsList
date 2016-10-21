@@ -53,3 +53,29 @@ function onGetJsonClick() {
 		}
 	});
 }
+
+function uploadImage() {
+	var logo = $('#test-image')[0].files[0];
+	// var logo = document.getElementById("test-image").files[0]; 
+	var reader = new FileReader();
+	reader.onload = function(data) {
+		console.log(data.target.result);
+		var imageQuery = {
+			name:"test.jpg",
+			imageData: data.target.result
+		};
+
+		$.ajax({
+			type:'POST',
+			url: url+"/search/testimage/",
+			data: imageQuery,
+			success: function(event) {
+
+			},
+			error: function(xhr, err, errThrown) {
+
+			}
+		});
+	}
+	reader.readAsDataURL(logo);
+}
