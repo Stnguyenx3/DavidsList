@@ -10,26 +10,26 @@ class UserImage{ #document
 	}
 
 	public function getListingId() {
-		return this->listingID;
+		return $this->listingID;
 	}
 
 	public function getImageThumbNail() {
-		return this->imageThumbnail;
+		return $this->imageThumbnail;
 	}
 
 	public function getImage() {
-		return this->image;
+		return $this->image;
 	}
 
 	public function setListingId($newListingId) {
-		this->listingID = $newListingId;
+		$this->listingID = $newListingId;
 	}
 
 	public function setImageThumbNail($newImageThumbnail) {
-		this->imageThumbNail = $newImageThumbnail;
+		$this->imageThumbNail = $newImageThumbnail;
 	}
 
 	public function setImage($newImage) {
-		this->image = $newImage;
+		$this->image = $newImage;
 	}
 }

@@ -1,9 +1,9 @@
 <?php
 
-require APP . "model/repositories/listing_image_repository.php"
-require APP . "model/repositories/user_image_repository.php"
-require APP . "model/repositories/listing_repository.php"
-require APP . "model/repositories/user_repository.php"
+require APP . "model/repositories/listing_image_repository.php";
+require APP . "model/repositories/user_image_repository.php";
+require APP . "model/repositories/listing_repository.php";
+require APP . "model/repositories/user_repository.php";
 class RespositoryFactory {
 	public static function createRepository($repoName) {
 		$db = Database.getInstance();

@@ -13,7 +13,6 @@
     <script>
         var url = "<?php echo URL; ?>";
     </script>
-
     <!-- our JavaScript -->
     <script src="<?php echo URL; ?>js/application.js"></script>
     <script src="<?php echo URL; ?>js/search.js"></script>

@@ -12,42 +12,42 @@ class User{
 	}
 
 	public function getId() {
-		return this->$id;
+		return $this->$id;
 	}
 
 	public function getEmail() {
-		return this->$email;
+		return $this->$email;
 	}
 
 	public function getStudentId() {
-		return this->$studentID;
+		return $this->$studentID;
 	}
 
 	public function getPhone() {
-		return this->$phone;
+		return $this->$phone;
 	}
 
 	public function getBiography() {
-		return this->$bio;
+		return $this->$bio;
 	}
 
 	public function setId($newId) {
-		this->$id = $newId;
+		$this->$id = $newId;
 	}
 
 	public function setEmail($newEmail) {
-		this->$email = $newEmail;
+		$this->$email = $newEmail;
 	}
 
 	public function setStudentId($newStudentId) {
-		this->$studentID = $newStudentId;
+		$this->$studentID = $newStudentId;
 	}
 
 	public function setPhone($newPhone) {
-		this->$phone = $newPhone;
+		$this->$phone = $newPhone;
 	}
 
 	public function setBiography($newBio) {
-		this->$bio = $newBio;
+		$this->$bio = $newBio;
 	}
 }

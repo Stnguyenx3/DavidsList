@@ -9,6 +9,6 @@ class Controller{
         //Requires all the necessary php files
         foreach(glob(APP . "model/*.php") as $file){
             require $file;
-}
+		}
     }
 }

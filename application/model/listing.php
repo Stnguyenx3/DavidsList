@@ -20,107 +20,107 @@ class Listing{
 	}
 
 	public function getId() {
-		return this->$id;
+		return $this->$id;
 	}
 
 	public function getListingId() {
-		return this->$listingID;
+		return $this->$listingID;
 	}
 
 	public function getNumberOfBedrooms() {
-		return this->$numberOfBedrooms;
+		return $this->$numberOfBedrooms;
 	}
 
 	public function getNumberOfBathrooms() {
-		return this->$numberOfBathrooms;
+		return $this->$numberOfBathrooms;
 	}
 
 	public function getInternet() {
-		return this->$internet;
+		return $this->$internet;
 	}
 
 	public function getPetPolicy() {
-		return this->$petPolicy;
+		return $this->$petPolicy;
 	}
 
 	public function getPrice() {
-		return this->$price;
+		return $this->$price;
 	}
 
 	public function getType() {
-		return this->$type;
+		return $this->$type;
 	}
 
 	public function getElevatorAccess() {
-		return this->$elevatorAccess;
+		return $this->$elevatorAccess;
 	}
 
 	public function getFurnishing() {
-		return this->$furnishing;
+		return $this->$furnishing;
 	}
 
 	public function getAirConditioning() {
-		return this->$airConditioning;
+		return $this->$airConditioning;
 	}
 
 	public function getAddress() {
-		return this->$address;
+		return $this->$address;
 	}
 
 	public function getDescription() {
-		return this->$bio;
+		return $this->$bio;
 	}
 
 	public function setId($newId) {
-		this->$id = $newId;
+		$this->$id = $newId;
 	}
 
 	public function setListingId($newListingId) {
-		this->$listingID = $newListingId;
+		$this->$listingID = $newListingId;
 	}
 
 	public function setNumberOfBedrooms($numOfBedrooms) {
-		this->$numberOfBedrooms = $numOfBedrooms;
+		$this->$numberOfBedrooms = $numOfBedrooms;
 	}
 
 	public function setNumberOfBathrooms($numOfBathrooms) {
-		this->$numberOfBathrooms = $numOfBathrooms;
+		$this->$numberOfBathrooms = $numOfBathrooms;
 	}
 
 	public function setInternet($newInternet) {
-		this->$internet = $newInternet;
+		$this->$internet = $newInternet;
 	}
 
 	public function setPetPolicy($newPetPolicy) {
-		this->$petPolicy = $newPetPolicy;
+		$this->$petPolicy = $newPetPolicy;
 	}
 
 	public function setPrice($newPrice) {
-		this->$price = $newPrice;
+		$this->$price = $newPrice;
 	}
 
 	public function setType($newType) {
-		this->$type = $newType;
+		$this->$type = $newType;
 	}
 
 	public function setElevatorAccess($newElevatorAccess) {
-		this->$elevatorAccess = $newElevatorAccess;
+		$this->$elevatorAccess = $newElevatorAccess;
 	}
 
 	public function setFurnishing($newFurnishing) {
-		this->$furnishing = $newFurnishing;
+		$this->$furnishing = $newFurnishing;
 	}
 
 	public function setAirConditioning($newAirConditioning) {
-		this->$airConditioning = $newAirConditioning;
+		$this->$airConditioning = $newAirConditioning;
 	}
 
 	public function setAddress($newAddress) {
-		this->$address = $newAddress;
+		$this->$address = $newAddress;
 	}
 
 	public function setDescription($newDescription) {
-		this->$description = $newDescription;
+		$this->$description = $newDescription;
 	}
 
 }

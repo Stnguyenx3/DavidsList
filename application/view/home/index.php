@@ -3,7 +3,7 @@
     <p>In a real application this could be the homepage.</p>
 </div>
 
-<form >
-  First name: <input type="text" name="fname" id="test-input"><br>
-  <input type="submit" value="Submit" id='search-button'>
-</form>
+<input id="test-input" type="text" required autofocus/>
+<button id="search-get" type="submit" onclick='onGetClick()'>GET REQUEST</button>
+<button id="search-post" type="submit" onclick='onPostClick()'>POST REQUEST</button>
+<button id="search-json" type="submit" onclick='onGetJsonClick()'>GET JSON BACK</button>

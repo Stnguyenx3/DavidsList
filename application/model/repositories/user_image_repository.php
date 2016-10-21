@@ -31,7 +31,7 @@ interface AllUserImagesQueryInterface{
 	public function fetch($fields);
 }
 
-class AllUserImagesQuery implements AllUsersImagesQueryInterface{
+class AllUserImagesQuery implements AllUserImagesQueryInterface{
 	protected $db;
 
 	public function __construct($db){

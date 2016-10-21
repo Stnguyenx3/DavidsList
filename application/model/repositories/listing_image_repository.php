@@ -26,7 +26,7 @@ class ListingImageRepo implements ListingImageRepoInterface{
 }
 
 interface AllListingImagesQueryInterface{
-	public funtion fetch($fields);
+	public function fetch($fields);
 }
 
 class AllListingImagesQuery implements AllListingImagesQueryInterface{
