@@ -1,6 +1,6 @@
 <?php
 
-class UserImage{ #document
+class UserImage implements Model{ #document
 	private $id;
 	private $imageThumbnail;
 	private $image;
@@ -34,10 +34,6 @@ class UserImage{ #document
 	}
 
 	public function toString() {
-		return "{$id}, {$imageThumbnail}, {$image}";
-	}
-
-	public function initialize($array) {
-		
+		return "{$this->id}, {$this->imageThumbnail}, {$this->image}";
 	}
 }

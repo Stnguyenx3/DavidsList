@@ -1,6 +1,6 @@
 <?php
 
-class Listing{
+class Listing implements Model{
 	private $id;
 	private $listingImagesID;
 	private $price;
@@ -11,38 +11,38 @@ class Listing{
 	}
 
 	public function getId() {
-		return $this->$id;
+		return $this->id;
 	}
 
 	public function getListingImagesId() {
-		return $this->$listingImagesID;
+		return $this->listingImagesID;
 	}
 
 	public function getPrice() {
-		return $this->$price;
+		return $this->price;
 	}
 
 	public function getType() {
-		return $this->$type;
+		return $this->type;
 	}
 
 	public function setId($newId) {
-		$this->$id = $newId;
+		$this->id = $newId;
 	}
 
 	public function setListingId($newListingImagesId) {
-		$this->$listingImagesID = $newListingId;
+		$this->listingImagesID = $newListingId;
 	}
 
 	public function setPrice($newPrice) {
-		$this->$price = $newPrice;
+		$this->price = $newPrice;
 	}
 
 	public function setType($newType) {
-		$this->$type = $newType;
+		$this->type = $newType;
 	}
 
 	public function toString() {
-		return "{$id}, {$listingImagesID}, {$price}, {$type}";
+		return "{$this->id}, {$this->listingImagesID}, {$this->price}, {$this->type}";
 	}
 }

@@ -30,7 +30,7 @@ CREATE TABLE `student_dtchau`.`listing` (
 	PRIMARY KEY(`id`)
 );
 
-CREATE TABLE `student_dtchau`.'address' (
+CREATE TABLE `student_dtchau`.`address` (
 	`listingId` INT(4) NOT NULL,
 	`streetName` VARCHAR(100),
 	`city` VARCHAR(100),
@@ -43,7 +43,7 @@ CREATE TABLE `student_dtchau`.`favoriteListing` (
 	`id` INT(4) NOT NULL,
 	`listingId` INT(4) NOT NULL,
 	PRIMARY KEY(`listingId`)
-)
+);
 
 CREATE TABLE `student_dtchau`.`listingDetail`(
 	`listingId` INT(4) NOT NULL,

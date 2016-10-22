@@ -44,6 +44,7 @@ class Search extends Controller {
     public function searchApartments() {
         $city = $_POST["city"];
         $addressRepo = RepositoryFactory::createRepository("address");
-        $addressRepo->find($city);
+        $address = $addressRepo->find($city);
+        echo json_encode($address);
     }
 }

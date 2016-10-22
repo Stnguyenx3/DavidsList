@@ -33,7 +33,7 @@ class ListingImage implements Model{	#document
 		$this->image = $newImage;
 	}
 
-	public function initialize($array) {
-
+	public function toString() {
+		return "{$this->listingId}, {$this->imageThumbnail}, {$this->image}";
 	}
 }

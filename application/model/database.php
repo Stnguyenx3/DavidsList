@@ -32,12 +32,21 @@ class Database {
 	/*
 	 * Method to find the rows with the given id within the given
 	 * table, and instantiate it into an object of the given type
+	 *
+	 * hardcoded right now, need to find a way to make a query
+	 * independent of id, just finding by a field or set of fields
 	 */
 	public function find($id, $table, $object) {
 		$preparedStatement = 
-			$this->db->prepare("SELECT * FROM " . $table . " WHERE id = :id");
+			$this->db->prepare("SELECT * FROM " . $table . " WHERE city = :id");
 		$preparedStatement->execute(array(':id' => $id));
-		return ObjectFactory::createObject($object)->initialize($preparedStatement->fetchAll());
+		$arrayOfResults = $preparedStatement->fetchAll(PDO::FETCH_CLASS, $object);
+		$returnArray = [];
+
+		foreach($arrayOfResults as $results) {
+			$returnArray[] = $results;
+		}
+		return $returnArray;
 	}
 
 	/*
