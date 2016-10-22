@@ -1,11 +1,6 @@
 <?php
-interface ListingImageRepoInterface{
-	public function find($listingID);
-	public function save($listingImage);
-	public function remove($listingImage);
-}
 
-class ListingImageRepo implements ListingImageRepoInterface{
+class ListingImageRepo implements DatabaseRepositoryInterface{
 	protected $db;
 
 	public function __construct($db){
@@ -13,23 +8,19 @@ class ListingImageRepo implements ListingImageRepoInterface{
 	}
 
 	public function find($listingID){
-		return $this->db->find($listingID, 'listingImages', 'ListingImage');
+		return $this->db->find($listingID, 'listingImage', 'ListingImage');
 	}
 
 	public function save($listingImage){
-		$this->db->save($listingImage, 'listingImages');
+		$this->db->save($listingImage, 'listingImage');
 	}
 
 	public function remove($listingImage){
-		$this->db->remove($listingImage, 'listingImages');
+		$this->db->remove($listingImage, 'listingImage');
 	}
 }
 
-interface AllListingImagesQueryInterface{
-	public function fetch($fields);
-}
-
-class AllListingImagesQuery implements AllListingImagesQueryInterface{
+class AllListingImagesQuery implements AllQueryInterface{
 	protected $db;
 
 	public function __contruct($db){

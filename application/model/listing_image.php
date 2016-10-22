@@ -1,6 +1,6 @@
 <?php
 
-class ListingImage{	#document
+class ListingImage implements Model{	#document
 	private $listingID;
 	private $imageThumbnail;
 	private $image;
@@ -31,5 +31,9 @@ class ListingImage{	#document
 
 	public function setImage($newImage) {
 		$this->image = $newImage;
+	}
+
+	public function initialize($array) {
+
 	}
 }

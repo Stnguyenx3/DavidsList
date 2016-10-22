@@ -41,7 +41,9 @@ class Search extends Controller {
 
     }
 
-    public function searchApartments($param) {
-
+    public function searchApartments() {
+        $city = $_POST["city"];
+        $addressRepo = RepositoryFactory::createRepository("address");
+        $addressRepo->find($city);
     }
 }

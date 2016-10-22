@@ -1,12 +1,6 @@
 <?php
 
-interface UserRepoInterface{
-	public function find($id);
-	public function save($user);
-	public function remove($user);
-}
-
-class UserRepo implements UserRepoInterface{
+class UserRepo implements DatabaseRepositoryInterface{
 	protected $db;
 
 	public function __construct($db){
@@ -27,11 +21,7 @@ class UserRepo implements UserRepoInterface{
 
 }
 
-interface AllUsersQueryInterface{
-	public function fetch($fields);
-}
-
-class AllUsersQuery implements AllUsersQueryInterface{
+class AllUsersQuery implements AllQueryInterface{
 	protected $db;
 	
 	public function __construct(Database $db){
@@ -39,7 +29,7 @@ class AllUsersQuery implements AllUsersQueryInterface{
 	}
 
 	public function fetch($fields){
-		return $this->db->select($fields)->from('users')->rows();
+		//return $this->db->select($fields)->from('users')->rows();
 	}
 
 }

@@ -1,12 +1,8 @@
 <?php
 
-require APP . "model/repositories/listing_image_repository.php";
-require APP . "model/repositories/user_image_repository.php";
-require APP . "model/repositories/listing_repository.php";
-require APP . "model/repositories/user_repository.php";
-class RespositoryFactory {
+class RepositoryFactory {
 	public static function createRepository($repoName) {
-		$db = Database.getInstance();
+		$db = Database::getInstance();
 		switch($repoName) {
 			case "listing_image": {
 				return new ListingImageRepo($db);
@@ -38,6 +34,30 @@ class RespositoryFactory {
 			}
 			case "user_image_all": {
 				return new AllUsersQuery($db);
+				break;
+			}
+			case "address": {
+				return new AddressRepo($db);
+				break;
+			}
+			case "address_all": {
+				return new AllAddressQuery($db);
+				break;
+			}
+			case "favorite_listing": {
+				return new FavoriteListingRepo($db);
+				break;
+			}
+			case "favorite_listing_all": {
+				return new AllFavoriteListingQuery($db);
+				break;
+			}
+			case "listing_detail": {
+				return new ListingDetailRepo($db);
+				break;
+			}
+			case "listing_detail_all": {
+				return new AllListingDetailQuery($db);
 				break;
 			}
 		}

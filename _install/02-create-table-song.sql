@@ -1,44 +1,64 @@
-drop table if exists users;
-drop table if exists userImages;
-drop table if exists listings;
-drop table if exists listingsImages;
+drop table if exists user;
+drop table if exists userImage;
+drop table if exists listing;
+drop table if exists listingImage;
+drop table if exists address;
+drop table if exists listingDetail;
+drop table if exists favoriteListing;
 
-CREATE TABLE `student_dtchau`.`users` (
+CREATE TABLE `student_dtchau`.`user` (
   `id` INT(4) NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(64) NOT NULL,
-  `studentID` VARCHAR(8),
+  `studentID` VARCHAR(9),
   `phone` VARCHAR(10),
   `bio` VARCHAR(2000),
-  `listingId` INT(4) NOT NULL,
-  `userImagesId` INT(4) NOT NULL
   PRIMARY KEY(`id`)
  );
 
-CREATE TABLE `student_dtchau`.`userImages`(
-	`id` INT(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `student_dtchau`.`userImage`(
+	`id` INT(4) NOT NULL,
 	`image` LONGBLOB,
 	`imageThumbnail` TINYBLOB,
 	PRIMARY KEY(`id`)
 );
-CREATE TABLE `student_dtchau`.`listings` (
+
+CREATE TABLE `student_dtchau`.`listing` (
 	`id` INT(4) NOT NULL AUTO_INCREMENT,
-	`listingImagesId` INT(4) NOT NULL
 	`price` INT(4) NOT NULL,
+	`type` VARCHAR(100) NOT NULL,
+	PRIMARY KEY(`id`)
+);
+
+CREATE TABLE `student_dtchau`.'address' (
+	`listingId` INT(4) NOT NULL,
+	`streetName` VARCHAR(100),
+	`city` VARCHAR(100),
+	`zipcode` VARCHAR(100),
+	`state` VARCHAR(100),
+	PRIMARY KEY(`listingId`)
+);
+
+CREATE TABLE `student_dtchau`.`favoriteListing` (
+	`id` INT(4) NOT NULL,
+	`listingId` INT(4) NOT NULL,
+	PRIMARY KEY(`listingId`)
+)
+
+CREATE TABLE `student_dtchau`.`listingDetail`(
+	`listingId` INT(4) NOT NULL,
 	`numberOfBedrooms` INT(4) NOT NULL,
 	`numberOfBathrooms` INT(4) NOT NULL,
-	`type` VARCHAR(100) NOT NULL,
-	`internet` TINYINT(1) ,
+	`internet` TINYINT(1),
 	`petPolicy` VARCHAR(100) NOT NULL,
 	`elevatorAccess` text COLLATE utf8_unicode_ci NOT NULL,
 	`furnishing` TINYINT(1), #subject to change to a three level int field
 	`airConditioning` TINYINT(1),
-	`address` VARCHAR(100) NOT NULL,
 	`description` VARCHAR(2000) NOT NULL,
-	PRIMARY KEY(`id`)
+	PRIMARY KEY(`listingId`)
 );
 
-CREATE TABLE `student_dtchau`.`listingImages`(
+CREATE TABLE `student_dtchau`.`listingImage`(
 	`listingID` INT(4) NOT NULL AUTO_INCREMENT,
 	`image` LONGBLOB,
 	`imageThumbnail` TINYBLOB,

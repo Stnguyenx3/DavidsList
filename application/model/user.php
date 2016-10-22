@@ -6,7 +6,9 @@ class User{
 	private $studentID;
 	private $phone;
 	private $bio;
-	
+	private $listingId;
+	private $userImagesId;
+
 	public function __construct() {
 
 	}
@@ -31,6 +33,14 @@ class User{
 		return $this->$bio;
 	}
 
+	public function getListingId() {
+		return $this->$listingId;
+	}
+
+	public function getUserImagesId() {
+		return $this->$userImagesId;
+	}
+
 	public function setId($newId) {
 		$this->$id = $newId;
 	}
@@ -49,5 +59,21 @@ class User{
 
 	public function setBiography($newBio) {
 		$this->$bio = $newBio;
+	}
+
+	public function setListingId($newListingId) {
+		$this->$listingId = $newListingId;
+	}
+
+	public function setUserImagesId($newUserImageId) {
+		$this->$userImagesId = $newUserImageId;
+	}
+
+	public function toString() {
+		return "{$id}, {$email}, {$studentID}, {$phone}, {$bio}, {$listingId}, {$userImagesId}";
+	}
+
+	public function initialize($array) {
+		
 	}
 }

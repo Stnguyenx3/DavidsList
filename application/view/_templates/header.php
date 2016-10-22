@@ -22,4 +22,5 @@
     <!-- navigation -->
     <div class="navigation">
         <a href="<?php echo URL; ?>">home</a>
+        <a href="<?php echo URL . "home/search"; ?>">search</a>
     </div>

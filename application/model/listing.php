@@ -1,19 +1,10 @@
 <?php
 
 class Listing{
-	public $id;
-	public $listingID;
-	public $numberOfBedrooms;
-	public $numberOfBathrooms;
-	public $internet;
-	public $petPolicy;
-	public $price;
-	public $type;
-	public $elevatorAccess;
-	public $furnishing;
-	public $airConditioning;
-	public $address;
-	public $description;
+	private $id;
+	private $listingImagesID;
+	private $price;
+	private $type;
 
 	public function __construct() {
 
@@ -23,24 +14,8 @@ class Listing{
 		return $this->$id;
 	}
 
-	public function getListingId() {
-		return $this->$listingID;
-	}
-
-	public function getNumberOfBedrooms() {
-		return $this->$numberOfBedrooms;
-	}
-
-	public function getNumberOfBathrooms() {
-		return $this->$numberOfBathrooms;
-	}
-
-	public function getInternet() {
-		return $this->$internet;
-	}
-
-	public function getPetPolicy() {
-		return $this->$petPolicy;
+	public function getListingImagesId() {
+		return $this->$listingImagesID;
 	}
 
 	public function getPrice() {
@@ -51,48 +26,12 @@ class Listing{
 		return $this->$type;
 	}
 
-	public function getElevatorAccess() {
-		return $this->$elevatorAccess;
-	}
-
-	public function getFurnishing() {
-		return $this->$furnishing;
-	}
-
-	public function getAirConditioning() {
-		return $this->$airConditioning;
-	}
-
-	public function getAddress() {
-		return $this->$address;
-	}
-
-	public function getDescription() {
-		return $this->$bio;
-	}
-
 	public function setId($newId) {
 		$this->$id = $newId;
 	}
 
-	public function setListingId($newListingId) {
-		$this->$listingID = $newListingId;
-	}
-
-	public function setNumberOfBedrooms($numOfBedrooms) {
-		$this->$numberOfBedrooms = $numOfBedrooms;
-	}
-
-	public function setNumberOfBathrooms($numOfBathrooms) {
-		$this->$numberOfBathrooms = $numOfBathrooms;
-	}
-
-	public function setInternet($newInternet) {
-		$this->$internet = $newInternet;
-	}
-
-	public function setPetPolicy($newPetPolicy) {
-		$this->$petPolicy = $newPetPolicy;
+	public function setListingId($newListingImagesId) {
+		$this->$listingImagesID = $newListingId;
 	}
 
 	public function setPrice($newPrice) {
@@ -103,24 +42,7 @@ class Listing{
 		$this->$type = $newType;
 	}
 
-	public function setElevatorAccess($newElevatorAccess) {
-		$this->$elevatorAccess = $newElevatorAccess;
+	public function toString() {
+		return "{$id}, {$listingImagesID}, {$price}, {$type}";
 	}
-
-	public function setFurnishing($newFurnishing) {
-		$this->$furnishing = $newFurnishing;
-	}
-
-	public function setAirConditioning($newAirConditioning) {
-		$this->$airConditioning = $newAirConditioning;
-	}
-
-	public function setAddress($newAddress) {
-		$this->$address = $newAddress;
-	}
-
-	public function setDescription($newDescription) {
-		$this->$description = $newDescription;
-	}
-
 }

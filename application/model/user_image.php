@@ -32,4 +32,12 @@ class UserImage{ #document
 	public function setImage($newImage) {
 		$this->image = $newImage;
 	}
+
+	public function toString() {
+		return "{$id}, {$imageThumbnail}, {$image}";
+	}
+
+	public function initialize($array) {
+		
+	}
 }

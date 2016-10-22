@@ -85,3 +85,23 @@ function uploadImage() {
 	}
 	reader.readAsDataURL(logo);
 }
+
+function onSearchClick() {
+	var searchQuery = {
+		city: $('#search-input').val()
+	}
+	$.ajax({
+		type:'POST',
+		url: url+"/search/searchapartments/",
+		data: searchQuery,
+		success: function(event) {
+			console.log("I succeeded");
+			console.log(event);
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+	});
+}
