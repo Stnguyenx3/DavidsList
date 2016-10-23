@@ -1,6 +1,6 @@
 <?php
 
-class Address implements Model{
+class Address implements JsonSerializable{
 	private $listingId;
 	private $streetName;
 	private $city;
@@ -51,8 +51,19 @@ class Address implements Model{
 		$this->state = $newState;
 	}
 
-	public function toString() {
+	public function __toString() {
 		return "{$this->listingId}, {$this->streetName}, " 
 				. "{$this->city}, {$this->zipcode}, {$this->state}";
 	}
+
+	public function jsonSerialize() {
+		return array(
+			'listingId' => $this->listingId,
+			'streetName' => $this->streetName,
+			'city' => $this->city,
+			'zipcode' => $this->zipcode,
+			'state' => $this->state
+		);	
+	}
+
 }

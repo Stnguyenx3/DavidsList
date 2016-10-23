@@ -102,6 +102,6 @@ function onSearchClick() {
 			console.log("I failed");
 			console.log(err);
 			console.log(errThrown);
-		}
+		},
 	});
 }

@@ -41,12 +41,8 @@ class Database {
 			$this->db->prepare("SELECT * FROM " . $table . " WHERE city = :id");
 		$preparedStatement->execute(array(':id' => $id));
 		$arrayOfResults = $preparedStatement->fetchAll(PDO::FETCH_CLASS, $object);
-		$returnArray = [];
 
-		foreach($arrayOfResults as $results) {
-			$returnArray[] = $results;
-		}
-		return $returnArray;
+		return $arrayOfResults;
 	}
 
 	/*

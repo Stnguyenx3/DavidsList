@@ -1,6 +1,6 @@
 <?php
 
-class User implements Model{
+class User implements JsonSerializable {
 	private $id;
 	private $email;
 	private $studentID;
@@ -69,8 +69,12 @@ class User implements Model{
 		$this->userImagesId = $newUserImageId;
 	}
 
-	public function toString() {
+	public function __toString() {
 		return "{$this->id}, {$this->email}, {$this->studentID}," . 
 				" {$this->phone}, {$this->bio}, {$this->listingId}, {$this->userImagesId}";
+	}
+	
+	public function jsonSerialize() {
+		
 	}
 }

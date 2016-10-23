@@ -1,6 +1,6 @@
 <?php
 
-class ListingImage implements Model{	#document
+class ListingImage implements JsonSerializable{	#document
 	private $listingID;
 	private $imageThumbnail;
 	private $image;
@@ -33,7 +33,11 @@ class ListingImage implements Model{	#document
 		$this->image = $newImage;
 	}
 
-	public function toString() {
+	public function __toString() {
 		return "{$this->listingId}, {$this->imageThumbnail}, {$this->image}";
+	}
+
+	public function jsonSerialize() {
+		
 	}
 }

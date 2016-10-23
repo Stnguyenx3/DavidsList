@@ -38,7 +38,6 @@ class Search extends Controller {
     public function testImage() {
     	$test = htmlspecialchars($_POST["imageData"]);
     	echo base64_decode($test);
-
     }
 
     public function searchApartments() {

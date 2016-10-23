@@ -1,6 +1,6 @@
 <?php
 
-class ListingDetail implements Model {
+class ListingDetail implements JsonSerializable{
 	private $numberOfBedrooms;
 	private $numberOfBathrooms;
 	private $internet;
@@ -78,9 +78,13 @@ class ListingDetail implements Model {
 		$this->description = $newDescription;
 	}
 
-	public function toString() {
+	public function __toString() {
 		return "{$this->numberOfBedrooms}, {$this->numberOfBathrooms}, {$this->internet}," . 
 				" {$this->petPolicy}, {$this->elevatorAccess}, " . 
 			    "{$this->furnishing}, {$this->airConditioning}, {$this->description}";
+	}
+
+	public function jsonSerialize() {
+		
 	}
 }

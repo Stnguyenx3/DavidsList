@@ -1,6 +1,6 @@
 <?php
 
-class Listing implements Model{
+class Listing implements JsonSerializable{
 	private $id;
 	private $listingImagesID;
 	private $price;
@@ -42,7 +42,11 @@ class Listing implements Model{
 		$this->type = $newType;
 	}
 
-	public function toString() {
+	public function __toString() {
 		return "{$this->id}, {$this->listingImagesID}, {$this->price}, {$this->type}";
+	}
+
+	public function jsonSerialize() {
+		
 	}
 }
