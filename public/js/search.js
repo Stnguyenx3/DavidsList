@@ -86,22 +86,32 @@ function uploadImage() {
 	reader.readAsDataURL(logo);
 }
 
+
+$(document).keypress(function(event){
+    if(event.keyCode === 13) {
+        onSearchClick();
+    }
+});
+
 function onSearchClick() {
-	var searchQuery = {
+
+	if($('#search-input').val() !== "") {
+		var searchQuery = {
 		city: $('#search-input').val()
+		}
+		$('#search-input').val("");
+		$.ajax({
+			type:'POST',
+			url: url+"/search/searchapartments/",
+			data: searchQuery,
+			success: formatResults,
+			error: function(xhr, err, errThrown) {
+				console.log("I failed");
+				console.log(err);
+				console.log(errThrown);
+			},
+		});
 	}
-	$('#search-input').val("");
-	$.ajax({
-		type:'POST',
-		url: url+"/search/searchapartments/",
-		data: searchQuery,
-		success: formatResults,
-		error: function(xhr, err, errThrown) {
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
-		},
-	});
 }
 
 function formatResults(event) {
