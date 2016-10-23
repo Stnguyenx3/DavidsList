@@ -7,8 +7,8 @@ class UserImageRepo implements DatabaseRepositoryInterface{
 		$this->db = $db;
 	}
 
-	public function find($id){
-		return $this->db->find($id, 'userImage', 'UserImages');
+	public function find($searchParam, $column){
+		return $this->db->find($searchParam, 'userImage', 'UserImages', $column);
 	}
 
 	public function save($userImage){

@@ -43,7 +43,20 @@ class Search extends Controller {
     public function searchApartments() {
         $city = $_POST["city"];
         $addressRepo = RepositoryFactory::createRepository("address");
-        $address = $addressRepo->find($city);
-        echo json_encode($address);
+        $listingImageRepo = RepositoryFactory::createRepository("listing_image");
+        $addresses = $addressRepo->find($city, "city");
+        $returnArray = array();
+
+        foreach($addresses as $address) {
+            $tempHash = $address->jsonSerialize();
+            $imageThumbnail = $listingImageRepo->find($address->getListingId(), "listingID");
+            if(!empty($imageThumbnail)) {
+                $tempHash["imageThumbnail"] =
+                                        base64_encode($imageThumbnail[0]->getImageThumbnail());
+            }
+
+            $returnArray[] = $tempHash;
+        }
+        echo json_encode($returnArray);
     }
 }

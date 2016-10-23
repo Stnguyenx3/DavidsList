@@ -7,8 +7,8 @@ class FavoriteListingRepo implements DatabaseRepositoryInterface {
 		$this->db = $db;
 	}
 
-	public function find($id){
-		return $this->db->find($id, 'favoriteListing', 'FavoriteListing');
+	public function find($searchParam, $column){
+		return $this->db->find($searchParam, 'favoriteListing', 'FavoriteListing', $column);
 	}
 
 	public function save($favoriteListing){

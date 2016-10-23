@@ -19,7 +19,7 @@ CREATE TABLE `student_dtchau`.`user` (
 CREATE TABLE `student_dtchau`.`userImage`(
 	`id` INT(4) NOT NULL,
 	`image` LONGBLOB,
-	`imageThumbnail` TINYBLOB,
+	`imageThumbnail` BLOB,
 	PRIMARY KEY(`id`)
 );
 
@@ -61,7 +61,7 @@ CREATE TABLE `student_dtchau`.`listingDetail`(
 CREATE TABLE `student_dtchau`.`listingImage`(
 	`listingID` INT(4) NOT NULL AUTO_INCREMENT,
 	`image` LONGBLOB,
-	`imageThumbnail` TINYBLOB,
+	`imageThumbnail` BLOB,
 
   PRIMARY KEY (`listingId`)
   #UNIQUE KEY `email` (`email`)

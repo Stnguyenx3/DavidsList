@@ -34,10 +34,14 @@ class ListingImage implements JsonSerializable{	#document
 	}
 
 	public function __toString() {
-		return "{$this->listingId}, {$this->imageThumbnail}, {$this->image}";
+		return "{$this->listingID}, {$this->imageThumbnail}, {$this->image}";
 	}
 
 	public function jsonSerialize() {
-		
+		return array(
+			'listingId' => $this->listingID,
+			'imageThumbnail' => $this->imageThumbnail,
+			'image' => $this->image
+		);
 	}
 }

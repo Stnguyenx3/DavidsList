@@ -7,8 +7,8 @@ class ListingRepo implements DatabaseRepositoryInterface{
 		$this->db = $db;
 	}
 
-	public function find($id){
-		return $this->db->find($id, 'listing', 'Listing');
+	public function find($searchParam, $column){
+		return $this->db->find($searchParam, 'listing', 'Listing', $column);
 	}
 
 	public function save($listing){

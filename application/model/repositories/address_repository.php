@@ -7,8 +7,8 @@ class AddressRepo implements DatabaseRepositoryInterface{
 		$this->db = $db;
 	}
 
-	public function find($id){
-		return $this->db->find($id, 'address', 'Address');
+	public function find($searchParam, $column){
+		return $this->db->find($searchParam, 'address', 'Address', $column);
 	}
 
 	public function save($address){
