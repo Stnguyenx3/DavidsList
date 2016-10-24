@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * Repository pattern
+ * Class that acts as the interface between the app and the Listings table
+ * Make calls with this class if you need to find rows using one column parameter
+ * or need to delete or insert one row
+ */
 class ListingRepo implements DatabaseRepositoryInterface{
 	protected $db;
 

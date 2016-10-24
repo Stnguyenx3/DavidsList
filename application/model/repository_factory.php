@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Factory class that instantiates one of the repositories based on the given
+ * repository name, with the dependency injected into the repository
+ */
 class RepositoryFactory {
 	public static function createRepository($repoName) {
 		$db = Database::getInstance();

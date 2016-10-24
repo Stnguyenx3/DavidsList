@@ -86,13 +86,14 @@ function uploadImage() {
 	reader.readAsDataURL(logo);
 }
 
-
+//Allowing pressing the enter key to search
 $(document).keypress(function(event){
     if(event.keyCode === 13) {
         onSearchClick();
     }
 });
 
+//Creates an AJAX request to search for apartments(More like search for addresses)
 function onSearchClick() {
 
 	if($('#search-input').val() !== "") {
@@ -114,6 +115,8 @@ function onSearchClick() {
 	}
 }
 
+//Function to capture the results of the AJAX call and format the page
+//based on the results
 function formatResults(event) {
 	console.log("I succeeded");
 	console.log(event);

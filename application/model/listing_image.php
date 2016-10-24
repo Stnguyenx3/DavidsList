@@ -1,6 +1,11 @@
 <?php
 
-class ListingImage implements JsonSerializable{	#document
+/*
+ * Class that represents a single Listings image
+ * normal plain old PHP object, with the implementation of a JsonSerializable
+ * which allows sending this object back to the client side
+ */
+class ListingImage implements JsonSerializable{
 	private $listingID;
 	private $imageThumbnail;
 	private $image;

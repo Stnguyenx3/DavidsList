@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Singleton database class that acts as the imemediate layer between
+ * Singleton database class that acts as the immediate layer between
  * the actual database and the application. 
  */
 

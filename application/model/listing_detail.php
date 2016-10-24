@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Class that represents a single Listings Detail
+ * normal plain old PHP object, with the implementation of a JsonSerializable
+ * which allows sending this object back to the client side
+ */
 class ListingDetail implements JsonSerializable{
 	private $numberOfBedrooms;
 	private $numberOfBathrooms;

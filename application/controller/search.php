@@ -40,6 +40,12 @@ class Search extends Controller {
     	echo base64_decode($test);
     }
 
+    /*
+     * Creates repositories for address and images
+     * Does a database call for cities
+     * Loops through the results and finds the first image thumbnails of the cities
+     * returns as a json encoded array
+     */
     public function searchApartments() {
         $city = $_POST["city"];
         $addressRepo = RepositoryFactory::createRepository("address");
