@@ -27,6 +27,7 @@ CREATE TABLE `student_dtchau`.`listing` (
 	`id` INT(4) NOT NULL AUTO_INCREMENT,
 	`price` INT(4) NOT NULL,
 	`type` VARCHAR(100) NOT NULL,
+	`status` TINYINT(1) NOT NULL,
 	PRIMARY KEY(`id`)
 );
 
