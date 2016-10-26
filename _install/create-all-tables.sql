@@ -7,32 +7,35 @@ drop table if exists listingDetail;
 drop table if exists favoriteListing;
 
 CREATE TABLE `student_dtchau`.`user` (
-  `id` INT(4) NOT NULL AUTO_INCREMENT,
+  `userid` INT(4) NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(64) NOT NULL,
   `studentID` VARCHAR(9),
   `phone` VARCHAR(10),
   `bio` VARCHAR(2000),
-  PRIMARY KEY(`id`)
+  `verified` TINYINT(1) NOT NULL
+  PRIMARY KEY(`userid`)
  );
 
 CREATE TABLE `student_dtchau`.`userImage`(
-	`id` INT(4) NOT NULL,
+	`userid` INT(4) NOT NULL,
 	`image` LONGBLOB,
 	`imageThumbnail` BLOB,
-	PRIMARY KEY(`id`)
+	PRIMARY KEY(`userid`)
 );
 
 CREATE TABLE `student_dtchau`.`listing` (
-	`id` INT(4) NOT NULL AUTO_INCREMENT,
+	`userid` INT(4) NOT NULL,
+	`listingId` INT(4) NOT NULL AUTO_INCREMENT,
 	`price` INT(4) NOT NULL,
 	`type` VARCHAR(100) NOT NULL,
 	`status` TINYINT(1) NOT NULL,
-	PRIMARY KEY(`id`)
+	PRIMARY KEY(`userid`)
 );
 
 CREATE TABLE `student_dtchau`.`address` (
 	`listingId` INT(4) NOT NULL,
+	`approximateAddress` TINYINT(1) NOT NULL,
 	`streetName` VARCHAR(100),
 	`city` VARCHAR(100),
 	`zipcode` VARCHAR(100),
@@ -41,7 +44,7 @@ CREATE TABLE `student_dtchau`.`address` (
 );
 
 CREATE TABLE `student_dtchau`.`favoriteListing` (
-	`id` INT(4) NOT NULL,
+	`userid` INT(4) NOT NULL,
 	`listingId` INT(4) NOT NULL,
 	PRIMARY KEY(`listingId`)
 );
