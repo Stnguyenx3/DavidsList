@@ -89,7 +89,25 @@ body {
     color: #454545;
 }
 
+/*header*/
 .search-header {
     display: inline-block;
     color: #454545;
 }
+
+.search-header input {
+    color: #222;
+    padding: 25% 1px;
+}
+.search-header button {
+    background-color: #ccc;
+    border: 0;
+    padding: 25% 10px;
+    cursor: pointer;
+}
+.search-header button:hover {
+    background-color: #222;
+    color: #fff;
+}
+
+
