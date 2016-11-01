@@ -97,7 +97,7 @@ body {
 
 .search-header input {
     color: #222;
-    padding: 25% 1px;
+    padding: 25% 10px;
 }
 .search-header button {
     background-color: #ccc;
