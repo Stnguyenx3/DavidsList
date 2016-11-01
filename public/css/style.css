@@ -15,7 +15,7 @@ body {
 }
 .navigation {
     /*margin-left: 33px;*/
-    background-color: #333;
+    background-color: #222;
 }
 .navigation a {
     display: inline-block;
@@ -29,8 +29,7 @@ body {
     color: #fff;
 }
 .navigation a:hover {
-    color: #222;
-    background: transparent;
+    color: #fff;
 }
 .container {
     border: 1px solid #ddd;
