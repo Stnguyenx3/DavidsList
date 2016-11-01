@@ -95,7 +95,7 @@ body {
     color: #454545;
 }
 
-.search-header input {
+/*.search-header input {
     color: #222;
     padding: 25% 10px;
     height: 50px;
@@ -110,6 +110,6 @@ body {
 .search-header button:hover {
     background-color: #222;
     color: #fff;
-}
+}*/
 
 
