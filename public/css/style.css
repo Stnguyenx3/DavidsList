@@ -98,12 +98,14 @@ body {
 .search-header input {
     color: #222;
     padding: 25% 10px;
+    height: 50px;
 }
 .search-header button {
     background-color: #ccc;
     border: 0;
     padding: 25% 10px;
     cursor: pointer;
+    height: 50px;
 }
 .search-header button:hover {
     background-color: #222;
