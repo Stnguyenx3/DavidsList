@@ -34,7 +34,7 @@ body {
 }
 .container {
     /*border: 1px solid #ddd;*/
-    /*overflow: hidden;*/
+    overflow: hidden;
     padding: 20px;
     margin: 33px;
 }
