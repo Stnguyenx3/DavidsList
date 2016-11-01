@@ -16,11 +16,16 @@
 <body>
     <!-- logo -->
     <div class="logo">
-        David's List
+        <img src="<?php echo URL; ?>img/logo.png">
+    </div>
+
+    <div class="search">
+        <a href="<?php echo URL . "home/search"; ?>">search</a>
     </div>
 
     <!-- navigation -->
     <div class="navigation">
         <a href="<?php echo URL; ?>">home</a>
-        <a href="<?php echo URL . "home/search"; ?>">search</a>
+        <a href="<?php echo URL ; ?>">rent out</a>
+        <a href="<?php echo URL ; ?>">about</a>
     </div>
