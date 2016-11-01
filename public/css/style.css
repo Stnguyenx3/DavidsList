@@ -14,7 +14,8 @@ body {
     opacity: 0.1;
 }
 .navigation {
-    margin-left: 33px;
+    /*margin-left: 33px;*/
+    color: #fff;
 }
 .navigation a {
     display: inline-block;
@@ -90,5 +91,6 @@ body {
 }
 
 .search-header {
+    display: inline-block;
     color: #454545;
 }
