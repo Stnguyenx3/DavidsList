@@ -19,9 +19,9 @@
         <img src="<?php echo URL; ?>img/logo.png" height="100">
     </div>
 
-    <div class="search">
-        <input type="keywords" name="browse" placeholder="Search...">
-        <a href="<?php echo URL . "home/search"; ?>">Browse</a>
+    <div class="container" id="search-container">
+        <input id="search-input" type="text" placeholder="City, street, zipcode..." required autofocus/>
+        <button id="search-get" type="submit" onclick='onSearchClick()'>Search For Homes</button>
     </div>
 
     <!-- navigation -->
