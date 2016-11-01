@@ -33,5 +33,5 @@
         <a href="<?php echo URL; ?>">home</a>
         <a href="<?php echo URL ; ?>">rent out</a>
         <a href="<?php echo URL ; ?>">about</a>
-        <a href="<?php echo URL ; ?>/home/search.php">Search</a> <!-- remove after fixing backend -->
+        <a href="<?php echo URL. "home/search" ?>"> Search</a> <!-- remove after fixing backend -->
     </div>
