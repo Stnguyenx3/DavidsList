@@ -20,7 +20,8 @@
     </div>
 
     <div class="search">
-        <a href="<?php echo URL . "home/search"; ?>">search</a>
+        <input type="keywords" name="browse" placeholder="Search...">
+        <a href="<?php echo URL . "home/search"; ?>">Browse</a>
     </div>
 
     <!-- navigation -->
