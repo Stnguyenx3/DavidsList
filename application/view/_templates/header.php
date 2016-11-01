@@ -18,13 +18,14 @@
 
     <div class="search-header" id="search-container">
 
-        <!-- <div class="logo"> -->
+        <div class="logo">
             <img src="<?php echo URL; ?>img/logo.png" height="100">
-        <!-- </div> -->
+        </div>
 
-
-        <input id="search-input" type="text" placeholder="City, street, zipcode..." required autofocus/>
-        <button id="search-get" type="submit" onclick='onSearchClick()'>Search For Homes</button>
+        <div class="search">
+            <input id="search-input" type="text" placeholder="City, street, zipcode..." required autofocus/>
+            <button id="search-get" type="submit" onclick='onSearchClick()'>Search For Homes</button>
+        </div>
     </div>
 
     <!-- navigation -->
