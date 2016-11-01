@@ -16,7 +16,7 @@
 <body>
     <!-- logo -->
     <div class="logo">
-        <img src="<?php echo URL; ?>img/logo.png">
+        <img src="<?php echo URL; ?>img/logo.png" height="42">
     </div>
 
     <div class="search">
