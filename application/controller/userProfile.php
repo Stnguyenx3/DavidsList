@@ -24,9 +24,9 @@ class UserProfile extends Controller{
         require APP . 'view/_templates/footer.php';
     }
 
-    public function favorites() {
+    public function listings() {
         require APP . 'view/_templates/header.php';
-        require APP . 'view/userProfile/listing.php';
+        require APP . 'view/userProfile/listings.php';
         require APP . 'view/_templates/footer.php';
     }
 
