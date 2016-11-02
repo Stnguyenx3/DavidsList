@@ -14,18 +14,31 @@
     <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
 </head>
 <body>
-    <!-- logo -->
-    <div class="logo">
-        <img src="<?php echo URL; ?>img/logo.png" height="100">
+
+    <div class="user">
+        <a href="<?php echo URL; ?>">login</a>
+        <a href="<?php echo URL ; ?>">register</a>
     </div>
 
-    <div class="search">
-        <a href="<?php echo URL . "home/search"; ?>">search</a>
+    <!-- logo -->
+
+    <div class="search-header" id="search-container">
+
+        <div class="logo">
+            <img src="<?php echo URL; ?>img/logo.png" height="100">
+        </div>
+
+        <div class="container">
+            <input id="search-input" type="text" placeholder="City, street, zipcode..." required autofocus/>
+            <button id="search-get" type="submit" onclick='onSearchClick()'>Browse</button>
+        </div>
+
     </div>
 
     <!-- navigation -->
     <div class="navigation">
         <a href="<?php echo URL; ?>">home</a>
-        <a href="<?php echo URL ; ?>">rent out</a>
-        <a href="<?php echo URL ; ?>">about</a>
+        <a href="<?php echo URL. "home/rentout" ; ?>">rent out</a>
+        <a href="<?php echo URL. "home/about" ; ?>">about</a>
+        <a href="<?php echo URL. "home/search" ?>"> Search</a> <!-- remove after fixing backend -->
     </div>
