@@ -86,9 +86,11 @@ body {
 .footer {
     padding: 20px;
     margin: 33px;
-    text-align: right;
+    left: 50%;
+    /*text-align: right;*/
     font-size: 11px;
     opacity: 0.5;
+    position: absolute;
 }
 .footer a {
     color: #454545;
