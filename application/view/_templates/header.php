@@ -16,7 +16,7 @@
 <body>
 
     <div class="user">
-        <a href="<?php echo URL."user/index"; ?>">login</a> <!-- fake fake fake -->
+        <a href="<?php echo URL."userProfile/index"; ?>">login</a> <!-- fake fake fake -->
         <a href="<?php echo URL ; ?>">register</a>
     </div>
 
