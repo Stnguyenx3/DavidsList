@@ -14,6 +14,12 @@
     <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
 </head>
 <body>
+
+    <div class="user">
+        <a href="<?php echo URL; ?>">login</a>
+        <a href="<?php echo URL ; ?>">register</a>
+    </div>
+
     <!-- logo -->
 
     <div class="search-header" id="search-container">
@@ -24,13 +30,9 @@
 
         <div class="container">
             <input id="search-input" type="text" placeholder="City, street, zipcode..." required autofocus/>
-            <button id="search-get" type="submit" onclick='onSearchClick()'>Search For Homes</button>
+            <button id="search-get" type="submit" onclick='onSearchClick()'>Browse</button>
         </div>
 
-        <div class="user">
-            <a href="<?php echo URL; ?>">login</a>
-            <a href="<?php echo URL ; ?>">register</a>
-        </div>
     </div>
 
     <!-- navigation -->
