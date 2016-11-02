@@ -38,7 +38,7 @@
     <!-- navigation -->
     <div class="navigation">
         <a href="<?php echo URL; ?>">home</a>
-        <a href="<?php echo URL ; ?>">rent out</a>
-        <a href="<?php echo URL ; ?>">about</a>
+        <a href="<?php echo URL. "home/rentout" ; ?>">rent out</a>
+        <a href="<?php echo URL. "home/about" ; ?>">about</a>
         <a href="<?php echo URL. "home/search" ?>"> Search</a> <!-- remove after fixing backend -->
     </div>
