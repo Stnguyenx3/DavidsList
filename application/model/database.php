@@ -60,5 +60,20 @@ class Database {
 				prepare("DELETE FROM " . $table . "WHERE id = " . $object->getId());
 	}
 
+
+	/*
+	 * Method to find the rows with the given search parameter (search parameter is matched to 
+	 * $column), where search parameter is a partial search term (e.g., "San" instead of "San 
+	 * Francisco") within the given table, and instantiate it into an object of the given type
+	 * ($object)
+	 */
+	public function findPartial($searchParam, $table, $object, $column) {
+		$preparedStatement = 
+			$this->db->prepare("SELECT * FROM {$table} WHERE {$column} LIKE %:searchParam%");
+		$preparedStatement->execute(array(':searchParam' => $searchParam));
+		$arrayOfResults = $preparedStatement->fetchAll(PDO::FETCH_CLASS, $object);
+		return $arrayOfResults;
+	}
+
 	//Update
 }

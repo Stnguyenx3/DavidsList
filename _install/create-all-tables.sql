@@ -13,7 +13,7 @@ CREATE TABLE `student_dtchau`.`user` (
   `studentID` VARCHAR(9),
   `phone` VARCHAR(10),
   `bio` VARCHAR(2000),
-  `verified` TINYINT(1) NOT NULL
+  `verified` TINYINT(1) NOT NULL,
   PRIMARY KEY(`userid`)
  );
 
@@ -22,7 +22,7 @@ CREATE TABLE `student_dtchau`.`userImage`(
 	`image` LONGBLOB,
 	`imageThumbnail` BLOB,
 	PRIMARY KEY(`userid`)
-);
+); 
 
 CREATE TABLE `student_dtchau`.`listing` (
 	`userid` INT(4) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE `student_dtchau`.`listing` (
 	`price` INT(4) NOT NULL,
 	`type` VARCHAR(100) NOT NULL,
 	`status` TINYINT(1) NOT NULL,
-	PRIMARY KEY(`userid`)
+	PRIMARY KEY(`listingId`)
 );
 
 CREATE TABLE `student_dtchau`.`address` (
@@ -42,6 +42,8 @@ CREATE TABLE `student_dtchau`.`address` (
 	`state` VARCHAR(100),
 	PRIMARY KEY(`listingId`)
 );
+# note that appromixate addressis a tiny int because we want to know whether or 
+# note the user wishes to show his/her exact address
 
 CREATE TABLE `student_dtchau`.`favoriteListing` (
 	`userid` INT(4) NOT NULL,
