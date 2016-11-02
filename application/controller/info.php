@@ -14,19 +14,19 @@ class Info extends Controller{
   
     public function privacy() {
         require APP . 'view/_templates/header.php';
-        require APP . 'view/home/privacy.php';
+        require APP . 'view/info/privacy.php';
         require APP . 'view/_templates/footer.php';
     }
 
     public function contact() {
         require APP . 'view/_templates/header.php';
-        require APP . 'view/home/contact.php';
+        require APP . 'view/info/contact.php';
         require APP . 'view/_templates/footer.php';
     }
 
     public function about() {
         require APP . 'view/_templates/header.php';
-        require APP . 'view/home/about.php';
+        require APP . 'view/info/about.php';
         require APP . 'view/_templates/footer.php';
     }
 }
