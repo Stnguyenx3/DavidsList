@@ -25,4 +25,16 @@ class Home extends Controller{
         require APP . 'view/home/search.php';
         require APP . 'view/_templates/footer.php';
     }
+
+    public function rentout() {
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/home/rentout.php';
+        require APP . 'view/_templates/footer.php';
+    }
+
+    public function about() {
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/home/about.php';
+        require APP . 'view/_templates/footer.php';
+    }
 }
