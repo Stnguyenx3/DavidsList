@@ -16,7 +16,7 @@
 <body>
 
     <div class="user">
-        <a href="<?php echo URL; ?>">login</a>
+        <a href="<?php echo URL."userProfile/index"; ?>">login</a> <!-- fake fake fake -->
         <a href="<?php echo URL ; ?>">register</a>
     </div>
 
@@ -39,6 +39,6 @@
     <div class="navigation">
         <a href="<?php echo URL; ?>">home</a>
         <a href="<?php echo URL. "home/rentout" ; ?>">rent out</a>
-        <a href="<?php echo URL. "home/about" ; ?>">about</a>
+        <a href="<?php echo URL. "info/about" ; ?>">about</a>
         <a href="<?php echo URL. "home/search" ?>"> Search</a> <!-- remove after fixing backend -->
     </div>

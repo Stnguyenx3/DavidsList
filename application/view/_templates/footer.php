@@ -1,8 +1,8 @@
 
     <!-- backlink to repo on GitHub, and affiliate link to Rackspace if you want to support the project -->
     <div class="footer">
-        Find <a href="https://github.com/panique/mini">MINI on GitHub</a>.
-        If you like the project, support it by <a href="http://tracking.rackspace.com/SH1ES">using Rackspace</a> as your hoster [affiliate link].
+        <a href="<?php echo URL. "info/contact"; ?>">contact</a>
+        <a href="<?php echo URL. "info/privacy" ; ?>">privacy</a>
     </div>
 
     <!-- jQuery, loaded in the recommended protocol-less way -->
