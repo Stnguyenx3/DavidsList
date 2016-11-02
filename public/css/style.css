@@ -85,7 +85,8 @@ body {
 }
 .footer {
     padding: 20px;
-    margin: 33px;
+    margin: auto;
+    bottom: 0px;
     left: 50%;
     /*text-align: right;*/
     font-size: 11px;
