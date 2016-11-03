@@ -12,15 +12,41 @@
 
     <!-- CSS -->
     <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-    <div class="user">
-        <a href="<?php echo URL."userProfile/index"; ?>">login</a> <!-- fake fake fake -->
+	<div class="container">
+	
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="user">
+					<a href="<?php echo URL."userProfile/index"; ?>">login</a>
+					<a href="<?php echo URL ; ?>">register</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+		
+			<div class="col-sm-3">
+				<img src="<?php echo URL; ?>img/logo.png" height="100">
+			</div>
+			
+			<div class="col-sm-9">
+				<input id="search-input" type="text" placeholder="City, street, zipcode..." required autofocus/>
+				<button id="search-get" type="submit" onclick='onSearchClick()'>Browse</button>
+			</div>
+			
+		</div>
+	</div>
+
+    <!--div class="user">
+        <a href="<?php echo URL."userProfile/index"; ?>">login</a>
         <a href="<?php echo URL ; ?>">register</a>
     </div>
 
-    <!-- logo -->
+
 
     <div class="search-header" id="search-container">
 
@@ -33,7 +59,7 @@
             <button id="search-get" type="submit" onclick='onSearchClick()'>Browse</button>
         </div>
 
-    </div>
+    </div-->
 
     <!-- navigation -->
     <div class="navigation">
