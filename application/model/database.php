@@ -30,7 +30,7 @@ class Database {
 	}
 
 	/*
-	 * Method to find the rows with the given id within the given
+	 * Method to find the rows with the given search parameter within the given
 	 * table, and instantiate it into an object of the given type
 	 */
 	public function find($searchParam, $table, $object, $column) {
