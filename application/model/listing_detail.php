@@ -6,6 +6,7 @@
  * which allows sending this object back to the client side
  */
 class ListingDetail implements JsonSerializable{
+	private $listingId;
 	private $numberOfBedrooms;
 	private $numberOfBathrooms;
 	private $internet;
@@ -17,6 +18,10 @@ class ListingDetail implements JsonSerializable{
 
 	public function __construct() {
 
+	}
+
+	public function getListingId() {
+		return $this->listingId;
 	}
 
 	public function getNumberOfBedrooms() {
@@ -49,6 +54,10 @@ class ListingDetail implements JsonSerializable{
 
 	public function getDescription() {
 		return $this->description;
+	}
+
+	public function setNumberOfBedrooms($newListingId) {
+		$this->listingId = $newListingId;
 	}
 
 	public function setNumberOfBedrooms($numOfBedrooms) {
@@ -84,12 +93,22 @@ class ListingDetail implements JsonSerializable{
 	}
 
 	public function __toString() {
-		return "{$this->numberOfBedrooms}, {$this->numberOfBathrooms}, {$this->internet}," . 
-				" {$this->petPolicy}, {$this->elevatorAccess}, " . 
+		return "{$this->listingId}, {$this->numberOfBedrooms}, {$this->numberOfBathrooms}," . 
+				" {$this->internet}, {$this->petPolicy}, {$this->elevatorAccess}, " . 
 			    "{$this->furnishing}, {$this->airConditioning}, {$this->description}";
 	}
 
 	public function jsonSerialize() {
-		
+		return array(
+			"listingId" => $this->listingId,
+			"numberOfBedrooms" => $this->numberOfBedrooms,
+			"numberOfBathrooms" => $this->numberOfBathrooms,
+			"internet" => $this->internet,
+			"petPolicy" => $this->petPolicy,
+			"elevatorAccess" => $this->elevatorAccess,
+			"furnishing" => $this->furnishing,
+			"airConditioning" => $this->airConditioning,
+			"description" => $this->description
+		);
 	}
 }

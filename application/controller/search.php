@@ -65,4 +65,18 @@ class Search extends Controller {
         }
         echo json_encode($returnArray);
     }
+
+    public function testInsert() {
+        $testUser = new User();
+        $testUser->setEmail("thomastse@gmail.com");
+        $testUser->setStudentId("912332325");
+        $testUser->setPassword("afdafafsa");
+        $testUser->setPhone("5102835566");
+        $testUser->setBiography("SFDJFJIAIFAIAIFA");
+        $testUser->setVerified(0);
+
+        $usersRepo = RepositoryFactory::createRepository("user");
+        $usersRepo->save($testUser);
+
+    }
 }
