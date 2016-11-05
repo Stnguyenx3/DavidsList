@@ -9,7 +9,7 @@ drop table if exists favoriteListing;
 CREATE TABLE `student_dtchau`.`user` (
   `userid` INT(4) NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(100) NOT NULL,
-  `username` VARCHAR() NOT NULL,
+  `username` VARCHAR(40) NOT NULL,
   `password` VARCHAR(64) NOT NULL,
   `studentID` VARCHAR(9),
   `phone` VARCHAR(10),
