@@ -9,8 +9,27 @@ class ListingImages extends Controller{
 	}
 
 	//getImages
+	public function getImages($listingID){
+
+		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
+		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingImage");
+		if ($arrayofListingImageObjects == null){
+			require APP . 'view/problem/error_page.php';
+		}
+
+		else {
+			$returnImage = $arrayofListingImageObjects[0]->getImage();
+			imagejpeg($returnImage);
+		}
+
+	}
 
 	//deleteImages
+	public function deleteImages($listingID){
 
+	}
 	//uploadImages
+	public function uploadImages($listingID){
+
+	}
 } 
