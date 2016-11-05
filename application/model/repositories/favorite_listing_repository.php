@@ -22,7 +22,12 @@ class FavoriteListingRepo implements DatabaseRepositoryInterface {
 	}
 
 	public function remove($favoriteListing){
-		$this->db->remove($favoriteListing, 'favoriteListing');
+		$this->db->remove($favoriteListing->getListingId(), 'favoriteListing', 'listingid');
+	}
+
+	public function update($favoriteListing){
+		$this->db->update($favoriteListing, 'favoriteListing', 
+					$favoriteListing->getListingId(), 'listingid');
 	}
 }
 

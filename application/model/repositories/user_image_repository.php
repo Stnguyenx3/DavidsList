@@ -22,8 +22,12 @@ class UserImageRepo implements DatabaseRepositoryInterface{
 	}
 
 	public function remove($userImage){
-		$this->db->remove($userImage, 'userImage');
+		$this->db->remove($userImage->getId(), 'userImage', 'userid');
 
+	}
+
+	public function update($userImage){
+		$this->db->update($userImage, 'userImage', $userImage->getId(), 'userid');
 	}
 }
 

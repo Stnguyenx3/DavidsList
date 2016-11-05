@@ -14,8 +14,8 @@ class UserImage implements JsonSerializable {
 
 	}
 
-	public function getListingId() {
-		return $this->listingID;
+	public function getId() {
+		return $this->id;
 	}
 
 	public function getImageThumbNail() {
@@ -26,8 +26,8 @@ class UserImage implements JsonSerializable {
 		return $this->image;
 	}
 
-	public function setListingId($newListingId) {
-		$this->listingID = $newListingId;
+	public function setId($newId) {
+		$this->id = $newId;
 	}
 
 	public function setImageThumbNail($newImageThumbnail) {
@@ -44,7 +44,7 @@ class UserImage implements JsonSerializable {
 
 	public function jsonSerialize() {
 		return array(
-			'id' => $this->id,
+			'userid' => $this->id,
 			'imageThumbnail' => $this->imageThumbnail,
 			'image' => $this->image
 		);

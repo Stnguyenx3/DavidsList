@@ -9,6 +9,22 @@ class FavoriteListing implements JsonSerializable{
 	private $userId;
 	private $listingId;
 
+	public function getUserId() {
+		return $this->userId;
+	}
+
+	public function getListingId() {
+		return $this->listingId;
+	}
+
+	public function setUserId($newUserId) {
+		$this->userId = $newUserId;
+	}
+
+	public function setListingId($newListingId) {
+		$this->listingId = $newListingId;
+	}
+
 	public function __toString() {
 		return "{$this->userId}, {$this->listingId}";
 	}

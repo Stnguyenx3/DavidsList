@@ -22,7 +22,11 @@ class AddressRepo implements DatabaseRepositoryInterface{
 	}
 
 	public function remove($address){
-		$this->db->save($address, 'address');
+		$this->db->remove($address->getListingId(), 'address', 'listingId');
+	}
+
+	public function update($address){
+		$this->db->update($address, 'address', $address->getListingId(), 'listingId');
 	}
 }
 
