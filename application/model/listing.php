@@ -62,7 +62,7 @@ class Listing implements JsonSerializable{
 	}
 
 	public function jsonSerialize() {
-		return new array(
+		return array(
 			"userid" => $this->id,
 			"listingId" => $this->listingImagesID,
 			"price" => $this->price,

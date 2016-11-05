@@ -56,7 +56,7 @@ class ListingDetail implements JsonSerializable{
 		return $this->description;
 	}
 
-	public function setNumberOfBedrooms($newListingId) {
+	public function setListingId($newListingId) {
 		$this->listingId = $newListingId;
 	}
 
