@@ -79,4 +79,16 @@ class Search extends Controller {
         $usersRepo->save($testUser);
 
     }
+
+    public function testDelete() {
+        $usersRepo = RepositoryFactory::createRepository("user");
+        $testUser = new User();
+        $testUser->setId("1");
+        $testUser->setVerified(0);
+        $usersRepo->remove($testUser);
+    }
+
+    public function testUpdate() {
+
+    }
 }

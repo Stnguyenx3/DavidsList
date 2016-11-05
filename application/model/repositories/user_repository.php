@@ -23,9 +23,12 @@ class UserRepo implements DatabaseRepositoryInterface {
     }
 
     public function remove($user) {
-        $this->db->remove($user, 'user');
+        $this->db->remove($user->getId(), 'user', 'userid');
     }
 
+    public function update($user){
+        $this->db->update($user, 'user', $user->getId(), 'userid');
+    }
 }
 
 class AllUsersQuery implements AllQueryInterface {
