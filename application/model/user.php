@@ -90,7 +90,7 @@ class User implements JsonSerializable {
 	
 	public function jsonSerialize() {
 		return array(
-			'id' => $this->id,
+			'userid' => $this->id,
 			'email' => $this->email,
 			'username' => $this->username,
 			'password' => $this->password,

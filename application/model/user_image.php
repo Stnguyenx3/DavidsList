@@ -44,7 +44,7 @@ class UserImage implements JsonSerializable {
 
 	public function jsonSerialize() {
 		return array(
-			'id' => $this->id,
+			'userid' => $this->id,
 			'imageThumbnail' => $this->imageThumbnail,
 			'image' => $this->image
 		);

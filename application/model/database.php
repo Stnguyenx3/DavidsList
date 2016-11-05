@@ -75,13 +75,13 @@ class Database {
 		$arrayOfValues = array_values($object->jsonSerialize());
 		$placeHolder = "";
 		foreach($arrayOfKeys as $keys) {
-			$placeHolder = $placeHolder . "{$keys} = ?, ";
+			$placeHolder = $placeHolder . "`{$keys}` = ?, ";
 		}
 		$placeHolder = trim($placeHolder, ", ");
 
 		$preparedStatement = 
 			$this->db->
-				prepare("UPDATE {$table} SET ($placeHolder) WHERE {$column} = {$updateParam}");
+				prepare("UPDATE `{$table}` SET $placeHolder WHERE {$column} = {$updateParam}");
 		$preparedStatement->execute($arrayOfValues);
 	}
 }

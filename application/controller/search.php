@@ -89,6 +89,17 @@ class Search extends Controller {
     }
 
     public function testUpdate() {
+        $usersRepo = RepositoryFactory::createRepository("user");
+        $testUser = new User();
+        $testUser->setId("4");
+        $testUser->setEmail("thomastse@gmail.com");
+        $testUser->setUsername("hoothott");
+        $testUser->setStudentId("912332325");
+        $testUser->setPassword("afdafafsa");
+        $testUser->setPhone("5102835566");
+        $testUser->setBiography("SFDJFJIAIFAIAIFA");
+        $testUser->setVerified(0);
 
+        $usersRepo->update($testUser);
     }
 }
