@@ -6,36 +6,38 @@
  * Make calls with this class if you need to find rows using one column parameter
  * or need to delete or insert one row
  */
-class UserRepo implements DatabaseRepositoryInterface{
-	protected $db;
+class UserRepo implements DatabaseRepositoryInterface {
 
-	public function __construct($db){
-		$this->db = $db;
-	}
+    protected $db;
 
-	public function find($searchParam, $column){
-		return $this->db->find($id, 'user', 'User', $column);
-	}
+    public function __construct($db) {
+        $this->db = $db;
+    }
 
-	public function save($user){
-		$this->db->save($user, 'user');
-	}
+    public function find($searchParam, $column) {
+        return $this->db->find($searchParam, 'user', 'User', $column);
+    }
 
-	public function remove ($user){
-		$this->db->remove($user, 'user');
-	}
+    public function save($user) {
+        $this->db->save($user, 'user');
+    }
+
+    public function remove($user) {
+        $this->db->remove($user, 'user');
+    }
 
 }
 
-class AllUsersQuery implements AllQueryInterface{
-	protected $db;
-	
-	public function __construct(Database $db){
-		$this->db = $db;
-	}
+class AllUsersQuery implements AllQueryInterface {
 
-	public function fetch($fields){
-		//return $this->db->select($fields)->from('users')->rows();
-	}
+    protected $db;
+
+    public function __construct(Database $db) {
+        $this->db = $db;
+    }
+
+    public function fetch($fields) {
+        //return $this->db->select($fields)->from('users')->rows();
+    }
 
 }

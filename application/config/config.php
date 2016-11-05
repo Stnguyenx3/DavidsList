@@ -54,7 +54,7 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
  */
 define('DB_TYPE', 'mysql');
 define('DB_HOST', '127.0.0.1');
-define('DB_NAME', 'student_dtchau');  #Change to student_USERNAME
-define('DB_USER', 'dtchau'); 			#Used for testing, change to your mysql credentials
-define('DB_PASS', 'Ryuugamine$%');
+define('DB_NAME', 'student_');  #Change to student_USERNAME
+define('DB_USER', ''); 			#Used for testing, change to your mysql credentials
+define('DB_PASS', '');
 define('DB_CHARSET', 'utf8');
