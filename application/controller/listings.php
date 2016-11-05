@@ -54,7 +54,7 @@ class Listings extends Controller {
 			$listingRepo->remove($arrayOfListingObjects[0]);
 			//need to create listing_delete_success page
 			require APP . 'view/_templates/header.php';
-			require APP . 'view/listing_delete_success.php';
+			require APP . 'view/listings/listing_delete_success.php';
 			require APP . 'view/_templates/footer.php';
 		}
 	}
@@ -63,8 +63,18 @@ class Listings extends Controller {
 	//Function to edit a listing. Parameter is the id of the listing. 
 	//External information is JSON encoded data which contains
 	//part of the listing data to change.
-	public function editListing($listing_id){
+	public function editListing($listingID){
+		$listingRepo = RepositoryFactory::createRepository("listing");
+		$arrayOfListingObjects = $listingRepo->find($listingID, "listing");
 
+		if ($arrayOfListingObjects == null){
+			//detail of error page necessary
+			require APP . 'view/_templates/header.php';
+			require APP . 'view/problem/error_page.php';
+			require APP . 'view/_templates/footer.php';
+		}
+
+		//kinda stuck here. Will come back to this.
 
 
 	}
