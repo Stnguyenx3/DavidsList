@@ -39,10 +39,24 @@ class Listings extends Controller {
 
 	//deleteListing
 	//Function to delete a listing's page. Parameter is the id of the listing
-	public function deleteListing($listing_id){
+	public function deleteListing($listingID){
 
 		//thought process: Traverse the table of listings, and find the listing_id of the listing in question. Then delete the respective page
+		$listingRepo = RepositoryFactory::createRepository("listing");
+		$arrayOfListingObjects = $listingRepo->find($listingID, "listing");
 
+		if ($arrayOfListingObjects == null){
+			//detail of error page necessary
+			require APP . 'view/problem/error_page.php';
+		}
+
+		else{
+			$listingRepo->remove($arrayOfListingObjects[0]);
+			//need to create listing_delete_success page
+			require APP . 'view/_templates/header.php';
+			require APP . 'view/listing_delete_success.php';
+			require APP . 'view/_templates/footer.php';
+		}
 	}
 
 	//editListing
