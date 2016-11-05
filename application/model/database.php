@@ -45,10 +45,12 @@ class Database {
 	 * Method to save the object into the given table
 	 */
 	public function save($object, $table) {
+		$serializedObject = array_values($object->jsonSerialize());
+		$placeHolder = implode(',', array_fill(0, count($serializedObject), '?'));
 		$preparedStatement = 
 			$this->db->
-				prepare("INSERT INTO " . $table . " VALUES (" . $object->toString() . ")");
-		$preparedStatement->execute();
+				prepare("INSERT INTO {$table} VALUES ($placeHolder)");
+		$preparedStatement->execute($serializedObject);
 	}
 
 	/*
@@ -57,8 +59,13 @@ class Database {
 	public function remove($object, $table) {
 		$preparedStatement = 
 			$this->db->
-				prepare("DELETE FROM " . $table . "WHERE id = " . $object->getId());
+				prepare("DELETE FROM {$table} WHERE id = " . $object->getId());
 	}
 
-	//Update
+	/*
+	 * Method to update the object into the given table
+	 */
+	public function update($object, $table) {
+
+	}
 }

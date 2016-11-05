@@ -14,15 +14,15 @@ class UserRepo implements DatabaseRepositoryInterface{
 	}
 
 	public function find($searchParam, $column){
-		return $this->db->find($id, 'users', 'User', $column);
+		return $this->db->find($id, 'user', 'User', $column);
 	}
 
 	public function save($user){
-		$this->db->save($user, 'users');
+		$this->db->save($user, 'user');
 	}
 
 	public function remove ($user){
-		$this->db->remove($user, 'users');
+		$this->db->remove($user, 'user');
 	}
 
 }
