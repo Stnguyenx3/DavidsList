@@ -6,11 +6,11 @@
  * which allows sending this object back to the client side
  */
 class FavoriteListing implements JsonSerializable{
-	private $userId;
+	private $userid;
 	private $listingId;
 
 	public function getUserId() {
-		return $this->userId;
+		return $this->userid;
 	}
 
 	public function getListingId() {
@@ -18,7 +18,7 @@ class FavoriteListing implements JsonSerializable{
 	}
 
 	public function setUserId($newUserId) {
-		$this->userId = $newUserId;
+		$this->userid = $newUserId;
 	}
 
 	public function setListingId($newListingId) {
@@ -26,12 +26,12 @@ class FavoriteListing implements JsonSerializable{
 	}
 
 	public function __toString() {
-		return "{$this->userId}, {$this->listingId}";
+		return "{$this->userid}, {$this->listingId}";
 	}
 
 	public function jsonSerialize() {
 		return array(
-			"userid" => $this->userId,
+			"userid" => $this->userid,
 			"listingId" => $this->listingId
 		);
 	}

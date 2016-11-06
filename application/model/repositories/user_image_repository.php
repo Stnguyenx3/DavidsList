@@ -18,16 +18,15 @@ class UserImageRepo implements DatabaseRepositoryInterface{
 	}
 
 	public function save($userImage){
-		$this->db->save($userImage, 'userImage');
+		return $this->db->save($userImage, 'userImage');
 	}
 
 	public function remove($userImage){
-		$this->db->remove($userImage->getId(), 'userImage', 'userid');
-
+		return $this->db->remove($userImage->getId(), 'userImage', 'userid');
 	}
 
 	public function update($userImage){
-		$this->db->update($userImage, 'userImage', $userImage->getId(), 'userid');
+		return $this->db->update($userImage, 'userImage', $userImage->getId(), 'userid');
 	}
 }
 

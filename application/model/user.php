@@ -6,7 +6,7 @@
  * which allows sending this object back to the client side
  */
 class User implements JsonSerializable {
-	private $id = null;
+	private $userid = null;
 	private $email = null;
 	private $username = null;
 	private $studentID = null;
@@ -20,7 +20,7 @@ class User implements JsonSerializable {
 	}
 
 	public function getId() {
-		return $this->id;
+		return $this->userid;
 	}
 
 	public function getEmail() {
@@ -84,13 +84,13 @@ class User implements JsonSerializable {
 	}
 
 	public function __toString() {
-		return "{$this->id}, {$this->email}, {$this->username}, {$this->password}," . 
+		return "{$this->userid}, {$this->email}, {$this->username}, {$this->password}," . 
 				"  {$this->studentID}, {$this->phone}, {$this->bio}, {$this->verified}";
 	}
 	
 	public function jsonSerialize() {
 		return array(
-			'userid' => $this->id,
+			'userid' => $this->userid,
 			'email' => $this->email,
 			'username' => $this->username,
 			'password' => $this->password,

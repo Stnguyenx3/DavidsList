@@ -18,15 +18,15 @@ class ListingImageRepo implements DatabaseRepositoryInterface{
 	}
 
 	public function save($listingImage){
-		$this->db->save($listingImage, 'listingImage');
+		return $this->db->save($listingImage, 'listingImage');
 	}
 
 	public function remove($listingImage){
-		$this->db->remove($listingImage->getListingId(), 'listingImage', 'listingId');
+		return $this->db->remove($listingImage->getListingId(), 'listingImage', 'listingId');
 	}
 
 	public function update($listingImage){
-		$this->db->update($listingImage, 'listingImage', 
+		return $this->db->update($listingImage, 'listingImage', 
 				$listingImage->getListingId(), 'listingId');
 	}
 }

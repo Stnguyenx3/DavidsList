@@ -18,15 +18,15 @@ class AddressRepo implements DatabaseRepositoryInterface{
 	}
 
 	public function save($address){
-		$this->db->save($address, 'address');
+		return $this->db->save($address, 'address');
 	}
 
 	public function remove($address){
-		$this->db->remove($address->getListingId(), 'address', 'listingId');
+		return $this->db->remove($address->getListingId(), 'address', 'listingId');
 	}
 
 	public function update($address){
-		$this->db->update($address, 'address', $address->getListingId(), 'listingId');
+		return $this->db->update($address, 'address', $address->getListingId(), 'listingId');
 	}
 }
 
