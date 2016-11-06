@@ -26,6 +26,17 @@ class ListingImages extends Controller{
 
 	//deleteImages
 	public function deleteImages($listingID){
+		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
+		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingImage");
+
+		if ($arrayofListingImageObjects == null){
+			require APP . 'view/problem/error_page.php';
+		}
+
+		else{
+			$destroyImage = $arrayofListingImageObjects[0]->getImage();
+			$arrayofListingImageObjects[0]->remove($destroyImage);
+		}
 
 	}
 	//uploadImages
