@@ -20,11 +20,14 @@ class Listings extends Controller {
 		//thought process: Traverse the table of listings, and find the listingID of the listing in question. Then return the respective page
 		
 		$listingRepo = RepositoryFactory::createRepository("listing");
-		$arrayOfListingObjects = $listingRepo->find($listingID, "listingid");	
+		$arrayOfListingObjects = $listingRepo->find($listingID, "listing");	
 		
 		if ($arrayOfListingObjects == null){
 			//detail of error page necessary
+			$errorMessage = "Error, Listing not found.";
+			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
+			require APP . 'veiw/_templates/footer.php';
 		}
 
 		else{
@@ -82,20 +85,49 @@ class Listings extends Controller {
 	//Function to create listing. External information is JSON encoded data which 
 	//contains new listing data
 	public function newListing(){
-		$listingRepo = RepositoryFactory::createRepository("listing");
-		$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
-		$addressRepo = RepositoryFactory::createRepository("address");
-		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
+		
+		if (isset($_POST["submit_new_listing"])){
+			$listingRepo = RepositoryFactory::createRepository("listing");
+			$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
+			$addressRepo = RepositoryFactory::createRepository("address");
+			$listingImageRepo = RepositoryFactory::createRepository("listingImage");
+			
+			$listing = new Listing;
+			$listingDetail = new ListingDetail;
+			$address = new Address;
+			$listingImage = new ListingImage;
 
-		$listing = new Listing;
-		$listingDetail = new ListingDetail;
-		$address = new Address;
-		$listingImage = new ListingImage;
+			$listing->setPrice($_POST["listing_price"]);
+			$listing->setType($_POST["listing_type"]);
+			//unsure about ids here
 
-		$insertListing = $listingRepo->save($listing);
-		$insertListingDetails = $listingDetailRepo->save($listingDetail);
-		$insertAddress = $addressRepo->save($address);
-		$insertListingImage = $listingImageRepo->save($listingImage);
+			$listingDetail->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
+			$listingDetail->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
+			$listingDetail->setInternet($_POST["listing_internet"]);
+			$listingDetail->setPetPolicy($_POST["listing_pet_policy"]);
+			$listingDetail->setElevatorAccess($_POST["listing_elevator_access"]);
+			$listingDetail->setFurnishing($_POST["listing_furnishing"]);
+			$listingDetail->setAirConditioning($_POST["listing_air_conditioning"]);
+			$listingDetail->setDescription($_POST["listing_description"]);
+
+			//unsure about ids
+
+			$address->setStreetName($_POST["listing_street_name"]);
+			$address->setCity($_POST["listing_city_name"]);
+			$address->setZipCode($_POST["listing_zip_code"]);
+			$address->setState($_POST["listing_state"]);
+
+			//unsure about ids
+
+
+			$insertListing = $listingRepo->save($listing);
+			$insertListingDetails = $listingDetailRepo->save($listingDetail);
+			$insertAddress = $addressRepo->save($address);
+			$insertListingImage = $listingImageRepo->save($listingImage);
+		}
+			
+
+			
 
 	}
 	
