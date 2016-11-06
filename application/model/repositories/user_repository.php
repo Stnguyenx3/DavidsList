@@ -19,15 +19,15 @@ class UserRepo implements DatabaseRepositoryInterface {
     }
 
     public function save($user) {
-        $this->db->save($user, 'user');
+        return $this->db->save($user, 'user');
     }
 
     public function remove($user) {
-        $this->db->remove($user->getId(), 'user', 'userid');
+        return $this->db->remove($user->getId(), 'user', 'userid');
     }
 
     public function update($user){
-        $this->db->update($user, 'user', $user->getId(), 'userid');
+        return $this->db->update($user, 'user', $user->getId(), 'userid');
     }
 }
 
