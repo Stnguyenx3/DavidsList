@@ -58,12 +58,12 @@ class Database {
 	}
 
 	/*
-	 * Method to delete the object into the given table
+	 * Method to delete the object from the given table
 	 */
 	public function remove($objectColumn, $table, $column) {
 		$preparedStatement = 
 			$this->db->
-				prepare("DELETE FROM {$table} WHERE {$column} = {$objectColumn}");
+				prepare("DELETE FROM {$table} WHERE {$column} = '{$objectColumn}'");                                
 		$preparedStatement->execute();
 	}
 

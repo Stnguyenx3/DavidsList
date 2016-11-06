@@ -6,6 +6,6 @@ and open the template in the editor.
 -->
 
 <!--Make this display a "<username> deleted successfully" message-->
-<p><?php echo $arrayOfUserObjects[0]->getUsername(); ?></p>
+<p>The user "<?php echo $arrayOfUserObjects[0]->getUsername(); ?>" has been successfully removed.</p>
 
 
