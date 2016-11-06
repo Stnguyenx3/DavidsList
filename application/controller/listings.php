@@ -82,6 +82,20 @@ class Listings extends Controller {
 	//Function to create listing. External information is JSON encoded data which 
 	//contains new listing data
 	public function newListing(){
+		$listingRepo = RepositoryFactory::createRepository("listing");
+		$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
+		$addressRepo = RepositoryFactory::createRepository("address");
+		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
+
+		$listing = new Listing;
+		$listingDetail = new ListingDetail;
+		$address = new Address;
+		$listingImage = new ListingImage;
+
+		$insertListing = $listingRepo->save($listing);
+		$insertListingDetails = $listingDetailRepo->save($listingDetail);
+		$insertAddress = $addressRepo->save($address);
+		$insertListingImage = $listingImageRepo->save($listingImage);
 
 	}
 	

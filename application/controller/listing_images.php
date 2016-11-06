@@ -20,6 +20,9 @@ class ListingImages extends Controller{
 		else {
 			$returnImage = $arrayofListingImageObjects[0]->getImage();
 			imagejpeg($returnImage);
+
+			//free up memory
+			imagedestroy($returnImage);
 		}
 
 	}
@@ -41,6 +44,18 @@ class ListingImages extends Controller{
 	}
 	//uploadImages
 	public function uploadImages($listingID){
+		//do I want to be navigating to this parameter? Or do I want to use it to set
+		//a listing?
+		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
+		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingImage");
+
+		if ($arrayofListingImageObjects == null){
+			require APP . 'view/problem/error_page.php';
+		}
+
+		else{
+			//something to do to upload image?
+		}
 
 	}
 } 
