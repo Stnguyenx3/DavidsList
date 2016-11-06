@@ -11,8 +11,8 @@
     <!-- See more here: http://stackoverflow.com/q/2105327/1114320 -->
 
     <!-- CSS -->
-    <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	    <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -21,9 +21,9 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="user">
-					<a href="<?php echo URL."userProfile/index"; ?>">Login</a>
+					<a href="<?php echo URL."home/login" ; ?>">Login</a>
 					<p style="display:inline">|</p>
-					<a href="<?php echo URL ; ?>">Register</a>
+					<a href="<?php echo URL. "home/register" ; ?>">Register</a>
 				</div>
 			</div>
 		</div>
@@ -31,13 +31,13 @@
 		<div class="row">
 		
 			<div class="col-sm-3">
-				<img src="<?php echo URL; ?>img/logo.png" height="100">
+				<img src="<?php echo URL; ?>img/logo.png" height="100" alt="logo">
 			</div>
 			
 			<div class="col-sm-9" id="search-bar">
 				<input id="search-input" type="text" placeholder="City, Street, Zipcode..." required autofocus/>
 				<!--button id="search-get" type="submit" onclick='onSearchClick()'>Browse</button-->
-				<button type="button" class="btn btn-primary" type="submit" onclick="onSearchClick()">Browse</button>
+				<button class="btn btn-primary" type="submit" onclick="onSearchClick()">Browse</button>
 			</div>
 			
 		</div>
@@ -65,7 +65,7 @@
 
     <!-- navigation -->
     <div class="navigation">
-        <a href="<?php echo URL; ?>">home</a>
+        <a href="<?php echo URL. "home/index" ; ?>">home</a>
         <a href="<?php echo URL. "home/rentout" ; ?>">rent out</a>
         <a href="<?php echo URL. "info/about" ; ?>">about</a>
         <a href="<?php echo URL. "home/search" ?>"> Search</a> <!-- remove after fixing backend -->

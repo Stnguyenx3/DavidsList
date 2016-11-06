@@ -55,7 +55,6 @@ h1 {
 }
 .container input {
     background-color: #f5f5f5;
-    border: 0;
     width: 500px;
     height: 45px;
     padding: 5px 10px;
@@ -103,6 +102,14 @@ div#header.container {
 	padding-top: 30px;
 }
 
+label {
+	margin-top: 10px;
+}
+
+.container input.form-check-input {
+	width: auto;
+	height: auto;
+}
 
 
 
