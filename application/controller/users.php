@@ -18,7 +18,7 @@ class Users extends Controller {
      * 
      * @param int $userID The integer ID of the user
      */
-    public function getUserProfilePage($userID) {
+    public function getUser($userID) {
         $userRepo = RepositoryFactory::createRepository("user");
         $arrayOfUserObjects = $userRepo->find($userID, "userid"); // an array of 
         // User objects
@@ -38,9 +38,7 @@ class Users extends Controller {
                                                         // user's email address.
             require APP . "view/_templates/footer.php";
         }
-    }
-
-// end function getUserProfilePage
+    } // end function getUser
 
     /**
      * Deletes a user from the database.
@@ -105,5 +103,5 @@ class Users extends Controller {
      */
     public function editUser($userID){
         
-    }
+    } // end function editUser
 } // end class User

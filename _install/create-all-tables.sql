@@ -23,7 +23,7 @@ CREATE TABLE `student_pderugin`.`userImage`(
 	`image` LONGBLOB,
 	`imageThumbnail` BLOB,
 	PRIMARY KEY(`userid`)
-);
+); 
 
 CREATE TABLE `student_pderugin`.`listing` (
 	`userid` INT(4) NOT NULL,
@@ -43,6 +43,8 @@ CREATE TABLE `student_pderugin`.`address` (
 	`state` VARCHAR(100),
 	PRIMARY KEY(`listingId`)
 );
+# note that appromixate addressis a tiny int because we want to know whether or 
+# note the user wishes to show his/her exact address
 
 CREATE TABLE `student_pderugin`.`favoriteListing` (
 	`userid` INT(4) NOT NULL,
