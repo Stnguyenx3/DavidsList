@@ -1,9 +1,9 @@
-	
-<body>
+<body id="content">
 	<div class="container">
 		<div class="row">
 			<!--div class="col-sm-1"></div-->
 			<div class="col-sm-12">
+				<h1>Welcome</h1>
 				<p>
 					About The Website:
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id ligula cursus, dapibus ipsum vel,
@@ -37,7 +37,7 @@
 			<div class="col-sm-1"></div>
 			<div class="col-sm-10">
 			
-				<h3>Featured Listings</h3>
+				<h1>Featured Listings</h1>
 				
 				<div class="row">
 					<div class="col-sm-12">
