@@ -49,7 +49,22 @@ class ListingDetails extends Controller{
 	}
 
 	//editDetails
+	public function editDetails($listingID){
+		$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
+		$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingDetail");
+
+		if ($arrayOfListingDetailObjects == null){
+			require APP . 'view/problem/error_page.php';
+		}
+
+		else{
+			//do something
+		}
+	}
 
 	//createDetails
+	public function createDetails(){
+		
+	}
 	
 }
