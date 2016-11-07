@@ -61,6 +61,12 @@ h1 {
     padding: 5px 10px;
 	margin-bottom: 10px;
 }
+
+.container input.form-checkbox {
+	width: auto;
+	height: auto;
+}
+
 .container input[type="submit"] {
     background-color: #ccc;
     cursor: pointer;
@@ -110,11 +116,6 @@ label {
 	margin-top: 10px;
 }
 
-.container input.form-check-input {
-	width: auto;
-	height: auto;
-}
-
 .col-center{
   margin:0 auto;
 }
@@ -133,6 +134,16 @@ label {
 	box-shadow: 5px 5px;
 }
 
+.form-signup {
+	margin-top: 50px;
+	padding: 25px;
+	width: 900px;
+	height: 75%;
+	background-color: Gainsboro;
+	border: 1px solid SteelBlue;
+	box-shadow: 5px 5px;
+}
+
 .login-link {
 	text-align: center;
 	padding: 10px;
@@ -140,6 +151,16 @@ label {
 
 .login-link a {
 	padding-right: 10px;
+}
+
+.col-form-label {
+	margin-top: 20px;
+	text-align: right;
+}
+
+.container input.form-check {
+	width: auto;
+	height: auto;
 }
 
 

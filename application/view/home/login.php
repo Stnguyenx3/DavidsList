@@ -1,11 +1,11 @@
-<body>
+
 	<div class="container">
 		
         <div class="card">
 
             <form class="form-signin center-block">
                 
-                <input type="email" id="inputEmail" class="form-control center-block" placeholder="Email address" required autofocus>
+                <input type="email" id="inputEmail" class="form-control center-block" placeholder="Email address" required>
 				
                 <input type="password" id="inputPassword" class="form-control center-block" placeholder="Password" required>
 				
