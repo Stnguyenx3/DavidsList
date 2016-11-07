@@ -77,20 +77,45 @@ class Listings extends Controller {
 			require APP . 'view/_templates/footer.php';
 		}
 
-		//kinda stuck here. Will come back to this.
 		else{
 			$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
 			$addressRepo = RepositoryFactory::createRepository("address");
 
-			$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingDetail");
-			$arrayOfAddressObjects = $addressRepo->find($listingID, "address");
+			$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingDetail"); 
+			$arrayOfAddressObjects = $addressRepo->find($listingID, "address"); 
 
-			
+			//listing
+			$arrayOfListingObjects->setPrice($_POST["listing_price"]);
+			$arrayOfListingObjects->setType($_POST["listing_type"]);
+
+			//listingDetail
+			$arrayOfListingDetailObjects->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
+			$arrayOfListingDetailObjects->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
+			$arrayOfListingDetailObjects->setInternet($_POST["listing_internet"]);
+			$arrayOfListingDetailObjects->setPetPolicy($_POST["listing_pet_policy"]);
+			$arrayOfListingDetailObjects->setElevatorAccess($_POST["listing_elevator_access"]);
+			$arrayOfListingDetailObjects->setFurnishing($_POST["listing_furnishing"]);
+			$arrayOfListingDetailObjects->setAirConditioning($_POST["listing_air_conditioning"]);
+			$arrayOfListingDetailObjects->setDescription($_POST["listing_description"]);
+
+			//address
+			$arrayOfAddressObjects->setStreetName($_POST["listing_street_name"]);
+			$arrayOfAddressObjects->setCity($_POST["listing_city_name"]);
+			$arrayOfAddressObjects->setZipCode($_POST["listing_zip_code"]);
+			$arrayOfAddressObjects->setState($_POST["listing_state"]);
+
+			//save the things
+			$insertListing = $listingRepo->save($arrayOfListingObjects);
+			$insertListingDetails = $listingDetailRepo->save($arrayOfListingDetailObjects);
+			$insertAddress = $addressRepo->save($arrayOfAddressObjects);
+
+
 
 		}
 
 
 	}
+
 	//newListing
 	//Function to create listing. External information is JSON encoded data which 
 	//contains new listing data
@@ -100,16 +125,16 @@ class Listings extends Controller {
 		$listingRepo = RepositoryFactory::createRepository("listing");
 		$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
 		$addressRepo = RepositoryFactory::createRepository("address");
-	//$listingImageRepo = RepositoryFactory::createRepository("listingImage");
+		//$listingImageRepo = RepositoryFactory::createRepository("listingImage");
 		
 		$listing = new Listing;
 		$listingDetail = new ListingDetail;
 		$address = new Address;
-	//$listingImage = new ListingImage;
+		//$listingImage = new ListingImage;
 
 		$listing->setPrice($_POST["listing_price"]);
 		$listing->setType($_POST["listing_type"]);
-		//unsure about ids here
+		
 
 		$listingDetail->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
 		$listingDetail->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
@@ -120,20 +145,18 @@ class Listings extends Controller {
 		$listingDetail->setAirConditioning($_POST["listing_air_conditioning"]);
 		$listingDetail->setDescription($_POST["listing_description"]);
 
-		//unsure about ids
+		
 
 		$address->setStreetName($_POST["listing_street_name"]);
 		$address->setCity($_POST["listing_city_name"]);
 		$address->setZipCode($_POST["listing_zip_code"]);
 		$address->setState($_POST["listing_state"]);
 
-		//unsure about ids
-
 
 		$insertListing = $listingRepo->save($listing);
 		$insertListingDetails = $listingDetailRepo->save($listingDetail);
 		$insertAddress = $addressRepo->save($address);
-	//$insertListingImage = $listingImageRepo->save($listingImage);
+		//$insertListingImage = $listingImageRepo->save($listingImage);
 				
 
 	}
