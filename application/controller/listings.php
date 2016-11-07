@@ -78,6 +78,16 @@ class Listings extends Controller {
 		}
 
 		//kinda stuck here. Will come back to this.
+		else{
+			$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
+			$addressRepo = RepositoryFactory::createRepository("address");
+
+			$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingDetail");
+			$arrayOfAddressObjects = $addressRepo->find($listingID, "address");
+
+			
+
+		}
 
 
 	}
@@ -86,48 +96,45 @@ class Listings extends Controller {
 	//contains new listing data
 	public function newListing(){
 		
-		if (isset($_POST["submit_new_listing"])){
-			$listingRepo = RepositoryFactory::createRepository("listing");
-			$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
-			$addressRepo = RepositoryFactory::createRepository("address");
-			$listingImageRepo = RepositoryFactory::createRepository("listingImage");
-			
-			$listing = new Listing;
-			$listingDetail = new ListingDetail;
-			$address = new Address;
-			$listingImage = new ListingImage;
+		
+		$listingRepo = RepositoryFactory::createRepository("listing");
+		$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
+		$addressRepo = RepositoryFactory::createRepository("address");
+	//$listingImageRepo = RepositoryFactory::createRepository("listingImage");
+		
+		$listing = new Listing;
+		$listingDetail = new ListingDetail;
+		$address = new Address;
+	//$listingImage = new ListingImage;
 
-			$listing->setPrice($_POST["listing_price"]);
-			$listing->setType($_POST["listing_type"]);
-			//unsure about ids here
+		$listing->setPrice($_POST["listing_price"]);
+		$listing->setType($_POST["listing_type"]);
+		//unsure about ids here
 
-			$listingDetail->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
-			$listingDetail->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
-			$listingDetail->setInternet($_POST["listing_internet"]);
-			$listingDetail->setPetPolicy($_POST["listing_pet_policy"]);
-			$listingDetail->setElevatorAccess($_POST["listing_elevator_access"]);
-			$listingDetail->setFurnishing($_POST["listing_furnishing"]);
-			$listingDetail->setAirConditioning($_POST["listing_air_conditioning"]);
-			$listingDetail->setDescription($_POST["listing_description"]);
+		$listingDetail->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
+		$listingDetail->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
+		$listingDetail->setInternet($_POST["listing_internet"]);
+		$listingDetail->setPetPolicy($_POST["listing_pet_policy"]);
+		$listingDetail->setElevatorAccess($_POST["listing_elevator_access"]);
+		$listingDetail->setFurnishing($_POST["listing_furnishing"]);
+		$listingDetail->setAirConditioning($_POST["listing_air_conditioning"]);
+		$listingDetail->setDescription($_POST["listing_description"]);
 
-			//unsure about ids
+		//unsure about ids
 
-			$address->setStreetName($_POST["listing_street_name"]);
-			$address->setCity($_POST["listing_city_name"]);
-			$address->setZipCode($_POST["listing_zip_code"]);
-			$address->setState($_POST["listing_state"]);
+		$address->setStreetName($_POST["listing_street_name"]);
+		$address->setCity($_POST["listing_city_name"]);
+		$address->setZipCode($_POST["listing_zip_code"]);
+		$address->setState($_POST["listing_state"]);
 
-			//unsure about ids
+		//unsure about ids
 
 
-			$insertListing = $listingRepo->save($listing);
-			$insertListingDetails = $listingDetailRepo->save($listingDetail);
-			$insertAddress = $addressRepo->save($address);
-			$insertListingImage = $listingImageRepo->save($listingImage);
-		}
-			
-
-			
+		$insertListing = $listingRepo->save($listing);
+		$insertListingDetails = $listingDetailRepo->save($listingDetail);
+		$insertAddress = $addressRepo->save($address);
+	//$insertListingImage = $listingImageRepo->save($listingImage);
+				
 
 	}
 	

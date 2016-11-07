@@ -50,7 +50,9 @@ class ListingImages extends Controller{
 		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingImage");
 
 		if ($arrayofListingImageObjects == null){
+			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
+			require APP . 'view/_templates/footer.php';
 		}
 
 		else{

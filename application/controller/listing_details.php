@@ -40,7 +40,9 @@ class ListingDetails extends Controller{
 		$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingDetail");
 		
 		if ($arrayOfListingDetailObjects == null){
+			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
+			require APP . 'view/_templates/footer.php';
 		}
 		else{
 			$listingDetailRepo->remove($arrayOfListingDetailObjects[0]);
