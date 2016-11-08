@@ -109,10 +109,7 @@ class Listings extends Controller {
 			$insertListingDetails = $listingDetailRepo->save($arrayOfListingDetailObjects);
 			$insertAddress = $addressRepo->save($arrayOfAddressObjects);
 
-
-
 		}
-
 
 	}
 

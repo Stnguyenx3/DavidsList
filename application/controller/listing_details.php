@@ -11,6 +11,7 @@ class ListingDetails extends Controller{
 	}
 
 	//getDetails
+	//Retrieves Listing Details based on Listing ID
 	public function getDetails($listingID){
 		$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
 		$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingDetail");
@@ -20,8 +21,8 @@ class ListingDetails extends Controller{
 		}
 
 		else{
-			//return listingDetail based on listingID
-			//very unsure about this method
+			//return listingDetail based on listing ID
+			//very unsure about whether or not I should return the object or print.
 			echo $arrayOfListingDetailObjects[0]->getNumberOfBedrooms();
 			echo $arrayOfListingDetailObjects[0]->getNumberOfBathrooms();
 			echo $arrayOfListingDetailObjects[0]->getInternet();
@@ -35,6 +36,7 @@ class ListingDetails extends Controller{
 	}
 
 	//deleteDetails
+	//Delete Listing Details based on listing ID
 	public function deleteDetails($listingID){
 		$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
 		$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingDetail");
@@ -51,6 +53,7 @@ class ListingDetails extends Controller{
 	}
 
 	//editDetails
+	//Updates Listing Detail based on ID
 	public function editDetails($listingID){
 		$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
 		$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingDetail");
@@ -61,12 +64,36 @@ class ListingDetails extends Controller{
 
 		else{
 			//do something
+			$arrayOfListingDetailObjects->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
+			$arrayOfListingDetailObjects->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
+			$arrayOfListingDetailObjects->setInternet($_POST["listing_internet"]);
+			$arrayOfListingDetailObjects->setPetPolicy($_POST["listing_pet_policy"]);
+			$arrayOfListingDetailObjects->setElevatorAccess($_POST["listing_elevator_access"]);
+			$arrayOfListingDetailObjects->setFurnishing($_POST["listing_furnishing"]);
+			$arrayOfListingDetailObjects->setAirConditioning($_POST["listing_air_conditioning"]);
+			$arrayOfListingDetailObjects->setDescription($_POST["listing_description"]);
+
 		}
 	}
 
 	//createDetails
+	//create new listing details to associate with listing id
 	public function createDetails(){
-		
+		$listingRepo = RepositoryFactory::createRepository("listingDetail");
+
+		$listingDetail = new ListingDetail;
+
+		$listingDetail->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
+		$listingDetail->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
+		$listingDetail->setInternet($_POST["listing_internet"]);
+		$listingDetail->setPetPolicy($_POST["listing_pet_policy"]);
+		$listingDetail->setElevatorAccess($_POST["listing_elevator_access"]);
+		$listingDetail->setFurnishing($_POST["listing_furnishing"]);
+		$listingDetail->setAirConditioning($_POST["listing_air_conditioning"]);
+		$listingDetail->setDescription($_POST["listing_description"]);
+
+		$insertListingDetail = $listingDetailRepo->save($listingDetail);
+
 	}
 	
 }
