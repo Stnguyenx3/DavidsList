@@ -63,7 +63,6 @@ class ListingDetails extends Controller{
 		}
 
 		else{
-			//do something
 			$arrayOfListingDetailObjects->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
 			$arrayOfListingDetailObjects->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
 			$arrayOfListingDetailObjects->setInternet($_POST["listing_internet"]);

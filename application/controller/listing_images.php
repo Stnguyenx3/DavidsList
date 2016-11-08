@@ -9,6 +9,7 @@ class ListingImages extends Controller{
 	}
 
 	//getImages
+	//Get Images based on listingID
 	public function getImages($listingID){
 
 		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
@@ -28,6 +29,7 @@ class ListingImages extends Controller{
 	}
 
 	//deleteImages
+	//Delete Images based on listing ID
 	public function deleteImages($listingID){
 		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
 		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingImage");
@@ -43,9 +45,8 @@ class ListingImages extends Controller{
 
 	}
 	//uploadImages
+	//Uploads new listing images to listing ID
 	public function uploadImages($listingID){
-		//do I want to be navigating to this parameter? Or do I want to use it to set
-		//a listing?
 		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
 		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingImage");
 
@@ -56,7 +57,8 @@ class ListingImages extends Controller{
 		}
 
 		else{
-			//something to do to upload image?
+			$arrayofListingImageObjects[0]->setImageThumbNail($_POST["listing_image_thumbnail"]);
+			$arrayofListingImageObjects[0]->setImage($_POST["listing_image"]);
 		}
 
 	}
