@@ -48,20 +48,29 @@ class Search extends Controller {
      * returns as a json encoded array
      */
     public function searchApartments() {
+        $thresh = 70;
+
         $city = $_POST["city"];
         $addressRepo = RepositoryFactory::createRepository("address");
         $listingImageRepo = RepositoryFactory::createRepository("listing_image");
-        $addresses = $addressRepo->find($city, "city");
+        // $addresses = $addressRepo->find($city, "city"); //this is the search line
+
         $returnArray = array();
 
-        foreach ($addresses as $address) {
-            $tempHash = $address->jsonSerialize();
-            $imageThumbnail = $listingImageRepo->find($address->getListingId(), "listingID");
-            if (!empty($imageThumbnail)) {
-                $tempHash["imageThumbnail"] = base64_encode($imageThumbnail[0]->getImageThumbnail());
-            }
+        foreach($addressRepo as $address) {
+            $compareCity = $address->getCity();
+            similar_text($compareCity , $city, &$percentage);
+            if($percentage>$thresh){
 
-            $returnArray[] = $tempHash;
+                $tempHash = $address->jsonSerialize();
+                $imageThumbnail = $listingImageRepo->find($address->getListingId(), "listingID");
+                if(!empty($imageThumbnail)) {
+                    $tempHash["imageThumbnail"] =
+                                            base64_encode($imageThumbnail[0]->getImageThumbnail());
+                }
+
+                $returnArray[] = $tempHash;
+            }
         }
         echo json_encode($returnArray);
     }
