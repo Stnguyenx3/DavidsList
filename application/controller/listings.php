@@ -20,14 +20,14 @@ class Listings extends Controller {
 		//thought process: Traverse the table of listings, and find the listingID of the listing in question. Then return the respective page
 		
 		$listingRepo = RepositoryFactory::createRepository("listing");
-		$arrayOfListingObjects = $listingRepo->find($listingID, "listing");	
+		$arrayOfListingObjects = $listingRepo->find($listingID, "listingId");	
 		
 		if ($arrayOfListingObjects == null){
 			//detail of error page necessary
 			$errorMessage = "Error, Listing not found.";
 			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
-			require APP . 'veiw/_templates/footer.php';
+			require APP . 'view/_templates/footer.php';
 		}
 
 		else{
@@ -46,19 +46,35 @@ class Listings extends Controller {
 
 		//thought process: Traverse the table of listings, and find the listing_id of the listing in question. Then delete the respective page
 		$listingRepo = RepositoryFactory::createRepository("listing");
-		$arrayOfListingObjects = $listingRepo->find($listingID, "listing");
+		$arrayOfListingObjects = $listingRepo->find($listingID, "listingId");
 
-		if ($arrayOfListingObjects == null){
+		if ($arrayOfListingObjects[0] == null){
 			//detail of error page necessary
+			$errorMessage = "The listing with the listingID ({$listingID}) was not found.";
+			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
+			require APP . 'view/_templates/footer.php';
 		}
 
 		else{
 			$listingRepo->remove($arrayOfListingObjects[0]);
-			//need to create listing_delete_success page
-			require APP . 'view/_templates/header.php';
-			require APP . 'view/listings/listing_delete_success.php';
-			require APP . 'view/_templates/footer.php';
+
+			$newArrayOfListingObjects = $listingRepo->find($listingID, "listingId");
+				if ($newArrayOfListingObjects[0] == null){
+					//need to create listing_delete_success page
+					require APP . 'view/_templates/header.php';
+					require APP . 'view/listings/listing_delete_success.php';
+					require APP . 'view/_templates/footer.php';
+
+				}
+
+				else{
+					$errorMessage = "The listing with the listingID ({$listingID}) was found but not deleted!";
+					require APP . 'view/_templates/header.php';
+					require APP . 'view/problem/error_page.php';
+					require APP . 'view/_templates/footer.php';
+
+				}		
 		}
 	}
 
@@ -68,7 +84,7 @@ class Listings extends Controller {
 	//part of the listing data to change.
 	public function editListing($listingID){
 		$listingRepo = RepositoryFactory::createRepository("listing");
-		$arrayOfListingObjects = $listingRepo->find($listingID, "listing");
+		$arrayOfListingObjects = $listingRepo->find($listingID, "listingId");
 
 		if ($arrayOfListingObjects == null){
 			//detail of error page necessary
@@ -78,36 +94,44 @@ class Listings extends Controller {
 		}
 
 		else{
-			$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
+			$listingDetailRepo = RepositoryFactory::createRepository("listing_detail");
 			$addressRepo = RepositoryFactory::createRepository("address");
 
-			$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingDetail"); 
-			$arrayOfAddressObjects = $addressRepo->find($listingID, "address"); 
+			$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingId"); 
+			$arrayOfAddressObjects = $addressRepo->find($listingID, "listingId"); 
+
+			$listingObject = $arrayOfListingObjects[0];
+			$listingDetailObject = $arrayOfListingDetailObjects[0];
+			$addressObject = $arrayOfAddressObjects[0];
 
 			//listing
-			$arrayOfListingObjects->setPrice($_POST["listing_price"]);
-			$arrayOfListingObjects->setType($_POST["listing_type"]);
+			$listingObject->setPrice($_POST["listing_price"]);
+			$listingObject->setType($_POST["listing_type"]);
+
+			echo $listingObject->__toString();
 
 			//listingDetail
-			$arrayOfListingDetailObjects->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
-			$arrayOfListingDetailObjects->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
-			$arrayOfListingDetailObjects->setInternet($_POST["listing_internet"]);
-			$arrayOfListingDetailObjects->setPetPolicy($_POST["listing_pet_policy"]);
-			$arrayOfListingDetailObjects->setElevatorAccess($_POST["listing_elevator_access"]);
-			$arrayOfListingDetailObjects->setFurnishing($_POST["listing_furnishing"]);
-			$arrayOfListingDetailObjects->setAirConditioning($_POST["listing_air_conditioning"]);
-			$arrayOfListingDetailObjects->setDescription($_POST["listing_description"]);
+			$listingDetailObject ->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
+			$listingDetailObject ->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
+			$listingDetailObject ->setInternet($_POST["listing_internet"]);
+			$listingDetailObject ->setPetPolicy($_POST["listing_pet_policy"]);
+			$listingDetailObject ->setElevatorAccess($_POST["listing_elevator_access"]);
+			$listingDetailObject ->setFurnishing($_POST["listing_furnishing"]);
+			$listingDetailObject ->setAirConditioning($_POST["listing_air_conditioning"]);
+			$listingDetailObject ->setDescription($_POST["listing_description"]);
+
+			echo $listingDetailObject->__toString();
 
 			//address
-			$arrayOfAddressObjects->setStreetName($_POST["listing_street_name"]);
-			$arrayOfAddressObjects->setCity($_POST["listing_city_name"]);
-			$arrayOfAddressObjects->setZipCode($_POST["listing_zip_code"]);
-			$arrayOfAddressObjects->setState($_POST["listing_state"]);
+			$addressObject->setStreetName($_POST["listing_street_name"]);
+			$addressObject->setCity($_POST["listing_city_name"]);
+			$addressObject->setZipcode($_POST["listing_zip_code"]);
+			$addressObject->setState($_POST["listing_state"]);
 
 			//save the things
-			$insertListing = $listingRepo->save($arrayOfListingObjects);
-			$insertListingDetails = $listingDetailRepo->save($arrayOfListingDetailObjects);
-			$insertAddress = $addressRepo->save($arrayOfAddressObjects);
+			$insertListing = $listingRepo->save($listingObject);
+			$insertListingDetails = $listingDetailRepo->save($listingDetailObject );
+			$insertAddress = $addressRepo->save($addressObject);
 
 		}
 

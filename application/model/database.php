@@ -47,7 +47,7 @@ class Database {
 	public function save($object, $table) {
 		$preparedStatement = 
 			$this->db->
-				prepare("INSERT INTO " . $table . " VALUES (" . $object->toString() . ")");
+				prepare("INSERT INTO " . $table . " VALUES (" . $object->__toString() . ")");
 		$preparedStatement->execute();
 	}
 

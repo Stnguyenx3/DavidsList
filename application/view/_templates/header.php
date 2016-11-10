@@ -23,4 +23,5 @@
     <div class="navigation">
         <a href="<?php echo URL; ?>">home</a>
         <a href="<?php echo URL . "home/search"; ?>">search</a>
+        <a href="<?php echo URL . "home/testListing"; ?>">Listing Test</a>
     </div>

@@ -150,3 +150,39 @@ function formatResults(event) {
 	table.append(tablebody);
 	$('#search-result-container').html(table);
 }
+
+function onTestListingClick(){
+	var jsonData = {
+		"listing_price": 500, 
+		"listing_type": "Apartement",
+		"listing_numBedrooms": 5,
+		"listing_numBathrooms": 2,
+		"listing_internet": 1,
+		"listing_pet_policy": "No Cats",
+		"listing_elevator_access": "One on the first floor",
+		"listing_furnishing": 1,
+		"listing_air_conditioning": 1,
+		"listing_description": "It's a nice place. I swear",
+		"listing_street_name": "5th Street",
+		"listing_city_name": "San Francisco",
+		"listing_zip_code": "94135",
+		"listing_state": "CA"
+
+	};
+	$.ajax({
+		type:"POST",
+		url: url+"/listings/editlisting/1",
+		data: jsonData,
+		success: function(e) {
+			console.log("SUCCESS");
+			console.log(e);
+
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+
+		}
+	});
+}
