@@ -18,11 +18,16 @@ class FavoriteListingRepo implements DatabaseRepositoryInterface {
 	}
 
 	public function save($favoriteListing){
-		$this->db->save($favoriteListing, 'favoriteListing');
+		return $this->db->save($favoriteListing, 'favoriteListing');
 	}
 
 	public function remove($favoriteListing){
-		$this->db->remove($favoriteListing, 'favoriteListing');
+		return $this->db->remove($favoriteListing->getListingId(), 'favoriteListing', 'listingid');
+	}
+
+	public function update($favoriteListing){
+		return $this->db->update($favoriteListing, 'favoriteListing', 
+					$favoriteListing->getListingId(), 'listingid');
 	}
 }
 

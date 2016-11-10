@@ -19,10 +19,16 @@ class ListingDetailRepo implements DatabaseRepositoryInterface{
 
 	public function save($listingDetail){
 		$this->db->save($listingDetail, 'listingDetail');
+		return $this->db->save($listingDetail, 'listingDetail');
 	}
 
 	public function remove($listingDetail){
-		$this->db->save($listingDetail, 'listingDetail');
+		return $this->db->remove($listingDetail->getListingId(), 'listingDetail', 'listingId');
+	}
+
+	public function update($listingDetail){
+		return $this->db->update($listingDetail, 'listingDetail', 
+					$listingDetail->getListingId(), 'listingId');
 	}
 }
 

@@ -9,11 +9,12 @@ drop table if exists favoriteListing;
 CREATE TABLE `student_dtchau`.`user` (
   `userid` INT(4) NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(100) NOT NULL,
+  `username` VARCHAR(40) NOT NULL,
   `password` VARCHAR(64) NOT NULL,
   `studentID` VARCHAR(9),
   `phone` VARCHAR(10),
   `bio` VARCHAR(2000),
-  `verified` TINYINT(1) NOT NULL
+  `verified` TINYINT(1) NOT NULL,
   PRIMARY KEY(`userid`)
  );
 
@@ -30,7 +31,7 @@ CREATE TABLE `student_dtchau`.`listing` (
 	`price` INT(4) NOT NULL,
 	`type` VARCHAR(100) NOT NULL,
 	`status` TINYINT(1) NOT NULL,
-	PRIMARY KEY(`userid`)
+	PRIMARY KEY(`listingId`)
 );
 
 CREATE TABLE `student_dtchau`.`address` (
@@ -67,7 +68,7 @@ CREATE TABLE `student_dtchau`.`listingImage`(
 	`image` LONGBLOB,
 	`imageThumbnail` BLOB,
 
-  PRIMARY KEY (`listingId`)
+  PRIMARY KEY (`listingID`)
   #UNIQUE KEY `email` (`email`)
   # Used 'id' to link tables together, also removed 'renter' and 'owner' flags, additionally added 'listingID' to tie 'listings' and 'listingID' tables together
 );

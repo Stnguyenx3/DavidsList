@@ -7,6 +7,9 @@
 <button id="search-get" type="submit" onclick='onGetClick()'>GET REQUEST</button>
 <button id="search-post" type="submit" onclick='onPostClick()'>POST REQUEST</button>
 <button id="search-json" type="submit" onclick='onGetJsonClick()'>GET JSON BACK</button>
+<button id="search-json" type="submit" onclick='onInsertClick()'>ON INSERT</button>
+<button id="search-json" type="submit" onclick='onDeleteClick()'>ON DELETE</button>
+<button id="search-json" type="submit" onclick='onUpdateClick()'>ON UPDATE</button>
 
 <button id="listing-get" type="submit" onclick='onTestListingClick()'>Test Get Listing</button>
 

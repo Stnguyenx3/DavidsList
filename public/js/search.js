@@ -14,6 +14,54 @@ function onGetClick() {
 	});
 }
 
+function onInsertClick() {
+	$.ajax({
+		type:'GET',
+		url: url+"/search/testinsert",
+		success: function(event) {
+			console.log("I succeeded");
+			console.log(event);
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+	});
+}
+
+function onDeleteClick() {
+	$.ajax({
+		type:'GET',
+		url: url+"/search/testdelete",
+		success: function(event) {
+			console.log("I succeeded");
+			console.log(event);
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+	});
+}
+
+function onUpdateClick() {
+	$.ajax({
+		type:'GET',
+		url: url+"/search/testupdate",
+		success: function(event) {
+			console.log("I succeeded");
+			console.log(event);
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+	});
+}
+
 function onPostClick() {
 	var searchQuery = {
 		query: $('#test-input').val()
