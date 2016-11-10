@@ -33,11 +33,11 @@ class RepositoryFactory {
 				break;
 			}
 			case "user_all": {
-				return new AllUsersImagesQuery($db);
+				return new AllUsersQuery($db);
 				break;
 			}
 			case "user_image_all": {
-				return new AllUsersQuery($db);
+				return new AllUsersImagesQuery($db);
 				break;
 			}
 			case "address": {

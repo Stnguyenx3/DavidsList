@@ -13,7 +13,7 @@
  *   5) A function to log a user in.
  * 
  * The first two functions, getUser() and deleteUser(), have been tested and are
- * working; the other three functions need to be completed and tested.
+ * working; the other three functions need to be tested.
  */
 
 class Users extends Controller {
@@ -103,12 +103,14 @@ class Users extends Controller {
     /**
      * Edits a user's profile. 
 	 * 
-	 * External information is JSON encoded data that contains information on which
-	 * part of the profile to change.
+	 * External information is JSON encoded data that contains all fields of a
+	 * User object. This function creates a new User object from that JSON data
+	 * and replaces the target user's current User object with the once created
+	 * here.
      * 
      * @param int $userID
 	 * 
-	 * @todo Finish implementing this function.
+	 * @todo Test this function.
      */
     public function editUser($userID){
 		$userRepo = RepositoryFactory::createRepository("user");
@@ -121,14 +123,23 @@ class Users extends Controller {
             require APP . "view/_templates/footer.php";
 		}
 		
-		// don't know what to do here ...
 		else{
-			// maybe start with somethign like this?
-			$partToChange = $_POST[$userID];
-		}
-		
-		// Need to figure the rest of this function out
-		
+			// Create a new User object from the external JSON data; then replace
+			// the target userID's current User Object with the new one
+			
+			$user = new User();
+
+			$user->setId($userID);
+			$user->setEmail($_POST["email"]);
+			$user->setUsername($_POST["username"]);
+			$user->setStudentId($_POST["studentID"]);
+			$user->setPhone($_POST["phone"]);
+			$user->setBiography($_POST["bio"]);
+			$user->setPassword($_POST["password"]);
+			$user->setVerified($_POST["verified"]);
+			
+			$userRepo->update($user);
+		}// end else		
     } // end function editUser
 	
 	
