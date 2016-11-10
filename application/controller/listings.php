@@ -57,10 +57,8 @@ class Listings extends Controller {
 		}
 
 		else{
-			$listingRepo->remove($arrayOfListingObjects[0]);
-
-			$newArrayOfListingObjects = $listingRepo->find($listingID, "listingId");
-				if ($newArrayOfListingObjects[0] == null){
+			$removedCorrectly = $listingRepo->remove($arrayOfListingObjects[0]);
+				if ($removedCorrectly){
 					//need to create listing_delete_success page
 					require APP . 'view/_templates/header.php';
 					require APP . 'view/listings/listing_delete_success.php';
@@ -148,10 +146,10 @@ class Listings extends Controller {
 		$addressRepo = RepositoryFactory::createRepository("address");
 		//$listingImageRepo = RepositoryFactory::createRepository("listingImage");
 		
-		$listing = new Listing;
-		$listingDetail = new ListingDetail;
-		$address = new Address;
-		//$listingImage = new ListingImage;
+		$listing = new Listing();
+		$listingDetail = new ListingDetail();
+		$address = new Address();
+		//$listingImage = new ListingImage();
 
 		$listing->setPrice($_POST["listing_price"]);
 		$listing->setType($_POST["listing_type"]);

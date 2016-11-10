@@ -12,6 +12,7 @@
 <button id="search-json" type="submit" onclick='onUpdateClick()'>ON UPDATE</button>
 
 <button id="listing-get" type="submit" onclick='onTestListingClick()'>Test Get Listing</button>
+<button id="listing-create" type="submit" onclick='onTestCreateListingClick()'>Test Create Listing</button>
 
 <br>
 

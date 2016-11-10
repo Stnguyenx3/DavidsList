@@ -13,9 +13,11 @@ class ListingImages extends Controller{
 	public function getImages($listingID){
 
 		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
-		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingImage");
+		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingId");
 		if ($arrayofListingImageObjects == null){
+			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
+			require APP . 'view/_templates/footer.php';
 		}
 
 		else {
@@ -32,10 +34,12 @@ class ListingImages extends Controller{
 	//Delete Images based on listing ID
 	public function deleteImages($listingID){
 		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
-		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingImage");
+		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingId");
 
 		if ($arrayofListingImageObjects == null){
+			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
+			require APP . 'view/_templates/footer.php';
 		}
 
 		else{

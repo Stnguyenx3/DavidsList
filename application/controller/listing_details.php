@@ -14,10 +14,12 @@ class ListingDetails extends Controller{
 	//Retrieves Listing Details based on Listing ID
 	public function getDetails($listingID){
 		$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
-		$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingDetail");
+		$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingId");
 
 		if ($arrayOfListingDetailObjects == null){
+			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
+			require APP . 'view/_templates/footer.php';
 		}
 
 		else{
@@ -39,7 +41,7 @@ class ListingDetails extends Controller{
 	//Delete Listing Details based on listing ID
 	public function deleteDetails($listingID){
 		$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
-		$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingDetail");
+		$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingId");
 		
 		if ($arrayOfListingDetailObjects == null){
 			require APP . 'view/_templates/header.php';
@@ -47,7 +49,7 @@ class ListingDetails extends Controller{
 			require APP . 'view/_templates/footer.php';
 		}
 		else{
-			$listingDetailRepo->remove($arrayOfListingDetailObjects[0]);
+			$removedCorrectly = $listingDetailRepo->remove($arrayOfListingDetailObjects[0]);
 			//should we output a page detailing success or not?
 		}
 	}
@@ -56,21 +58,27 @@ class ListingDetails extends Controller{
 	//Updates Listing Detail based on ID
 	public function editDetails($listingID){
 		$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
-		$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingDetail");
+		$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingId");
 
 		if ($arrayOfListingDetailObjects == null){
+			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
+			require APP . 'view/_templates/footer.php';
 		}
 
 		else{
-			$arrayOfListingDetailObjects->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
-			$arrayOfListingDetailObjects->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
+			$listingDetailObject = $arrayOfListingDetailObjects[0];
+
+			$listingDetailObject->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
+			$listingDetailObject->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
 			$arrayOfListingDetailObjects->setInternet($_POST["listing_internet"]);
-			$arrayOfListingDetailObjects->setPetPolicy($_POST["listing_pet_policy"]);
-			$arrayOfListingDetailObjects->setElevatorAccess($_POST["listing_elevator_access"]);
-			$arrayOfListingDetailObjects->setFurnishing($_POST["listing_furnishing"]);
-			$arrayOfListingDetailObjects->setAirConditioning($_POST["listing_air_conditioning"]);
-			$arrayOfListingDetailObjects->setDescription($_POST["listing_description"]);
+			$listingDetailObject->setPetPolicy($_POST["listing_pet_policy"]);
+			$listingDetailObject->setElevatorAccess($_POST["listing_elevator_access"]);
+			$listingDetailObject->setFurnishing($_POST["listing_furnishing"]);
+			$listingDetailObject->setAirConditioning($_POST["listing_air_conditioning"]);
+			$listingDetailObject->setDescription($_POST["listing_description"]);
+
+			$insertListingDetails = $listingDetailRepo->update($listingDetailObject);
 
 		}
 	}
@@ -80,7 +88,7 @@ class ListingDetails extends Controller{
 	public function createDetails(){
 		$listingRepo = RepositoryFactory::createRepository("listingDetail");
 
-		$listingDetail = new ListingDetail;
+		$listingDetail = new ListingDetail();
 
 		$listingDetail->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
 		$listingDetail->setNumberOfBathrooms($_POST["listing_numBathrooms"]);

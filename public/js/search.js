@@ -202,7 +202,7 @@ function formatResults(event) {
 function onTestListingClick(){
 	var jsonData = {
 		"listing_price": 500, 
-		"listing_type": "Apartement",
+		"listing_type": "Apartment",
 		"listing_numBedrooms": 5,
 		"listing_numBathrooms": 2,
 		"listing_internet": 1,
@@ -233,4 +233,38 @@ function onTestListingClick(){
 
 		}
 	});
+}
+
+function onTestCreateListingClick(){
+	var jsonData = {
+		"listing_price": 1000,
+		"listing_type": "Room",
+		"listing_numBedrooms": 1,
+		"listing_numBathrooms": 1,
+		"listing_internet": 0,
+		"listing_pet_policy": "No Lions",
+		"listing_elevator_access": "N/A",
+		"listing_furnishing": 0,
+		"listing_air_conditioning": 0,
+		"listing_description": "It's a room....I guess.",
+		"listing_street_name": "6th Street",
+		"listing_city_name": "San Francisco",
+		"listing_zip_code": "94135",
+		"listing_state": "CA"
+	};
+	$.ajax({
+		type:"POST",
+		url: url+"/listings/newListing",
+		data: jsonData,
+		success: function(e){
+			console.log("Success wrote a new listing.");
+			console.log(e);
+		},
+		error: function(xhr, err, errThrown){
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+	})
+
 }
