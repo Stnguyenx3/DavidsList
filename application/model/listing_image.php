@@ -6,7 +6,7 @@
  * which allows sending this object back to the client side
  */
 class ListingImage implements JsonSerializable{
-	private $listingID;
+	private $listingId;
 	private $imageThumbnail;
 	private $image;
 

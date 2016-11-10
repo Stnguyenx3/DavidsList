@@ -129,9 +129,9 @@ class Listings extends Controller {
 			$addressObject->setState($_POST["listing_state"]);
 
 			//save the things
-			$insertListing = $listingRepo->save($listingObject);
-			$insertListingDetails = $listingDetailRepo->save($listingDetailObject );
-			$insertAddress = $addressRepo->save($addressObject);
+			$insertListing = $listingRepo->update($listingObject);
+			$insertListingDetails = $listingDetailRepo->update($listingDetailObject );
+			$insertAddress = $addressRepo->update($addressObject);
 
 		}
 

@@ -6,10 +6,10 @@
  * which allows sending this object back to the client side
  */
 class Listing implements JsonSerializable{
-	private $userid;
+	private $userId;
 	private $listingId;
 	private $price;
-	private $type;
+	private $listingType;
 	private $status;
 
 	public function __construct() {
@@ -17,7 +17,7 @@ class Listing implements JsonSerializable{
 	}
 
 	public function getId() {
-		return $this->userid;
+		return $this->userId;
 	}
 
 	public function getListingId() {
@@ -29,7 +29,7 @@ class Listing implements JsonSerializable{
 	}
 
 	public function getType() {
-		return $this->type;
+		return $this->listingType;
 	}
 
 	public function getStatus() {
@@ -37,7 +37,7 @@ class Listing implements JsonSerializable{
 	}
 
 	public function setId($newId) {
-		$this->userid = $newId;
+		$this->userId = $newId;
 	}
 
 	public function setListingId($newListingId) {
@@ -49,7 +49,7 @@ class Listing implements JsonSerializable{
 	}
 
 	public function setType($newType) {
-		$this->type = $newType;
+		$this->listingType = $newType;
 	}
 
 	public function setStatus($newStatus) {
@@ -57,16 +57,16 @@ class Listing implements JsonSerializable{
 	}
 
 	public function __toString() {
-		return "{$this->userid}, {$this->listingId}, {$this->price}," . 
-				" {$this->type}, {$this->status}";
+		return "{$this->userId}, {$this->listingId}, {$this->price}," . 
+				" {$this->listingType}, {$this->status}";
 	}
 
 	public function jsonSerialize() {
 		return array(
-			"userid" => $this->userid,
+			"userId" => $this->userId,
 			"listingId" => $this->listingId,
 			"price" => $this->price,
-			"type" => $this->type,
+			"listingType" => $this->listingType,
 			"status" => $this->status
 		);	
 	}
