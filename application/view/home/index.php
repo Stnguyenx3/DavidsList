@@ -13,6 +13,8 @@
 
 <button id="listing-get" type="submit" onclick='onTestListingClick()'>Test Get Listing</button>
 <button id="listing-create" type="submit" onclick='onTestCreateListingClick()'>Test Create Listing</button>
+<button id="listing-detail-edit" type="submit" onclick='ontTestEditListingDetailClick()'> Test Edit Listing Details</button>
+<button id="listing-detail-create" type="submit" onclick='onTestCreateListingDetailClick()'> Test Create Listing Details</button>
 
 <br>
 

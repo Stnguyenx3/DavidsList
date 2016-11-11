@@ -272,3 +272,62 @@ function onTestCreateListingClick(){
 	})
 
 }
+
+function ontTestEditListingDetailClick(){
+	var jsonData = {
+		"listing_numBedrooms": 35,
+		"listing_numBathrooms": 50,
+		"listing_internet": 1,
+		"listing_pet_policy": "No manchildren",
+		"listing_elevator_access": "One in the back",
+		"listing_furnishing": 1,
+		"listing_air_conditioning": 1,
+		"listing_description": "My humble abode."
+	};
+	$.ajax({
+		type:"POST",
+		url: url+"/listingdetails/editDetails/1",
+		data: jsonData,
+		success: function(e){
+			console.log("Success edited details of a listing.");
+			console.log(e);
+		},
+		error: function(xhr, err, errThrown){
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+
+	})
+}
+
+function onTestCreateListingDetailClick(){
+	var jsonData = {
+		"listing_id": 1,
+		"listing_numBedrooms": 8,
+		"listing_numBathrooms": 3,
+		"listing_internet": 0,
+		"listing_pet_policy": "Only Triggered Cats",
+		"listing_elevator_access": "N/A",
+		"listing_furnishing": 0,
+		"listing_air_conditioning": 1,
+		"listing_description": "An alright house."
+
+	};
+	$.ajax({
+		type:"POST",
+		url: url+"/listingdetails/createDetails",
+		data: jsonData,
+		success: function(e){
+			console.log("Success created details of a listing.");
+			console.log(e);
+		},
+		error: function(xhr, err, errThrown){
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+
+		
+	})
+}

@@ -33,9 +33,9 @@ class Listings extends Controller {
 		else{
 			//the following will send back the header, body, and footer
 			//of the listing page
-			require APP . "view/_templates/header.php";
-			require APP . "view/listings/listing_body.php";
-			require APP . "view/_templates/footer.php";
+			require APP . 'view/_templates/header.php';
+			require APP . 'view/listings/listing_body.php';
+			require APP . 'view/_templates/footer.php';
 		}
 
 	}
@@ -45,6 +45,8 @@ class Listings extends Controller {
 	public function deleteListing($listingID){
 
 		//thought process: Traverse the table of listings, and find the listing_id of the listing in question. Then delete the respective page
+
+		//Will have to incorporate a means of deleting details as well as images too.
 		$listingRepo = RepositoryFactory::createRepository("listing");
 		$arrayOfListingObjects = $listingRepo->find($listingID, "listingId");
 
