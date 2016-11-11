@@ -237,8 +237,11 @@ function onTestListingClick(){
 
 function onTestCreateListingClick(){
 	var jsonData = {
+		"user_id": 3,
 		"listing_price": 1000,
-		"listing_type": "Room",
+		"listing_type": "Room/Share",
+		"listing_status": 0,
+		"listing_id": 3,
 		"listing_numBedrooms": 1,
 		"listing_numBathrooms": 1,
 		"listing_internet": 0,
@@ -247,6 +250,7 @@ function onTestCreateListingClick(){
 		"listing_furnishing": 0,
 		"listing_air_conditioning": 0,
 		"listing_description": "It's a room....I guess.",
+		"listing_approx_address": 1,
 		"listing_street_name": "6th Street",
 		"listing_city_name": "San Francisco",
 		"listing_zip_code": "94135",

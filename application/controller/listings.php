@@ -142,7 +142,7 @@ class Listings extends Controller {
 		
 		
 		$listingRepo = RepositoryFactory::createRepository("listing");
-		$listingDetailRepo = RepositoryFactory::createRepository("listingDetail");
+		$listingDetailRepo = RepositoryFactory::createRepository("listing_detail");
 		$addressRepo = RepositoryFactory::createRepository("address");
 		//$listingImageRepo = RepositoryFactory::createRepository("listingImage");
 		
@@ -151,10 +151,15 @@ class Listings extends Controller {
 		$address = new Address();
 		//$listingImage = new ListingImage();
 
+
+		$listing->setId($_POST["user_id"]); //this is temporary
+		$listing->setListingId($_POST["listing_id"]); // this is also temporary
 		$listing->setPrice($_POST["listing_price"]);
 		$listing->setType($_POST["listing_type"]);
+		$listing->setStatus($_POST["listing_status"]);
 		
 
+		$listingDetail->setListingId($_POST["listing_id"]); //this is also temporary
 		$listingDetail->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
 		$listingDetail->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
 		$listingDetail->setInternet($_POST["listing_internet"]);
@@ -165,7 +170,8 @@ class Listings extends Controller {
 		$listingDetail->setDescription($_POST["listing_description"]);
 
 		
-
+		$address->setId($_POST["listing_id"]); //temporary fix
+		$address->setApproximateAddress($_POST["listing_approx_address"]);
 		$address->setStreetName($_POST["listing_street_name"]);
 		$address->setCity($_POST["listing_city_name"]);
 		$address->setZipCode($_POST["listing_zip_code"]);
