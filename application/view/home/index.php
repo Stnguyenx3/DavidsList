@@ -38,8 +38,79 @@
 			<div class="col-sm-10">
 			
 				<h1>Featured Listings</h1>
+
+				<div class="row featured-listing">
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-3 featured-listing-img">
+								<img src="http://placehold.it/175x175" alt="placeholder img.">
+							</div>
+							<div class="col-sm-9">
+								<h3 class="featured-listing-title">Listing Name</h3>
+								<p class="featured-listing-price">Price</p>
+								<div style="clear: both">
+										<p>
+											Info Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
+											st mattis ullamcorper. Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e.
+											</p>
+										<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row featured-listing">
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-3 featured-listing-img">
+								<img src="http://placehold.it/175x175" alt="placeholder img.">
+							</div>
+							<div class="col-sm-9">
+								<h3 class="featured-listing-title">Listing Name</h3>
+								<p class="featured-listing-price">Price</p>
+								<div style="clear: both">
+										<p>
+											Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
+											st mattis ullamcorper. Etiam vitae mi fermentum, aliquet neque ac, commodo erat. Integer sodales lu
+											ctus libero, ut tincidunt enim tempor at. Maecenas at ultricies magna. Nam bibendum quam tempus, so
+											dales mauris vitae, tempor est. Integer erat erat, facilisis efficitur euismod sit amet, congue non
+											nunc. Nunc ipsum urna, venenatis sit amet tempus et, rutrum vitae nibh. Nulla venenatis mattis augu
+											e, pulvinar tempor metus scelerisque ac. Vivamus in elementum sem. Aenean ac enim elementum, molest
+											ie mi eget, consectetur eros. Quisque placerat, ligula ut lacinia posuere, ante dui commodo mauris,
+											vitae facilisis tellus urna vitae urna.
+											</p>
+										<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row featured-listing">
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-3 featured-listing-img">
+								<img src="http://placehold.it/175x175" alt="placeholder img.">
+							</div>
+							<div class="col-sm-9">
+								<h3 class="featured-listing-title">Listing Name</h3>
+								<p class="featured-listing-price">Price</p>
+								<div style="clear: both">
+										<p>
+											Info Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
+											st mattis ullamcorper. Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e.
+											</p>
+										<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				
-				<div class="row">
+				
+				<!--div class="row">
 					<div class="col-sm-12">
 						<img src="http://placehold.it/975x100">
 					</div>
@@ -55,7 +126,7 @@
 					<div class="col-sm-12">
 						<img src="http://placehold.it/975x100">
 					</div>
-				</div>
+				</div-->
 				
 			</div>
 			<div class="col-sm-1"></div>

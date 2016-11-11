@@ -131,7 +131,8 @@ label {
 	height: 250px;
 	background-color: Gainsboro;
 	border: 1px solid SteelBlue;
-	box-shadow: 5px 5px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
 }
 
 .form-signup {
@@ -141,7 +142,8 @@ label {
 	height: 75%;
 	background-color: Gainsboro;
 	border: 1px solid SteelBlue;
-	box-shadow: 5px 5px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
 }
 
 .login-link {
@@ -163,4 +165,34 @@ label {
 	height: auto;
 }
 
+.featured-listing {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid SteelBlue;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.featured-listing-img {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.featured-listing-title {
+    float: left;
+}
+
+.featured-listing-price {
+    float: right;
+    margin: 15px;
+    font-size: 20px;
+}
+
+.featured-listing-btn {
+    float: right;
+    margin: 15px;
+}
 
