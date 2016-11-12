@@ -1,3 +1,4 @@
+body,
 #content {
 	font-family: Lucida Console;
 }
@@ -35,21 +36,32 @@ h1 {
 .navigation a:hover {
     color: #fff;
 }
+
 .container {
     overflow: hidden;
     padding: 20px;
 }
+
 .container a {
     color: #222;
+    font-size: 16px;
 }
+
+.container a.featured-listing-btn {
+    color: #fff;
+    font-size: 18px;
+}
+
 .container table {
     font-size: 11px;
     margin-top: 20px;
 }
+
 .container table thead td {
     background-color: #f5f5f5;
     padding: 4px 10px;
 }
+
 .container table tbody td {
     padding: 4px 10px;
 }
@@ -78,13 +90,28 @@ h1 {
 
 .container button {
     border: 0;
-    height: 40px;
-	width: 250px;
-    padding: 5px 10px;
+    margin: 0px;
+    height: 45px;
+    width: 45px;
     cursor: pointer;
 }
+
+.container button.btn-signin,
+.container button.btn-register {
+    height: 45px;
+    width: auto;
+    margin: auto;
+    background-color: #4682b4;
+}
+.container button.btn-signin:hover,
+.container button.btn-register:hover {
+    height: 45px;
+    width: auto;
+    background-color: #5cb85c;
+}
+
 .container button:hover {
-    background-color: #222;
+    background-color: #5cb85c;
     color: #fff;
 }
 

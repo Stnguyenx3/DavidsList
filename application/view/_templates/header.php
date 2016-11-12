@@ -37,9 +37,9 @@
 			</div>
 			
 			<div class="col-sm-9" id="search-bar">
-				<input id="search-input" type="text" placeholder="City, Street, Zipcode..." required autofocus/>
-				<!--button id="search-get" type="submit" onclick='onSearchClick()'>Browse</button-->
-				<button class="btn btn-primary" type="submit" onclick="onSearchClick()">Browse</button>
+    				<input id="search-input" type="text" placeholder="City, Street, Zipcode..." required autofocus/><button type="button" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
 			</div>
 			
 		</div>

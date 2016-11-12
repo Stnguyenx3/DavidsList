@@ -25,10 +25,4 @@
 
 <script type="text/javascript">
 
-	$(form-signin).validate();
-	
-	$(document).ready(function() {
-
-	});
-
 </script>

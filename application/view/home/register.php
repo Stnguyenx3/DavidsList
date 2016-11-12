@@ -51,7 +51,7 @@
 			</label>
 		</div>
 		
-		<button class="btn btn-primary btn-lg btn-block login-button center-block" type="submit">Register</button>
+		<button class="btn btn-primary btn-lg btn-block btn-register center-block" type="submit">Register</button>
 			
 	</form>
 
