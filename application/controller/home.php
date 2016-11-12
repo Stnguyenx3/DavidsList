@@ -49,4 +49,10 @@ class Home extends Controller{
         require APP . 'view/home/register.php';
         require APP . 'view/_templates/footer.php';
 	}
+
+    public function listing() {
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/home/listing.php';
+        require APP . 'view/_templates/footer.php';
+    }
 }

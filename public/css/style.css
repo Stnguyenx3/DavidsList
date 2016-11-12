@@ -254,3 +254,17 @@ label {
     font-weight: bold;
     opacity: .75;
 }
+
+.carousel-indicators {
+    
+}
+
+.carousel-control.left,
+.carousel-control.right {
+    background: transparent;
+}
+
+.listing-details,
+.owner-info {
+    margin-top: 15px;
+}

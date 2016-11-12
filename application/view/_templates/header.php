@@ -11,6 +11,7 @@
 
     <script type="text/javascript" src="<?php echo URL; ?>js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>js/jquery.validate.js"></script>
+    <script type="text/javascript" src="<?php echo URL; ?>js/bootstrap.js"></script>
 
     <!-- CSS -->
 	<link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">
