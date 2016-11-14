@@ -11,6 +11,11 @@
 <button id="search-json" type="submit" onclick='onDeleteClick()'>ON DELETE</button>
 <button id="search-json" type="submit" onclick='onUpdateClick()'>ON UPDATE</button>
 
+<button id="listing-get" type="submit" onclick='onTestListingClick()'>Test Get Listing</button>
+<button id="listing-create" type="submit" onclick='onTestCreateListingClick()'>Test Create Listing</button>
+<button id="listing-detail-edit" type="submit" onclick='onTestEditListingDetailClick()'> Test Edit Listing Details</button>
+<button id="listing-detail-create" type="submit" onclick='onTestCreateListingDetailClick()'> Test Create Listing Details</button>
+
 <br>
 
 <input type="file" id="test-image"/>

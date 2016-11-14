@@ -18,6 +18,7 @@ class ListingDetailRepo implements DatabaseRepositoryInterface{
 	}
 
 	public function save($listingDetail){
+		$this->db->save($listingDetail, 'listingDetail');
 		return $this->db->save($listingDetail, 'listingDetail');
 	}
 
