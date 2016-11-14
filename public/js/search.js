@@ -331,3 +331,4 @@ function onTestCreateListingDetailClick(){
 		
 	})
 }
+

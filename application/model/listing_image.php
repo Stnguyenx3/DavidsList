@@ -15,7 +15,7 @@ class ListingImage implements JsonSerializable{
 	}
 
 	public function getListingId() {
-		return $this->listingID;
+		return $this->listingId;
 	}
 
 	public function getImageThumbNail() {
@@ -44,7 +44,7 @@ class ListingImage implements JsonSerializable{
 
 	public function jsonSerialize() {
 		return array(
-			'listingId' => $this->listingID,
+			'listingId' => $this->listingId,
 			'imageThumbnail' => $this->imageThumbnail,
 			'image' => $this->image
 		);

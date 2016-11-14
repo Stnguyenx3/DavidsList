@@ -12,20 +12,30 @@ class ListingImages extends Controller{
 	//Get Images based on listingID
 	public function getImages($listingID){
 
-		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
+		$listingImageRepo = RepositoryFactory::createRepository("listing_image");
 		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingId");
+		
 		if ($arrayofListingImageObjects == null){
+			
+			$errorMessage = "Could not find Listing Images";
 			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
 			require APP . 'view/_templates/footer.php';
+		
 		}
 
-		else {
-			$returnImage = $arrayofListingImageObjects[0]->getImage();
-			imagejpeg($returnImage);
+		else if (!empty($arrayofListingImageObjects)){
+			
+			$tempHash["arrayofListingImageObjects"] = base64_encode($arrayofListingImageObjects[0]->getImageThumbnail());
+			
+			require APP . 'view/_templates/header.php';
+			require APP . 'view/listings/listing_body.php';
+			require APP . 'view/_templates/footer.php';
+			
+			$returnImage[] = $tempHash;
 
-			//free up memory
-			imagedestroy($returnImage);
+			echo json_encode($returnImage);
+		
 		}
 
 	}
@@ -33,18 +43,20 @@ class ListingImages extends Controller{
 	//deleteImages
 	//Delete Images based on listing ID
 	public function deleteImages($listingID){
-		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
+		$listingImageRepo = RepositoryFactory::createRepository("listing_image");
 		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingId");
 
 		if ($arrayofListingImageObjects == null){
+			$errorMessage = "Could not find Listing";
 			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
 			require APP . 'view/_templates/footer.php';
 		}
 
 		else{
-			$destroyImage = $arrayofListingImageObjects[0]->getImage();
-			$arrayofListingImageObjects[0]->remove($destroyImage);
+			foreach ($arrayofListingImageObjects as $listingImage){
+				$listingImageRepo->remove($listingImage);
+			}
 		}
 
 	}
@@ -52,9 +64,10 @@ class ListingImages extends Controller{
 	//Uploads new listing images to listing ID
 	public function uploadImages($listingID){
 		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
-		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingImage");
+		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingId");
 
 		if ($arrayofListingImageObjects == null){
+			$errorMessage = "Error listing not found."
 			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
 			require APP . 'view/_templates/footer.php';
