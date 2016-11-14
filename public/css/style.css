@@ -255,16 +255,129 @@ label {
     opacity: .75;
 }
 
-.carousel-indicators {
-    
-}
-
 .carousel-control.left,
 .carousel-control.right {
     background: transparent;
 }
 
-.listing-details,
+.listing-details {
+    margin: 15px;
+    width: 700px;
+    height: 300px;
+    clear: both;
+    border: 1px solid #4682b4;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
 .owner-info {
-    margin-top: 15px;
+    margin: 15px;
+    padding: 15px;
+    width: 100%;
+    height: 700px;
+    border: 1px solid #4682b4;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.listing-map {
+    background-color: SteelBlue;
+    margin: 15px;
+    padding: 15px;
+    width: 100%;
+    height: 300px;
+}
+
+.carousel {
+    padding: 0px;
+    margin: 15px;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 40%;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.5;
+}
+
+.carousel-control .glyphicon-chevron-right,
+.right .carousel-control {
+    margin-right: 0;
+}
+
+.listing-title {
+    float: left;
+    padding: 15px;
+    margin-top: 0px;
+}
+
+.listing-price {
+    float: right;
+    padding: 15px;
+    margin-top: 0px;
+    font-size: 20px;
+}
+
+.container .listing-favorite-btn {
+    float: right;
+    color: #ffffff;
+    padding: 15px;
+    margin: 15px;
+}
+
+.container .listing-favorite-btn:hover {
+    background-color: #5cb85c;
+}
+
+.listing-detail-info {
+    padding: 15px;
+}
+
+.listing-street-name,
+.listing-city,
+.listing-zipcode,
+.listing-state {
+    display: inline;
+    padding-left: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.listing-street-name {
+    padding-left: 15px;
+}
+
+.listing-beds,
+.listing-baths,
+.listing-internet,
+.listing-pets,
+.listing-elevator,
+.listing-furnished,
+.listing-ac {
+    display: inline;
+    padding-left: 5px;
+    font-size: 16px;
+}
+
+.listing-beds {
+    padding-left: 15px;
+}
+
+.listing-desc {
+    padding-top: 15px;
+    padding-left: 15px;
+    font-size: 16px;
+}
+
+.owner-username,
+.owner-email {
+    font-size: 16px;
+}
+
+.container .rent-button {
+    padding: 15px;
+    font-size: 16px;
+    width: 100%;
 }

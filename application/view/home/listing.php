@@ -2,60 +2,99 @@
 
 	<div class="row">
 
-		<!--Listing images in a slider -->
-		<div id="listingCarousel" class="col-sm-6 carousel slide" style="width: 400px; height: 400px" data-ride="carousel">
+		<!--Apartment listing image and details -->
+		<div class="col-sm-8">
 
-			<ol class="carousel-indicators">
-				<li data-target="#listingCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#listingCarousel" data-slide-to="1"></li>
-				<li data-target="#listingCarousel" data-slide-to="2"></li>
-			</ol>
+			<div id="listingCarousel" class="col-sm-8 carousel slide" style="width: 700px; height: 700px" data-ride="carousel">
 
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img src="http://placehold.it/400x400" alt="placeholder img.">
+				<ol class="carousel-indicators">
+					<li data-target="#listingCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#listingCarousel" data-slide-to="1"></li>
+					<li data-target="#listingCarousel" data-slide-to="2"></li>
+				</ol>
+
+				<div class="carousel-inner" role="listbox">
+					<div class="item active">
+						<img src="http://placehold.it/700x700" alt="placeholder img.">
+					</div>
+					<div class="item">
+						<img src="http://placehold.it/700x700" alt="placeholder img.">
+					</div>
+					<div class="item">
+						<img src="http://placehold.it/700x700" alt="placeholder img.">
+					</div>
 				</div>
-				<div class="item">
-					<img src="http://placehold.it/400x400" alt="placeholder img.">
+
+				<a class="left carousel-control" href="#listingCarousel" data-slide="prev">
+				    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				</a>
+
+				<a class="right carousel-control" href="#listingCarousel" data-slide="next">
+				    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				</a>
+
+			</div>	
+
+			<div class="listing-details">
+
+				<div class="row">
+					<div class="col-sm-12">
+
+
+						<h3 class="listing-title">Listing Name</h3>
+						<p class="listing-price">Price</p>
+						<div style="clear: both">
+								
+							<p class="listing-street-name">Street name</p>
+							<p class="listing-city">City</p>
+							<p class=listing-zipcode>Zipcode</p>
+							<p class="listing-state">State</p>
+
+							<p></p>
+
+							<p class="listing-beds">Bed: #</p>
+							<p class="listing-baths">Bath: #</p>
+							<p class="listing-internet">Internet: ?</p>
+							<p class="listing-pets">Pets: ?</p>
+							<p class="listing-elevator">Elevator: ?</p>
+							<p class="listing-furnished">Furnished: ?</p>
+							<p class="listing-ac">A/C: ?</p>
+
+							<p class="listing-desc">
+								Description:<br>
+								Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
+								st mattis ullamcorper.
+							</p>
+
+							<a href="#" class="btn btn-primary listing-favorite-btn">Favorite</a>
+						</div>
+
+
+					</div>
 				</div>
-				<div class="item">
-					<img src="http://placehold.it/450x450" alt="placeholder img.">
-				</div>
+
 			</div>
 
-			<a class="left carousel-control" href="#listingCarousel" role="button" data-slide="prev">
-			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-			</a>
-			<a class="right carousel-control" href="#listingCarousel" role="button" data-slide="next">
-			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-			</a>
-			</a>
-
 		</div>
 
-		<!--Google Maps of listing -->
-		<div class="col-sm-6">
-			<img src="http://placehold.it/400x400" alt="placeholder img.">
+		<!--Google maps and Owner information -->
+		<div class="col-sm-4">
+
+			<div class="listing-map">
+				<p>Google maps.</p>
+			</div>
+
+			<div class="owner-info">
+				<p style="font-weight: bold">Landlord</p>
+
+				<p class="owner-username">Name: Bob</p>
+				<p class="owner-email">EMail: Bob@example.com</p>
+
+				<button type="button" class="btn btn-primary rent-button">Rent</button>
+
+			</div>
+
 		</div>
-
-
-	</div>
-
-	<div class="row">
-
-	<!--Listing details-->
-		<div class="col-sm-8 listing-details">
-			<img src="http://placehold.it/650x400" alt="placeholder img.">
-		</div>
-
-		<div class="col-sm-4 owner-info">
-		<img src="http://placehold.it/300x600" alt="placeholder img.">
-		</div>
-
-
-	<!--Rent, contact owner -->
 
 	</div>
 
