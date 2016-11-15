@@ -52,7 +52,7 @@ class User implements JsonSerializable {
 	}
 
 	public function setId($newId) {
-		$this->id = $newId;
+		$this->userid = $newId;
 	}
 
 	public function setEmail($newEmail) {

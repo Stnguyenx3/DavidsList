@@ -6,7 +6,7 @@
  * which allows sending this object back to the client side
  */
 class Listing implements JsonSerializable{
-	private $userId;
+	private $userid;
 	private $listingId;
 	private $price;
 	private $listingType;
@@ -17,7 +17,7 @@ class Listing implements JsonSerializable{
 	}
 
 	public function getId() {
-		return $this->userId;
+		return $this->userid;
 	}
 
 	public function getListingId() {
@@ -37,7 +37,7 @@ class Listing implements JsonSerializable{
 	}
 
 	public function setId($newId) {
-		$this->userId = $newId;
+		$this->userid = $newId;
 	}
 
 	public function setListingId($newListingId) {
@@ -57,13 +57,13 @@ class Listing implements JsonSerializable{
 	}
 
 	public function __toString() {
-		return "{$this->userId}, {$this->listingId}, {$this->price}," . 
-				" {$this->listingType}, {$this->status}";
+		return "{$this->userid}, {$this->listingId}, {$this->price}," . 
+				" {$this->type}, {$this->status}";
 	}
 
 	public function jsonSerialize() {
 		return array(
-			"userId" => $this->userId,
+			"userid" => $this->userid,
 			"listingId" => $this->listingId,
 			"price" => $this->price,
 			"listingType" => $this->listingType,

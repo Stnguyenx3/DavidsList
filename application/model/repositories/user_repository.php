@@ -18,8 +18,9 @@ class UserRepo implements DatabaseRepositoryInterface {
         return $this->db->find($searchParam, 'user', 'User', $column);
     }
 
-    public function save($user) {
-        return $this->db->save($user, 'user');
+    // save == create // ?
+	public function save($user) {
+        $this->db->save($user, 'user');
     }
 
     public function remove($user) {

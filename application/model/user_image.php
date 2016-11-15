@@ -1,8 +1,8 @@
 <?php
 
 /*
- * Class that represents a single user image
- * normal plain old PHP object, with the implementation of a JsonSerializable
+ * Class that represents a single user image.
+ * Normal plain old PHP object, with the implementation of a JsonSerializable
  * which allows sending this object back to the client side
  */
 class UserImage implements JsonSerializable { 
