@@ -1,7 +1,9 @@
 <?php
 
 /*
- * Class Users
+ *  Class: Users
+ *   File: application/controller/users.php
+ * Author: Paul Derugin
  * 
  * Controller for the User class (model/user.php)
  * 
@@ -14,6 +16,8 @@
  * 
  * The first two functions, getUser() and deleteUser(), have been tested and are
  * working; the other three functions need to be tested.
+ * 
+ * Copyright (C) 2016, Paul Derugin
  */
 
 class Users extends Controller {
@@ -21,7 +25,9 @@ class Users extends Controller {
 	/**
      * Loads a user's profile page.
      * 
-     * @param int $userID The integer ID of the user
+     * @param int $userID The integer ID of the user.
+	 * 
+	 * @status Tested and working.
      */
     public function getUser($userID) {
         $userRepo = RepositoryFactory::createRepository("user");
@@ -45,12 +51,13 @@ class Users extends Controller {
         }
     } // end function getUser
 
+	
     /**
      * Deletes a user from the database.
      * 
      * @param int $userID
-     * 
-     * @todo Fix this function. It doesn't work (user doesn't get deleted).
+	 * 
+	 * @status Tested and working.
      */
     public function deleteUser($userID) {
 
@@ -101,16 +108,16 @@ class Users extends Controller {
     
     
     /**
-     * Edits a user's profile. 
-	 * 
-	 * External information is JSON encoded data that contains all fields of a
-	 * User object. This function creates a new User object from that JSON data
+     * Edits a user's profile. Creates a new User object from external JSON data
 	 * and replaces the target user's current User object with the once created
 	 * here.
+	 * 
+	 * External information is JSON encoded data that contains all fields of a
+	 * User object.
      * 
      * @param int $userID
 	 * 
-	 * @todo Test this function.
+	 * @status Needs to be tested.
      */
     public function editUser($userID){
 		$userRepo = RepositoryFactory::createRepository("user");
@@ -148,12 +155,14 @@ class Users extends Controller {
 	 * 
 	 * External information is JSON encoded data which contains new user information.
 	 * The new user information includes all of the user variables except for the
-	 * userid
+	 * userid.
 	 * 
 	 * Loads the newly created user's HTML page.
 	 * 
 	 * @todo Add validation to the function (check to make sure user was
-	 * successfully added); test the function.
+	 * successfully added)
+	 * 
+	 * @status Needs to be tested.
 	 */
 	public function newUser(){
 		$userRepo = RepositoryFactory::createRepository("user");
@@ -189,14 +198,16 @@ class Users extends Controller {
 	
 	
 	/**
-	 * Logs a user in.
+	 * Validates user-entered username/password combination.
 	 * 
-	 * External information is JSON encoded data which contains login data
+	 * External information is JSON encoded data that contains a "username" and
+	 * "password".
 	 * 
-	 * @todo 1) Finish this method--I have no idea what's supposed to happen after
-	 * we receive and validate the username and password; 2) when a use enters an 
-	 * invalid username/passowrd combination, should we give a generic error saying
-	 * "Invalid username or password"? Or should we specify which was incorrect?
+	 * Displays a generic error message if the supplied username/password 
+	 * combination is invalid. Displays a message indicating success if the
+	 * supplied username/password combination is valid.
+	 * 
+	 * @status Needs to be tested.
 	 */
 	public function login(){
 		$username = $_POST["username"];
@@ -206,12 +217,12 @@ class Users extends Controller {
 		
 		// Validate the login credentials
 		
-		$isValidLogin = false;
+		$isValidLogin = false; // probably don't need this,
 		$arrayOfResults = $userRepo->find($username, "username");
 		
 		// if no such username exists in the database, display error
 		if ($arrayOfResults == null){
-            $errorMessage = "Invalid username or password."; //TODO - do we want to specify which of the two is invalid?
+            $errorMessage = "Invalid username or password.";
             require APP . "view/_templates/header.php";
             require APP . "view/problem/error_page.php";
             require APP . "view/_templates/footer.php"; 			
@@ -221,7 +232,7 @@ class Users extends Controller {
 			// if the username exists, but the password entered doesn't match the
 			// one stored in the user's User object, display error
 			if ($passord != $user->getPassword()){
-				$errorMessage = "Invalid username or password."; //TODO - do we want to specify which of the two is invalid?
+				$errorMessage = "Invalid username or password.";
 				require APP . "view/_templates/header.php";
 				require APP . "view/problem/error_page.php";
 				require APP . "view/_templates/footer.php"; 					
@@ -229,9 +240,9 @@ class Users extends Controller {
 			
 			// else username exists AND the password entered matches the one on file
 			else{
-				$isValidLogin = true;
-				//TODO - do somethign (I don't know what!)
-				// for now, will just load a page confirming successful login:
+				$isValidLogin = true; // probably don't need this
+
+				// Load page confirming successful login:
 				require APP . "view/_templates/header.php";
 				require APP . "view/users/user_login_success.php";
 				require APP . "view/_templates/footer.php"; 				

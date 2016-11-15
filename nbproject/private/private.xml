@@ -3,14 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/view/users/user_login_success.php</file>
-            <file>file:/D:/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/model/user.php</file>
-            <file>file:/D:/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/model/repositories/user_repository.php</file>
-            <file>file:/D:/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/controller/search.php</file>
-            <file>file:/D:/Paul/OneDrive/Programming/School/CSC648/DavidsList/paul-changelog.txt</file>
-            <file>file:/D:/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/controller/users.php</file>
-            <file>file:/D:/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/config/config.php</file>
-            <file>file:/D:/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/model/database.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/view/problem/error_page.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/model/repositories/user_repository.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/controller/search.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/core/controller.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/controller/users.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/paul-changelog.txt</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/model/user.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/model/repositories/user_image_repository.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/controller/userimages.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/view/users/user_body.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/model/database.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/view/users/user_delete_success.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/view/users/user_login_success.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/model/user_image.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/controller/addresses.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/_install/create-all-tables.sql</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/view/home/index.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/model/repositories/database_repository_interface.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/controller/favoritelistings.php</file>
+            <file>file:/C:/Users/Paul/OneDrive/Programming/School/CSC648/DavidsList/application/model/repositories/listing_repository.php</file>
         </group>
     </open-files>
 </project-private>

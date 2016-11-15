@@ -1,8 +1,10 @@
 <?php
 
 /*
- * Class UsersImages
- * 
+ *  Class: UserImages
+ *   File: application/controller/userimages.php
+ * Author: Paul Derugin
+ *  
  * Controller for the UserImage class (model/user_image.php)
  * 
  * This class provides the following functionality:
@@ -10,6 +12,10 @@
  *   2) A function to delete a user images;
  *   3) A function to upload user images;
  * 
+ * The getUserImages() and deleteUserImages() functions are tested and seem to work. 
+ * The last function, uploadImage(), needs to be tested.
+ * 
+ * Copyright (C) 2016, Paul Derugin
  */
 
 class UserImages extends Controller{
@@ -20,6 +26,8 @@ class UserImages extends Controller{
 	 * @param int $userID
 	 * 
 	 * Returns an array of UserImage objects in the form of a JSON object
+	 * 
+	 * @status Appears to be working.
 	 */
 	public function getUserImages($userID){
         $userImagesRepo = RepositoryFactory::createRepository("user_image");
@@ -33,23 +41,6 @@ class UserImages extends Controller{
         }
 		
 		else {
-			
-//			D O N ' T  T H I N K  W E  N E E D  T H I S ?
-//			
-//			foreach ($arrayOfUserImages as $userImage) {
-//				$tempHash = $userImage->jsonSerialize();
-//				
-//				// ===> UPDATE THE CODE FROM HERE
-//				$imageThumbnail = $listingImageRepo->find($address->getListingId(), "listingID");
-//				if (!empty($imageThumbnail)) {
-//					$tempHash["imageThumbnail"] = base64_encode($imageThumbnail[0]->getImageThumbnail());
-//				}
-//
-//				$returnArray[] = $tempHash;
-//			}
-//			echo json_encode($returnArray);
-
-			// is it OK for the JSON object I return here to be an array of UserImage objects?
 			echo json_encode($arrayOfUserImages);
 		} // end else
 	} // end function getUserImages
@@ -59,6 +50,10 @@ class UserImages extends Controller{
 	 * Deletes all of a user's associated images, given user ID.
 	 * 
 	 * @param int $userID
+	 * 
+	 * @todo Add validation to the function.
+	 * 
+	 * @status Tested and working.
 	 */
 	public function deleteUserImages($userID){
         $userImagesRepo = RepositoryFactory::createRepository("user_image");
@@ -84,7 +79,7 @@ class UserImages extends Controller{
 	/**
 	 * Uploads a new user image to user, given user ID.
 	 * 
-	 * [DELETED@param int $userID]
+	 * @param int $userID
 	 * 
 	 * External data is JSON object containing the following ket-value pairs:
 	 *     'userid' => $this->userid,
@@ -92,16 +87,18 @@ class UserImages extends Controller{
      *     'image' => $this->image
 	 * 
 	 * @todo Some error checking / validation.
+	 * 
+	 * @status Needs to be tested.
 	 */
-	public function uploadImage(){
+	public function uploadImage($userID){
 		// build the UserImage object using the external JSON data
 		$userImage = new UserImage();
 		$userImage->setId($_POST("userid"));
 		$userImage->setImage($_POST("imageThumbnail"));
 		$userImage->setImage($_POST("image"));
 		
-		// add the UsserImage to the DB
+		// add the UserImage to the DB
         $userImagesRepo = RepositoryFactory::createRepository("user_image");		
 		$userImagesRepo->save($userImage);
 	} // end function uploadImage
-} // end class UserImagesController
+} // end class UserImages
