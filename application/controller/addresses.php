@@ -32,6 +32,7 @@
 
 class Addresses extends Controller{
 	
+	//TODO: May change this method to contain another parameter
 	/**
 	 * Creates a new address related to a listing ID.
 	 * 

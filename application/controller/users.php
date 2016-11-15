@@ -149,7 +149,14 @@ class Users extends Controller {
 		}// end else		
     } // end function editUser
 	
-	
+    public function signUp() {
+    	if(empty($_SESSION)) {
+    		//redirect to homepage
+    	} else {
+    		//direct to login page
+    	}
+    }
+
 	/**
 	 * Creates a new user.
 	 * 
@@ -165,6 +172,7 @@ class Users extends Controller {
 	 * @status Needs to be tested.
 	 */
 	public function newUser(){
+
 		$userRepo = RepositoryFactory::createRepository("user");
 		
 		// create new user
@@ -176,7 +184,7 @@ class Users extends Controller {
 		$user->setStudentId($_POST["studentID"]);
 		$user->setPhone($_POST["phone"]);
 		$user->setBiography($_POST["bio"]);
-		$user->setPassword($_POST["password"]);
+		$user->setPassword(password_hash($_POST["password"]));
 		$user->setVerified($_POST["verified"]);
 		
 		// save the new user to the database
@@ -195,7 +203,6 @@ class Users extends Controller {
 		// display the user's page
 		getUser($userID);
 	} // end function newUser
-	
 	
 	/**
 	 * Validates user-entered username/password combination.
@@ -217,7 +224,6 @@ class Users extends Controller {
 		
 		// Validate the login credentials
 		
-		$isValidLogin = false; // probably don't need this,
 		$arrayOfResults = $userRepo->find($username, "username");
 		
 		// if no such username exists in the database, display error
@@ -231,7 +237,8 @@ class Users extends Controller {
 			$user = $arrayOfResults[0];
 			// if the username exists, but the password entered doesn't match the
 			// one stored in the user's User object, display error
-			if ($passord != $user->getPassword()){
+			$verifyPassword = password_verify($password, $user->getPassword());
+			if ($verifyPassword){
 				$errorMessage = "Invalid username or password.";
 				require APP . "view/_templates/header.php";
 				require APP . "view/problem/error_page.php";
@@ -240,8 +247,6 @@ class Users extends Controller {
 			
 			// else username exists AND the password entered matches the one on file
 			else{
-				$isValidLogin = true; // probably don't need this
-
 				// Load page confirming successful login:
 				require APP . "view/_templates/header.php";
 				require APP . "view/users/user_login_success.php";
@@ -249,4 +254,12 @@ class Users extends Controller {
 			} // end inner else
 		} // end outer else
 	} // end function login()
+
+	public function logout() {
+		$_SESSION = array();
+		session_destroy();
+
+		header('refresh: 0; URL=' . URL . 'home');
+	}
+
 } // end class User

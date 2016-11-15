@@ -81,10 +81,9 @@ class UserImages extends Controller{
 	 * 
 	 * @param int $userID
 	 * 
-	 * External data is JSON object containing the following ket-value pairs:
+	 * External data is JSON object containing the following key-value pairs:
 	 *     'userid' => $this->userid,
      *     'imageThumbnail' => $this->imageThumbnail,
-     *     'image' => $this->image
 	 * 
 	 * @todo Some error checking / validation.
 	 * 
@@ -93,12 +92,13 @@ class UserImages extends Controller{
 	public function uploadImage($userID){
 		// build the UserImage object using the external JSON data
 		$userImage = new UserImage();
-		$userImage->setId($_POST("userid"));
-		$userImage->setImage($_POST("imageThumbnail"));
+		$userImage->setId($_POST("userid")); //Probably don't need to send $_POST
+		$userImage->setImage(ImageResizeUtil::resizeImage($_POST("image")));
 		$userImage->setImage($_POST("image"));
-		
+
 		// add the UserImage to the DB
         $userImagesRepo = RepositoryFactory::createRepository("user_image");		
 		$userImagesRepo->save($userImage);
 	} // end function uploadImage
+
 } // end class UserImages

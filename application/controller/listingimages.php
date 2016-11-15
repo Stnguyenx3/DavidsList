@@ -2,11 +2,6 @@
 // Class ListingImages
 
 class ListingImages extends Controller{
-	public function index(){
-		require APP . 'view/_templates/header.php';
-		require APP . 'view/home/index.php';
-		require APP . 'view/_templates/footer.php';
-	}
 
 	//getImages
 	//Get Images based on listingID
@@ -63,19 +58,22 @@ class ListingImages extends Controller{
 	//uploadImages
 	//Uploads new listing images to listing ID
 	public function uploadImages($listingID){
-		$listingImageRepo = RepositoryFactory::createRepository("listingImage");
-		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingId");
+		$listingImageRepo = RepositoryFactory::createRepository("listing_image");
+		$newListingImage = new ListingImage();
 
 		if ($arrayofListingImageObjects == null){
-			$errorMessage = "Error listing not found."
+			$errorMessage = "Error listing not found.";
 			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
 			require APP . 'view/_templates/footer.php';
 		}
 
 		else{
-			$arrayofListingImageObjects[0]->setImageThumbNail($_POST["listing_image_thumbnail"]);
-			$arrayofListingImageObjects[0]->setImage($_POST["listing_image"]);
+			$newListingImage->setListingId($listingID);
+			$newListingImage->setImage($_POST["listing_image"]);
+			$newListingImage->setImageThumbNail(ImageResizeUtil::resizeImage($_POST["listing_image"]));
+
+			$listingImageRepo->save($newListingImage);
 		}
 
 	}

@@ -5,7 +5,7 @@
 class Listings extends Controller {
 	//index
 	// This method handles what happens when you move http://yourproject/home/index
-
+	//TODO: Show all listings in a paginated format
 	public function index(){
 		require APP . 'view/_templates/header.php';
 		require APP . 'view/home/index.php';
@@ -15,6 +15,7 @@ class Listings extends Controller {
 	//getListing
 	//Function to return a listing's page. Parameter is the id of the listing
 	//Returns HTML
+	//TODO: Needs to return the listing specified.
 	public function getListing($listingID){
 	
 		//thought process: Traverse the table of listings, and find the listingID of the listing in question. Then return the respective page
@@ -31,6 +32,7 @@ class Listings extends Controller {
 		}
 
 		else{
+			json_encode($arrayOfListingObjects[0])
 			//the following will send back the header, body, and footer
 			//of the listing page
 			require APP . 'view/_templates/header.php';
@@ -40,6 +42,7 @@ class Listings extends Controller {
 
 	}
 
+	//TODO: Call the controllers for listingdetails and listingimages
 	//deleteListing
 	//Function to delete a listing's page. Parameter is the id of the listing
 	public function deleteListing($listingID){
@@ -78,6 +81,7 @@ class Listings extends Controller {
 		}
 	}
 
+	//TODO: Modularize the shit out of this
 	//editListing
 	//Function to edit a listing. Parameter is the id of the listing. 
 	//External information is JSON encoded data which contains
@@ -137,6 +141,7 @@ class Listings extends Controller {
 
 	}
 
+	//TODO: Modularize the shit out of this
 	//newListing
 	//Function to create listing. External information is JSON encoded data which 
 	//contains new listing data

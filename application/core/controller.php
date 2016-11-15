@@ -5,6 +5,7 @@ class Controller {
 	function __construct() {
 		//require all the models used in the application
 		session_start();
+		require APP . "model/util/image_resize_util.php"
 		require APP . "model/repositories/database_repository_interface.php";
 		require APP . "model/repositories/all_query_interface.php";
 		require APP . "model/repositories/listing_image_repository.php";
