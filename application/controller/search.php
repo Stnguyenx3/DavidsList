@@ -50,17 +50,25 @@ class Search extends Controller {
     public function searchApartments() {
         $thresh = 70;
 
-        $city = $_POST["city"];
+        $searchInput = $_POST["city"]; // change this
         $addressRepo = RepositoryFactory::createRepository("address");
         $listingImageRepo = RepositoryFactory::createRepository("listing_image");
         // $addresses = $addressRepo->find($city, "city"); //this is the search line
 
+        if(is_numeric($searchInput)) $addresses = $addressRepo->find($searchInput, "zipcode");
+        else $addresses = $addressRepo->find($searchInput, "city");
+
         $returnArray = array();
 
-        foreach($addressRepo as $address) {
-            $compareCity = $address->getCity();
-            similar_text($compareCity , $city, &$percentage);
-            if($percentage>$thresh){
+        // foreach($addressRepo as $address) {
+        //     $compareCity = $address->getCity();
+        //     echo '<script>';
+        //     echo 'console.log('. json_encode( $address ) .')';
+        //     echo '</script>';
+        //     $percentage = 80;
+        //     // similar_text($compareCity , $city, &$percentage);
+        //     if($percentage>$thresh){
+        foreach ($addresses as $address) {
 
                 $tempHash = $address->jsonSerialize();
                 $imageThumbnail = $listingImageRepo->find($address->getListingId(), "listingID");
@@ -71,7 +79,7 @@ class Search extends Controller {
 
                 $returnArray[] = $tempHash;
             }
-        }
+        // }
         echo json_encode($returnArray);
     }
 
