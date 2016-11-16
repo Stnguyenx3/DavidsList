@@ -86,19 +86,26 @@ class Listings extends Controller {
 	/*
 		format of the json should be
 		{
-			user_id: 1,
-			listing_price: 2,
-			listing_type: 3,
-			listing_status: 4,
-			listing_detail:{
-				listing_numBedrooms:
-				etc
+			"user_id":$('#test-userid').val(),
+			"listing_price": $('#test-price').val(),
+			"listing_type": $('#test-type').val(),
+			"listing_status": $('#test-status').val(),
+			"listing_detail": {
+				"listing_numBedrooms": $('#test-bed').val(),
+				"listing_numBathrooms": $('#test-bath').val(),
+				"listing_internet": $('#test-internet').val(),
+				"listing_pet_policy": $('#test-pet').val(),
+				"listing_elevator_access": $('#test-elevator').val(),
+				"listing_furnishing": $('#test-furnishing').val(),
+				"listing_air_conditioning": $('#test-air').val(),
+				"listing_description": $('#test-description').val()
 			},
-			address:{
-				etc
-			},
-			listing_image: {
-				etc
+			"address": {
+				"approximateAddress": $('#test-approximate').val(),
+				"streetName": $('#test-street').val(),
+				"city": $('#test-city').val(),
+				"zipcode": $('#test-zipcode').val(),
+				"state": $('#test-state').val()
 			}
 		}
 	*/
@@ -134,16 +141,29 @@ class Listings extends Controller {
 	/*
 		format of the json should be
 		{
-			user_id: 1, 
-			listing_detail:{
-				listing_numBedrooms:
-				etc
+			"user_id":$('#test-userid').val(),
+			"listing_price": $('#test-price').val(),
+			"listing_type": $('#test-type').val(),
+			"listing_status": $('#test-status').val(),
+			"listing_detail": {
+				"listing_numBedrooms": $('#test-bed').val(),
+				"listing_numBathrooms": $('#test-bath').val(),
+				"listing_internet": $('#test-internet').val(),
+				"listing_pet_policy": $('#test-pet').val(),
+				"listing_elevator_access": $('#test-elevator').val(),
+				"listing_furnishing": $('#test-furnishing').val(),
+				"listing_air_conditioning": $('#test-air').val(),
+				"listing_description": $('#test-description').val()
 			},
-			address:{
-				etc
+			"address": {
+				"approximateAddress": $('#test-approximate').val(),
+				"streetName": $('#test-street').val(),
+				"city": $('#test-city').val(),
+				"zipcode": $('#test-zipcode').val(),
+				"state": $('#test-state').val()
 			},
-			listing_image:{
-				etc
+			"listing_image": {
+				"image": data.target.result
 			}
 		}
 	*/
