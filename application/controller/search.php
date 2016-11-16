@@ -59,13 +59,19 @@ class Search extends Controller {
 
         if(is_numeric($searchInput)) $addresses = $addressRepo->find($searchInput, "zipcode");
         else{
-             $thresh = 80;
-             $addresses = array();
+            $thresh = 80; // threshold for percentage of similar_text
+            $addresses = array(); //prepare array
 
-            $addressDummy = $addressRepo->find("1", "listingID");// find other way to fetch all
+            // If searchInput ends in street or avenue, reduce to str or ave
+            if(strcmp(substr($searchInput, -6),"street")==0 || strcmp(substr($searchInput, -6),"avenue")==0){
+                $searchInput = substr($searchInput, 0, -3);
+                echo $searchInput;
+            }
+
+
+            $addressDummy = $addressRepo->find("0", "approximateAddress");// find other way to fetch all
 
             foreach($addressDummy as $address){
-                // if(!compareSearchInput($add, $searchInput)) unset($addresses[$i]);
     
                 // Compare search query to city
                 $compareCity = $address->getCity();
@@ -77,6 +83,12 @@ class Search extends Controller {
 
                 // Compare search query to street name
                 $compareStreetName = $address->getStreetName();
+
+                // Check for street and avenue in compareStreetName
+                if(strcmp(substr($compareStreetName, -6),"street")==0 || strcmp(substr($compareStreetName, -6),"avenue")==0){
+                    $compareStreetName = substr($compareStreetName, 0, -3);
+                }
+
                 similar_text($compareStreetName , $searchInput, $percentageStreetName);
                 if($percentageStreetName > $thresh){
                     $addresses[] = $address;
