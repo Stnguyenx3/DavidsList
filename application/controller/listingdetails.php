@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * THIS FILE IS NOW DEPRECATED
+ * THE REASON WHY THIS FILE IS DEPRECATED IS BECAUSE WE DON'T WANT TO EXPOSE
+ * LISTING DETAILS RANDOMLY. IT MUST GO THROUGH LISTING TO GET LISTING DETAILS
+ * ALSO ALL CONTROLLERS SHOULD CORRESPOND TO A PAGE
+ */
+
 //Listing Details class
 
 class ListingDetails extends Controller{
@@ -96,20 +103,20 @@ class ListingDetails extends Controller{
 	//TODO: probably send in an array instead of using _POST array
 	//createDetails
 	//create new listing details to associate with listing id
-	public function createDetails(){
+	public function createDetails($listingID, $listingDetail){
 		$listingRepo = RepositoryFactory::createRepository("listing_detail");
 
 		$listingDetail = new ListingDetail();
 
-		$listingDetail->setListingId($_POST["listing_id"]); //temp fix
-		$listingDetail->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
-		$listingDetail->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
-		$listingDetail->setInternet($_POST["listing_internet"]);
-		$listingDetail->setPetPolicy($_POST["listing_pet_policy"]);
-		$listingDetail->setElevatorAccess($_POST["listing_elevator_access"]);
-		$listingDetail->setFurnishing($_POST["listing_furnishing"]);
-		$listingDetail->setAirConditioning($_POST["listing_air_conditioning"]);
-		$listingDetail->setDescription($_POST["listing_description"]);
+		$listingDetail->setListingId($listingID); //temp fix
+		$listingDetail->setNumberOfBedrooms($listingDetail["listing_numBedrooms"]);
+		$listingDetail->setNumberOfBathrooms($listingDetail["listing_numBathrooms"]);
+		$listingDetail->setInternet($listingDetail["listing_internet"]);
+		$listingDetail->setPetPolicy($listingDetail["listing_pet_policy"]);
+		$listingDetail->setElevatorAccess($listingDetail["listing_elevator_access"]);
+		$listingDetail->setFurnishing($listingDetail["listing_furnishing"]);
+		$listingDetail->setAirConditioning($listingDetail["listing_air_conditioning"]);
+		$listingDetail->setDescription($listingDetail["listing_description"]);
 
 		$insertListingDetail = $listingRepo->save($listingDetail);
 

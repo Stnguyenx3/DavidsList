@@ -91,10 +91,11 @@ class UserImages extends Controller{
 	 */
 	public function uploadImage($userID){
 		// build the UserImage object using the external JSON data
+		$image = explode(",", $_POST["image"]);
 		$userImage = new UserImage();
 		$userImage->setId($_POST("userid")); //Probably don't need to send $_POST
-		$userImage->setImage(ImageResizeUtil::resizeImage($_POST("image")));
-		$userImage->setImage($_POST("image"));
+		$userImage->setImage(ImageResizeUtil::resizeImage($image[1]));
+		$userImage->setImage(base64_decode($image[1]));
 
 		// add the UserImage to the DB
         $userImagesRepo = RepositoryFactory::createRepository("user_image");		

@@ -66,7 +66,7 @@ CREATE TABLE `student_pderugin`.`listingDetail`(
 );
 
 CREATE TABLE `student_pderugin`.`listingImage`(
-	`listingID` INT(4) NOT NULL AUTO_INCREMENT,
+	`listingID` INT(4) NOT NULL,
 	`image` LONGBLOB,
 	`imageThumbnail` BLOB,
 

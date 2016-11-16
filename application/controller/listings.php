@@ -1,6 +1,8 @@
 <?php
 
 //** Listings Class
+//TODO DOC THIS SHIT
+//REMOVED DEPRECATED SHIT
 
 class Listings extends Controller {
 	//index
@@ -15,15 +17,13 @@ class Listings extends Controller {
 	//getListing
 	//Function to return a listing's page. Parameter is the id of the listing
 	//Returns HTML
-	//TODO: Needs to return the listing specified.
 	public function getListing($listingID){
 	
 		//thought process: Traverse the table of listings, and find the listingID of the listing in question. Then return the respective page
 		
-		$listingRepo = RepositoryFactory::createRepository("listing");
-		$arrayOfListingObjects = $listingRepo->find($listingID, "listingId");	
+		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingID);
 		
-		if ($arrayOfListingObjects == null){
+		if ($listingResponse == null){
 			//detail of error page necessary
 			$errorMessage = "Error, Listing not found.";
 			require APP . 'view/_templates/header.php';
@@ -32,7 +32,6 @@ class Listings extends Controller {
 		}
 
 		else{
-			json_encode($arrayOfListingObjects[0])
 			//the following will send back the header, body, and footer
 			//of the listing page
 			require APP . 'view/_templates/header.php';
@@ -42,18 +41,16 @@ class Listings extends Controller {
 
 	}
 
-	//TODO: Call the controllers for listingdetails and listingimages
 	//deleteListing
 	//Function to delete a listing's page. Parameter is the id of the listing
 	public function deleteListing($listingID){
 
 		//thought process: Traverse the table of listings, and find the listing_id of the listing in question. Then delete the respective page
-
-		//Will have to incorporate a means of deleting details as well as images too.
 		$listingRepo = RepositoryFactory::createRepository("listing");
 		$arrayOfListingObjects = $listingRepo->find($listingID, "listingId");
 
-		if ($arrayOfListingObjects[0] == null){
+
+		if ($arrayOfListingObjects == null){
 			//detail of error page necessary
 			$errorMessage = "The listing with the listingID ({$listingID}) was not found.";
 			require APP . 'view/_templates/header.php';
@@ -62,30 +59,56 @@ class Listings extends Controller {
 		}
 
 		else{
-			$removedCorrectly = $listingRepo->remove($arrayOfListingObjects[0]);
-				if ($removedCorrectly){
-					//need to create listing_delete_success page
-					require APP . 'view/_templates/header.php';
-					require APP . 'view/listings/listing_delete_success.php';
-					require APP . 'view/_templates/footer.php';
+			$removedCorrectly = ListingsResponseCreator::createDeleteListingResponse($listingID);
 
-				}
+			if ($removedCorrectly){
+				//need to create listing_delete_success page
+				require APP . 'view/_templates/header.php';
+				require APP . 'view/listings/listing_delete_success.php';
+				require APP . 'view/_templates/footer.php';
 
-				else{
-					$errorMessage = "The listing with the listingID ({$listingID}) was found but not deleted!";
-					require APP . 'view/_templates/header.php';
-					require APP . 'view/problem/error_page.php';
-					require APP . 'view/_templates/footer.php';
+			}
 
-				}		
+			else{
+				$errorMessage = "The listing with the listingID ({$listingID}) was found but not deleted!";
+				require APP . 'view/_templates/header.php';
+				require APP . 'view/problem/error_page.php';
+				require APP . 'view/_templates/footer.php';
+
+			}		
 		}
 	}
 
-	//TODO: Modularize the shit out of this
 	//editListing
 	//Function to edit a listing. Parameter is the id of the listing. 
 	//External information is JSON encoded data which contains
 	//part of the listing data to change.
+	/*
+		format of the json should be
+		{
+			"user_id":$('#test-userid').val(),
+			"listing_price": $('#test-price').val(),
+			"listing_type": $('#test-type').val(),
+			"listing_status": $('#test-status').val(),
+			"listing_detail": {
+				"listing_numBedrooms": $('#test-bed').val(),
+				"listing_numBathrooms": $('#test-bath').val(),
+				"listing_internet": $('#test-internet').val(),
+				"listing_pet_policy": $('#test-pet').val(),
+				"listing_elevator_access": $('#test-elevator').val(),
+				"listing_furnishing": $('#test-furnishing').val(),
+				"listing_air_conditioning": $('#test-air').val(),
+				"listing_description": $('#test-description').val()
+			},
+			"address": {
+				"approximateAddress": $('#test-approximate').val(),
+				"streetName": $('#test-street').val(),
+				"city": $('#test-city').val(),
+				"zipcode": $('#test-zipcode').val(),
+				"state": $('#test-state').val()
+			}
+		}
+	*/
 	public function editListing($listingID){
 		$listingRepo = RepositoryFactory::createRepository("listing");
 		$arrayOfListingObjects = $listingRepo->find($listingID, "listingId");
@@ -98,99 +121,60 @@ class Listings extends Controller {
 		}
 
 		else{
-			$listingDetailRepo = RepositoryFactory::createRepository("listing_detail");
-			$addressRepo = RepositoryFactory::createRepository("address");
+			$savedCorrectly = ListingsResponseCreator::createUpdateListingResponse($listingID, $_POST);
 
-			$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingId"); 
-			$arrayOfAddressObjects = $addressRepo->find($listingID, "listingId"); 
-
-			$listingObject = $arrayOfListingObjects[0];
-			$listingDetailObject = $arrayOfListingDetailObjects[0];
-			$addressObject = $arrayOfAddressObjects[0];
-
-			//listing
-			$listingObject->setPrice($_POST["listing_price"]);
-			$listingObject->setType($_POST["listing_type"]);
-
-			echo $listingObject->__toString();
-
-			//listingDetail
-			$listingDetailObject ->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
-			$listingDetailObject ->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
-			$listingDetailObject ->setInternet($_POST["listing_internet"]);
-			$listingDetailObject ->setPetPolicy($_POST["listing_pet_policy"]);
-			$listingDetailObject ->setElevatorAccess($_POST["listing_elevator_access"]);
-			$listingDetailObject ->setFurnishing($_POST["listing_furnishing"]);
-			$listingDetailObject ->setAirConditioning($_POST["listing_air_conditioning"]);
-			$listingDetailObject ->setDescription($_POST["listing_description"]);
-
-			echo $listingDetailObject->__toString();
-
-			//address
-			$addressObject->setStreetName($_POST["listing_street_name"]);
-			$addressObject->setCity($_POST["listing_city_name"]);
-			$addressObject->setZipcode($_POST["listing_zip_code"]);
-			$addressObject->setState($_POST["listing_state"]);
-
-			//save the things
-			$insertListing = $listingRepo->update($listingObject);
-			$insertListingDetails = $listingDetailRepo->update($listingDetailObject );
-			$insertAddress = $addressRepo->update($addressObject);
-
+			if($savedCorrectly) {
+				//message it saved
+				echo "It saved";
+			} else {
+				//message it didn't save something
+				echo "It did not save";
+			}
+			//Send out message that it saved
 		}
 
 	}
 
-	//TODO: Modularize the shit out of this
 	//newListing
 	//Function to create listing. External information is JSON encoded data which 
 	//contains new listing data
+	/*
+		format of the json should be
+		{
+			"user_id":$('#test-userid').val(),
+			"listing_price": $('#test-price').val(),
+			"listing_type": $('#test-type').val(),
+			"listing_status": $('#test-status').val(),
+			"listing_detail": {
+				"listing_numBedrooms": $('#test-bed').val(),
+				"listing_numBathrooms": $('#test-bath').val(),
+				"listing_internet": $('#test-internet').val(),
+				"listing_pet_policy": $('#test-pet').val(),
+				"listing_elevator_access": $('#test-elevator').val(),
+				"listing_furnishing": $('#test-furnishing').val(),
+				"listing_air_conditioning": $('#test-air').val(),
+				"listing_description": $('#test-description').val()
+			},
+			"address": {
+				"approximateAddress": $('#test-approximate').val(),
+				"streetName": $('#test-street').val(),
+				"city": $('#test-city').val(),
+				"zipcode": $('#test-zipcode').val(),
+				"state": $('#test-state').val()
+			},
+			"listing_image": {
+				"image": data.target.result
+			}
+		}
+	*/
 	public function newListing(){
-		
-		
-		$listingRepo = RepositoryFactory::createRepository("listing");
-		$listingDetailRepo = RepositoryFactory::createRepository("listing_detail");
-		$addressRepo = RepositoryFactory::createRepository("address");
-		//$listingImageRepo = RepositoryFactory::createRepository("listingImage");
-		
-		$listing = new Listing();
-		$listingDetail = new ListingDetail();
-		$address = new Address();
-		//$listingImage = new ListingImage();
+		$createdCorrectly = ListingsResponseCreator::createNewListingResponse($_POST);
 
-
-		$listing->setId($_POST["user_id"]); //this is temporary
-		$listing->setListingId($_POST["listing_id"]); // this is also temporary
-		$listing->setPrice($_POST["listing_price"]);
-		$listing->setType($_POST["listing_type"]);
-		$listing->setStatus($_POST["listing_status"]);
-		
-
-		$listingDetail->setListingId($_POST["listing_id"]); //this is also temporary
-		$listingDetail->setNumberOfBedrooms($_POST["listing_numBedrooms"]);
-		$listingDetail->setNumberOfBathrooms($_POST["listing_numBathrooms"]);
-		$listingDetail->setInternet($_POST["listing_internet"]);
-		$listingDetail->setPetPolicy($_POST["listing_pet_policy"]);
-		$listingDetail->setElevatorAccess($_POST["listing_elevator_access"]);
-		$listingDetail->setFurnishing($_POST["listing_furnishing"]);
-		$listingDetail->setAirConditioning($_POST["listing_air_conditioning"]);
-		$listingDetail->setDescription($_POST["listing_description"]);
-
-		
-		$address->setId($_POST["listing_id"]); //temporary fix
-		$address->setApproximateAddress($_POST["listing_approx_address"]);
-		$address->setStreetName($_POST["listing_street_name"]);
-		$address->setCity($_POST["listing_city_name"]);
-		$address->setZipCode($_POST["listing_zip_code"]);
-		$address->setState($_POST["listing_state"]);
-
-
-		$insertListing = $listingRepo->save($listing);
-		$insertListingDetails = $listingDetailRepo->save($listingDetail);
-		$insertAddress = $addressRepo->save($address);
-		//$insertListingImage = $listingImageRepo->save($listingImage);
-				
-
+		if($createdCorrectly) {
+			//message it created good
+		} else {
+			//message it created bad
+		}
 	}
 	
 }

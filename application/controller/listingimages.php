@@ -69,9 +69,10 @@ class ListingImages extends Controller{
 		}
 
 		else{
+			$image = explode(",",$_POST["listing_image"]);
 			$newListingImage->setListingId($listingID);
-			$newListingImage->setImage($_POST["listing_image"]);
-			$newListingImage->setImageThumbNail(ImageResizeUtil::resizeImage($_POST["listing_image"]));
+			$newListingImage->setImage(base64_decode($image[1]));
+			$newListingImage->setImageThumbNail(ImageResizeUtil::resizeImage($image[1]));
 
 			$listingImageRepo->save($newListingImage);
 		}

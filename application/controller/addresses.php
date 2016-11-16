@@ -1,6 +1,13 @@
 <?php
 
 /*
+ * THIS FILE IS NOW DEPRECATED
+ * THE REASON WHY THIS FILE IS DEPRECATED IS BECAUSE WE DON'T WANT TO EXPOSE
+ * ADDRESS RANDOMLY. IT MUST GO THROUGH LISTING TO GET ADDRESS
+ * ALSO ALL CONTROLLERS SHOULD CORRESPOND TO A PAGE
+ */
+
+/*
  *  Class: Addresses
  *   File: application/controller/addresses.php
  * Author: Paul Derugin
@@ -43,15 +50,15 @@ class Addresses extends Controller{
 	 * 
 	 * @status Needs to be tested.
 	 */
-	public function createAddress($listingId){
+	public function createAddress($listingId, $addressInfo){
 		// build Address object from external JSON data
 		$address = new Address();
 		$address->setId($listingId);
-		$address->setApproximateAddress($POST("approximateAddress"));
-		$address->setStreetName($_POST("streetName"));
-		$address->setCity($_POST("city"));
-		$address->setZipcode($_POST("zipcode"));
-		$address->setState($_POST("state"));
+		$address->setApproximateAddress($addressInfo["approximateAddress"]);
+		$address->setStreetName($addressInfo["streetName"]);
+		$address->setCity($addressInfo["city"]);
+		$address->setZipcode($addressInfo["zipcode"]);
+		$address->setState($addressInfo["state"]);
 		
 		// add the Address to the DB
         $addressRepo = RepositoryFactory::createRepository("address");		

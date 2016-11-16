@@ -22,11 +22,11 @@ class ListingRepo implements DatabaseRepositoryInterface{
 	}
 
 	public function remove($listing){
-		return $this->db->remove($listing->getId(), 'listing', 'listingId');
+		return $this->db->remove($listing->getListingId(), 'listing', 'listingId');
 	}
 
 	public function update($listing){
-		return $this->db->update($listing, 'listing', $listing->getId(), 'listingId');
+		return $this->db->update($listing, 'listing', $listing->getListingId(), 'listingId');
 	}
 
 }

@@ -22,12 +22,12 @@ class ListingImageRepo implements DatabaseRepositoryInterface{
 	}
 
 	public function remove($listingImage){
-		return $this->db->remove($listingImage->getListingId(), 'listingImage', 'listingId');
+		return $this->db->remove($listingImage->getListingId(), 'listingImage', 'listingID');
 	}
 
 	public function update($listingImage){
 		return $this->db->update($listingImage, 'listingImage', 
-				$listingImage->getListingId(), 'listingId');
+				$listingImage->getListingId(), 'listingID');
 	}
 }
 
