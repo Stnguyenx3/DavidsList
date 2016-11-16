@@ -9,7 +9,7 @@ class Listing implements JsonSerializable{
 	private $userid;
 	private $listingId;
 	private $price;
-	private $listingType;
+	private $type;
 	private $status;
 
 	public function __construct() {
@@ -29,7 +29,7 @@ class Listing implements JsonSerializable{
 	}
 
 	public function getType() {
-		return $this->listingType;
+		return $this->type;
 	}
 
 	public function getStatus() {
@@ -49,7 +49,7 @@ class Listing implements JsonSerializable{
 	}
 
 	public function setType($newType) {
-		$this->listingType = $newType;
+		$this->type = $newType;
 	}
 
 	public function setStatus($newStatus) {
@@ -66,7 +66,7 @@ class Listing implements JsonSerializable{
 			"userid" => $this->userid,
 			"listingId" => $this->listingId,
 			"price" => $this->price,
-			"listingType" => $this->listingType,
+			"type" => $this->type,
 			"status" => $this->status
 		);	
 	}

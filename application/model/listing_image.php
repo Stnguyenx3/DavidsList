@@ -6,7 +6,7 @@
  * which allows sending this object back to the client side
  */
 class ListingImage implements JsonSerializable{
-	private $listingId;
+	private $listingID;
 	private $imageThumbnail;
 	private $image;
 
@@ -15,7 +15,7 @@ class ListingImage implements JsonSerializable{
 	}
 
 	public function getListingId() {
-		return $this->listingId;
+		return $this->listingID;
 	}
 
 	public function getImageThumbNail() {
@@ -31,7 +31,7 @@ class ListingImage implements JsonSerializable{
 	}
 
 	public function setImageThumbNail($newImageThumbnail) {
-		$this->imageThumbNail = $newImageThumbnail;
+		$this->imageThumbnail = $newImageThumbnail;
 	}
 
 	public function setImage($newImage) {
@@ -44,9 +44,9 @@ class ListingImage implements JsonSerializable{
 
 	public function jsonSerialize() {
 		return array(
-			'listingId' => $this->listingId,
-			'imageThumbnail' => $this->imageThumbnail,
-			'image' => $this->image
+			'listingID' => $this->listingID,
+			'image' => $this->image,
+			'imageThumbnail' => $this->imageThumbnail
 		);
 	}
 }

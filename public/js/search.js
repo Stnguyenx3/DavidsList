@@ -235,88 +235,34 @@ function onTestListingClick(){
 	});
 }
 
-function onTestCreateListingClick(){
-	var jsonData = {
-		"user_id": 3,
-		"listing_price": 1000,
-		"listing_type": "Room/Share",
-		"listing_status": 0,
-		"listing_id": 3,
-		"listing_numBedrooms": 1,
-		"listing_numBathrooms": 1,
-		"listing_internet": 0,
-		"listing_pet_policy": "No Lions",
-		"listing_elevator_access": "N/A",
-		"listing_furnishing": 0,
-		"listing_air_conditioning": 0,
-		"listing_description": "It's a room....I guess.",
-		"listing_approx_address": 1,
-		"listing_street_name": "6th Street",
-		"listing_city_name": "San Francisco",
-		"listing_zip_code": "94135",
-		"listing_state": "CA"
-	};
-	$.ajax({
-		type:"POST",
-		url: url+"/listings/newListing",
-		data: jsonData,
-		success: function(e){
-			console.log("Success wrote a new listing.");
-			console.log(e);
+function onEditClick(){
+	var jsonData = 
+	{
+		"user_id":$('#test-userid').val(),
+		"listing_price": $('#test-price').val(),
+		"listing_type": $('#test-type').val(),
+		"listing_status": $('#test-status').val(),
+		"listing_detail": {
+			"listing_numBedrooms": $('#test-bed').val(),
+			"listing_numBathrooms": $('#test-bath').val(),
+			"listing_internet": $('#test-internet').val(),
+			"listing_pet_policy": $('#test-pet').val(),
+			"listing_elevator_access": $('#test-elevator').val(),
+			"listing_furnishing": $('#test-furnishing').val(),
+			"listing_air_conditioning": $('#test-air').val(),
+			"listing_description": $('#test-description').val()
 		},
-		error: function(xhr, err, errThrown){
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
+		"address": {
+			"approximateAddress": $('#test-approximate').val(),
+			"streetName": $('#test-street').val(),
+			"city": $('#test-city').val(),
+			"zipcode": $('#test-zipcode').val(),
+			"state": $('#test-state').val()
 		}
-	})
-
-}
-
-function ontTestEditListingDetailClick(){
-	var jsonData = {
-		"listing_numBedrooms": 35,
-		"listing_numBathrooms": 50,
-		"listing_internet": 1,
-		"listing_pet_policy": "No manchildren",
-		"listing_elevator_access": "One in the back",
-		"listing_furnishing": 1,
-		"listing_air_conditioning": 1,
-		"listing_description": "My humble abode."
 	};
 	$.ajax({
 		type:"POST",
-		url: url+"/listingdetails/editDetails/1",
-		data: jsonData,
-		success: function(e){
-			console.log("Success edited details of a listing.");
-			console.log(e);
-		},
-		error: function(xhr, err, errThrown){
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
-		}
-
-	})
-}
-
-function onTestCreateListingDetailClick(){
-	var jsonData = {
-		"listing_id": 1,
-		"listing_numBedrooms": 8,
-		"listing_numBathrooms": 3,
-		"listing_internet": 0,
-		"listing_pet_policy": "Only Triggered Cats",
-		"listing_elevator_access": "N/A",
-		"listing_furnishing": 0,
-		"listing_air_conditioning": 1,
-		"listing_description": "An alright house."
-
-	};
-	$.ajax({
-		type:"POST",
-		url: url+"/listingdetails/createDetails",
+		url: url+"/listings/editlisting/"+6,
 		data: jsonData,
 		success: function(e){
 			console.log("Success created details of a listing.");
@@ -327,8 +273,56 @@ function onTestCreateListingDetailClick(){
 			console.log(err);
 			console.log(errThrown);
 		}
-
-		
-	})
+	});
 }
 
+function onNewClick(){
+
+	var logo = $('#test-listimage')[0].files[0];
+	// var logo = document.getElementById("test-image").files[0]; 
+	var reader = new FileReader();
+	reader.onload = function(data) {
+		var jsonData = 
+		{
+			"user_id":$('#test-userid').val(),
+			"listing_price": $('#test-price').val(),
+			"listing_type": $('#test-type').val(),
+			"listing_status": $('#test-status').val(),
+			"listing_detail": {
+				"listing_numBedrooms": $('#test-bed').val(),
+				"listing_numBathrooms": $('#test-bath').val(),
+				"listing_internet": $('#test-internet').val(),
+				"listing_pet_policy": $('#test-pet').val(),
+				"listing_elevator_access": $('#test-elevator').val(),
+				"listing_furnishing": $('#test-furnishing').val(),
+				"listing_air_conditioning": $('#test-air').val(),
+				"listing_description": $('#test-description').val()
+			},
+			"address": {
+				"approximateAddress": $('#test-approximate').val(),
+				"streetName": $('#test-street').val(),
+				"city": $('#test-city').val(),
+				"zipcode": $('#test-zipcode').val(),
+				"state": $('#test-state').val()
+			},
+			"listing_image": {
+				"image": data.target.result
+			}
+		};
+		$.ajax({
+			type:"POST",
+			url: url+"/listings/newlisting",
+			data: jsonData,
+			success: function(e){
+				console.log("Success created details of a listing.");
+				console.log(e);
+			},
+			error: function(xhr, err, errThrown){
+				console.log("I failed");
+				console.log(err);
+				console.log(errThrown);
+			}
+		});
+	}
+	reader.readAsDataURL(logo);
+}
