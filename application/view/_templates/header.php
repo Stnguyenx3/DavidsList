@@ -3,11 +3,10 @@
     <meta charset="utf-8">
     <title>David's List</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
 
-    <!-- JS -->
-    <!-- please note: The JavaScript files are loaded in the footer to speed up page construction -->
-    <!-- See more here: http://stackoverflow.com/q/2105327/1114320 -->
+    <script src="http://sfsuswe.com/~stnguyen/DavidsList/js/jquery-3.1.1.min.js"></script>
+    <script src="http://sfsuswe.com/~liux1731/DavidsList/public/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="<?php echo URL; ?>js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>js/jquery.validate.js"></script>
@@ -45,9 +44,6 @@
 			
 		</div>
 	</div>
-
-    <!--div class="user">
-        <a href="<?php echo URL."userProfile/index"; ?>">login</a>
         <a href="<?php echo URL ; ?>">register</a>
     </div>
 

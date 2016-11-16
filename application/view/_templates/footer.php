@@ -1,4 +1,4 @@
-
+</script>
     <!-- backlink to repo on GitHub, and affiliate link to Rackspace if you want to support the project -->
 	<div class="container footer">
 		
@@ -18,10 +18,10 @@
 
     <!-- define the project's URL (to make AJAX calls possible, even when using this in sub-folders etc) -->
     <script>
-        var url = "<?php echo URL; ?>";
+        var url = "//sfsuswe.com/~liux1731/DavidsList/";
     </script>
     <!-- our JavaScript -->
-    <script src="<?php echo URL; ?>js/application.js"></script>
-    <script src="<?php echo URL; ?>js/search.js"></script>
+    <script src="//sfsuswe.com/~liux1731/DavidsList/js/application.js"></script>
+    <script src="//sfsuswe.com/~liux1731/DavidsList/js/search.js"></script>
 </body>
 </html>
