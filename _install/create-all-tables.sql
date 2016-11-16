@@ -6,34 +6,35 @@ drop table if exists address;
 drop table if exists listingDetail;
 drop table if exists favoriteListing;
 
-CREATE TABLE `student_dtchau`.`user` (
+CREATE TABLE `student_pderugin`.`user` (
   `userid` INT(4) NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(100) NOT NULL,
+  `username` VARCHAR(40) NOT NULL,
   `password` VARCHAR(64) NOT NULL,
   `studentID` VARCHAR(9),
   `phone` VARCHAR(10),
   `bio` VARCHAR(2000),
-  `verified` TINYINT(1) NOT NULL
+  `verified` TINYINT(1) NOT NULL,
   PRIMARY KEY(`userid`)
  );
 
-CREATE TABLE `student_dtchau`.`userImage`(
+CREATE TABLE `student_pderugin`.`userImage`(
 	`userid` INT(4) NOT NULL,
 	`image` LONGBLOB,
 	`imageThumbnail` BLOB,
 	PRIMARY KEY(`userid`)
-);
+); 
 
-CREATE TABLE `student_dtchau`.`listing` (
+CREATE TABLE `student_pderugin`.`listing` (
 	`userid` INT(4) NOT NULL,
 	`listingId` INT(4) NOT NULL AUTO_INCREMENT,
 	`price` INT(4) NOT NULL,
 	`type` VARCHAR(100) NOT NULL,
 	`status` TINYINT(1) NOT NULL,
-	PRIMARY KEY(`userid`)
+	PRIMARY KEY(`listingId`)
 );
 
-CREATE TABLE `student_dtchau`.`address` (
+CREATE TABLE `student_pderugin`.`address` (
 	`listingId` INT(4) NOT NULL,
 	`approximateAddress` TINYINT(1) NOT NULL,
 	`streetName` VARCHAR(100),
@@ -42,14 +43,16 @@ CREATE TABLE `student_dtchau`.`address` (
 	`state` VARCHAR(100),
 	PRIMARY KEY(`listingId`)
 );
+# note that appromixate addressis a tiny int because we want to know whether or 
+# note the user wishes to show his/her exact address
 
-CREATE TABLE `student_dtchau`.`favoriteListing` (
+CREATE TABLE `student_pderugin`.`favoriteListing` (
 	`userid` INT(4) NOT NULL,
 	`listingId` INT(4) NOT NULL,
 	PRIMARY KEY(`listingId`)
 );
 
-CREATE TABLE `student_dtchau`.`listingDetail`(
+CREATE TABLE `student_pderugin`.`listingDetail`(
 	`listingId` INT(4) NOT NULL,
 	`numberOfBedrooms` INT(4) NOT NULL,
 	`numberOfBathrooms` INT(4) NOT NULL,
@@ -62,12 +65,12 @@ CREATE TABLE `student_dtchau`.`listingDetail`(
 	PRIMARY KEY(`listingId`)
 );
 
-CREATE TABLE `student_dtchau`.`listingImage`(
-	`listingID` INT(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `student_pderugin`.`listingImage`(
+	`listingID` INT(4) NOT NULL,
 	`image` LONGBLOB,
 	`imageThumbnail` BLOB,
 
-  PRIMARY KEY (`listingId`)
+  PRIMARY KEY (`listingID`)
   #UNIQUE KEY `email` (`email`)
   # Used 'id' to link tables together, also removed 'renter' and 'owner' flags, additionally added 'listingID' to tie 'listings' and 'listingID' tables together
 );

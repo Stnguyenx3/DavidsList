@@ -18,11 +18,15 @@ class ListingRepo implements DatabaseRepositoryInterface{
 	}
 
 	public function save($listing){
-		$this->db->save($listing, 'listing');
+		return $this->db->save($listing, 'listing');
 	}
 
 	public function remove($listing){
-		$this->db->remove($listing, 'listing');
+		return $this->db->remove($listing->getListingId(), 'listing', 'listingId');
+	}
+
+	public function update($listing){
+		return $this->db->update($listing, 'listing', $listing->getListingId(), 'listingId');
 	}
 
 }

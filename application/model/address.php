@@ -7,6 +7,7 @@
  */
 class Address implements JsonSerializable{
 	private $listingId;
+	private $approximateAddress;
 	private $streetName;
 	private $city;
 	private $zipcode;
@@ -18,6 +19,10 @@ class Address implements JsonSerializable{
 
 	public function getListingId() {
 		return $this->listingId;
+	}
+
+	public function getApproximateAddress() {
+		return $this->approximateAddress;
 	}
 
 	public function getStreetName() {
@@ -37,7 +42,11 @@ class Address implements JsonSerializable{
 	}
 
 	public function setId($newId) {
-		$this->id = $newId;
+		$this->listingId = $newId;
+	}
+
+	public function setApproximateAddress($newApproximateAddress) {
+		$this->approximateAddress = $newApproximateAddress;
 	}
 
 	public function setStreetName($newStreetName) {
@@ -57,13 +66,14 @@ class Address implements JsonSerializable{
 	}
 
 	public function __toString() {
-		return "{$this->listingId}, {$this->streetName}, " 
+		return "{$this->listingId}, {$this->approximateAddress}, {$this->streetName}, " 
 				. "{$this->city}, {$this->zipcode}, {$this->state}";
 	}
 
 	public function jsonSerialize() {
 		return array(
 			'listingId' => $this->listingId,
+			'approximateAddress' => $this->approximateAddress,
 			'streetName' => $this->streetName,
 			'city' => $this->city,
 			'zipcode' => $this->zipcode,

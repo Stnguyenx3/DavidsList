@@ -30,7 +30,7 @@ class Database {
 	}
 
 	/*
-	 * Method to find the rows with the given id within the given
+	 * Method to find the rows with the given search parameter within the given
 	 * table, and instantiate it into an object of the given type
 	 */
 	public function find($searchParam, $table, $object, $column) {
@@ -45,20 +45,43 @@ class Database {
 	 * Method to save the object into the given table
 	 */
 	public function save($object, $table) {
+		//Create an array of values from the JSON of the object
+		$serializedObject = array_values($object->jsonSerialize());
+		//Create a string of ?, where the number of ? depends on the size
+		//of the array of values
+		$placeHolder = implode(',', array_fill(0, count($serializedObject), '?'));
+		//Creates a PDOstatement to insert into database
 		$preparedStatement = 
 			$this->db->
-				prepare("INSERT INTO " . $table . " VALUES (" . $object->toString() . ")");
-		$preparedStatement->execute();
+				prepare("INSERT INTO {$table} VALUES ($placeHolder)");
+		return $preparedStatement->execute($serializedObject);
 	}
 
 	/*
 	 * Method to delete the object into the given table
 	 */
-	public function remove($object, $table) {
+	public function remove($objectColumn, $table, $column) {
 		$preparedStatement = 
 			$this->db->
-				prepare("DELETE FROM " . $table . "WHERE id = " . $object->getId());
+				prepare("DELETE FROM {$table} WHERE {$column} = '{$objectColumn}'");
+		return $preparedStatement->execute();
 	}
 
-	//Update
+	/*
+	 * Method to update the object into the given table
+	 */
+	public function update($object, $table, $updateParam, $column) {
+		$arrayOfKeys = array_keys($object->jsonSerialize());
+		$arrayOfValues = array_values($object->jsonSerialize());
+		$placeHolder = "";
+		foreach($arrayOfKeys as $keys) {
+			$placeHolder = $placeHolder . "`{$keys}` = ?, ";
+		}
+		$placeHolder = trim($placeHolder, ", ");
+
+		$preparedStatement = 
+			$this->db->
+				prepare("UPDATE `{$table}` SET $placeHolder WHERE {$column} = {$updateParam}");
+		return $preparedStatement->execute($arrayOfValues);
+	}
 }

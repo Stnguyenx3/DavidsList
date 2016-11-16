@@ -14,6 +14,54 @@ function onGetClick() {
 	});
 }
 
+function onInsertClick() {
+	$.ajax({
+		type:'GET',
+		url: url+"/search/testinsert",
+		success: function(event) {
+			console.log("I succeeded");
+			console.log(event);
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+	});
+}
+
+function onDeleteClick() {
+	$.ajax({
+		type:'GET',
+		url: url+"/search/testdelete",
+		success: function(event) {
+			console.log("I succeeded");
+			console.log(event);
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+	});
+}
+
+function onUpdateClick() {
+	$.ajax({
+		type:'GET',
+		url: url+"/search/testupdate",
+		success: function(event) {
+			console.log("I succeeded");
+			console.log(event);
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+	});
+}
+
 function onPostClick() {
 	var searchQuery = {
 		query: $('#test-input').val()
@@ -149,4 +197,132 @@ function formatResults(event) {
 	}
 	table.append(tablebody);
 	$('#search-result-container').html(table);
+}
+
+function onTestListingClick(){
+	var jsonData = {
+		"listing_price": 500, 
+		"listing_type": "Apartment",
+		"listing_numBedrooms": 5,
+		"listing_numBathrooms": 2,
+		"listing_internet": 1,
+		"listing_pet_policy": "No Cats",
+		"listing_elevator_access": "One on the first floor",
+		"listing_furnishing": 1,
+		"listing_air_conditioning": 1,
+		"listing_description": "It's a nice place. I swear",
+		"listing_street_name": "5th Street",
+		"listing_city_name": "San Francisco",
+		"listing_zip_code": "94135",
+		"listing_state": "CA"
+
+	};
+	$.ajax({
+		type:"POST",
+		url: url+"/listings/editlisting/1",
+		data: jsonData,
+		success: function(e) {
+			console.log("SUCCESS");
+			console.log(e);
+
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+
+		}
+	});
+}
+
+function onEditClick(){
+	var jsonData = 
+	{
+		"user_id":$('#test-userid').val(),
+		"listing_price": $('#test-price').val(),
+		"listing_type": $('#test-type').val(),
+		"listing_status": $('#test-status').val(),
+		"listing_detail": {
+			"listing_numBedrooms": $('#test-bed').val(),
+			"listing_numBathrooms": $('#test-bath').val(),
+			"listing_internet": $('#test-internet').val(),
+			"listing_pet_policy": $('#test-pet').val(),
+			"listing_elevator_access": $('#test-elevator').val(),
+			"listing_furnishing": $('#test-furnishing').val(),
+			"listing_air_conditioning": $('#test-air').val(),
+			"listing_description": $('#test-description').val()
+		},
+		"address": {
+			"approximateAddress": $('#test-approximate').val(),
+			"streetName": $('#test-street').val(),
+			"city": $('#test-city').val(),
+			"zipcode": $('#test-zipcode').val(),
+			"state": $('#test-state').val()
+		}
+	};
+	$.ajax({
+		type:"POST",
+		url: url+"/listings/editlisting/"+6,
+		data: jsonData,
+		success: function(e){
+			console.log("Success created details of a listing.");
+			console.log(e);
+		},
+		error: function(xhr, err, errThrown){
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+	});
+}
+
+function onNewClick(){
+
+	var logo = $('#test-listimage')[0].files[0];
+	// var logo = document.getElementById("test-image").files[0]; 
+	var reader = new FileReader();
+	reader.onload = function(data) {
+		var jsonData = 
+		{
+			"user_id":$('#test-userid').val(),
+			"listing_price": $('#test-price').val(),
+			"listing_type": $('#test-type').val(),
+			"listing_status": $('#test-status').val(),
+			"listing_detail": {
+				"listing_numBedrooms": $('#test-bed').val(),
+				"listing_numBathrooms": $('#test-bath').val(),
+				"listing_internet": $('#test-internet').val(),
+				"listing_pet_policy": $('#test-pet').val(),
+				"listing_elevator_access": $('#test-elevator').val(),
+				"listing_furnishing": $('#test-furnishing').val(),
+				"listing_air_conditioning": $('#test-air').val(),
+				"listing_description": $('#test-description').val()
+			},
+			"address": {
+				"approximateAddress": $('#test-approximate').val(),
+				"streetName": $('#test-street').val(),
+				"city": $('#test-city').val(),
+				"zipcode": $('#test-zipcode').val(),
+				"state": $('#test-state').val()
+			},
+			"listing_image": {
+				"image": data.target.result
+			}
+		};
+		$.ajax({
+			type:"POST",
+			url: url+"/listings/newlisting",
+			data: jsonData,
+			success: function(e){
+				console.log("Success created details of a listing.");
+				console.log(e);
+			},
+			error: function(xhr, err, errThrown){
+				console.log("I failed");
+				console.log(err);
+				console.log(errThrown);
+			}
+		});
+	}
+	reader.readAsDataURL(logo);
 }
