@@ -55,19 +55,48 @@ class Search extends Controller {
         $listingImageRepo = RepositoryFactory::createRepository("listing_image");
         // $addresses = $addressRepo->find($city, "city"); //this is the search line
 
+        
+
         if(is_numeric($searchInput)) $addresses = $addressRepo->find($searchInput, "zipcode");
-        else $addresses = $addressRepo->find($searchInput, "city");
+        else{
+             $thresh = 80;
+             $addresses = array();
+
+            $addressDummy = $addressRepo->find("1", "listingID");// find other way to fetch all
+
+            foreach($addressDummy as $address){
+                // if(!compareSearchInput($add, $searchInput)) unset($addresses[$i]);
+    
+                // Compare search query to city
+                $compareCity = $address->getCity();
+                similar_text($compareCity , $searchInput, $percentageCity);
+                if($percentageCity > $thresh){
+                    $addresses[] = $address;
+                    continue;
+                }
+
+                // Compare search query to street name
+                $compareStreetName = $address->getStreetName();
+                similar_text($compareStreetName , $searchInput, $percentageStreetName);
+                if($percentageStreetName > $thresh){
+                    $addresses[] = $address;
+                    continue;
+                }
+
+                // Compare search query to state
+                $compareState = $address->getState();
+                similar_text($compareState , $searchInput, $percentageState);
+                if($percentageState > $thresh){
+                    $addresses[] = $address;
+                    continue;
+                }
+
+            }
+        }
+
 
         $returnArray = array();
 
-        // foreach($addressRepo as $address) {
-        //     $compareCity = $address->getCity();
-        //     echo '<script>';
-        //     echo 'console.log('. json_encode( $address ) .')';
-        //     echo '</script>';
-        //     $percentage = 80;
-        //     // similar_text($compareCity , $city, &$percentage);
-        //     if($percentage>$thresh){
         foreach ($addresses as $address) {
 
                 $tempHash = $address->jsonSerialize();
@@ -82,6 +111,28 @@ class Search extends Controller {
         // }
         echo json_encode($returnArray);
     }
+
+    // public function compareSearchInput($address, $searchInput){
+    //     $thresh = 80;
+
+    //     // Compare search query to city
+    //     $compareCity = $address->getCity();
+    //     similar_text($compareCity , $searchInput, $percentageCity);
+    //     if($percentageCity > $thresh) return True;
+
+    //     // Compare search query to street name
+    //     $compareStreetName = $address->getStreetName();
+    //     similar_text($compareStreetName , $searchInput, $percentageStreeName);
+    //     if($percentageStreetName > $thresh) return True;
+
+    //     // Compare search query to state
+    //     $compareState = $address->getState();
+    //     similar_text($compareState , $searchInput, $percentageState);
+    //     if($percentageState > $thresh) return True;
+
+    //     return False;
+
+    // }
 
     public function testInsert() {
         $testUser = new User();
