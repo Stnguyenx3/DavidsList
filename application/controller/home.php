@@ -22,8 +22,11 @@ class Home extends Controller{
         $newListings = ListingsResponseCreator::createGetAllListingResponse();
         $newListingImages = array();
         foreach($newListings["listings"] as $listing) {
+
+            $image = ListingImageResponseCreator::createGetListingImageResponse($listing->getListingId())[0];
+
             $newListingImages[] = 
-                ListingImageResponseCreator::createGetListingImageResponse($listing->getListingId())[0];
+               "data:image/png;base64," . base64_encode($image->getImageThumbNail());
         }
 
         // load views

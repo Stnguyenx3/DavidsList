@@ -43,7 +43,7 @@
 					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-3 featured-listing-img">
-								<img src="http://placehold.it/175x175" alt="placeholder img.">
+								<img src= "<?php echo $newListingImages[0] ?>" alt="placeholder img." width="175" height="175">
 							</div>
 							<div class="col-sm-9">
 								<h3 class="featured-listing-title"><?php echo $newListings["addresses"][0]->getStreetName() ?></h3>
@@ -63,7 +63,7 @@
 					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-3 featured-listing-img">
-								<img src="http://placehold.it/175x175" alt="placeholder img.">
+								<img src="<?php echo $newListingImages[1] ?>" alt="placeholder img."  width="175" height="175">
 							</div>
 							<div class="col-sm-9">
 								<h3 class="featured-listing-title"><?php echo $newListings["addresses"][1]->getStreetName() ?></h3>
@@ -83,7 +83,7 @@
 					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-3 featured-listing-img">
-								<img src="http://placehold.it/175x175" alt="placeholder img.">
+								<img src= "<?php echo $newListingImages[2] ?>" alt="placeholder img." width="175" height="175">
 							</div>
 							<div class="col-sm-9">
 								<h3 class="featured-listing-title"><?php echo $newListings["addresses"][2]->getStreetName() ?></h3>
