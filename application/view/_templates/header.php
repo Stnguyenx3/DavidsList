@@ -34,30 +34,12 @@
 			</div>
 			
 			<div class="col-sm-9" id="search-bar">
-    				<input id="search-input" type="text" placeholder="City, Street, Zipcode..." required autofocus/><button type="button" class="btn btn-primary">
+    				<input id="search-input" type="text" placeholder="City, Street, Zipcode..." required autofocus/><button id="search-get type="button" class="btn btn-primary" onclick='onSearchClick()''>
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     </button>
 			</div>
 			
 		</div>
-	</div>
-        <a href="<?php echo URL ; ?>">register</a>
-    </div>
-
-
-
-    <div class="search-header" id="search-container">
-
-        <div class="logo">
-            <img src="<?php echo URL; ?>img/logo.png" height="100">
-        </div>
-
-        <div class="container">
-            <input id="search-input" type="text" placeholder="City, street, zipcode..." required autofocus/>
-            <button id="search-get" type="submit" onclick='onSearchClick()'>Browse</button>
-        </div>
-
-    </div-->
 
     <!-- navigation -->
     <div class="navigation">
