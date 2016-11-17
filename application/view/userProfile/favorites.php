@@ -3,7 +3,7 @@
 		</br></br></br>
 		<li><a href="<?php echo URL. "userProfile/index";?>"><h4>Overview</h4></a></li>
 		<li class="active"><a href="<?php echo URL. "userProfile/favorites";?>"><h4>Favorite</h4></a></li>
-		<li><a href="<?php echo URL. "userProfile/listings"?>"><h4>My Listing</h4></a></li>
+		<li><a href="<?php echo URL. "userProfile/listings"?>"><h4>Listing</h4></a></li>
 	</ul>
 </div>
 
@@ -15,18 +15,19 @@
 					<div class="row favorite-listing">
 					<div class="col-sm-12">
 						<div class="row">
-							<div class="col-sm-2 favorite-listing-img">
+							<div class="col-sm-2">
 								<img src="http://placehold.it/175x175" alt="placeholder img.">
 							</div>
 							<div class="col-sm-10">
 								<h3 class="favorite-listing-title">Listing Name1</h3>
 								<p class="favorite-listing-price">Price</p>
+								<p class="favorite-listing-type">Type</p>
 								<div style="clear: both">
 									<p>
 										listing information
 									</p>
-									<a href="#" class="btn btn-primary favorite-listing-btn">View details</a>
-									<button class="btn btn-primary btn-delete" type="">Delete</button>
+									<a href="#" class="btn btn-primary">View details</a>
+									<button class="btn btn-primary" type="submit">Delete</button>
 								</div>
 							</div>
 						</div>
@@ -39,18 +40,19 @@
 					<div class="row favorite-listing">
 					<div class="col-sm-12">
 						<div class="row">
-							<div class="col-sm-2 favorite-listing-img">
+							<div class="col-sm-2">
 								<img src="http://placehold.it/175x175" alt="placeholder img.">
 							</div>
 							<div class="col-sm-10">
 								<h3 class="favorite-listing-title">Listing Name2</h3>
 								<p class="favorite-listing-price">Price</p>
+								<p class="favorite-listing-type">Type</p>
 								<div style="clear: both">
 									<p>
 										listing information
 									</p>
-									<a href="#" class="btn btn-primary favorite-listing-btn">View details</a>
-									<button class="btn btn-primary btn-delete" type="">Delete</button>
+									<a href="#" class="btn btn-primary">View details</a>
+									<button class="btn btn-primary" type="submit">Delete</button>
 								</div>
 							</div>
 						</div>
@@ -63,18 +65,19 @@
 					<div class="row favorite-listing">
 					<div class="col-sm-12">
 						<div class="row">
-							<div class="col-sm-2 favorite-listing-img">
+							<div class="col-sm-2">
 								<img src="http://placehold.it/175x175" alt="placeholder img.">
 							</div>
 							<div class="col-sm-10">
 								<h3 class="favorite-listing-title">Listing Name3</h3>
 								<p class="favorite-listing-price">Price</p>
+								<p class="favorite-listing-type">Type</p>
 								<div style="clear: both">
 									<p>
 										listing information
 									</p>
-									<a href="#" class="btn btn-primary favorite-listing-btn">View details</a>
-									<button class="btn btn-primary btn-delete" type="">Delete</button>
+									<a href="#" class="btn btn-primary">View details</a>
+									<button class="btn btn-primary" type="submit">Delete</button>
 								</div>
 							</div>
 						</div>
