@@ -17,6 +17,10 @@ class ListingDetailRepo implements DatabaseRepositoryInterface{
 		return $this->db->find($searchParam, 'listingDetail', 'ListingDetail', $column);
 	}
 
+	public function fetch(){
+ 		return $this->db->fetch('listingDetail', 'ListingDetail');
+ 	}
+
 	public function save($listingDetail){
 		$this->db->save($listingDetail, 'listingDetail');
 		return $this->db->save($listingDetail, 'listingDetail');

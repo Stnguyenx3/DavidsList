@@ -1,8 +1,20 @@
 <?php
 
-//** Listings Class
-//TODO DOC THIS SHIT
-//REMOVED DEPRECATED SHIT
+/*
+ *  Class: Listings
+ *   File: application/controller/listings.php
+ * Author: Imran Irfan and David Chau
+ * 
+ * Controller for the Listing class (model/listing.php)
+ * 
+ * This class provides the following functionality:
+ *   1) A function to create a new listing, with all related listing information, across different tables
+ *   2) A function to delete a listing related to a listing ID, along with related listing information across different tables
+ *   3) A function to update an address related to a listing ID, same as above
+ *	 4) A function to get a listing related to a listingID, same as above
+ *
+ * Copyright (C) 2016, Imran Irfan and David Chau
+ */
 
 class Listings extends Controller {
 	//index

@@ -6,6 +6,7 @@
  */
 interface DatabaseRepositoryInterface{
 	public function find($searchParam, $column);
+	public function fetch();
 	public function save($object);
 	public function remove($object);
 	public function update($object);

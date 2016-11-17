@@ -17,6 +17,10 @@ class UserImageRepo implements DatabaseRepositoryInterface{
 		return $this->db->find($searchParam, 'userImage', 'UserImage', $column);
 	}
 
+	public function fetch(){
+ 		return $this->db->fetch('userImage', 'UserImage');
+ 	}
+
 	public function save($userImage){
 		return $this->db->save($userImage, 'userImage');
 	}

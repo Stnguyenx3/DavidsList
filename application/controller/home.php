@@ -18,6 +18,14 @@ class Home extends Controller{
      * (which is the default page btw)
      */
     public function index(){
+
+        $newListings = ListingsResponseCreator::createGetAllListingResponse();
+        $newListingImages = array();
+        foreach($newListings["listings"] as $listing) {
+            $newListingImages[] = 
+                ListingImageResponseCreator::createGetListingImageResponse($listing->getListingId())[0];
+        }
+
         // load views
         require APP . 'view/_templates/header.php';
         require APP . 'view/home/index.php';

@@ -46,13 +46,12 @@
 								<img src="http://placehold.it/175x175" alt="placeholder img.">
 							</div>
 							<div class="col-sm-9">
-								<h3 class="featured-listing-title">Listing Name</h3>
-								<p class="featured-listing-price">Price</p>
+								<h3 class="featured-listing-title"><?php echo $newListings["addresses"][0]->getStreetName() ?></h3>
+								<p class="featured-listing-price"><?php echo $newListings["listings"][0]->getPrice() ?></p>
 								<div style="clear: both">
 										<p>
-											Info Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
-											st mattis ullamcorper. Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e.
-											</p>
+											<?php echo $newListings["listing_details"][0]->getDescription()?>
+										</p>
 										<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
 								</div>
 							</div>
@@ -67,19 +66,12 @@
 								<img src="http://placehold.it/175x175" alt="placeholder img.">
 							</div>
 							<div class="col-sm-9">
-								<h3 class="featured-listing-title">Listing Name</h3>
-								<p class="featured-listing-price">Price</p>
+								<h3 class="featured-listing-title"><?php echo $newListings["addresses"][1]->getStreetName() ?></h3>
+								<p class="featured-listing-price"><?php echo $newListings["listings"][1]->getPrice() ?></p>
 								<div style="clear: both">
 										<p>
-											Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
-											st mattis ullamcorper. Etiam vitae mi fermentum, aliquet neque ac, commodo erat. Integer sodales lu
-											ctus libero, ut tincidunt enim tempor at. Maecenas at ultricies magna. Nam bibendum quam tempus, so
-											dales mauris vitae, tempor est. Integer erat erat, facilisis efficitur euismod sit amet, congue non
-											nunc. Nunc ipsum urna, venenatis sit amet tempus et, rutrum vitae nibh. Nulla venenatis mattis augu
-											e, pulvinar tempor metus scelerisque ac. Vivamus in elementum sem. Aenean ac enim elementum, molest
-											ie mi eget, consectetur eros. Quisque placerat, ligula ut lacinia posuere, ante dui commodo mauris,
-											vitae facilisis tellus urna vitae urna.
-											</p>
+											<?php echo $newListings["listing_details"][1]->getDescription()?>
+										</p>
 										<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
 								</div>
 							</div>
@@ -94,13 +86,12 @@
 								<img src="http://placehold.it/175x175" alt="placeholder img.">
 							</div>
 							<div class="col-sm-9">
-								<h3 class="featured-listing-title">Listing Name</h3>
-								<p class="featured-listing-price">Price</p>
+								<h3 class="featured-listing-title"><?php echo $newListings["addresses"][2]->getStreetName() ?></h3>
+								<p class="featured-listing-price"><?php echo $newListings["listings"][2]->getPrice() ?></p>
 								<div style="clear: both">
 										<p>
-											Info Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
-											st mattis ullamcorper. Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e.
-											</p>
+											<?php echo $newListings["listing_details"][2]->getDescription()?>
+										</p>
 										<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
 								</div>
 							</div>

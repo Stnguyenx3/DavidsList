@@ -17,6 +17,10 @@ class FavoriteListingRepo implements DatabaseRepositoryInterface {
 		return $this->db->find($searchParam, 'favoriteListing', 'FavoriteListing', $column);
 	}
 
+	public function fetch(){
+ 		return $this->db->fetch('favoriteListing', 'FavoriteListing');
+ 	}
+
 	public function save($favoriteListing){
 		return $this->db->save($favoriteListing, 'favoriteListing');
 	}

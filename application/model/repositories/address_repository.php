@@ -17,6 +17,10 @@ class AddressRepo implements DatabaseRepositoryInterface{
 		return $this->db->find($searchParam, 'address', 'Address', $column);
 	}
 
+	public function fetch(){
+ 		return $this->db->fetch('address', 'Address');
+ 	}
+
 	public function save($address){
 		return $this->db->save($address, 'address');
 	}
