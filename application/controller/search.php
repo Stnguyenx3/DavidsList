@@ -65,13 +65,12 @@ class Search extends Controller {
             // If searchInput ends in street or avenue, reduce to str or ave
             if(strcmp(substr($searchInput, -6),"street")==0 || strcmp(substr($searchInput, -6),"avenue")==0){
                 $searchInput = substr($searchInput, 0, -3);
-                echo $searchInput;
             }
 
 
-            $addressDummy = $addressRepo->find("0", "approximateAddress");// find other way to fetch all
+            $addressArray = $addressRepo->fetch();// find other way to fetch all
 
-            foreach($addressDummy as $address){
+            foreach($addressArray as $address){
     
                 // Compare search query to city
                 $compareCity = $address->getCity();
@@ -111,40 +110,19 @@ class Search extends Controller {
 
         foreach ($addresses as $address) {
 
-                $tempHash = $address->jsonSerialize();
-                $imageThumbnail = $listingImageRepo->find($address->getListingId(), "listingID");
-                if(!empty($imageThumbnail)) {
-                    $tempHash["imageThumbnail"] =
-                                            base64_encode($imageThumbnail[0]->getImageThumbnail());
-                }
-
-                $returnArray[] = $tempHash;
+            $tempHash = $address->jsonSerialize();
+            $imageThumbnail = $listingImageRepo->find($address->getListingId(), "listingID");
+            if(!empty($imageThumbnail)) {
+                $tempHash["imageThumbnail"] =
+                                        base64_encode($imageThumbnail[0]->getImageThumbnail());
             }
-        // }
+
+            $returnArray[] = $tempHash;
+        }
         echo json_encode($returnArray);
     }
 
-    // public function compareSearchInput($address, $searchInput){
-    //     $thresh = 80;
 
-    //     // Compare search query to city
-    //     $compareCity = $address->getCity();
-    //     similar_text($compareCity , $searchInput, $percentageCity);
-    //     if($percentageCity > $thresh) return True;
-
-    //     // Compare search query to street name
-    //     $compareStreetName = $address->getStreetName();
-    //     similar_text($compareStreetName , $searchInput, $percentageStreeName);
-    //     if($percentageStreetName > $thresh) return True;
-
-    //     // Compare search query to state
-    //     $compareState = $address->getState();
-    //     similar_text($compareState , $searchInput, $percentageState);
-    //     if($percentageState > $thresh) return True;
-
-    //     return False;
-
-    // }
 
     public function testInsert() {
         $testUser = new User();

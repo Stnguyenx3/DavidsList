@@ -42,6 +42,17 @@ class Database {
 	}
 
 	/*
+	 * Method to fetch all objects from the given table
+	 */
+	public function fetch($table, $object){
+		$preparedStatement = 
+			$this->db->prepare("SELECT * FROM {$table}");
+		$preparedStatement->execute();
+		$arrayOfResults = $preparedStatement->fetchAll(PDO::FETCH_CLASS, $object);
+		return $arrayOfResults;
+	}
+
+	/*
 	 * Method to save the object into the given table
 	 */
 	public function save($object, $table) {
