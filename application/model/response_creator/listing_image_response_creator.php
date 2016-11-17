@@ -3,7 +3,7 @@
 class ListingImageResponseCreator {
 	public static function createGetListingImageResponse($listingID) {
 		$listingImageRepo = RepositoryFactory::createRepository("listing_image");
-		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingId");
+		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingID");
 
 		return $arrayofListingImageObjects;
 	}
@@ -21,7 +21,9 @@ class ListingImageResponseCreator {
 		return $removedCorrectlyImages;
 	}
 
-	public static function createNewListingImageResponse($listingImageInfo) {
+	public static function createNewListingImageResponse($listingID, $listingImageInfo) {
+		$listingImageRepo = RepositoryFactory::createRepository("listing_image");
+
 		$image = explode(",", $listingImageInfo["image"]);
 		$newListingImage->setListingId($listingID);
 		$newListingImage->setImage(base64_decode($image[1]));

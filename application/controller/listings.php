@@ -47,8 +47,8 @@ class Listings extends Controller {
 			//the following will send back the header, body, and footer
 			//of the listing page
 			require APP . 'view/_templates/header.php';
-			require APP . 'view/listings/listing_body.php';
-			require APP . 'view/_templates/footer.php';
+        	require APP . 'view/listings/listing.php';
+        	require APP . 'view/_templates/footer.php';
 		}
 
 	}

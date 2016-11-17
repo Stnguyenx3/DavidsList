@@ -69,7 +69,6 @@ class ListingsResponseCreator {
 		$listingRepo = RepositoryFactory::createRepository("listing");
 		$listingDetailRepo = RepositoryFactory::createRepository("listing_detail");
 		$addressRepo = RepositoryFactory::createRepository("address");
-		$listingImageRepo = RepositoryFactory::createRepository("listing_image");
 
 		$listing = new Listing();
 		$listingDetail = new ListingDetail();
@@ -120,7 +119,7 @@ class ListingsResponseCreator {
 
 		$insertListingImage = true;
 		if($listingImageInfo["image"] != null) {
-			$insertListingImage = ListingImageResponseCreator::createNewListingImageResponse($listingImageInfo);
+			$insertListingImage = ListingImageResponseCreator::createNewListingImageResponse($listingID, $listingImageInfo);
 		}
 
 		return $insertListing and $insertListingDetail and $insertAddress and $insertListingImage;
