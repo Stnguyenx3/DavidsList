@@ -6,24 +6,29 @@
  * which allows sending this object back to the client side
  */
 class User implements JsonSerializable {
-	private $id;
-	private $email;
-	private $studentID;
-	private $phone;
-	private $bio;
-	private $listingId;
-	private $userImagesId;
+	private $userid = null;
+	private $email = null;
+	private $username = null;
+	private $studentID = null;
+	private $phone = null;
+	private $bio = null;
+	private $password = null;
+	private $verified = null;
 
 	public function __construct() {
 
 	}
 
 	public function getId() {
-		return $this->id;
+		return $this->userid;
 	}
 
 	public function getEmail() {
 		return $this->email;
+	}
+
+	public function getUsername() {
+		return $this->username;
 	}
 
 	public function getStudentId() {
@@ -38,16 +43,16 @@ class User implements JsonSerializable {
 		return $this->bio;
 	}
 
-	public function getListingId() {
-		return $this->listingId;
+	public function getPassword() {
+		return $this->password;
 	}
 
-	public function getUserImagesId() {
-		return $this->userImagesId;
+	public function getVerified() {
+		return $this->verified;
 	}
 
 	public function setId($newId) {
-		$this->id = $newId;
+		$this->userid = $newId;
 	}
 
 	public function setEmail($newEmail) {
@@ -58,6 +63,10 @@ class User implements JsonSerializable {
 		$this->studentID = $newStudentId;
 	}
 
+	public function setUsername($newUsername) {
+		$this->username = $newUsername;
+	}
+
 	public function setPhone($newPhone) {
 		$this->phone = $newPhone;
 	}
@@ -66,20 +75,29 @@ class User implements JsonSerializable {
 		$this->bio = $newBio;
 	}
 
-	public function setListingId($newListingId) {
-		$this->listingId = $newListingId;
+	public function setPassword($newPassword) {
+		$this->password = $newPassword;
 	}
 
-	public function setUserImagesId($newUserImageId) {
-		$this->userImagesId = $newUserImageId;
+	public function setVerified($newVerified) {
+		$this->verified = $newVerified;
 	}
 
 	public function __toString() {
-		return "{$this->id}, {$this->email}, {$this->studentID}," . 
-				" {$this->phone}, {$this->bio}, {$this->listingId}, {$this->userImagesId}";
+		return "{$this->userid}, {$this->email}, {$this->username}, {$this->password}," . 
+				"  {$this->studentID}, {$this->phone}, {$this->bio}, {$this->verified}";
 	}
 	
 	public function jsonSerialize() {
-		
+		return array(
+			'userid' => $this->userid,
+			'email' => $this->email,
+			'username' => $this->username,
+			'password' => $this->password,
+			'studentID' => $this->studentID,
+			'phone' => $this->phone,
+			'bio' => $this->bio,
+			'verified' => $this->verified,
+		);	
 	}
 }

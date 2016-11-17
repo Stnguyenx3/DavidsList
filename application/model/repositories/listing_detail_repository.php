@@ -17,12 +17,18 @@ class ListingDetailRepo implements DatabaseRepositoryInterface{
 		return $this->db->find($searchParam, 'listingDetail', 'ListingDetail', $column);
 	}
 
-	public function save($userImage){
-		$this->db->save($userImage, 'listingDetail');
+	public function save($listingDetail){
+		$this->db->save($listingDetail, 'listingDetail');
+		return $this->db->save($listingDetail, 'listingDetail');
 	}
 
-	public function remove($userImage){
-		$this->db->save($userImage, 'listingDetail');
+	public function remove($listingDetail){
+		return $this->db->remove($listingDetail->getListingId(), 'listingDetail', 'listingId');
+	}
+
+	public function update($listingDetail){
+		return $this->db->update($listingDetail, 'listingDetail', 
+					$listingDetail->getListingId(), 'listingId');
 	}
 }
 

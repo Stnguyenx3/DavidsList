@@ -1,16 +1,16 @@
 </script>
     <!-- backlink to repo on GitHub, and affiliate link to Rackspace if you want to support the project -->
-    <div class="container footer">
-        
-                <div class="row">
-                
-                    <div class="col-sm-12" style="text-align: center;">
-                        <a href="//sfsuswe.com/~liux1731/DavidsList/info/contact">contact</a>
-                        <a href="//sfsuswe.com/~liux1731/DavidsList/info/privacy">privacy</a>
-                    </div>
-                    
-                </div>
-    </div>
+	<div class="container footer">
+		
+				<div class="row">
+				
+					<div class="col-sm-12" style="text-align: center;">
+						<a href="<?php echo URL. "info/contact"; ?>">contact</a>
+						<a href="<?php echo URL. "info/privacy" ; ?>">privacy</a>
+					</div>
+					
+				</div>
+	</div>
 
     <!-- jQuery, loaded in the recommended protocol-less way -->
     <!-- more http://www.paulirish.com/2010/the-protocol-relative-url/ -->
@@ -18,10 +18,10 @@
 
     <!-- define the project's URL (to make AJAX calls possible, even when using this in sub-folders etc) -->
     <script>
-        var url = "//sfsuswe.com/~liux1731/DavidsList/";
+        var url = "<?php echo URL; ?>";
     </script>
     <!-- our JavaScript -->
-    <script src="//sfsuswe.com/~liux1731/DavidsList/js/application.js"></script>
-    <script src="//sfsuswe.com/~liux1731/DavidsList/js/search.js"></script>
+    <script src="<?php echo URL; ?>js/application.js"></script>
+    <script src="<?php echo URL; ?>js/search.js"></script>
 </body>
 </html>
