@@ -4,6 +4,8 @@
     <div class="card">
 
         <form class="form-signin center-block">
+
+        	<h3>Login</h3>
             
             <input type="email" id="inputEmail" class="form-control center-block" placeholder="Email address" required>
 			
