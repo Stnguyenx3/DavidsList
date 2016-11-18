@@ -1,16 +1,17 @@
-</script>
+
+
     <!-- backlink to repo on GitHub, and affiliate link to Rackspace if you want to support the project -->
-	<div class="container footer">
-		
-				<div class="row">
-				
-					<div class="col-sm-12" style="text-align: center;">
-						<a href="<?php echo URL. "info/contact"; ?>">contact</a>
-						<a href="<?php echo URL. "info/privacy" ; ?>">privacy</a>
-					</div>
-					
+<div class="container footer">
+	
+			<div class="row">
+			
+				<div class="col-sm-12" style="text-align: center;">
+					<a href="<?php echo URL. "info/contact"; ?>">contact</a>
+					<a href="<?php echo URL. "info/privacy" ; ?>">privacy</a>
 				</div>
-	</div>
+				
+			</div>
+</div>
 
     <!-- jQuery, loaded in the recommended protocol-less way -->
     <!-- more http://www.paulirish.com/2010/the-protocol-relative-url/ -->
