@@ -24,6 +24,8 @@ function formatResults(event) {
 	//console.log(event);
 	var result = JSON.parse(event);
 
+	console.log(result);
+
 	var pageContent = $("<div></div>").addClass("row");
 	var filter = '<div class="col-sm-3">\
 		<p class="search-title">Refine search</p>\
@@ -86,6 +88,23 @@ function formatResults(event) {
 
 		$(searchResultContent).append($("<p>Results</p>").addClass("search-title"));
 
+		//Check for no results.
+
+		if (result.length == 0) {
+			//Disable search filters...
+
+
+			//Display message to user.
+			var row = $("<div></div>").addClass("row search-result-listing").appendTo($(searchResultContent));
+			var col = $("<div></div>").addClass("col-sm-12").appendTo($(row));
+			var message = $("<p></p>").addClass("search-result-listing-null").appendTo($(col));
+
+			$(message).text("No results! Try another search!");
+
+			pageContent.append(searchResultContent);
+
+		}
+
 		for (i = 0; i < result.length; i++) {
 			var row = $("<div></div>").addClass("row search-result-listing").appendTo($(searchResultContent));
 			var col1 = $("<div></div>").addClass("col-sm-3").appendTo($(row));
@@ -93,10 +112,15 @@ function formatResults(event) {
 			var resultThumbnail = $("<img></img>").addClass("search-result-listing-img").appendTo($(col1));
 			var listingName = $("<p></p>").addClass("search-result-listing-title").appendTo($(col2));
 			var listingPrice = $("<p></p>").addClass("search-result-listing-price").appendTo($(col2));
+			var listingBasicInfo = $("<p></p>").addClass("search-result-listing-basic-info").appendTo($(col2));
+
+			var rentButton = $("<a></a>").addClass("btn btn-primary search-result-listing-btn").appendTo($(col2));
 
 			$(resultThumbnail).attr("src", "data:image/png;base64," + result[i].imageThumbnail);
 			$(listingName).text(result[i].streetName + ", " + result[i].city + " " + result[i].state + ", " + result[i].zipcode);
 			$(listingPrice).text("$9,999");
+			$(listingBasicInfo).text("Bed: 2" + " | " + "Bath: 5" + " | " + "Furnished: Nope");
+			$(rentButton).text("Rent");
 
 			pageContent.append(searchResultContent);
 
