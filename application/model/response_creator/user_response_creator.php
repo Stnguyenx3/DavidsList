@@ -5,17 +5,24 @@ class UserResponseCreator {
 		$userRepo = RepositoryFactory::createRepository("user");
 		$arrayOfUserObjects = $userRepo->find($userID, "userid");
 
+		if(count($arrayOfUserObjects) == 0) {
+			return null;
+		}
+
 		return $arrayOfUserObjects[0];
 	}
 
 	public static function createGetUserProfileResponse($userID) {
-		$user = createGetUserResponse($userID);
-		$userImages = UserImageResponseCreator::createGetUserResponse($userID);
+		$user = UserResponseCreator::createGetUserResponse($userID);
+
+		if($user != null) {
+			$userImages = UserImageResponseCreator::createGetUserImageResponse($userID);
 		
-		return array(
-			"user" => $user,
-			"user_images" => $userImages
-		);
+			return array(
+				"user" => $user,
+				"user_images" => $userImages
+			);
+		}
 	}
 
 	public static function createDeleteUserProfileResponse($userID) {
