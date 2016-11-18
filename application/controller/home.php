@@ -50,9 +50,15 @@ class Home extends Controller{
     }
 
     public function rentout() {
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/listings/rentout.php';
-        require APP . 'view/_templates/footer.php';
+        if(empty($_SESSION)) {
+            header('Location: ' . URL . 'home/login/');
+        } else {
+            $userRepo = RepositoryFactory::createRepository("user");
+            $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+            require APP . "view/_templates/logged_in_header.php";
+            require APP . 'view/listings/rentout.php';
+            require APP . 'view/_templates/footer.php';
+        }
     }
 
     public function about() {
