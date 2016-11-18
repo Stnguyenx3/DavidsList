@@ -1,147 +1,3 @@
-function onGetClick() {
-	$.ajax({
-		type:'GET',
-		url: url+"/search/testget/"+$('#test-input').val(),
-		success: function(event) {
-			console.log("I succeeded");
-			console.log(event);
-		},
-		error: function(xhr, err, errThrown) {
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
-		}
-	});
-}
-
-function onInsertClick() {
-	$.ajax({
-		type:'GET',
-		url: url+"/search/testinsert",
-		success: function(event) {
-			console.log("I succeeded");
-			console.log(event);
-		},
-		error: function(xhr, err, errThrown) {
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
-		}
-	});
-}
-
-function onDeleteClick() {
-	$.ajax({
-		type:'GET',
-		url: url+"/search/testdelete",
-		success: function(event) {
-			console.log("I succeeded");
-			console.log(event);
-		},
-		error: function(xhr, err, errThrown) {
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
-		}
-	});
-}
-
-function onUpdateClick() {
-	$.ajax({
-		type:'GET',
-		url: url+"/search/testupdate",
-		success: function(event) {
-			console.log("I succeeded");
-			console.log(event);
-		},
-		error: function(xhr, err, errThrown) {
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
-		}
-	});
-}
-
-function onPostClick() {
-	var searchQuery = {
-		query: $('#test-input').val()
-	}
-	$.ajax({
-		type:'POST',
-		url: url+"/search/testpost/",
-		data: searchQuery,
-		success: function(event) {
-			console.log("I succeeded");
-			console.log(event);
-		},
-		error: function(xhr, err, errThrown) {
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
-		}
-	});
-}
-
-function onGetJsonClick() {
-	var searchQuery = {
-		query: $('#test-input').val()
-	}
-	$.ajax({
-		type:'POST',
-		url: url+"/search/sendjson/",
-		data: searchQuery,
-		success: function(event) {
-			console.log("I succeeded");
-			console.log(event);
-		},
-		error: function(xhr, err, errThrown) {
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
-		}
-	});
-}
-
-function uploadImage() {
-	var logo = $('#test-image')[0].files[0];
-	// var logo = document.getElementById("test-image").files[0]; 
-	var reader = new FileReader();
-	reader.onload = function(data) {
-
-		var imageQuery = {
-			name:"test.jpg",
-			imageData: data.target.result
-		};
-
-		$.ajax({
-			type:'POST',
-			url: url+"/search/testimage/",
-			data: imageQuery,
-			success: function(event) {
-				
-			},
-			error: function(xhr, err, errThrown) {
-
-			}
-		});
-
-		var img = $('<img id="new-image">');
-		img.attr('src', data.target.result);
-		img.appendTo('#image-container');
-		console.log(img);
-
-	}
-	reader.readAsDataURL(logo);
-}
-
-//Allowing pressing the enter key to search
-$(document).keypress(function(event){
-    if(event.keyCode === 13) {
-        onSearchClick();
-    }
-});
-
-//Creates an AJAX request to search for apartments(More like search for addresses)
 function onSearchClick() {
 
 	if($('#search-input').val() !== "") {
@@ -163,166 +19,101 @@ function onSearchClick() {
 	}
 }
 
-//Function to capture the results of the AJAX call and format the page
-//based on the results
 function formatResults(event) {
-	console.log("I succeeded");
-	console.log(event);
-	var test = JSON.parse(event);
 
-	var table = $('<table></table>').addClass('search');
-	var tablehead = $('<thead></thead>');
-	tablehead.append($('<tr></tr>')
-						.append($('<td></td>').text("ListingId"))
-						.append($('<td></td>').text("Street Name"))
-						.append($('<td></td>').text("City"))
-						.append($('<td></td>').text("Zipcode"))
-						.append($('<td></td>').text("State"))
-						.append($('<td></td>').text("ImageThumbnail")));
-	table.append(tablehead);
-	var tablebody = $('<tbody></tbody>');
+	//console.log(event);
+	var result = JSON.parse(event);
 
-	for(i=0; i<test.length; i++){
-    	var row = $('<tr></tr>')
-    			.append($("<td></td>").text(test[i]["listingId"]))
-    			.append($("<td></td>").text(test[i]["streetName"]))
-    			.append($("<td></td>").text(test[i]["city"]))
-    			.append($("<td></td>").text(test[i]["zipcode"]))
-    			.append($("<td></td>").text(test[i]["state"]))
-    			.append($("<td></td>")
-    				.append(
-    					$("<img></img>")
-    						.attr('src', "data:image/png;base64,"+test[i]["imageThumbnail"])));
-    	tablebody.append(row);
+	var pageContent = $("<div></div>").addClass("row");
+	var filter = '<div class="col-sm-3">\
+		<p class="search-title">Refine search</p>\
+			<div class="search-filter">\
+				<div class="form-group search-filter-price">\
+					<label>Price</label>\
+					<br>\
+					<label for="search-filter-price-range1">\
+						<input type="checkbox" id="search-filter-price-range1" value="">Under $500\
+					</label>\
+					<br>\
+					<label for="search-filter-price-range2">\
+						<input type="checkbox" id="search-filter-price-range2" value="">$500 to $750\
+					</label>\
+					<br>\
+					<label for="search-filter-price-range3">\
+						<input type="checkbox" id="search-filter-price-range3" value="">$750 to $1000\
+					</label>\
+					<br>\
+					<label for="search-filter-price-range4">\
+						<input type="checkbox" id="search-filter-price-range4" value="">$1000 &amp; Above\
+					</label>\
+					<div class="form-group">\
+						<label>Rooms</label>\
+						<br>\
+						<label for="search-filter-bedroom-range1">\
+							<input type="checkbox" id="search-filter-bedroom-range1" value="">1\
+						</label>\
+						<br>\
+						<label for="search-filter-bedroom-range2">\
+							<input type="checkbox" id="search-filter-bedroom-range2" value="">2\
+						</label>\
+						<br>\
+						<label for="search-filter-bedroom-range3">\
+							<input type="checkbox" id="search-filter-bedroom-range3" value="">3+\
+						</label>\
+					</div>\
+					<div class="form-group">\
+						<label>Distance from SFSU</label>\
+						<br>\
+						<label for="search-filter-distance-range1">\
+							<input type="checkbox" id="search-filter-distance-range1" value="">Under 1 mile\
+						</label>\
+						<br>\
+						<label for="search-filter-distance-range2">\
+							<input type="checkbox" id="search-filter-distance-range2" value="">2-3 miles\
+						</label>\
+						<br>\
+						<label for="search-filter-distance-range3">\
+							<input type="checkbox" id="search-filter-distance-range3" value="">4 miles &amp; Above\
+						</label>\
+					</div>\
+				</div>\
+			</div>\
+		</div>'
+
+		pageContent.append(filter);
+
+		var searchResultContent = ($("<div></div>").addClass("col-sm-9"));
+
+		$(searchResultContent).append($("<p>Results</p>").addClass("search-title"));
+
+		for (i = 0; i < result.length; i++) {
+			var row = $("<div></div>").addClass("row search-result-listing").appendTo($(searchResultContent));
+			var col1 = $("<div></div>").addClass("col-sm-3").appendTo($(row));
+			var col2 = $("<div></div>").addClass("col-sm-9").appendTo($(row));
+			var resultThumbnail = $("<img></img>").addClass("search-result-listing-img").appendTo($(col1));
+			var listingName = $("<p></p>").addClass("search-result-listing-title").appendTo($(col2));
+			var listingPrice = $("<p></p>").addClass("search-result-listing-price").appendTo($(col2));
+
+			$(resultThumbnail).attr("src", "data:image/png;base64," + result[i].imageThumbnail);
+			$(listingName).text(result[i].streetName + ", " + result[i].city + " " + result[i].state + ", " + result[i].zipcode);
+			$(listingPrice).text("$9,999");
+
+			pageContent.append(searchResultContent);
+
+		}
+
+	$(".container.main").html(pageContent);
+
+}
+
+//Handles ENTER keypress in search field.
+function enterPressed(event) {
+
+	if (event.which == 13 || event.keyCode == 13) {
+		
+		onSearchClick();
+
+		return true;
 	}
-	table.append(tablebody);
-	$('#search-result-container').html(table);
-}
 
-function onTestListingClick(){
-	var jsonData = {
-		"listing_price": 500, 
-		"listing_type": "Apartment",
-		"listing_numBedrooms": 5,
-		"listing_numBathrooms": 2,
-		"listing_internet": 1,
-		"listing_pet_policy": "No Cats",
-		"listing_elevator_access": "One on the first floor",
-		"listing_furnishing": 1,
-		"listing_air_conditioning": 1,
-		"listing_description": "It's a nice place. I swear",
-		"listing_street_name": "5th Street",
-		"listing_city_name": "San Francisco",
-		"listing_zip_code": "94135",
-		"listing_state": "CA"
-
-	};
-	$.ajax({
-		type:"POST",
-		url: url+"/listings/editlisting/1",
-		data: jsonData,
-		success: function(e) {
-			console.log("SUCCESS");
-			console.log(e);
-
-		},
-		error: function(xhr, err, errThrown) {
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
-
-		}
-	});
-}
-
-function onEditClick(){
-	var jsonData = 
-	{
-		"user_id":$('#test-userid').val(),
-		"listing_price": $('#test-price').val(),
-		"listing_type": $('#test-type').val(),
-		"listing_status": $('#test-status').val(),
-		"listing_detail": {
-			"listing_numBedrooms": $('#test-bed').val(),
-			"listing_numBathrooms": $('#test-bath').val(),
-			"listing_internet": $('#test-internet').val(),
-			"listing_pet_policy": $('#test-pet').val(),
-			"listing_elevator_access": $('#test-elevator').val(),
-			"listing_furnishing": $('#test-furnishing').val(),
-			"listing_air_conditioning": $('#test-air').val(),
-			"listing_description": $('#test-description').val()
-		},
-		"address": {
-			"approximateAddress": $('#test-approximate').val(),
-			"streetName": $('#test-street').val(),
-			"city": $('#test-city').val(),
-			"zipcode": $('#test-zipcode').val(),
-			"state": $('#test-state').val()
-		}
-	};
-	$.ajax({
-		type:"POST",
-		url: url+"/listings/editlisting/"+6,
-		data: jsonData,
-		success: function(e){
-			console.log("Success created details of a listing.");
-			console.log(e);
-		},
-		error: function(xhr, err, errThrown){
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
-		}
-	});
-}
-
-function onNewClick(){
-
-	var logo = $('#test-listimage')[0].files[0];
-	// var logo = document.getElementById("test-image").files[0]; 
-	var reader = new FileReader();
-	reader.onload = function(data) {
-		var jsonData = 
-		{
-			"user_id":$('#test-userid').val(),
-			"listing_price": $('#test-price').val(),
-			"listing_type": $('#test-type').val(),
-			"listing_status": $('#test-status').val(),
-			"listing_detail": {
-				"listing_numBedrooms": $('#test-bed').val(),
-				"listing_numBathrooms": $('#test-bath').val(),
-				"listing_internet": $('#test-internet').val(),
-				"listing_pet_policy": $('#test-pet').val(),
-				"listing_elevator_access": $('#test-elevator').val(),
-				"listing_furnishing": $('#test-furnishing').val(),
-				"listing_air_conditioning": $('#test-air').val(),
-				"listing_description": $('#test-description').val()
-			},
-			"address": {
-				"approximateAddress": $('#test-approximate').val(),
-				"streetName": $('#test-street').val(),
-				"city": $('#test-city').val(),
-				"zipcode": $('#test-zipcode').val(),
-				"state": $('#test-state').val()
-			},
-			"listing_image": {
-				"image": data.target.result
-			}
-		};
-		$.ajax({
-			type:"POST",
-			url: url+"/listings/newlisting",
-			data: jsonData,
-			success: function(e){
-				console.log("Success created details of a listing.");
-				console.log(e);
-			},
-			error: function(xhr, err, errThrown){
-				console.log("I failed");
-				console.log(err);
-				console.log(errThrown);
-			}
-		});
-	}
-	reader.readAsDataURL(logo);
 }

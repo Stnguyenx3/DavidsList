@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container main">
 
 	<form class="form-signup center-block" id="registration" action="#" method="post">
 
