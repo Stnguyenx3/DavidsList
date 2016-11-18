@@ -36,18 +36,23 @@ class Listings extends Controller {
 		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingID);
 		$userResponse = UserResponseCreator::createGetUserResponse($listingResponse["listing"]->getId());
 		
+		if(!empty($_SESSION)) {
+            $userRepo = RepositoryFactory::createRepository("user");
+            $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+            require APP . "view/_templates/logged_in_header.php";
+        } else {
+            require APP . 'view/_templates/header.php';
+        }
+
 		if ($listingResponse == null){
 			//detail of error page necessary
 			$errorMessage = "Error, Listing not found.";
-			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
 			require APP . 'view/_templates/footer.php';
 		}
-
 		else{
 			//the following will send back the header, body, and footer
 			//of the listing page
-			require APP . 'view/_templates/header.php';
         	require APP . 'view/listings/listing.php';
         	require APP . 'view/_templates/footer.php';
 		}

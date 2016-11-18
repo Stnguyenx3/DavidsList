@@ -30,7 +30,15 @@ class Home extends Controller{
         }
 
         // load views
-        require APP . 'view/_templates/header.php';
+
+        if(!empty($_SESSION)) {
+            $userRepo = RepositoryFactory::createRepository("user");
+            $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+            require APP . "view/_templates/logged_in_header.php";
+        } else {
+            require APP . 'view/_templates/header.php';
+        }
+
         require APP . 'view/home/index.php';
         require APP . 'view/_templates/footer.php';
     }

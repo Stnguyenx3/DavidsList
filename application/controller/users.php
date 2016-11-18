@@ -30,22 +30,33 @@ class Users extends Controller {
 	 * @status Tested and working.
      */
     public function getUser($userID) {
-    	//Get the user object corresponding to the user id
-       	$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
 
-        if ($userResponse == null) {
-            $errorMessage = "User not found";
-            require APP . "view/_templates/header.php";
-            require APP . "view/problem/error_page.php";
-            require APP . "view/_templates/footer.php"; 
+    	//Get the user object corresponding to the user id
+    	$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
+
+    	//Checks if there is a session(whether the user is logged in or not)
+    	//If so, require the logged in header, with user profile/logout
+    	//If not, require the regular header with login/register
+    	if(!empty($_SESSION)) {
+    		$userRepo = RepositoryFactory::createRepository("user");
+        	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+
+            require APP . "view/_templates/logged_in_header.php";
+    	} else {
+    		require APP . "view/_templates/header.php";
+    	}
+
+    	//If the user profile does not exist, require the error body
+    	if ($userResponse == null) {
+	        $errorMessage = "User not found";
+	        require APP . "view/problem/error_page.php";
         }
 		else {
-            // The folowing three lines send back the header, body, and footer
-            // of the index.php webpage
-            require APP . "view/_templates/header.php";
             require APP . "view/users/index.php";
-            require APP . "view/_templates/footer.php";
         }
+
+        //Lastly require the footer which will never change
+    	require APP . "view/_templates/footer.php";
     } // end function getUser
 
 	
@@ -147,9 +158,11 @@ class Users extends Controller {
 		$arrayOfResults = $userRepo->find($_POST["username"], "username");
 		$user = $arrayOfResults[0];
 		
-		//   get the userID from the user object
+		// get the userID from the user object
 		$userID = $user->getId();
 		//Save the email and password into $_SESSION
+		$_SESSION["email"] = $_POST["username"];
+		$_SESSION["password"] = $user->getPassword();
 		
 		// display the user's page
 		//Change it to home page?
@@ -196,6 +209,9 @@ class Users extends Controller {
 			// else username exists AND the password entered matches the one on file
 			else{
 				//Save the email and password into $_SESSION
+				$_SESSION["email"] = $email;
+				$_SESSION["password"] = $password;
+
 				//Don't need to do anything else as the ajax callback will redirect
 				//Maybe have it redirect to user page than homepage
 			
@@ -212,8 +228,17 @@ class Users extends Controller {
 
 	public function favorites($userID) {
 		$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
+
+		if(!empty($_SESSION)) {
+    		$userRepo = RepositoryFactory::createRepository("user");
+        	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+
+            require APP . "view/_templates/logged_in_header.php";
+    	} else {
+    		require APP . "view/_templates/header.php";
+    	}
+
 		if($userResponse != null) {
-			require APP . 'view/_templates/header.php';
         	require APP . 'view/users/favorites.php';
         	require APP . 'view/_templates/footer.php';
 		} else {
@@ -223,8 +248,17 @@ class Users extends Controller {
 
     public function listings($userID) {
     	$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
+
+    	if(!empty($_SESSION)) {
+    		$userRepo = RepositoryFactory::createRepository("user");
+        	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+
+            require APP . "view/_templates/logged_in_header.php";
+    	} else {
+    		require APP . "view/_templates/header.php";
+    	}
+  
     	if($userResponse != null) {
-    		require APP . 'view/_templates/header.php';
         	require APP . 'view/users/listings.php';
         	require APP . 'view/_templates/footer.php';
     	} else {
