@@ -116,8 +116,6 @@ class Users extends Controller {
 	 * User object.
      * 
      * @param int $userID
-	 * 
-	 * @status Needs to be tested.
      */
     public function editUser($userID){
 		$userRepo = RepositoryFactory::createRepository("user");
@@ -134,29 +132,11 @@ class Users extends Controller {
 			// Create a new User object from the external JSON data; then replace
 			// the target userID's current User Object with the new one
 			
-			$user = new User();
-
-			$user->setId($userID);
-			$user->setEmail($_POST["email"]);
-			$user->setUsername($_POST["username"]);
-			$user->setStudentId($_POST["studentID"]);
-			$user->setPhone($_POST["phone"]);
-			$user->setBiography($_POST["bio"]);
-			$user->setPassword($_POST["password"]);
-			$user->setVerified($_POST["verified"]);
-			
-			$userRepo->update($user);
+			$userResponse = UserResponseCreator::createEditUserProfileResponse($userID, $_POST);
+			//TODO: Send a response back saying it saved
 		}// end else		
     } // end function editUser
 	
-    public function signUp() {
-    	if(empty($_SESSION)) {
-    		//redirect to homepage
-    	} else {
-    		//direct to login page
-    	}
-    }
-
 	/**
 	 * Creates a new user.
 	 * 
@@ -166,34 +146,16 @@ class Users extends Controller {
 	 * 
 	 * Loads the newly created user's HTML page.
 	 * 
-	 * @todo Add validation to the function (check to make sure user was
-	 * successfully added)
-	 * 
-	 * @status Needs to be tested.
 	 */
 	public function newUser(){
 
-		$userRepo = RepositoryFactory::createRepository("user");
-		
-		// create new user
-		$user = new User();
-		
-		// add all of the externally supplied data to the new user
-		$user->setEmail($_POST["email"]);
-		$user->setUsername($_POST["username"]);
-		$user->setStudentId($_POST["studentID"]);
-		$user->setPhone($_POST["phone"]);
-		$user->setBiography($_POST["bio"]);
-		$user->setPassword(password_hash($_POST["password"]));
-		$user->setVerified($_POST["verified"]);
-		
-		// save the new user to the database
-		$userRepo->save($user);
-				
-		//TODO test to make sure that the user was successfully added to the database
-		
+		// Call UserResponseCreator::createNewUserProfileResponse to
+		// create a new user, passing in the JSON object
+		$userResponse = UserResponseCreator::createNewUserProfileResponse($_POST);
+
 		// Call find based on the username of the user to get the userid:
 		//   get the user object
+		$userRepo = RepositoryFactory::createRepository("user");
 		$arrayOfResults = $userRepo->find($_POST["username"], "username");
 		$user = $arrayOfResults[0];
 		
@@ -201,7 +163,12 @@ class Users extends Controller {
 		$userID = $user->getId();
 		
 		// display the user's page
-		getUser($userID);
+		//Change it to home page?
+		header('Location: ' . URL . 'users/getuser/' . $userID);
+		require APP . "view/_templates/header.php";
+        require APP . "view/users/user_body.php";   
+        require APP . "view/_templates/footer.php";
+
 	} // end function newUser
 	
 	/**

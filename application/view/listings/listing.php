@@ -86,8 +86,8 @@
 			<div class="owner-info">
 				<p style="font-weight: bold">Landlord</p>
 
-				<p class="owner-username">Name: Bob</p>
-				<p class="owner-email">EMail: Bob@example.com</p>
+				<p class="owner-username">Name: <?php echo $userResponse->getUsername(); ?></p>
+				<p class="owner-email">EMail: <?php echo $userResponse->getEmail(); ?></p>
 
 				<button type="button" class="btn btn-primary rent-button">Rent</button>
 

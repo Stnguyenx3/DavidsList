@@ -1,6 +1,6 @@
 <div class="container">
 
-	<form class="form-signup center-block" id="registration" action="#" method="post">
+	<form class="form-signup center-block" id="registration" action="<?php echo URL . "users/newuser/" ?>" method="post">
 
 		<div class="form-group row">
 			  <label for="form-first-name" class="col-sm-2 col-form-label">First Name</label>
@@ -303,3 +303,5 @@ $(document).ready(function()
 });
 
 </script>
+
+<script src= "<?php echo URL; ?>js/user/user_account.js"></script>

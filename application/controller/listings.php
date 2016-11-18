@@ -34,6 +34,7 @@ class Listings extends Controller {
 		//thought process: Traverse the table of listings, and find the listingID of the listing in question. Then return the respective page
 		
 		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingID);
+		$userResponse = UserResponseCreator::createGetUserResponse($listingResponse["listing"]->getId());
 		
 		if ($listingResponse == null){
 			//detail of error page necessary

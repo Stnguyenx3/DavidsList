@@ -8,6 +8,8 @@
 class User implements JsonSerializable {
 	private $userid = null;
 	private $email = null;
+	private $firstname = null;
+	private $lastname = null;
 	private $username = null;
 	private $studentID = null;
 	private $phone = null;
@@ -29,6 +31,14 @@ class User implements JsonSerializable {
 
 	public function getUsername() {
 		return $this->username;
+	}
+
+	public function getFirstname() {
+		return $this->firstname;
+	}
+
+	public function getLastname() {
+		return $this->lastname;
 	}
 
 	public function getStudentId() {
@@ -67,6 +77,14 @@ class User implements JsonSerializable {
 		$this->username = $newUsername;
 	}
 
+	public function setFirstname($newFirstname) {
+		$this->firstname = $newFirstname;
+	}
+
+	public function setLastname($newLastname) {
+		$this->lastname = $newLastname;
+	}
+
 	public function setPhone($newPhone) {
 		$this->phone = $newPhone;
 	}
@@ -85,7 +103,7 @@ class User implements JsonSerializable {
 
 	public function __toString() {
 		return "{$this->userid}, {$this->email}, {$this->username}, {$this->password}," . 
-				"  {$this->studentID}, {$this->phone}, {$this->bio}, {$this->verified}";
+				"  {$this->studentID}, {$this->phone}, {$this->bio}, {$this->verified}, {$this->firstname}, {$this->lastname}";
 	}
 	
 	public function jsonSerialize() {
@@ -98,6 +116,8 @@ class User implements JsonSerializable {
 			'phone' => $this->phone,
 			'bio' => $this->bio,
 			'verified' => $this->verified,
+			'firstname' => $this->firstname,
+			'lastname' => $this->lastname
 		);	
 	}
 }
