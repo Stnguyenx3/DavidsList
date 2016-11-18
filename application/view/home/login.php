@@ -11,7 +11,7 @@
 			
             <input type="password" id="inputPassword" class="form-control center-block" placeholder="Password" required>
 			
-            <button class="btn btn-lg btn-success btn-signin center-block" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-primary btn-signin center-block" type="submit">Sign in</button>
 			
 			<div class="login-link">
 				<a href="<?php echo URL. "home/register" ; ?>">Sign up!</a>

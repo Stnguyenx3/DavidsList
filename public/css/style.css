@@ -91,6 +91,8 @@ div#header.container {
 }
 
 .featured-listing-btn {
+    color: #fff;
+    font-size: 16px;
     float: right;
     margin: 15px;
 }
@@ -115,6 +117,7 @@ div#header.container {
 
 .form-signup {
     margin-top: 50px;
+    margin-bottom: 50px;
     padding: 25px;
     width: 900px;
     border: 3px solid  #99CC99;
@@ -123,7 +126,8 @@ div#header.container {
 }
 
 .form-signup input {
-    margin: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
 }
 
 .login-link {
@@ -184,7 +188,7 @@ div#header.container {
     margin: 15px;
     padding: 15px;
     width: 100%;
-    height: 700px;
+    height: auto;
     border: 3px solid #99CC99;
     border-radius: 10px;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
@@ -195,7 +199,7 @@ div#header.container {
     margin: 15px;
     padding: 15px;
     width: 100%;
-    height: 300px;
+    height: 350px;
 }
 
 .carousel {
@@ -228,17 +232,6 @@ div#header.container {
     padding: 15px;
     margin-top: 0px;
     font-size: 20px;
-}
-
-.container .listing-favorite-btn {
-    float: right;
-    color: #ffffff;
-    padding: 15px;
-    margin: 15px;
-}
-
-.container .listing-favorite-btn:hover {
-    background-color: #5cb85c;
 }
 
 .listing-detail-info {
@@ -286,10 +279,13 @@ div#header.container {
     font-size: 16px;
 }
 
-.container .rent-button {
+.container .rent-button,
+.container .listing-favorite-btn {
+    margin: 15px;
     padding: 15px;
+    float: right;
     font-size: 16px;
-    width: 100%;
+    
 }
 
 
