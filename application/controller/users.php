@@ -41,16 +41,17 @@ class Users extends Controller {
         }
 		else {
             // The folowing three lines send back the header, body, and footer
-            // of the user_body.php webpage
+            // of the index.php webpage
             require APP . "view/_templates/header.php";
-            require APP . "view/users/index.php";   // a file that for now
-                                                        // just displays the
-                                                        // user's email address.
+            require APP . "view/users/index.php";
             require APP . "view/_templates/footer.php";
         }
     } // end function getUser
 
 	
+	//Seems unsafe to publically have this available for anyone to delete a user from
+	//the database
+	//Maybe have it send a json to validate that this is the correct user
     /**
      * Deletes a user from the database.
      * 
@@ -136,6 +137,10 @@ class Users extends Controller {
 		// create a new user, passing in the JSON object
 		$userResponse = UserResponseCreator::createNewUserProfileResponse($_POST);
 
+		if($userResponse == null) {
+			//TODO do something to alert that the user cannot use this email
+		}
+
 		// Call find based on the username of the user to get the userid:
 		//   get the user object
 		$userRepo = RepositoryFactory::createRepository("user");
@@ -144,6 +149,7 @@ class Users extends Controller {
 		
 		//   get the userID from the user object
 		$userID = $user->getId();
+		//Save the email and password into $_SESSION
 		
 		// display the user's page
 		//Change it to home page?
@@ -164,39 +170,35 @@ class Users extends Controller {
 	 * @status Needs to be tested.
 	 */
 	public function login(){
-		$username = $_POST["username"];
+		$email = $_POST["email"];
 		$password = $_POST["password"];
 		
 		$userRepo = RepositoryFactory::createRepository("user");
 		
 		// Validate the login credentials
 		
-		$arrayOfResults = $userRepo->find($username, "username");
+		$arrayOfResults = $userRepo->find($email, "email");
 		
-		// if no such username exists in the database, display error
+		// if no such username exists in the database, return back the word null
+		//to render
 		if ($arrayOfResults == null){
-            $errorMessage = "Invalid username or password.";
-            require APP . "view/_templates/header.php";
-            require APP . "view/problem/error_page.php";
-            require APP . "view/_templates/footer.php"; 			
+            echo "null";			
 		}
 		else{
 			$user = $arrayOfResults[0];
 			// if the username exists, but the password entered doesn't match the
 			// one stored in the user's User object, display error
 			$verifyPassword = password_verify($password, $user->getPassword());
-			if ($verifyPassword){
-				$errorMessage = "Invalid username or password.";
-				require APP . "view/_templates/header.php";
-				require APP . "view/problem/error_page.php";
-				require APP . "view/_templates/footer.php"; 					
+			if (!$verifyPassword){
+				echo "wrong";					
 			}
 			
 			// else username exists AND the password entered matches the one on file
 			else{
-				//redirect to the homepage for viewing
-				//or maybe redirect to profile page?
-				header('Location: ' . URL);			
+				//Save the email and password into $_SESSION
+				//Don't need to do anything else as the ajax callback will redirect
+				//Maybe have it redirect to user page than homepage
+			
 			} // end inner else
 		} // end outer else
 	} // end function login()

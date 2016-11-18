@@ -58,6 +58,12 @@ class UserResponseCreator {
 	public static function createNewUserProfileResponse($userInformation) {
 		$userRepo = RepositoryFactory::createRepository("user");
 
+		$arrayOfUserObjects = $userRepo->find($userInformation["email"], "email");
+
+		if(count($arrayOfUserObjects) != 0) {
+			return null;
+		}
+
 		$user = new User();
 
 		$user->setEmail($userInformation["email"]);
