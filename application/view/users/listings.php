@@ -1,9 +1,9 @@
 <div class="col-sm-1">
 	<ul id="myPills" class="nav nav-pills nav-stacked">
 		</br></br></br>
-		<li><a href="<?php echo URL. "userProfile/index";?>"><h4>Overview</h4></a></li>
-		<li><a href="<?php echo URL. "userProfile/favorites";?>"><h4>Favorite</h4></a></li>
-		<li class="active"><a href="<?php echo URL. "userProfile/listings"?>"><h4>My Listing</h4></a></li>
+		<li><a href="<?php echo URL. "users/getuser/{$userID}";?>"><h4>Overview</h4></a></li>
+		<li><a href="<?php echo URL. "users/favorites/{$userID}";?>"><h4>Favorite</h4></a></li>
+		<li class="active"><a href="<?php echo URL. "users/listings/{$userID}"?>"><h4>My Listing</h4></a></li>
 	</ul>
 </div>
 

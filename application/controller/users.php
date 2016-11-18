@@ -30,11 +30,10 @@ class Users extends Controller {
 	 * @status Tested and working.
      */
     public function getUser($userID) {
-        $userRepo = RepositoryFactory::createRepository("user");
-        $arrayOfUserObjects = $userRepo->find($userID, "userid"); // an array of 
-																  // User objects
+    	//Get the user object corresponding to the user id
+       	$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
 
-        if ($arrayOfUserObjects == null) {
+        if ($userResponse == null) {
             $errorMessage = "User not found";
             require APP . "view/_templates/header.php";
             require APP . "view/problem/error_page.php";
@@ -44,7 +43,7 @@ class Users extends Controller {
             // The folowing three lines send back the header, body, and footer
             // of the user_body.php webpage
             require APP . "view/_templates/header.php";
-            require APP . "view/users/user_body.php";   // a file that for now
+            require APP . "view/users/index.php";   // a file that for now
                                                         // just displays the
                                                         // user's email address.
             require APP . "view/_templates/footer.php";
@@ -78,14 +77,10 @@ class Users extends Controller {
         // If here, then the userID was found in the database.
         else {
             // remove the user from the database
-            $userRepo->remove($arrayOfUserObjects[0]);
+            $removedCorrectly = $userRepo->remove($arrayOfUserObjects[0]);
 
-            // check whether or not the removal was successful by once again
-            // searchign the users repository
-            $newArrayOfUserObjects = $userRepo->find($userID, "userid");
-
-            // If the userID was not found, then this confirms that the user was
-            // deleted.
+            // If $removedCorrectly is true, then return this page
+            //Redirect to new page.
             if ($newArrayOfUserObjects == null) {
                 require APP . "view/_templates/header.php";
                 require APP . "view/users/user_delete_success.php"; // this page
@@ -118,23 +113,11 @@ class Users extends Controller {
      * @param int $userID
      */
     public function editUser($userID){
-		$userRepo = RepositoryFactory::createRepository("user");
-        $arrayOfUserObjects = $userRepo->find($userID, "userid");
+		// Create a new User object from the external JSON data; then replace
+		// the target userID's current User Object with the new one
 		
-        if ($arrayOfUserObjects == null) {
-            $errorMessage = "User not found";
-            require APP . "view/_templates/header.php";
-            require APP . "view/problem/error_page.php";
-            require APP . "view/_templates/footer.php";
-		}
-		
-		else{
-			// Create a new User object from the external JSON data; then replace
-			// the target userID's current User Object with the new one
-			
-			$userResponse = UserResponseCreator::createEditUserProfileResponse($userID, $_POST);
-			//TODO: Send a response back saying it saved
-		}// end else		
+		$userResponse = UserResponseCreator::createEditUserProfileResponse($userID, $_POST);
+		//TODO: Send a response back saying it saved	
     } // end function editUser
 	
 	/**
@@ -165,9 +148,6 @@ class Users extends Controller {
 		// display the user's page
 		//Change it to home page?
 		header('Location: ' . URL . 'users/getuser/' . $userID);
-		require APP . "view/_templates/header.php";
-        require APP . "view/users/user_body.php";   
-        require APP . "view/_templates/footer.php";
 
 	} // end function newUser
 	
@@ -214,10 +194,9 @@ class Users extends Controller {
 			
 			// else username exists AND the password entered matches the one on file
 			else{
-				// Load page confirming successful login:
-				require APP . "view/_templates/header.php";
-				require APP . "view/users/user_login_success.php";
-				require APP . "view/_templates/footer.php"; 				
+				//redirect to the homepage for viewing
+				//or maybe redirect to profile page?
+				header('Location: ' . URL);			
 			} // end inner else
 		} // end outer else
 	} // end function login()
@@ -228,5 +207,27 @@ class Users extends Controller {
 
 		header('refresh: 0; URL=' . URL . 'home');
 	}
+
+	public function favorites($userID) {
+		$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
+		if($userResponse != null) {
+			require APP . 'view/_templates/header.php';
+        	require APP . 'view/users/favorites.php';
+        	require APP . 'view/_templates/footer.php';
+		} else {
+			//error page
+		}
+    }
+
+    public function listings($userID) {
+    	$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
+    	if($userResponse != null) {
+    		require APP . 'view/_templates/header.php';
+        	require APP . 'view/users/listings.php';
+        	require APP . 'view/_templates/footer.php';
+    	} else {
+    		//error page
+    	}
+    }
 
 } // end class User
