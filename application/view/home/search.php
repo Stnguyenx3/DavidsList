@@ -1,5 +1,5 @@
 <div class="container main" id="search-result-container">
-    <script>
+    <!--script>
         var map;
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
@@ -33,7 +33,7 @@
     </script>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWOv3nHrDtvumbxi2wfyzUCLJBiV3ax4k&callback=initMap"
-    type="text/javascript"></script>
+    type="text/javascript"></script-->
 
 	<div class="row">
 

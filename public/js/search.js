@@ -2,15 +2,8 @@ function toggleBlockDisplay (blockID) {
 	var selector = "#" + blockID;
 	var status = $(selector).css("display");
 
-	//console.log("block status " + status + " on id " + selector);
+	$(selector).css("display", "block");
 
-	if (status == "block" || status == null) {
-		$(selector).css("display", "none");
-		//console.log("making blocks invisible!");
-	} else {
-		$(selector).css("display", "block");
-		//console.log("making blocks visible!");
-	}
 
 }
 
@@ -44,11 +37,11 @@ function onSearchClick() {
 }
 
 function formatResults(event) {
-	console.log(event);
+	//console.log(event);
 	var result = JSON.parse(event);
 	var numOfResults = result.length;
 
-	console.log(result);
+	console.log(result[5]);
 
 	var pageContent = $("<div></div>").addClass("row");
 	var filter = '<div class="col-sm-3">\
@@ -170,7 +163,6 @@ function formatResults(event) {
 
 
 	// Handle Pagination events
-	var firstClick = true;
 
 	$(".result-pagination").twbsPagination({
 	        totalPages: numOfPages,
@@ -178,24 +170,34 @@ function formatResults(event) {
 	        onPageClick: function (event, page) {
 	            //Populate HTML divs with results.
 
+	            console.log("page " + page + " clicked.");
+
 	            for (var r = ((page - 1) * resultsPerPage); r < (page * resultsPerPage); r++) {
-	            	//console.log("Inserting result[" + r + "].");
+
+	            	console.log("r is " + r);
 
 	            	var resultIndex = r % resultsPerPage;
-	            	//console.log("r mod resultsPerPage = " + r % resultsPerPage);
 
-					var resultDiv = $("#search-result-listing-" + r);
+					var resultDiv = $(searchResultContent).find("#search-result-listing-" + resultIndex);
+
+					var furnished;
+
+					if (result[r].furnishing == 1) {
+						furnished = "Yes";
+					} else {
+						furnished = "No";
+					}
 
 					$(resultDiv).find(".search-result-listing-img").attr("src", "data:image/png;base64," + result[r].imageThumbnail);
 					$(resultDiv).find(".search-result-listing-title").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
-					$(resultDiv).find(".search-result-listing-price").text("$9,999");
-					$(resultDiv).find(".search-result-listing-basic-info").text("Bed: 2" + " | " + "Bath: 5" + " | " + "Furnished: Nope");
+					$(resultDiv).find(".search-result-listing-price").text("$" + result[r].price);
+					$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished);
 					$(resultDiv).find(".search-result-listing-btn").text("Rent");
 
-					if (firstClick) {
-						toggleBlockDisplay("search-result-listing-" + r);
-						firstClick = false;
-					}
+
+					toggleBlockDisplay("search-result-listing-" + r);
+
+					
 
 	            }
 			}
