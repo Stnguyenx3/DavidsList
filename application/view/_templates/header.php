@@ -8,12 +8,14 @@
     <script type="text/javascript" src="<?php echo URL; ?>js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>js/jquery.validate.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>js/bootstrap.js"></script>
+    <script type="text/javascript" src="<?php echo URL; ?>js/search.js"></script>
+    <script type="text/javascript" src="<?php echo URL; ?>js/jquery.twbsPagination.js"></script>
 
     <!-- CSS -->
 	<link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
 </head>
-<body>
+<body id="content">
 
 	<div class="container" id="header">
 	
@@ -34,7 +36,7 @@
 			</div>
 			
 			<div class="col-sm-9" id="search-bar">
-    				<input id="search-input" type="text" placeholder="City, Street, Zipcode..." required autofocus/><button id="search-get type="button" class="btn btn-primary" onclick='onSearchClick()''>
+    				<input id="search-input" type="text" placeholder="City, Street, Zipcode..." onkeypress="return enterPressed(event)" required autofocus/><button id="search-get" type="button" class="btn btn-primary" onclick="onSearchClick()">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     </button>
 			</div>
@@ -50,3 +52,5 @@
         <a href="<?php echo URL. "home/listing" ?>">Listing</a> <!-- Remove this after connecting with backend! -->
         <a href="<?php echo URL. "userProfile/index";?>">Account</a><!-- remove this after login setting -->
     </div>
+
+</div><!--End header-->

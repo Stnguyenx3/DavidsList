@@ -1,4 +1,3 @@
-</br></br>
 <div class="col-sm-3"></div>
 <div class="col-sm-9">
 	<form class="form-rentout" id="rentout" action="#" method="post">

@@ -1,44 +1,46 @@
-<div class="container">
+<div class="container main">
 
 	<form class="form-signup center-block" id="registration" action="#" method="post">
 
+		<h3 style="margin-bottom: 30px">Register</h3>
+
 		<div class="form-group row">
-			  <label for="form-first-name" class="col-sm-2 col-form-label">First Name</label>
+			  <label for="form-first-name" class="col-sm-2">First Name</label>
 			  <div class="col-sm-10">
 				<input class="form-control" type="text" name="firstname" id="form-first-name">
 			  </div>
 		</div>
 
 		<div class="form-group row">
-			  <label for="form-last-name" class="col-sm-2 col-form-label">Last Name</label>
+			  <label for="form-last-name" class="col-sm-2">Last Name</label>
 			  <div class="col-sm-10">
 				<input class="form-control" type="text" name="lastname" id="form-last-name">
 			  </div>
 		</div>
 
 		<div class="form-group row">
-			  <label for="form-email" class="col-sm-2 col-form-label">Email</label>
+			  <label for="form-email" class="col-sm-2">Email</label>
 			  <div class="col-sm-10">
 				<input class="form-control" type="email" name="email" id="form-email">
 			  </div>
 		</div>
 
 		<div class="form-group row">
-			  <label for="form-username" class="col-sm-2 col-form-label">Username</label>
+			  <label for="form-username" class="col-sm-2">Username</label>
 			  <div class="col-sm-10">
 				<input class="form-control" type="text" name="username" id="form-username">
 			  </div>
 		</div>
 
 		<div class="form-group row">
-			  <label for="form-password" class="col-sm-2 col-form-label">Password</label>
+			  <label for="form-password" class="col-sm-2">Password</label>
 			  <div class="col-sm-10">
 				<input class="form-control" type="password" name="password" id="form-password">
 			  </div>
 		</div>
 
 		<div class="form-group row">
-			  <label for="form-confirm-password" class="col-sm-2 col-form-label">Confirm Password</label>
+			  <label for="form-confirm-password" class="col-sm-2">Confirm Password</label>
 			  <div class="col-sm-10">
 				<input class="form-control" type="password" name="confirmpassword" id="form-confirm-password">
 			  </div>
