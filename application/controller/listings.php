@@ -34,8 +34,7 @@ class Listings extends Controller {
 		//thought process: Traverse the table of listings, and find the listingID of the listing in question. Then return the respective page
 		
 		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingID);
-		$userResponse = UserResponseCreator::createGetUserResponse($listingResponse["listing"]->getId());
-		
+
 		if(!empty($_SESSION)) {
             $userRepo = RepositoryFactory::createRepository("user");
             $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
@@ -51,6 +50,7 @@ class Listings extends Controller {
 			require APP . 'view/_templates/footer.php';
 		}
 		else{
+			$userResponse = UserResponseCreator::createGetUserResponse($listingResponse["listing"]->getId());
 			//the following will send back the header, body, and footer
 			//of the listing page
         	require APP . 'view/listings/listing.php';
