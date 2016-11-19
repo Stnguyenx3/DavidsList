@@ -27,7 +27,7 @@
 							<p class="featured-listing-price"><?php echo $newListings["listings"][0]->getPrice() ?></p>
 							<div style="clear: both">
 									<p>
-										Distance: 90mi. | Bed: 1 | Bath: 0 | Furnished: Yes.
+										Distance: 90mi. | Bed: <?php echo $newListings["listing_details"][0]->getNumberOfBedrooms() ?> | Bath: <?php echo $newListings["listing_details"][0]->getNumberOfBathrooms() ?> | Furnished: <?php echo $newListings["listing_details"][0]->getFurnishing() ? "Yes" : "No" ?>.
 									</p>
 									<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
 							</div>
@@ -46,7 +46,7 @@
 							<p class="featured-listing-price"><?php echo $newListings["listings"][1]->getPrice() ?></p>
 							<div style="clear: both">
 									<p>
-										Distance: 90mi. | Bed: 1 | Bath: 0 | Furnished: Yes.
+										Distance: 90mi. | Bed: <?php echo $newListings["listing_details"][1]->getNumberOfBedrooms() ?> | Bath: <?php echo $newListings["listing_details"][1]->getNumberOfBathrooms() ?> | Furnished: <?php echo $newListings["listing_details"][1]->getFurnishing() ? "Yes" : "No" ?>.
 									</p>
 									<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
 							</div>
@@ -65,7 +65,7 @@
 							<p class="featured-listing-price"><?php echo $newListings["listings"][2]->getPrice() ?></p>
 							<div style="clear: both">
 									<p>
-										Distance: 90mi. | Bed: 1 | Bath: 0 | Furnished: Yes.
+										Distance: 90mi. | Bed: <?php echo $newListings["listing_details"][2]->getNumberOfBedrooms() ?> | Bath: <?php echo $newListings["listing_details"][2]->getNumberOfBathrooms() ?> | Furnished: <?php echo $newListings["listing_details"][2]->getFurnishing() ? "Yes" : "No" ?>.
 									</p>
 									<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
 							</div>
