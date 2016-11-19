@@ -17,6 +17,10 @@ class ListingImageRepo implements DatabaseRepositoryInterface{
 		return $this->db->find($searchParam, 'listingImage', 'ListingImage', $column);
 	}
 
+	public function fetch(){
+ 		return $this->db->fetch('listingImage', 'ListingImage');
+ 	}
+
 	public function save($listingImage){
 		return $this->db->save($listingImage, 'listingImage');
 	}

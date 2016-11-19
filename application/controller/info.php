@@ -13,19 +13,40 @@ class Info extends Controller{
      * PAGE: all static information pages **/
   
     public function privacy() {
-        require APP . 'view/_templates/header.php';
+        if(!empty($_SESSION)) {
+            $userRepo = RepositoryFactory::createRepository("user");
+            $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+            require APP . "view/_templates/logged_in_header.php";
+        } else {
+            require APP . 'view/_templates/header.php';
+        }
+
         require APP . 'view/info/privacy.php';
         require APP . 'view/_templates/footer.php';
     }
 
     public function contact() {
-        require APP . 'view/_templates/header.php';
+        if(!empty($_SESSION)) {
+            $userRepo = RepositoryFactory::createRepository("user");
+            $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+            require APP . "view/_templates/logged_in_header.php";
+        } else {
+            require APP . 'view/_templates/header.php';
+        }
+
         require APP . 'view/info/contact.php';
         require APP . 'view/_templates/footer.php';
     }
 
     public function about() {
-        require APP . 'view/_templates/header.php';
+        if(!empty($_SESSION)) {
+            $userRepo = RepositoryFactory::createRepository("user");
+            $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+            require APP . "view/_templates/logged_in_header.php";
+        } else {
+            require APP . 'view/_templates/header.php';
+        }
+        
         require APP . 'view/info/about.php';
         require APP . 'view/_templates/footer.php';
     }

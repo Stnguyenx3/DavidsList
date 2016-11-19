@@ -8,23 +8,21 @@
     <script type="text/javascript" src="<?php echo URL; ?>js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>js/jquery.validate.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>js/bootstrap.js"></script>
-    <script type="text/javascript" src="<?php echo URL; ?>js/search.js"></script>
-    <script type="text/javascript" src="<?php echo URL; ?>js/jquery.twbsPagination.js"></script>
 
     <!-- CSS -->
 	<link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
 </head>
-<body id="content">
+<body>
 
 	<div class="container" id="header">
 	
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="user">
-					<a href="<?php echo URL."home/login" ; ?>">Login</a>
+					<a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId() ; ?>"><?php echo $arrayOfUserObjects[0]->getUsername() ?></a>
 					<p style="display:inline">|</p>
-					<a href="<?php echo URL. "home/register" ; ?>">Register</a>
+					<a href="<?php echo URL. "users/logout" ; ?>">Logout</a>
 				</div>
 			</div>
 		</div>
@@ -36,7 +34,7 @@
 			</div>
 			
 			<div class="col-sm-9" id="search-bar">
-    				<input id="search-input" type="text" placeholder="City, Street, Zipcode..." onkeypress="return enterPressed(event)" required autofocus/><button id="search-get" type="button" class="btn btn-primary" onclick="onSearchClick()">
+    				<input id="search-input" type="text" placeholder="City, Street, Zipcode..." required autofocus/><button id="search-get type="button" class="btn btn-primary" onclick='onSearchClick()''>
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     </button>
 			</div>
@@ -50,5 +48,3 @@
         <a href="<?php echo URL. "info/about" ; ?>">about</a>
         <a href="<?php echo URL. "home/search" ?>"> Search</a> <!-- remove after fixing backend -->
     </div>
-
-</div><!--End header-->

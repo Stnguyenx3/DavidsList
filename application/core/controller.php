@@ -5,7 +5,11 @@ class Controller {
 	function __construct() {
 		//require all the models used in the application
 		session_start();
+		require APP . "model/response_creator/user_image_response_creator.php";
+		require APP . "model/response_creator/user_response_creator.php";
+		require APP . "model/response_creator/listing_image_response_creator.php";
 		require APP . "model/response_creator/listings_response_creator.php";
+		require APP . "model/util/email_validator_util.php";
 		require APP . "model/util/image_resize_util.php";
 		require APP . "model/repositories/database_repository_interface.php";
 		require APP . "model/repositories/all_query_interface.php";

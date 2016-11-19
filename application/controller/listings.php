@@ -1,8 +1,20 @@
 <?php
 
-//** Listings Class
-//TODO DOC THIS SHIT
-//REMOVED DEPRECATED SHIT
+/*
+ *  Class: Listings
+ *   File: application/controller/listings.php
+ * Author: Imran Irfan and David Chau
+ * 
+ * Controller for the Listing class (model/listing.php)
+ * 
+ * This class provides the following functionality:
+ *   1) A function to create a new listing, with all related listing information, across different tables
+ *   2) A function to delete a listing related to a listing ID, along with related listing information across different tables
+ *   3) A function to update an address related to a listing ID, same as above
+ *	 4) A function to get a listing related to a listingID, same as above
+ *
+ * Copyright (C) 2016, Imran Irfan and David Chau
+ */
 
 class Listings extends Controller {
 	//index
@@ -22,21 +34,27 @@ class Listings extends Controller {
 		//thought process: Traverse the table of listings, and find the listingID of the listing in question. Then return the respective page
 		
 		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingID);
+		$userResponse = UserResponseCreator::createGetUserResponse($listingResponse["listing"]->getId());
 		
+		if(!empty($_SESSION)) {
+            $userRepo = RepositoryFactory::createRepository("user");
+            $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+            require APP . "view/_templates/logged_in_header.php";
+        } else {
+            require APP . 'view/_templates/header.php';
+        }
+
 		if ($listingResponse == null){
 			//detail of error page necessary
 			$errorMessage = "Error, Listing not found.";
-			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
 			require APP . 'view/_templates/footer.php';
 		}
-
 		else{
 			//the following will send back the header, body, and footer
 			//of the listing page
-			require APP . 'view/_templates/header.php';
-			require APP . 'view/listings/listing_body.php';
-			require APP . 'view/_templates/footer.php';
+        	require APP . 'view/listings/listing.php';
+        	require APP . 'view/_templates/footer.php';
 		}
 
 	}

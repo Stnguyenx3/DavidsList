@@ -18,8 +18,27 @@ class Home extends Controller{
      * (which is the default page btw)
      */
     public function index(){
+
+        $newListings = ListingsResponseCreator::createGetAllListingResponse();
+        $newListingImages = array();
+        foreach($newListings["listings"] as $listing) {
+
+            $image = ListingImageResponseCreator::createGetListingImageResponse($listing->getListingId())[0];
+
+            $newListingImages[] = 
+               "data:image/png;base64," . base64_encode($image->getImageThumbNail());
+        }
+
         // load views
-        require APP . 'view/_templates/header.php';
+
+        if(!empty($_SESSION)) {
+            $userRepo = RepositoryFactory::createRepository("user");
+            $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+            require APP . "view/_templates/logged_in_header.php";
+        } else {
+            require APP . 'view/_templates/header.php';
+        }
+
         require APP . 'view/home/index.php';
         require APP . 'view/_templates/footer.php';
     }
@@ -31,9 +50,15 @@ class Home extends Controller{
     }
 
     public function rentout() {
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/home/rentout.php';
-        require APP . 'view/_templates/footer.php';
+        if(empty($_SESSION)) {
+            header('Location: ' . URL . 'home/login/');
+        } else {
+            $userRepo = RepositoryFactory::createRepository("user");
+            $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+            require APP . "view/_templates/logged_in_header.php";
+            require APP . 'view/listings/rentout.php';
+            require APP . 'view/_templates/footer.php';
+        }
     }
 
     public function about() {
@@ -44,19 +69,13 @@ class Home extends Controller{
 	
 	public function login() {
         require APP . 'view/_templates/header.php';
-        require APP . 'view/home/login.php';
+        require APP . 'view/users/login.php';
         require APP . 'view/_templates/footer.php';
 	}
 	
 	public function register() {
         require APP . 'view/_templates/header.php';
-        require APP . 'view/home/register.php';
+        require APP . 'view/users/register.php';
         require APP . 'view/_templates/footer.php';
 	}
-
-    public function listing() {
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/home/listing.php';
-        require APP . 'view/_templates/footer.php';
-    }
 }

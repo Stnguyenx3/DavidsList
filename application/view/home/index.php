@@ -15,18 +15,16 @@
 	<div class="row">
 		<div class="col-sm-1"></div>
 		<div class="col-sm-10">
-		
 			<h1>Featured Listings</h1>
-
 			<div class="row featured-listing">
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-3 featured-listing-img">
-							<img src="http://placehold.it/175x175" alt="placeholder img.">
+							<img src= "<?php echo $newListingImages[0] ?>" alt="placeholder img." width="175" height="175">
 						</div>
 						<div class="col-sm-9">
-							<h3 class="featured-listing-title">Listing Name</h3>
-							<p class="featured-listing-price">Price</p>
+							<h3 class="featured-listing-title"><?php echo $newListings["addresses"][0]->getStreetName() ?></h3>
+							<p class="featured-listing-price"><?php echo $newListings["listings"][0]->getPrice() ?></p>
 							<div style="clear: both">
 									<p>
 										Distance: 90mi. | Bed: 1 | Bath: 0 | Furnished: Yes.
@@ -37,19 +35,18 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="row featured-listing">
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-3 featured-listing-img">
-							<img src="http://placehold.it/175x175" alt="placeholder img.">
+							<img src="<?php echo $newListingImages[1] ?>" alt="placeholder img."  width="175" height="175">
 						</div>
 						<div class="col-sm-9">
-							<h3 class="featured-listing-title">Listing Name</h3>
-							<p class="featured-listing-price">Price</p>
+							<h3 class="featured-listing-title"><?php echo $newListings["addresses"][1]->getStreetName() ?></h3>
+							<p class="featured-listing-price"><?php echo $newListings["listings"][1]->getPrice() ?></p>
 							<div style="clear: both">
 									<p>
-										Distance 0.1mi. | Bed: 9 | Bath: 1 | Furnished: Nope.	
+										Distance: 90mi. | Bed: 1 | Bath: 0 | Furnished: Yes.
 									</p>
 									<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
 							</div>
@@ -57,19 +54,18 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="row featured-listing">
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-3 featured-listing-img">
-							<img src="http://placehold.it/175x175" alt="placeholder img.">
+							<img src= "<?php echo $newListingImages[2] ?>" alt="placeholder img." width="175" height="175">
 						</div>
 						<div class="col-sm-9">
-							<h3 class="featured-listing-title">Listing Name</h3>
-							<p class="featured-listing-price">Price</p>
+							<h3 class="featured-listing-title"><?php echo $newListings["addresses"][2]->getStreetName() ?></h3>
+							<p class="featured-listing-price"><?php echo $newListings["listings"][2]->getPrice() ?></p>
 							<div style="clear: both">
 									<p>
-										Distance: 2.71mi. | Bed: 1 | Bath: 7 | Furnished: Nope.
+										Distance: 90mi. | Bed: 1 | Bath: 0 | Furnished: Yes.
 									</p>
 									<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
 							</div>
@@ -77,7 +73,6 @@
 					</div>
 				</div>
 			</div>
-			
 		</div>
 		<div class="col-sm-1"></div>
 	</div>

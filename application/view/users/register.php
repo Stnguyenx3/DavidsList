@@ -1,6 +1,6 @@
 <div class="container main">
 
-	<form class="form-signup center-block" id="registration" action="#" method="post">
+	<form class="form-signup center-block" id="registration" action="<?php echo URL . "users/newuser/" ?>" method="post">
 
 		<h3 style="margin-bottom: 30px">Register</h3>
 
@@ -305,3 +305,5 @@ $(document).ready(function()
 });
 
 </script>
+
+<script src= "<?php echo URL; ?>js/user/user_account.js"></script>

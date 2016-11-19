@@ -30,28 +30,39 @@ class Users extends Controller {
 	 * @status Tested and working.
      */
     public function getUser($userID) {
-        $userRepo = RepositoryFactory::createRepository("user");
-        $arrayOfUserObjects = $userRepo->find($userID, "userid"); // an array of 
-																  // User objects
 
-        if ($arrayOfUserObjects == null) {
-            $errorMessage = "User not found";
-            require APP . "view/_templates/header.php";
-            require APP . "view/problem/error_page.php";
-            require APP . "view/_templates/footer.php"; 
+    	//Get the user object corresponding to the user id
+    	$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
+
+    	//Checks if there is a session(whether the user is logged in or not)
+    	//If so, require the logged in header, with user profile/logout
+    	//If not, require the regular header with login/register
+    	if(!empty($_SESSION)) {
+    		$userRepo = RepositoryFactory::createRepository("user");
+        	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+
+            require APP . "view/_templates/logged_in_header.php";
+    	} else {
+    		require APP . "view/_templates/header.php";
+    	}
+
+    	//If the user profile does not exist, require the error body
+    	if ($userResponse == null) {
+	        $errorMessage = "User not found";
+	        require APP . "view/problem/error_page.php";
         }
 		else {
-            // The folowing three lines send back the header, body, and footer
-            // of the user_body.php webpage
-            require APP . "view/_templates/header.php";
-            require APP . "view/users/user_body.php";   // a file that for now
-                                                        // just displays the
-                                                        // user's email address.
-            require APP . "view/_templates/footer.php";
+            require APP . "view/users/index.php";
         }
+
+        //Lastly require the footer which will never change
+    	require APP . "view/_templates/footer.php";
     } // end function getUser
 
 	
+	//Seems unsafe to publically have this available for anyone to delete a user from
+	//the database
+	//Maybe have it send a json to validate that this is the correct user
     /**
      * Deletes a user from the database.
      * 
@@ -78,14 +89,10 @@ class Users extends Controller {
         // If here, then the userID was found in the database.
         else {
             // remove the user from the database
-            $userRepo->remove($arrayOfUserObjects[0]);
+            $removedCorrectly = $userRepo->remove($arrayOfUserObjects[0]);
 
-            // check whether or not the removal was successful by once again
-            // searchign the users repository
-            $newArrayOfUserObjects = $userRepo->find($userID, "userid");
-
-            // If the userID was not found, then this confirms that the user was
-            // deleted.
+            // If $removedCorrectly is true, then return this page
+            //Redirect to new page.
             if ($newArrayOfUserObjects == null) {
                 require APP . "view/_templates/header.php";
                 require APP . "view/users/user_delete_success.php"; // this page
@@ -116,47 +123,15 @@ class Users extends Controller {
 	 * User object.
      * 
      * @param int $userID
-	 * 
-	 * @status Needs to be tested.
      */
     public function editUser($userID){
-		$userRepo = RepositoryFactory::createRepository("user");
-        $arrayOfUserObjects = $userRepo->find($userID, "userid");
+		// Create a new User object from the external JSON data; then replace
+		// the target userID's current User Object with the new one
 		
-        if ($arrayOfUserObjects == null) {
-            $errorMessage = "User not found";
-            require APP . "view/_templates/header.php";
-            require APP . "view/problem/error_page.php";
-            require APP . "view/_templates/footer.php";
-		}
-		
-		else{
-			// Create a new User object from the external JSON data; then replace
-			// the target userID's current User Object with the new one
-			
-			$user = new User();
-
-			$user->setId($userID);
-			$user->setEmail($_POST["email"]);
-			$user->setUsername($_POST["username"]);
-			$user->setStudentId($_POST["studentID"]);
-			$user->setPhone($_POST["phone"]);
-			$user->setBiography($_POST["bio"]);
-			$user->setPassword($_POST["password"]);
-			$user->setVerified($_POST["verified"]);
-			
-			$userRepo->update($user);
-		}// end else		
+		$userResponse = UserResponseCreator::createEditUserProfileResponse($userID, $_POST);
+		//TODO: Send a response back saying it saved	
     } // end function editUser
 	
-    public function signUp() {
-    	if(empty($_SESSION)) {
-    		//redirect to homepage
-    	} else {
-    		//direct to login page
-    	}
-    }
-
 	/**
 	 * Creates a new user.
 	 * 
@@ -166,42 +141,33 @@ class Users extends Controller {
 	 * 
 	 * Loads the newly created user's HTML page.
 	 * 
-	 * @todo Add validation to the function (check to make sure user was
-	 * successfully added)
-	 * 
-	 * @status Needs to be tested.
 	 */
 	public function newUser(){
 
-		$userRepo = RepositoryFactory::createRepository("user");
-		
-		// create new user
-		$user = new User();
-		
-		// add all of the externally supplied data to the new user
-		$user->setEmail($_POST["email"]);
-		$user->setUsername($_POST["username"]);
-		$user->setStudentId($_POST["studentID"]);
-		$user->setPhone($_POST["phone"]);
-		$user->setBiography($_POST["bio"]);
-		$user->setPassword(password_hash($_POST["password"]));
-		$user->setVerified($_POST["verified"]);
-		
-		// save the new user to the database
-		$userRepo->save($user);
-				
-		//TODO test to make sure that the user was successfully added to the database
-		
+		// Call UserResponseCreator::createNewUserProfileResponse to
+		// create a new user, passing in the JSON object
+		$userResponse = UserResponseCreator::createNewUserProfileResponse($_POST);
+
+		if($userResponse == null) {
+			//TODO do something to alert that the user cannot use this email
+		}
+
 		// Call find based on the username of the user to get the userid:
 		//   get the user object
+		$userRepo = RepositoryFactory::createRepository("user");
 		$arrayOfResults = $userRepo->find($_POST["username"], "username");
 		$user = $arrayOfResults[0];
 		
-		//   get the userID from the user object
+		// get the userID from the user object
 		$userID = $user->getId();
+		//Save the email and password into $_SESSION
+		$_SESSION["email"] = $_POST["username"];
+		$_SESSION["password"] = $user->getPassword();
 		
 		// display the user's page
-		getUser($userID);
+		//Change it to home page?
+		header('Location: ' . URL . 'users/getuser/' . $userID);
+
 	} // end function newUser
 	
 	/**
@@ -217,40 +183,38 @@ class Users extends Controller {
 	 * @status Needs to be tested.
 	 */
 	public function login(){
-		$username = $_POST["username"];
+		$email = $_POST["email"];
 		$password = $_POST["password"];
 		
 		$userRepo = RepositoryFactory::createRepository("user");
 		
 		// Validate the login credentials
 		
-		$arrayOfResults = $userRepo->find($username, "username");
+		$arrayOfResults = $userRepo->find($email, "email");
 		
-		// if no such username exists in the database, display error
+		// if no such username exists in the database, return back the word null
+		//to render
 		if ($arrayOfResults == null){
-            $errorMessage = "Invalid username or password.";
-            require APP . "view/_templates/header.php";
-            require APP . "view/problem/error_page.php";
-            require APP . "view/_templates/footer.php"; 			
+            echo "null";			
 		}
 		else{
 			$user = $arrayOfResults[0];
 			// if the username exists, but the password entered doesn't match the
 			// one stored in the user's User object, display error
 			$verifyPassword = password_verify($password, $user->getPassword());
-			if ($verifyPassword){
-				$errorMessage = "Invalid username or password.";
-				require APP . "view/_templates/header.php";
-				require APP . "view/problem/error_page.php";
-				require APP . "view/_templates/footer.php"; 					
+			if (!$verifyPassword){
+				echo "wrong";					
 			}
 			
 			// else username exists AND the password entered matches the one on file
 			else{
-				// Load page confirming successful login:
-				require APP . "view/_templates/header.php";
-				require APP . "view/users/user_login_success.php";
-				require APP . "view/_templates/footer.php"; 				
+				//Save the email and password into $_SESSION
+				$_SESSION["email"] = $email;
+				$_SESSION["password"] = $password;
+
+				//Don't need to do anything else as the ajax callback will redirect
+				//Maybe have it redirect to user page than homepage
+			
 			} // end inner else
 		} // end outer else
 	} // end function login()
@@ -261,5 +225,45 @@ class Users extends Controller {
 
 		header('refresh: 0; URL=' . URL . 'home');
 	}
+
+	public function favorites($userID) {
+		$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
+
+		if(!empty($_SESSION)) {
+    		$userRepo = RepositoryFactory::createRepository("user");
+        	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+
+            require APP . "view/_templates/logged_in_header.php";
+    	} else {
+    		require APP . "view/_templates/header.php";
+    	}
+
+		if($userResponse != null) {
+        	require APP . 'view/users/favorites.php';
+        	require APP . 'view/_templates/footer.php';
+		} else {
+			//error page
+		}
+    }
+
+    public function listings($userID) {
+    	$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
+
+    	if(!empty($_SESSION)) {
+    		$userRepo = RepositoryFactory::createRepository("user");
+        	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+
+            require APP . "view/_templates/logged_in_header.php";
+    	} else {
+    		require APP . "view/_templates/header.php";
+    	}
+  
+    	if($userResponse != null) {
+        	require APP . 'view/users/listings.php';
+        	require APP . 'view/_templates/footer.php';
+    	} else {
+    		//error page
+    	}
+    }
 
 } // end class User

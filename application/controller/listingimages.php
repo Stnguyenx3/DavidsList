@@ -7,8 +7,7 @@ class ListingImages extends Controller{
 	//Get Images based on listingID
 	public function getImages($listingID){
 
-		$listingImageRepo = RepositoryFactory::createRepository("listing_image");
-		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingId");
+		$arrayofListingImageObjects = ListingImageResponseCreator::createGetListingImageResponse($listingID);
 		
 		if ($arrayofListingImageObjects == null){
 			
@@ -38,10 +37,9 @@ class ListingImages extends Controller{
 	//deleteImages
 	//Delete Images based on listing ID
 	public function deleteImages($listingID){
-		$listingImageRepo = RepositoryFactory::createRepository("listing_image");
-		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingId");
+		$insertListingImage = ListingImageResponseCreator::createNewListingImageResponse($listingID);
 
-		if ($arrayofListingImageObjects == null){
+		if (!$insertListingImage){
 			$errorMessage = "Could not find Listing";
 			require APP . 'view/_templates/header.php';
 			require APP . 'view/problem/error_page.php';
@@ -49,9 +47,7 @@ class ListingImages extends Controller{
 		}
 
 		else{
-			foreach ($arrayofListingImageObjects as $listingImage){
-				$listingImageRepo->remove($listingImage);
-			}
+			//return statement
 		}
 
 	}
@@ -69,12 +65,7 @@ class ListingImages extends Controller{
 		}
 
 		else{
-			$image = explode(",",$_POST["listing_image"]);
-			$newListingImage->setListingId($listingID);
-			$newListingImage->setImage(base64_decode($image[1]));
-			$newListingImage->setImageThumbNail(ImageResizeUtil::resizeImage($image[1]));
-
-			$listingImageRepo->save($newListingImage);
+			$insertListingImage = ListingImageResponseCreator::createNewListingImageResponse($_POST["listing_image"]);
 		}
 
 	}

@@ -1,9 +1,8 @@
-
 <div class="container main">
 	
     <div class="card">
 
-        <form class="form-signin center-block">
+        <form class="form-signin center-block" id="login-form">
 
         	<h3>Login</h3>
             
@@ -22,9 +21,9 @@
         </form>
 
     </div>
-	
 </div>
 
+<script src = "<?php echo URL; ?>js/user_login.js"></script>
 <script type="text/javascript">
 
 </script>

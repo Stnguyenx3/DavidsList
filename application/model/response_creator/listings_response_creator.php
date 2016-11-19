@@ -12,8 +12,7 @@ class ListingsResponseCreator {
 		$addressRepo = RepositoryFactory::createRepository("address");
 		$arrayOfAddresses = $addressRepo->find($listingID, "listingId");
 
-		$listingImageRepo = RepositoryFactory::createRepository("listing_image");
-		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingId");
+		$arrayofListingImageObjects = ListingImageResponseCreator::createGetListingImageResponse($listingID);
 
 		if(count($arrayOfListingObjects) == 0) {
 			return null;
@@ -27,6 +26,22 @@ class ListingsResponseCreator {
 		);
 	}
 
+	public static function createGetAllListingResponse() {
+		$listingRepo = RepositoryFactory::createRepository("listing");
+		$listingDetailRepo = RepositoryFactory::createRepository("listing_detail");
+		$addressRepo = RepositoryFactory::createRepository("address");
+
+		$allListings = $listingRepo->fetch();
+		$allListingDetails = $listingDetailRepo->fetch();
+		$allAddresses = $addressRepo->fetch();
+
+		return array(
+			"listings" => array_slice($allListings, 0, 3),
+			"addresses" => array_slice($allAddresses, 0, 3),
+			"listing_details" => array_slice($allListingDetails, 0, 3),
+		);
+	}
+
 	//WORKs
 	public static function createDeleteListingResponse($listingID) {
 		$listingRepo = RepositoryFactory::createRepository("listing");
@@ -35,8 +50,7 @@ class ListingsResponseCreator {
 		$addressRepo = RepositoryFactory::createRepository("address");
         $arrayOfAddresses = $addressRepo->find($listingID, "listingId");
 
-        $listingImageRepo = RepositoryFactory::createRepository("listing_image");
-		$arrayofListingImageObjects = $listingImageRepo->find($listingID, "listingID");
+        $removedCorrectlyImages = ListingImageResponseCreator::createDeleteListingImageResponse($listingID);
 
 		$listingDetailRepo = RepositoryFactory::createRepository("listing_detail");
 		$arrayOfListingDetailObjects = $listingDetailRepo->find($listingID, "listingId");
@@ -44,11 +58,6 @@ class ListingsResponseCreator {
 		$removedCorrectlyListing = $listingRepo->remove($arrayOfListingObjects[0]);
 		$removedCorrectlyAddress = $addressRepo->remove($arrayOfAddresses[0]);
 		
-		$removedCorrectlyImages = true;
-		foreach($arrayofListingImageObjects as $listingImage) {
-			$deletedImages = $listingImageRepo->remove($listingImage);
-			$removedCorrectlyImages =  $removedCorrectlyImages and $deletedImages;
-		}
 		$removedCorrectlyDetails = $listingDetailRepo->remove($arrayOfListingDetailObjects[0]);
 
 		return $removedCorrectlyListing and $removedCorrectlyAddress and 
@@ -60,7 +69,6 @@ class ListingsResponseCreator {
 		$listingRepo = RepositoryFactory::createRepository("listing");
 		$listingDetailRepo = RepositoryFactory::createRepository("listing_detail");
 		$addressRepo = RepositoryFactory::createRepository("address");
-		$listingImageRepo = RepositoryFactory::createRepository("listing_image");
 
 		$listing = new Listing();
 		$listingDetail = new ListingDetail();
@@ -109,13 +117,9 @@ class ListingsResponseCreator {
 
 		$listingImageInfo = $listingInformation["listing_image"];
 
+		$insertListingImage = true;
 		if($listingImageInfo["image"] != null) {
-			$image = explode(",", $listingImageInfo["image"]);
-			$newListingImage->setListingId($listingID);
-			$newListingImage->setImage(base64_decode($image[1]));
-			$newListingImage->setImageThumbNail(ImageResizeUtil::resizeImage($image[1]));
-
-			$insertListingImage = $listingImageRepo->save($newListingImage);
+			$insertListingImage = ListingImageResponseCreator::createNewListingImageResponse($listingID, $listingImageInfo);
 		}
 
 		return $insertListing and $insertListingDetail and $insertAddress and $insertListingImage;
