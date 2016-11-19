@@ -1,3 +1,19 @@
+function toggleBlockDisplay (blockID) {
+	var selector = "#" + blockID;
+	var status = $(selector).css("display");
+
+	//console.log("block status " + status + " on id " + selector);
+
+	if (status == "block" || status == null) {
+		$(selector).css("display", "none");
+		//console.log("making blocks invisible!");
+	} else {
+		$(selector).css("display", "block");
+		//console.log("making blocks visible!");
+	}
+
+}
+
 function onSearchClick() {
 
 	if($('#search-input').val() !== "") {
@@ -23,8 +39,9 @@ function formatResults(event) {
 
 	//console.log(event);
 	var result = JSON.parse(event);
+	var numOfResults = result.length;
 
-	console.log(result);
+	//console.log(result);
 
 	var pageContent = $("<div></div>").addClass("row");
 	var filter = '<div class="col-sm-3">\
@@ -105,29 +122,81 @@ function formatResults(event) {
 
 		}
 
-		for (i = 0; i < result.length; i++) {
-			var row = $("<div></div>").addClass("row search-result-listing").appendTo($(searchResultContent));
-			var col1 = $("<div></div>").addClass("col-sm-3").appendTo($(row));
-			var col2 = $("<div></div>").addClass("col-sm-9").appendTo($(row));
-			var resultThumbnail = $("<img></img>").addClass("search-result-listing-img").appendTo($(col1));
-			var listingName = $("<p></p>").addClass("search-result-listing-title").appendTo($(col2));
-			var listingPrice = $("<p></p>").addClass("search-result-listing-price").appendTo($(col2));
-			var listingBasicInfo = $("<p></p>").addClass("search-result-listing-basic-info").appendTo($(col2));
+	var resultsPerPage = 5; //MAX NUMBER OF RESULTS PER PAGINATION PAGE.
 
-			var rentButton = $("<a></a>").addClass("btn btn-primary search-result-listing-btn").appendTo($(col2));
+	var numOfPages = Math.ceil(numOfResults / resultsPerPage);
 
-			$(resultThumbnail).attr("src", "data:image/png;base64," + result[i].imageThumbnail);
-			$(listingName).text(result[i].streetName + ", " + result[i].city + " " + result[i].state + ", " + result[i].zipcode);
-			$(listingPrice).text("$9,999");
-			$(listingBasicInfo).text("Bed: 2" + " | " + "Bath: 5" + " | " + "Furnished: Nope");
-			$(rentButton).text("Rent");
+	//console.log("There will be " + numOfPages + " pages." + " results = " + numOfResults);
 
-			pageContent.append(searchResultContent);
+	//Result page layout.
 
-		}
+	for (i = 0; i < resultsPerPage; i++) {
+		var row = $("<div></div>").addClass("row search-result-listing").appendTo($(searchResultContent));
+		var col1 = $("<div></div>").addClass("col-sm-3").appendTo($(row));
+		var col2 = $("<div></div>").addClass("col-sm-9").appendTo($(row));
+		var resultThumbnail = $("<img></img>").addClass("search-result-listing-img").appendTo($(col1));
+		var listingName = $("<p></p>").addClass("search-result-listing-title").appendTo($(col2));
+		var listingPrice = $("<p></p>").addClass("search-result-listing-price").appendTo($(col2));
+		var listingBasicInfo = $("<p></p>").addClass("search-result-listing-basic-info").appendTo($(col2));
+		var rentButton = $("<a></a>").addClass("btn btn-primary search-result-listing-btn").appendTo($(col2));
+
+		var rowID = "search-result-listing-"+i;
+		$(row).attr("id", rowID);
+
+		$(row).css("display", "none");
+	}
+
+	pageContent.append(searchResultContent);
+
+
+	// Pagination
+	var paginationWrapper = $("<div></div>").addClass("result-pagination-wrapper");
+	var pagination = $("<ul></ul>").addClass("result-pagination").appendTo($(paginationWrapper));
+
+	pageContent.append($(paginationWrapper));
+
+	if (numOfResults == 0) {
+		toggleBlockDisplay("result-pagination-wrapper");
+	}
 
 	$(".container.main").html(pageContent);
 
+
+	// Handle Pagination events
+	var firstClick = true;
+
+	$(".result-pagination").twbsPagination({
+	        totalPages: numOfPages,
+	        visiblePages: 10,
+	        onPageClick: function (event, page) {
+	            //Populate HTML divs with results.
+
+	            for (var r = ((page - 1) * resultsPerPage); r < (page * resultsPerPage); r++) {
+	            	//console.log("Inserting result[" + r + "].");
+
+	            	var resultIndex = r % resultsPerPage;
+	            	//console.log("r mod resultsPerPage = " + r % resultsPerPage);
+
+					var resultDiv = $("#search-result-listing-" + r);
+
+					$(resultDiv).find(".search-result-listing-img").attr("src", "data:image/png;base64," + result[r].imageThumbnail);
+					$(resultDiv).find(".search-result-listing-title").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
+					$(resultDiv).find(".search-result-listing-price").text("$9,999");
+					$(resultDiv).find(".search-result-listing-basic-info").text("Bed: 2" + " | " + "Bath: 5" + " | " + "Furnished: Nope");
+					$(resultDiv).find(".search-result-listing-btn").text("Rent");
+
+					if (firstClick) {
+						toggleBlockDisplay("search-result-listing-" + r);
+						firstClick = false;
+					}
+
+	            }
+
+
+			}
+
+	    
+	});
 }
 
 //Handles ENTER keypress in search field.
@@ -139,5 +208,9 @@ function enterPressed(event) {
 
 		return true;
 	}
+
+}
+
+function updateSearchResults(currentPage) {
 
 }

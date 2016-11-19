@@ -362,5 +362,33 @@ div#header.container {
     margin-bottom: 15px;
 }
 
+.result-pagination {
+    font-size: 16px;
+}
+
+.result-pagination-wrapper {
+    text-align: center;
+}
+
+.pagination>.active>a,
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover,
+.pagination>.disabled>a,
+.pagination>.disabled>a:focus, 
+.pagination>.disabled>a:hover, 
+.pagination>.disabled>span, 
+.pagination>.disabled>span:focus, 
+.pagination>.disabled>span:hover,
+.pagination>li>a,
+.pagination>li>span,
+.pagination>li>a:hover,
+.pagination>li>span:hover {
+    border: 2px solid #99CC99;
+}
+
+
 /*Rent out page */
 

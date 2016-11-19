@@ -5,7 +5,7 @@
 	
 			<div class="row">
 			
-				<div class="col-sm-12" style="text-align: center;">
+				<div class="col-sm-12" style="margin-top: 25px; text-align: center;">
 					<a href="<?php echo URL. "info/contact"; ?>">contact</a>
 					<a href="<?php echo URL. "info/privacy" ; ?>">privacy</a>
 				</div>

@@ -9,6 +9,7 @@
     <script type="text/javascript" src="<?php echo URL; ?>js/jquery.validate.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>js/bootstrap.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>js/search.js"></script>
+    <script type="text/javascript" src="<?php echo URL; ?>js/jquery.twbsPagination.js"></script>
 
     <!-- CSS -->
 	<link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">
