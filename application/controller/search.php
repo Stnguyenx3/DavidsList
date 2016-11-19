@@ -50,7 +50,7 @@ class Search extends Controller {
     public function searchApartments() {
         $thresh = 70;
 
-        $searchInput = $_POST["city"]; // change this
+        $searchInput = strtolower($_POST["city"]); // change this
         $addressRepo = RepositoryFactory::createRepository("address");
         $listingImageRepo = RepositoryFactory::createRepository("listing_image");
         $listingRepo = RepositoryFactory::createRepository("listing");
@@ -73,7 +73,7 @@ class Search extends Controller {
             foreach($addressArray as $address){
     
                 // Compare search query to city
-                $compareCity = $address->getCity();
+                $compareCity = strtolower($address->getCity());
                 similar_text($compareCity , $searchInput, $percentageCity);
                 if($percentageCity > $thresh){
                     $addresses[] = $address;
@@ -81,7 +81,7 @@ class Search extends Controller {
                 }
 
                 // Compare search query to street name
-                $compareStreetName = $address->getStreetName();
+                $compareStreetName = strtolower($address->getStreetName());
 
                 // Check for street and avenue in compareStreetName
                 if(strcmp(substr($compareStreetName, -6),"street")==0 || strcmp(substr($compareStreetName, -6),"avenue")==0){
@@ -95,7 +95,7 @@ class Search extends Controller {
                 }
 
                 // Compare search query to state
-                $compareState = $address->getState();
+                $compareState = strtolower($address->getState());
                 similar_text($compareState , $searchInput, $percentageState);
                 if($percentageState > $thresh){
                     $addresses[] = $address;
