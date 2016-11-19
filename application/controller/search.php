@@ -50,11 +50,11 @@ class Search extends Controller {
     public function searchApartments() {
         $thresh = 70;
 
-        $searchInput = $_POST["city"]; // change this
+        $searchInput = strtolower($_POST["city"]); // change this
         $addressRepo = RepositoryFactory::createRepository("address");
         $listingImageRepo = RepositoryFactory::createRepository("listing_image");
-        // $addresses = $addressRepo->find($city, "city"); //this is the search line
-
+        $listingRepo = RepositoryFactory::createRepository("listing");
+        $listingDetailRepo = RepositoryFactory::createRepository("listing_detail");
         
 
         if(is_numeric($searchInput)) $addresses = $addressRepo->find($searchInput, "zipcode");
@@ -65,16 +65,15 @@ class Search extends Controller {
             // If searchInput ends in street or avenue, reduce to str or ave
             if(strcmp(substr($searchInput, -6),"street")==0 || strcmp(substr($searchInput, -6),"avenue")==0){
                 $searchInput = substr($searchInput, 0, -3);
-                echo $searchInput;
             }
 
 
-            $addressDummy = $addressRepo->find("0", "approximateAddress");// find other way to fetch all
+            $addressArray = $addressRepo->fetch();// find other way to fetch all
 
-            foreach($addressDummy as $address){
+            foreach($addressArray as $address){
     
                 // Compare search query to city
-                $compareCity = $address->getCity();
+                $compareCity = strtolower($address->getCity());
                 similar_text($compareCity , $searchInput, $percentageCity);
                 if($percentageCity > $thresh){
                     $addresses[] = $address;
@@ -82,7 +81,7 @@ class Search extends Controller {
                 }
 
                 // Compare search query to street name
-                $compareStreetName = $address->getStreetName();
+                $compareStreetName = strtolower($address->getStreetName());
 
                 // Check for street and avenue in compareStreetName
                 if(strcmp(substr($compareStreetName, -6),"street")==0 || strcmp(substr($compareStreetName, -6),"avenue")==0){
@@ -96,7 +95,7 @@ class Search extends Controller {
                 }
 
                 // Compare search query to state
-                $compareState = $address->getState();
+                $compareState = strtolower($address->getState());
                 similar_text($compareState , $searchInput, $percentageState);
                 if($percentageState > $thresh){
                     $addresses[] = $address;
@@ -109,42 +108,37 @@ class Search extends Controller {
 
         $returnArray = array();
 
+        // fetch all fields and make ready for return
         foreach ($addresses as $address) {
+            $listingID = $address->getListingId();
 
-                $tempHash = $address->jsonSerialize();
-                $imageThumbnail = $listingImageRepo->find($address->getListingId(), "listingID");
-                if(!empty($imageThumbnail)) {
-                    $tempHash["imageThumbnail"] =
-                                            base64_encode($imageThumbnail[0]->getImageThumbnail());
-                }
+            $tempHash = $address->jsonSerialize();
 
-                $returnArray[] = $tempHash;
+            // Add listing info to array
+            $listings = $listingRepo->find($listingID, "listingID");
+            foreach ($listings as $listing) {
+                $tempHash = array_merge($listing->jsonSerialize(),$tempHash);
             }
-        // }
+
+            // Add listing details to array
+            $listingDetails = $listingDetailRepo->find($listingID, "listingID");
+            foreach ($listingDetails as $listingDetail) {
+                $tempHash = array_merge($listingDetail->jsonSerialize(),$tempHash);
+            }
+
+            // Add image thumbnail to array
+            $imageThumbnail = $listingImageRepo->find($listingID, "listingID");
+            if(!empty($imageThumbnail)) {
+                $tempHash["imageThumbnail"] =
+                                        base64_encode($imageThumbnail[0]->getImageThumbnail());
+            }
+
+            $returnArray[] = $tempHash;
+        }
         echo json_encode($returnArray);
     }
 
-    // public function compareSearchInput($address, $searchInput){
-    //     $thresh = 80;
 
-    //     // Compare search query to city
-    //     $compareCity = $address->getCity();
-    //     similar_text($compareCity , $searchInput, $percentageCity);
-    //     if($percentageCity > $thresh) return True;
-
-    //     // Compare search query to street name
-    //     $compareStreetName = $address->getStreetName();
-    //     similar_text($compareStreetName , $searchInput, $percentageStreeName);
-    //     if($percentageStreetName > $thresh) return True;
-
-    //     // Compare search query to state
-    //     $compareState = $address->getState();
-    //     similar_text($compareState , $searchInput, $percentageState);
-    //     if($percentageState > $thresh) return True;
-
-    //     return False;
-
-    // }
 
     public function testInsert() {
         $testUser = new User();
