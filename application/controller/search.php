@@ -53,8 +53,8 @@ class Search extends Controller {
         $searchInput = $_POST["city"]; // change this
         $addressRepo = RepositoryFactory::createRepository("address");
         $listingImageRepo = RepositoryFactory::createRepository("listing_image");
-        // $addresses = $addressRepo->find($city, "city"); //this is the search line
-
+        $listingRepo = RepositoryFactory::createRepository("listing");
+        $listingDetailRepo = RepositoryFactory::createRepository("listing_detail");
         
 
         if(is_numeric($searchInput)) $addresses = $addressRepo->find($searchInput, "zipcode");
@@ -108,10 +108,26 @@ class Search extends Controller {
 
         $returnArray = array();
 
+        // fetch all fields and make ready for return
         foreach ($addresses as $address) {
+            $listingID = $address->getListingId();
 
             $tempHash = $address->jsonSerialize();
-            $imageThumbnail = $listingImageRepo->find($address->getListingId(), "listingID");
+
+            // Add listing info to array
+            $listings = $listingRepo->find($listingID, "listingID");
+            foreach ($listings as $listing) {
+                $tempHash = array_merge($listing->jsonSerialize(),$tempHash);
+            }
+
+            // Add listing details to array
+            $listingDetails = $listingDetailRepo->find($listingID, "listingID");
+            foreach ($listingDetails as $listingDetail) {
+                $tempHash = array_merge($listingDetail->jsonSerialize(),$tempHash);
+            }
+
+            // Add image thumbnail to array
+            $imageThumbnail = $listingImageRepo->find($listingID, "listingID");
             if(!empty($imageThumbnail)) {
                 $tempHash["imageThumbnail"] =
                                         base64_encode($imageThumbnail[0]->getImageThumbnail());
