@@ -198,48 +198,7 @@ function formatResults(event) {
 					}
 
 	            }
-
-
 			}
-
-function onEditClick(){
-	var jsonData = 
-	{
-		"user_id":$('#test-userid').val(),
-		"listing_price": $('#test-price').val(),
-		"listing_type": $('#test-type').val(),
-		"listing_status": $('#test-status').val(),
-		"listing_detail": {
-			"listing_numBedrooms": $('#test-bed').val(),
-			"listing_numBathrooms": $('#test-bath').val(),
-			"listing_internet": $('#test-internet').val(),
-			"listing_pet_policy": $('#test-pet').val(),
-			"listing_elevator_access": $('#test-elevator').val(),
-			"listing_furnishing": $('#test-furnishing').val(),
-			"listing_air_conditioning": $('#test-air').val(),
-			"listing_description": $('#test-description').val()
-		},
-		"address": {
-			"approximateAddress": $('#test-approximate').val(),
-			"streetName": $('#test-street').val(),
-			"city": $('#test-city').val(),
-			"zipcode": $('#test-zipcode').val(),
-			"state": $('#test-state').val()
-		}
-	};
-	$.ajax({
-		type:"POST",
-		url: url+"/listings/editlisting/"+6,
-		data: jsonData,
-		success: function(e){
-			console.log("Success created details of a listing.");
-			console.log(e);
-		},
-		error: function(xhr, err, errThrown){
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
-		}
 	});
 }
 
