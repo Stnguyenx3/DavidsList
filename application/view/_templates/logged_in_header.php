@@ -48,5 +48,4 @@
         <a href="<?php echo URL. "home/index" ; ?>">home</a>
         <a href="<?php echo URL. "home/rentout" ; ?>">rent out</a>
         <a href="<?php echo URL. "info/about" ; ?>">about</a>
-        <a href="<?php echo URL. "home/search" ?>"> Search</a> <!-- remove after fixing backend -->
     </div>
