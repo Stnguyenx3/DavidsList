@@ -61,12 +61,6 @@ class Home extends Controller{
         }
     }
 
-    public function about() {
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/home/about.php';
-        require APP . 'view/_templates/footer.php';
-    }
-	
 	public function login() {
         require APP . 'view/_templates/header.php';
         require APP . 'view/users/login.php';

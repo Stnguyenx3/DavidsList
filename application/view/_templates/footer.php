@@ -22,6 +22,6 @@
         var url = "<?php echo URL; ?>";
     </script>
     <!-- our JavaScript -->
-    <script src="<?php echo URL; ?>js/search/search.js"></script>
+    <script src="<?php echo URL; ?>js/search.js"></script>
 </body>
 </html>

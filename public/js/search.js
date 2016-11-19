@@ -44,11 +44,11 @@ function onSearchClick() {
 }
 
 function formatResults(event) {
-	//console.log(event);
+	console.log(event);
 	var result = JSON.parse(event);
 	var numOfResults = result.length;
 
-	//console.log(result);
+	console.log(result);
 
 	var pageContent = $("<div></div>").addClass("row");
 	var filter = '<div class="col-sm-3">\
