@@ -48,4 +48,5 @@
         <a href="<?php echo URL. "info/about" ; ?>">about</a>
         <a href="<?php echo URL. "home/search" ?>"> Search</a> <!-- remove after fixing backend -->
         <a href="<?php echo URL. "home/listing" ?>">Listing</a> <!-- Remove this after connecting with backend! -->
+        <a href="<?php echo URL. "userProfile/index";?>">Account</a><!-- remove this after login setting -->
     </div>

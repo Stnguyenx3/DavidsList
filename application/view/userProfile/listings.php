@@ -3,7 +3,7 @@
 		</br></br></br>
 		<li><a href="<?php echo URL. "userProfile/index";?>"><h4>Overview</h4></a></li>
 		<li><a href="<?php echo URL. "userProfile/favorites";?>"><h4>Favorite</h4></a></li>
-		<li class="active"><a href="<?php echo URL. "userProfile/listings"?>"><h4>My Listing</h4></a></li>
+		<li class="active"><a href="<?php echo URL. "userProfile/listings"?>"><h4>Listing</h4></a></li>
 	</ul>
 </div>
 
@@ -15,7 +15,7 @@
 					<div class="row my-listing">
 					<div class="col-sm-12">
 						<div class="row">
-							<div class="col-sm-2 my-listing-img">
+							<div class="col-sm-2">
 								<img src="http://placehold.it/175x175" alt="placeholder img.">
 							</div>
 							<div class="col-sm-10">
@@ -26,8 +26,8 @@
 									<p>
 										listing information
 									</p>
-									<a href="#" class="btn btn-primary my-edit-btn">Edit</a>
-									<button class="btn btn-primary btn-remove" type="">Remove</button>
+									<a href="#" class="btn btn-primary">Edit</a>
+									<button class="btn btn-primary" type="submit">Remove</button>
 								</div>
 							</div>
 						</div>
@@ -40,7 +40,7 @@
 					<div class="row my-listing">
 					<div class="col-sm-12">
 						<div class="row">
-							<div class="col-sm-2 my-listing-img">
+							<div class="col-sm-2">
 								<img src="http://placehold.it/175x175" alt="placeholder img.">
 							</div>
 							<div class="col-sm-10">
@@ -51,8 +51,8 @@
 									<p>
 										listing information
 									</p>
-									<a href="#" class="btn btn-primary my-edit-btn">Edit</a>
-									<button class="btn btn-primary btn-remove" type="">Remove</button>
+									<a href="#" class="btn btn-primary">Edit</a>
+									<button class="btn btn-primary" type="submit">Remove</button>
 								</div>
 							</div>
 						</div>
@@ -65,7 +65,7 @@
 					<div class="row my-listing">
 					<div class="col-sm-12">
 						<div class="row">
-							<div class="col-sm-2 my-listing-img">
+							<div class="col-sm-2">
 								<img src="http://placehold.it/175x175" alt="placeholder img.">
 							</div>
 							<div class="col-sm-10">
@@ -76,8 +76,8 @@
 									<p>
 										listing information
 									</p>
-									<a href="#" class="btn btn-primary my-edit-btn">Edit</a>
-									<button class="btn btn-primary btn-remove" type="">Remove</button>
+									<a href="#" class="btn btn-primary">Edit</a>
+									<button class="btn btn-primary" type="submit">Remove</button>
 								</div>
 							</div>
 						</div>
