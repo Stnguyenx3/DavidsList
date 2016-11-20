@@ -1,6 +1,6 @@
 <?php
 	//Remove this after page is complete.
-	echo "count is " . count($listingResponse["listing_images"]);
+	//echo "count is " . count($listingResponse["listing_images"]);
  ?>
 
 <div class="container main">
@@ -44,8 +44,20 @@
 
 		<div class="col-sm-8">
 
-			<div class="listing-map">
-				<p>Google maps.</p>
+			<div class="listing-map" id="listing-map">
+				
+				<script>
+			    	var map;
+			    	function initMap() {
+				   		map = new google.maps.Map(document.getElementById('listing-map'), {
+				        	center: {lat: 37.721178, lng: -122.476962},
+				        	zoom: 16
+				    	});
+			    	}
+			    </script>
+
+			    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUYeLz1DKD4PUAg_uef7OP986wXFlkN78&callback=initMap" async defer></script>
+
 			</div>
 
 		</div>
