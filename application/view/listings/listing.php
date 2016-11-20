@@ -1,3 +1,8 @@
+<?php
+	//Remove this after page is complete.
+	echo "count is " . count($listingResponse["listing_images"]);
+ ?>
+
 <div class="container main">
 
 	<div class="row">
@@ -14,10 +19,10 @@
 
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
-						<img src="http://placehold.it/700x700" alt="placeholder img.">
+						<img src= <?php echo 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][0]->getImage()) ?> alt="placeholder img.">
 					</div>
 					<div class="item">
-						<img src="http://placehold.it/700x700" alt="placeholder img.">
+						<img src= "http://placehold.it/700x700" alt="placeholder img.">
 					</div>
 					<div class="item">
 						<img src="http://placehold.it/700x700" alt="placeholder img.">
