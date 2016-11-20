@@ -1,3 +1,8 @@
+<?php
+	//Remove this after page is complete.
+	echo "count is " . count($listingResponse["listing_images"]);
+ ?>
+
 <div class="container main">
 
 	<div class="row">
@@ -14,10 +19,10 @@
 
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
-						<img src="http://placehold.it/700x700" alt="placeholder img.">
+						<img src= <?php echo 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][0]->getImage()) ?> alt="placeholder img.">
 					</div>
 					<div class="item">
-						<img src="http://placehold.it/700x700" alt="placeholder img.">
+						<img src= "http://placehold.it/700x700" alt="placeholder img.">
 					</div>
 					<div class="item">
 						<img src="http://placehold.it/700x700" alt="placeholder img.">
@@ -51,14 +56,14 @@
 
 		<div class="col-sm-8">
 
-			<div class="listing-details">
+			<div class="listing-details linear-gradient-bg">
 
 				<div class="row">
 					<div class="col-sm-12">
 
 
 						<h3 class="listing-title">Listing Name</h3>
-						<p class="listing-price"><?php echo $listingResponse["listing"]->getPrice() ?></p>
+						<p class="listing-price"> $<?php echo $listingResponse["listing"]->getPrice() ?></p>
 						<div style="clear: both">
 								
 							<p class="listing-street-name"><?php echo $listingResponse["address"]->getStreetName() ?></p>
@@ -68,18 +73,29 @@
 
 							<br>
 
-							<p class="listing-beds">Bed: <?php echo $listingResponse["listing_detail"]->getNumberOfBedrooms() ?></p>
-							<p class="listing-baths">Bath: <?php echo $listingResponse["listing_detail"]->getNumberOfBathrooms() ?></p>
-							<p class="listing-internet">Internet: <?php echo $listingResponse["listing_detail"]->getInternet() ? "Yes" : "No" ?></p>
-							<p class="listing-pets">Pets: <?php echo $listingResponse["listing_detail"]->getPetPolicy() ?></p>
-							<p class="listing-elevator">Elevator: <?php echo $listingResponse["listing_detail"]->getElevatorAccess() ?></p>
-							<p class="listing-furnished">Furnished: <?php echo $listingResponse["listing_detail"]->getFurnishing() ? "Yes" : "No" ?></p>
-							<p class="listing-ac">A/C: <?php echo $listingResponse["listing_detail"]->getAirConditioning() ? "Yes" : "No" ?></p>
+							<ul class="listing-basic-info">
+								<li>Bed: <?php echo $listingResponse["listing_detail"]->getNumberOfBedrooms() ?></li>
+								<li>Bath: <?php echo $listingResponse["listing_detail"]->getNumberOfBathrooms() ?></li>
+								<li>Distance: #TODO</li>
+							</ul>
 
-							<p class="listing-desc">
-								Description:<br>
-								<?php echo $listingResponse["listing_detail"]->getDescription() ?>
-							</p>
+							<ul class="listing-expanded-info">
+								<li>Internet: <?php echo $listingResponse["listing_detail"]->getInternet() ? "Yes" : "No" ?></li>
+								<li>Pets: <?php echo $listingResponse["listing_detail"]->getPetPolicy() ?></li>
+								<li>Elevator: <?php echo $listingResponse["listing_detail"]->getElevatorAccess() ?></li>
+								<li>Furnished: <?php echo $listingResponse["listing_detail"]->getFurnishing() ? "Yes" : "No" ?></li>
+								<li>A/C: <?php echo $listingResponse["listing_detail"]->getAirConditioning() ? "Yes" : "No" ?></li>
+							</ul>
+
+
+
+
+							<ul class="listing-desc">
+								<li>
+									Description: <br>
+									<?php echo $listingResponse["listing_detail"]->getDescription() ?>
+								</li>
+							</ul>
 
 							<button type="button" class="btn btn-primary rent-button">Rent</button>
 
@@ -99,7 +115,7 @@
 
 		<div class="col-sm-4">
 
-			<div class="owner-info">
+			<div class="owner-info linear-gradient-bg">
 				<p style="font-size:24px; font-weight: bold">Landlord</p>
 				<p class="owner-username">Name: <?php echo $userResponse->getUsername(); ?></p>
 				<p class="owner-email">EMail: <?php echo $userResponse->getEmail(); ?></p>

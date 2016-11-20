@@ -1,6 +1,6 @@
 <div class="container main">
 
-	<form class="form-signup center-block" id="registration" action="<?php echo URL . "users/newuser/" ?>" method="post">
+	<form class="form-signup center-block linear-gradient-bg" id="registration" action="<?php echo URL . "users/newuser/" ?>" method="post">
 
 		<h3 style="margin-bottom: 30px">Register</h3>
 
