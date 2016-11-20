@@ -418,4 +418,19 @@ div#header.container {
 
 
 /*Rent out page */
+.rent-out {
+    margin: 15px; 
+}
 
+.form-rentout {
+    border: 3px solid #99CC99;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+input[type=file] {
+    display: inline;
+    border: 1px solid #CCC;
+}
