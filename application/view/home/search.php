@@ -40,7 +40,7 @@
 		<div class="col-sm-3">
 			<p class="search-title">Refine search</p>
 
-			<div class="search-filter">
+			<div class="search-filter linear-gradient-bg">
 
 				<div class="form-group search-filter-price">
 
@@ -128,7 +128,7 @@
 			<p class="search-title">Results</p>
 
 			<!--Search results begin -->
-			<div class="row search-result-listing">
+			<div class="row search-result-listing linear-gradient-bg">
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-3 search-result-listing-img">
@@ -148,49 +148,6 @@
 					</div>
 				</div>
 			</div>
-
-			<!--div class="row search-result-listing">
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-sm-3 search-result-listing-img">
-							<img src="http://placehold.it/175x175" alt="placeholder img.">
-						</div>
-						<div class="col-sm-9">
-							<h3 class="search-result-listing-title">Listing Name</h3>
-							<p class="search-result-listing-price">Price</p>
-							<div style="clear: both">
-									<p>
-										Info Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
-										st mattis ullamcorper. Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e.
-										</p>
-									<a href="#" class="btn btn-primary search-result-listing-btn">Rent</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div-->
-
-			<!--div class="row search-result-listing">
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-sm-3 search-result-listing-img">
-							<img src="http://placehold.it/175x175" alt="placeholder img.">
-						</div>
-						<div class="col-sm-9">
-							<h3 class="search-result-listing-title">Listing Name</h3>
-							<p class="search-result-listing-price">Price</p>
-							<div style="clear: both">
-									<p>
-										Info Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
-										st mattis ullamcorper. Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e.
-										</p>
-									<a href="#" class="btn btn-primary search-result-listing-btn">Rent</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div-->	
-
 
 			<!--Search results end -->
 		</div>

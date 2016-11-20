@@ -8,6 +8,25 @@ body,
     overflow: hidden;
 }
 
+.linear-gradient-bg {
+/*    background: rgba(254,254,254,1);
+    background: -moz-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(226,226,226,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(254,254,254,1)), color-stop(100%, rgba(226,226,226,1)));
+    background: -webkit-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(226,226,226,1) 100%);
+    background: -o-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(226,226,226,1) 100%);
+    background: -ms-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(226,226,226,1) 100%);
+    background: linear-gradient(to bottom, rgba(254,254,254,1) 0%, rgba(226,226,226,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e2e2e2', GradientType=0 );*/
+    background: rgba(226,226,226,1);
+    background: -moz-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(226,226,226,1)), color-stop(100%, rgba(254,254,254,1)));
+    background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 100%);
+    background: -o-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 100%);
+    background: -ms-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 100%);
+    background: linear-gradient(to bottom, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=0 );
+}
+
 /*Home page*/
 .logo {
     font-size: 100px;
@@ -177,7 +196,7 @@ div#header.container {
 .listing-details {
     margin: 15px;
     width: 700px;
-    height: 300px;
+    height: auto;
     clear: both;
     border: 3px solid #99CC99;
     border-radius: 10px;
@@ -252,26 +271,34 @@ div#header.container {
     padding-left: 15px;
 }
 
-.listing-beds,
-.listing-baths,
-.listing-internet,
-.listing-pets,
-.listing-elevator,
-.listing-furnished,
-.listing-ac {
-    display: inline;
-    padding-left: 5px;
-    font-size: 16px;
+.listing-basic-info {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
-.listing-beds {
+.listing-basic-info,
+.listing-expanded-info,
+.listing-desc {
+    list-style: none;
+}
+
+.listing-basic-info li{
+    display: inline;
+    font-size: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.listing-expanded-info li{
+    font-size: 16px;
     padding-left: 15px;
 }
 
 .listing-desc {
-    padding-top: 15px;
-    padding-left: 15px;
     font-size: 16px;
+    padding-top: 15px;
+    padding-left: 50px;
+    padding-right: 15px;
 }
 
 .owner-username,

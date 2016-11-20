@@ -46,7 +46,7 @@ function formatResults(event) {
 	var pageContent = $("<div></div>").addClass("row");
 	var filter = '<div class="col-sm-3">\
 		<p class="search-title">Refine search</p>\
-			<div class="search-filter">\
+			<div class="search-filter linear-gradient-bg">\
 				<div class="form-group search-filter-price">\
 					<label>Price</label>\
 					<br>\
@@ -131,7 +131,7 @@ function formatResults(event) {
 	//Result page layout.
 
 	for (i = 0; i < resultsPerPage; i++) {
-		var row = $("<div></div>").addClass("row search-result-listing").appendTo($(searchResultContent));
+		var row = $("<div></div>").addClass("row search-result-listing linear-gradient-bg").appendTo($(searchResultContent));
 		var col1 = $("<div></div>").addClass("col-sm-3").appendTo($(row));
 		var col2 = $("<div></div>").addClass("col-sm-9").appendTo($(row));
 		var resultThumbnail = $("<img></img>").addClass("search-result-listing-img").appendTo($(col1));
