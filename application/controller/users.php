@@ -161,7 +161,7 @@ class Users extends Controller {
 		// get the userID from the user object
 		$userID = $user->getId();
 		//Save the email and password into $_SESSION
-		$_SESSION["email"] = $_POST["email"];
+		$_SESSION["email"] = $user->getEmail();
 		$_SESSION["password"] = $user->getPassword();
 		
 		// display the user's page
