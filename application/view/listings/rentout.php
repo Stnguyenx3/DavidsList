@@ -1,6 +1,6 @@
 <div class="col-sm-3"></div>
 <div class="col-sm-9">
-	<form class="form-rentout" id="rentout" action="#" method="post">
+	<form class="form-rentout" id="rentout">
 
 		<div class="form-group row">
 			<label for="form-image" class="col-sm-1 text-right">Image</label>
@@ -8,54 +8,54 @@
 				<input type="file" name="listing-image" id="listing-image">
 			</div>
 			<div>
-				<button class="btn-link" id="upload-image" type="submit" onclick='uploadImage()'><h5>Uplaod</h5></button>
+				<button class="btn-link" id="upload-image" type="submit"><h5>Uplaod</h5></button>
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<label for="form-address" class="col-sm-1 text-right">Address</label>
 			<div class="col-sm-4">
-				<input class="form-control" type="text" name="form-address" placeholder="address">
+				<input class="form-control" type="text" name="form-address" placeholder="address" id="streetname">
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<label for="from-price" class="col-sm-1 text-right">Price</label>
 			<div class="col-sm-1">
-				<input class="form-control" type="text" name="from-price" placeholder="price">
+				<input class="form-control" type="text" name="from-price" placeholder="price" id="price">
 			</div>
 			<label for="form-city" class="col-sm-1 text-right">City</label>
 			<div class="col-sm-2">
-				<input class="form-control" type="text" name="form-city" placeholder="city">
+				<input class="form-control" type="text" name="form-city" placeholder="city" id="city">
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<label for="form-state" class="col-sm-1 text-right">State</label>
 			<div class="col-sm-1">
-				<input class="form-control" type="text" name="form-state" placeholder="state">
+				<input class="form-control" type="text" name="form-state" placeholder="state" id="state">
 			</div>
 			<label for="form-zip" class="col-sm-1 text-right">Zip</label>
 			<div class="col-sm-2">
-				<input class="form-control" type="text" name="form-zip" placeholder="zip code">
+				<input class="form-control" type="text" name="form-zip" placeholder="zip code" id="zipcode">
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<label for="form-pet" class="col-sm-1 text-right">Pet Policy</label>
 			<div class="col-sm-2">
-				<input class="form-control" type="text" name="form-pet" placeholder="pet policy">
+				<input class="form-control" type="text" name="form-pet" placeholder="pet policy" id="petpolicy">
 			</div>
 		</div>
 
 		<div class="form-group row">
 			<label for="form-NumofBed" class="col-sm-1 text-right">Number of Bedroom</label>
 			<div class="col-sm-1">
-				<input class="form-control" type="text" name="form-NumofBed" placeholder="Number of Bedroom">
+				<input class="form-control" type="text" name="form-NumofBed" placeholder="Number of Bedroom" id="bed">
 			</div>
 			<label for="form-NumofBath" class="col-sm-1 text-right">Number of Bathroom</label>
 			<div class="col-sm-1">
-				<input class="form-control" type="text" name="form-NumofBath" placeholder="Number of Bathroom">
+				<input class="form-control" type="text" name="form-NumofBath" placeholder="Number of Bathroom" id="bath">
 			</div>
 		</div>
 		
@@ -98,7 +98,7 @@
 		<div class="form-group row">
 			<label for="form-description" class="col-sm-1 text-right">Description</label>
 			<div class="col-sm-4">
-				<textarea class="form-control" rows="4" placeholder="Description"></textarea>
+				<textarea class="form-control" rows="4" placeholder="Description" id="description"></textarea>
 			</div>
 		</div>
 

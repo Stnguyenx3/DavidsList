@@ -7,17 +7,17 @@ drop table if exists listingDetail;
 drop table if exists favoriteListing;
 
 CREATE TABLE `f16g01`.`user` (
-  `userid` INT(4) NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(100) NOT NULL,
-  `username` VARCHAR(40) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
-  `studentID` VARCHAR(9),
-  `phone` VARCHAR(10),
-  `bio` VARCHAR(2000),
-  `verified` TINYINT(1) NOT NULL,
-  `firstname` VARCHAR(40) NOT NULL,
-  `lastname` VARCHAR(40) NOT NULL,
-  PRIMARY KEY(`userid`)
+	  `userid` INT(4) NOT NULL AUTO_INCREMENT,
+	  `email` VARCHAR(100) NOT NULL,
+	  `username` VARCHAR(40) NOT NULL,
+	  `password` VARCHAR(255) NOT NULL,
+	  `studentID` VARCHAR(9),
+	  `phone` VARCHAR(10),
+	  `bio` VARCHAR(2000),
+	  `verified` TINYINT(1) NOT NULL,
+	  `firstname` VARCHAR(40) NOT NULL,
+	  `lastname` VARCHAR(40) NOT NULL,
+	  PRIMARY KEY(`userid`)
  );
 
 CREATE TABLE `f16g01`.`userImage`(
