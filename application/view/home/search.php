@@ -11,7 +11,6 @@
 
 					<label>Price</label>
 
-
 					<br>
 
 					<label for="search-filter-price-range1">
@@ -35,7 +34,6 @@
 					<label for="search-filter-price-range4">
 						<input type="checkbox" id="search-filter-price-range4" value="">$1000 &amp; Above
 					</label>
-
 
 					<div class="form-group">
 						<label>Rooms</label>

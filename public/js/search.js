@@ -3,8 +3,6 @@ function toggleBlockDisplay (blockID) {
 	var status = $(selector).css("display");
 
 	$(selector).css("display", "block");
-
-
 }
 
 //Allowing pressing the enter key to search
@@ -41,7 +39,7 @@ function formatResults(event) {
 	var result = JSON.parse(event);
 	var numOfResults = result.length;
 
-	console.log(result[5]);
+	//console.log(result[5]);
 
 	var pageContent = $("<div></div>").addClass("row");
 	var filter = '<div class="col-sm-3">\

@@ -266,4 +266,18 @@ class Users extends Controller {
     	}
     }
 
+    public function getalluserlistings($userID) {
+    	$listingsRepo = RepositoryFactory::createRepository("listing");
+    	$arrayOfListingObjects = $listingsRepo->find($userID, "userid");
+    	$listingArrayToReturn = array();
+    	foreach ($arrayOfListingObjects as $listingObject) {
+    		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingObject->getListingId());
+    		$listingTempArray["listing"] = $listingResponse["listing"]->jsonSerialize();
+    		$listingTempArray["listing_detail"] = $listingResponse["listing_detail"]->jsonSerialize();
+    		$listingArrayToReturn[] = $listingTempArray;
+    	}
+
+    	echo json_encode($listingArrayToReturn);
+    }
+
 } // end class User
