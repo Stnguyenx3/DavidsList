@@ -6,7 +6,7 @@
 		<div class="form-group row">
 			<label for="form-image" class="col-sm-1 text-right">Image</label>
 			<div class="col-sm-3">
-				<input type="file" name="listing-image" id="listing-image">
+				<input type="file" name="upload-image" id="upload-image">
 			</div>
 			<div>
 				<button class="btn-link" id="upload-image" type="submit" onclick='uploadImage()'><h5>Uplaod</h5></button>
@@ -104,7 +104,7 @@
 		</div>
 
 		<div class="col-sm-6"></div>
-		<button class="btn btn-primary" id="submit-listing" type="submit">Submit</button>
+		<button class="btn btn-primary" id="rentout" type="submit">Submit</button>
 
 	</form>
 </div>
