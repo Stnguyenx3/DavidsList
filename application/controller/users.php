@@ -246,7 +246,7 @@ class Users extends Controller {
 		}
     }
 
-    public function listings($userID) {
+    public function userlistings($userID) {
     	$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
 
     	if(!empty($_SESSION)) {

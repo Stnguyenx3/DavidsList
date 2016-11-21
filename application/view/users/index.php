@@ -3,7 +3,7 @@
 		</br></br></br>
 		<li class="active"><a href="<?php echo URL. "users/getuser/{$userID}";?>"><h4>Overview</h4></a></li>
 		<li><a href="<?php echo URL. "users/favorites/{$userID}";?>"><h4>Favorite</h4></a></li>
-		<li><a href="<?php echo URL. "users/listings/{$userID}"?>"><h4>My Listing</h4></a></li>
+		<li><a href="<?php echo URL. "users/userlistings/{$userID}"?>"><h4>My Listing</h4></a></li>
 	</ul>
 </div>
 
