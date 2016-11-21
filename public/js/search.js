@@ -174,8 +174,6 @@ function formatResults(event) {
 
 	            for (var r = ((page - 1) * resultsPerPage); r < (page * resultsPerPage); r++) {
 
-	            	console.log("r is " + r);
-
 	            	var resultIndex = r % resultsPerPage;
 
 					var resultDiv = $(searchResultContent).find("#search-result-listing-" + resultIndex);

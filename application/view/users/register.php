@@ -293,6 +293,12 @@ $(document).ready(function()
 				required: "You must agree to the website's TOS!"
 			}
 		},
+		highlight: function(element) {
+			$(element).addClass("form-error");
+		},
+		unhighlight: function(element) {
+			$(element).removeClass("form-error");
+		},
 		errorPlacement: function(error, element) {
 			error.insertAfter(element);
 			error.css('color', '#ff0000');

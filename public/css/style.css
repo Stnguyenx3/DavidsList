@@ -27,6 +27,10 @@ body,
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=0 );
 }
 
+.form-error {
+    border-color: #ff0000;
+}
+
 /*Home page*/
 .logo {
     font-size: 100px;
@@ -439,3 +443,4 @@ input[type=file] {
     display: inline;
     border: 1px solid #CCC;
 }
+
