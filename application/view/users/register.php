@@ -1,6 +1,6 @@
 <div class="container main">
 
-	<form class="form-signup center-block" id="registration" action="<?php echo URL . "users/newuser/" ?>" method="post">
+	<form class="form-signup center-block linear-gradient-bg" id="registration" action="<?php echo URL . "users/newuser/" ?>" method="post">
 
 		<h3 style="margin-bottom: 30px">Register</h3>
 
@@ -292,6 +292,12 @@ $(document).ready(function()
 			tos: {
 				required: "You must agree to the website's TOS!"
 			}
+		},
+		highlight: function(element) {
+			$(element).addClass("form-error");
+		},
+		unhighlight: function(element) {
+			$(element).removeClass("form-error");
 		},
 		errorPlacement: function(error, element) {
 			error.insertAfter(element);

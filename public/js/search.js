@@ -2,16 +2,7 @@ function toggleBlockDisplay (blockID) {
 	var selector = "#" + blockID;
 	var status = $(selector).css("display");
 
-	//console.log("block status " + status + " on id " + selector);
-
-	if (status == "block" || status == null) {
-		$(selector).css("display", "none");
-		//console.log("making blocks invisible!");
-	} else {
-		$(selector).css("display", "block");
-		//console.log("making blocks visible!");
-	}
-
+	$(selector).css("display", "block");
 }
 
 //Allowing pressing the enter key to search
@@ -44,16 +35,18 @@ function onSearchClick() {
 }
 
 function formatResults(event) {
-	console.log(event);
+	//console.log(event);
 	var result = JSON.parse(event);
 	var numOfResults = result.length;
 
-	console.log(result);
+	console.log("Search returned " + numOfResults + " results!");
+
+	//console.log(result[5]);
 
 	var pageContent = $("<div></div>").addClass("row");
 	var filter = '<div class="col-sm-3">\
 		<p class="search-title">Refine search</p>\
-			<div class="search-filter">\
+			<div class="search-filter linear-gradient-bg">\
 				<div class="form-group search-filter-price">\
 					<label>Price</label>\
 					<br>\
@@ -138,7 +131,7 @@ function formatResults(event) {
 	//Result page layout.
 
 	for (i = 0; i < resultsPerPage; i++) {
-		var row = $("<div></div>").addClass("row search-result-listing").appendTo($(searchResultContent));
+		var row = $("<div></div>").addClass("row search-result-listing linear-gradient-bg").appendTo($(searchResultContent));
 		var col1 = $("<div></div>").addClass("col-sm-3").appendTo($(row));
 		var col2 = $("<div></div>").addClass("col-sm-9").appendTo($(row));
 		var resultThumbnail = $("<img></img>").addClass("search-result-listing-img").appendTo($(col1));
@@ -170,7 +163,6 @@ function formatResults(event) {
 
 
 	// Handle Pagination events
-	var firstClick = true;
 
 	$(".result-pagination").twbsPagination({
 	        totalPages: numOfPages,
@@ -178,24 +170,32 @@ function formatResults(event) {
 	        onPageClick: function (event, page) {
 	            //Populate HTML divs with results.
 
+	            console.log("page " + page + " clicked.");
+
 	            for (var r = ((page - 1) * resultsPerPage); r < (page * resultsPerPage); r++) {
-	            	//console.log("Inserting result[" + r + "].");
 
 	            	var resultIndex = r % resultsPerPage;
-	            	//console.log("r mod resultsPerPage = " + r % resultsPerPage);
 
-					var resultDiv = $("#search-result-listing-" + r);
+					var resultDiv = $(searchResultContent).find("#search-result-listing-" + resultIndex);
+
+					var furnished;
+
+					if (result[r].furnishing == 1) {
+						furnished = "Yes";
+					} else {
+						furnished = "No";
+					}
 
 					$(resultDiv).find(".search-result-listing-img").attr("src", "data:image/png;base64," + result[r].imageThumbnail);
 					$(resultDiv).find(".search-result-listing-title").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
-					$(resultDiv).find(".search-result-listing-price").text("$9,999");
-					$(resultDiv).find(".search-result-listing-basic-info").text("Bed: 2" + " | " + "Bath: 5" + " | " + "Furnished: Nope");
+					$(resultDiv).find(".search-result-listing-price").text("$" + result[r].price);
+					$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished);
 					$(resultDiv).find(".search-result-listing-btn").text("Rent");
 
-					if (firstClick) {
-						toggleBlockDisplay("search-result-listing-" + r);
-						firstClick = false;
-					}
+
+					toggleBlockDisplay("search-result-listing-" + r);
+
+					
 
 	            }
 			}

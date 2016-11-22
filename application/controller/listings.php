@@ -81,18 +81,18 @@ class Listings extends Controller {
 
 			if ($removedCorrectly){
 				//need to create listing_delete_success page
-				require APP . 'view/_templates/header.php';
-				require APP . 'view/listings/listing_delete_success.php';
-				require APP . 'view/_templates/footer.php';
-
+				// require APP . 'view/_templates/header.php';
+				// require APP . 'view/listings/listing_delete_success.php';
+				// require APP . 'view/_templates/footer.php';
+				echo "SUCCESS";
 			}
 
 			else{
 				$errorMessage = "The listing with the listingID ({$listingID}) was found but not deleted!";
-				require APP . 'view/_templates/header.php';
-				require APP . 'view/problem/error_page.php';
-				require APP . 'view/_templates/footer.php';
-
+				// require APP . 'view/_templates/header.php';
+				// require APP . 'view/problem/error_page.php';
+				// require APP . 'view/_templates/footer.php';
+				echo $errorMessage;
 			}		
 		}
 	}

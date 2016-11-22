@@ -96,6 +96,7 @@
 						<input class="form-control" type="text" name="listingnumofbeds" id="form-numofbeds" placeholder="Number of Bedrooms">
 					</div>
 				</div>
+
 				<div class="form-group row">
 					<label for="form-numofbaths" class="col-sm-2 text-right">Number of Bathrooms</label>
 					<div class="col-sm-10">
@@ -151,7 +152,7 @@
 
 				<div class="row">
 					<div class="col-sm-3"></div>
-					<button class="btn btn-primary col-sm-6" id="submit-listing" type="submit">Post Listing</button>
+					<button class="btn btn-primary col-sm-6" id="submit-listing" type="submit">Save Changes</button>
 					<div class="col-sm-3"></div>
 				</div>
 
@@ -164,6 +165,10 @@
 <script>
 	
 	$(document).ready(function() {
+
+		//TODO:
+		//Populate form fields with existing listing data.
+
 
 		$.validator.addMethod("letters", function(value, element) 
 			{

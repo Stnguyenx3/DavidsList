@@ -2,7 +2,7 @@
 	
     <div class="card">
 
-        <form class="form-signin center-block" id="login-form">
+        <form class="form-signin center-block linear-gradient-bg" id="login-form">
 
         	<h3>Login</h3>
             

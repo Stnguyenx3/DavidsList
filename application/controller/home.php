@@ -72,4 +72,11 @@ class Home extends Controller{
         require APP . 'view/users/register.php';
         require APP . 'view/_templates/footer.php';
 	}
+
+    //Move this to the correct controller, I added this here to work on the page. -Steven
+    public function editlisting() {
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/listings/editlisting.php';
+        require APP . 'view/_templates/footer.php';
+    }
 }

@@ -16,7 +16,7 @@
 		<div class="col-sm-1"></div>
 		<div class="col-sm-10">
 			<h1>Featured Listings</h1>
-			<div class="row featured-listing">
+			<div class="row featured-listing linear-gradient-bg">
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-3 featured-listing-img">
@@ -26,16 +26,18 @@
 							<h3 class="featured-listing-title"><?php echo $newListings["addresses"][0]->getStreetName() ?></h3>
 							<p class="featured-listing-price"><?php echo $newListings["listings"][0]->getPrice() ?></p>
 							<div style="clear: both">
-									<p>
-										Distance: 90mi. | Bed: <?php echo $newListings["listing_details"][0]->getNumberOfBedrooms() ?> | Bath: <?php echo $newListings["listing_details"][0]->getNumberOfBathrooms() ?> | Furnished: <?php echo $newListings["listing_details"][0]->getFurnishing() ? "Yes" : "No" ?>.
-									</p>
+									<ul class="listing-basic-info">
+										<li>Bed: <?php echo $newListings["listing_details"][0]->getNumberOfBedrooms() ?></li>
+										<li>Bath: <?php echo $newListings["listing_details"][0]->getNumberOfBathrooms() ?></li>
+										<li>Distance: #TODO</li>
+									</ul>
 									<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row featured-listing">
+			<div class="row featured-listing linear-gradient-bg">
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-3 featured-listing-img">
@@ -45,16 +47,18 @@
 							<h3 class="featured-listing-title"><?php echo $newListings["addresses"][1]->getStreetName() ?></h3>
 							<p class="featured-listing-price"><?php echo $newListings["listings"][1]->getPrice() ?></p>
 							<div style="clear: both">
-									<p>
-										Distance: 90mi. | Bed: <?php echo $newListings["listing_details"][1]->getNumberOfBedrooms() ?> | Bath: <?php echo $newListings["listing_details"][1]->getNumberOfBathrooms() ?> | Furnished: <?php echo $newListings["listing_details"][1]->getFurnishing() ? "Yes" : "No" ?>.
-									</p>
+									<ul class="listing-basic-info">
+										<li>Bed: <?php echo $newListings["listing_details"][1]->getNumberOfBedrooms() ?></li>
+										<li>Bath: <?php echo $newListings["listing_details"][1]->getNumberOfBathrooms() ?></li>
+										<li>Distance: #TODO</li>
+									</ul>
 									<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row featured-listing">
+			<div class="row featured-listing linear-gradient-bg">
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-3 featured-listing-img">
@@ -64,9 +68,11 @@
 							<h3 class="featured-listing-title"><?php echo $newListings["addresses"][2]->getStreetName() ?></h3>
 							<p class="featured-listing-price"><?php echo $newListings["listings"][2]->getPrice() ?></p>
 							<div style="clear: both">
-									<p>
-										Distance: 90mi. | Bed: <?php echo $newListings["listing_details"][2]->getNumberOfBedrooms() ?> | Bath: <?php echo $newListings["listing_details"][2]->getNumberOfBathrooms() ?> | Furnished: <?php echo $newListings["listing_details"][2]->getFurnishing() ? "Yes" : "No" ?>.
-									</p>
+									<ul class="listing-basic-info">
+										<li>Bed: <?php echo $newListings["listing_details"][2]->getNumberOfBedrooms() ?></li>
+										<li>Bath: <?php echo $newListings["listing_details"][2]->getNumberOfBathrooms() ?></li>
+										<li>Distance: #TODO</li>
+									</ul>
 									<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
 							</div>
 						</div>

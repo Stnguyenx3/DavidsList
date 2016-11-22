@@ -1,51 +1,15 @@
 <div class="container main" id="search-result-container">
-    <script>
-        var map;
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 18,
-                center: new google.maps.LatLng(37.7, 122.5),
-                mapTypeId: 'terrain'
-            });
-
-            //create a script
-            var script = document.createElement('script');
-            // This example uses a local copy of the GeoJSON stored at
-            // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-            script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-            document.getElementsByTagName('head')[0].appendChild(script);
-
-        }
-
-        // Loop through the results array and place a marker for each
-        // set of coordinates.
-        window.eqfeed_callback = function (results) {
-            for (var i = 0; i < results.features.length; i++) {
-                var coords = results.features[i].geometry.coordinates;
-                var latLng = new google.maps.LatLng(coords[1], coords[0]);
-                var marker = new google.maps.Marker({
-                    position: latLng,
-                    map: map
-                });
-            }
-        }
-
-    </script>
-
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWOv3nHrDtvumbxi2wfyzUCLJBiV3ax4k&callback=initMap"
-    type="text/javascript"></script>
 
 	<div class="row">
 
 		<div class="col-sm-3">
 			<p class="search-title">Refine search</p>
 
-			<div class="search-filter">
+			<div class="search-filter linear-gradient-bg">
 
 				<div class="form-group search-filter-price">
 
 					<label>Price</label>
-
 
 					<br>
 
@@ -70,7 +34,6 @@
 					<label for="search-filter-price-range4">
 						<input type="checkbox" id="search-filter-price-range4" value="">$1000 &amp; Above
 					</label>
-
 
 					<div class="form-group">
 						<label>Rooms</label>
@@ -116,7 +79,6 @@
 						</label>
 					</div>
 
-
 				</div>
 
 			</div>
@@ -128,7 +90,7 @@
 			<p class="search-title">Results</p>
 
 			<!--Search results begin -->
-			<div class="row search-result-listing">
+			<div class="row search-result-listing linear-gradient-bg">
 				<div class="col-sm-12">
 					<div class="row">
 						<div class="col-sm-3 search-result-listing-img">
@@ -138,59 +100,16 @@
 							<h3 class="search-result-listing-title">Listing Name</h3>
 							<p class="search-result-listing-price">Price</p>
 							<div style="clear: both">
-									<p>
-										Info Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
-										st mattis ullamcorper. Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e.
-										</p>
-									<a href="#" class="btn btn-primary search-result-listing-btn">Rent</a>
+								<p>
+									Info Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
+									st mattis ullamcorper. Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e.
+								</p>
+								<a href="#" class="btn btn-primary search-result-listing-btn">Rent</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<!--div class="row search-result-listing">
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-sm-3 search-result-listing-img">
-							<img src="http://placehold.it/175x175" alt="placeholder img.">
-						</div>
-						<div class="col-sm-9">
-							<h3 class="search-result-listing-title">Listing Name</h3>
-							<p class="search-result-listing-price">Price</p>
-							<div style="clear: both">
-									<p>
-										Info Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
-										st mattis ullamcorper. Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e.
-										</p>
-									<a href="#" class="btn btn-primary search-result-listing-btn">Rent</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div-->
-
-			<!--div class="row search-result-listing">
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-sm-3 search-result-listing-img">
-							<img src="http://placehold.it/175x175" alt="placeholder img.">
-						</div>
-						<div class="col-sm-9">
-							<h3 class="search-result-listing-title">Listing Name</h3>
-							<p class="search-result-listing-price">Price</p>
-							<div style="clear: both">
-									<p>
-										Info Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
-										st mattis ullamcorper. Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e.
-										</p>
-									<a href="#" class="btn btn-primary search-result-listing-btn">Rent</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div-->	
-
 
 			<!--Search results end -->
 		</div>

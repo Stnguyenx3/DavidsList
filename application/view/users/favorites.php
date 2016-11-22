@@ -1,89 +1,146 @@
-<div class="col-sm-1">
-	<ul id="myPills" class="nav nav-pills nav-stacked">
-		</br></br></br>
-		<li><a href="<?php echo URL. "users/getuser/{$userID}";?>"><h4>Overview</h4></a></li>
+<div class="container" style="margin-top: 25px">
+
+	<div class="row">
+
+		<div class="col-md-2">
+			<ul id="myPills" class="nav nav-pills nav-stacked" style="margin-top: 45px">
+				<li><a href="<?php echo URL. "users/getuser/{$userID}";?>"><h4>Overview</h4></a></li>
 		<li class="active"><a href="<?php echo URL. "users/favorites/{$userID}";?>"><h4>Favorite</h4></a></li>
 		<li><a href="<?php echo URL. "users/userlistings/{$userID}"?>"><h4>My Listing</h4></a></li>
-	</ul>
-</div>
+			</ul>
+		</div>
 
-</br></br>
-<div class="col-sm-7" id="favorite">
-		<table class="table table-responsive" table frame="void">
-			<tr>
-				<td>
-					<div class="row favorite-listing">
-					<div class="col-sm-12">
+		<div class="col-md-10" id="favorite">
+			<table class="table table-responsive" table frame="void">
+				<tr>
+					<td>
 						<div class="row">
-							<div class="col-sm-2">
-								<img src="http://placehold.it/175x175" alt="placeholder img.">
-							</div>
-							<div class="col-sm-10">
-								<h3 class="favorite-listing-title">Listing Name1</h3>
-								<p class="favorite-listing-price">Price</p>
-								<p class="favorite-listing-type">Type</p>
-								<div style="clear: both">
-									<p>
-										listing information
-									</p>
-									<a href="#" class="btn btn-primary">View details</a>
-									<button class="btn btn-primary" type="submit">Delete</button>
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-3">
+										<img src="http://placehold.it/175x175" alt="placeholder img.">
+									</div>
+									<div class="col-md-9">
+										<div class="row">
+
+											<div class="col-md-12">
+												<h3>Listing Name1</h3>
+											</div>
+
+											<div class="col-md-2">
+												<p>Price</p>
+											</div>
+
+											<div class="col-md-2">
+												<p>Type</p>
+											</div>
+
+											<div class="col-md-8"></div>
+
+											<div style="clear: both" class="col-md-10">
+												<p>
+													listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information 
+												</p>
+											</div>
+
+											<div class="col-md-2">
+												<a href="#" class="btn btn-primary">Detail</a>
+												<button class="btn btn-primary" type="submit">Delete</button>
+											</div>
+
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="row favorite-listing">
-					<div class="col-sm-12">
+					</td>
+				</tr>
+				<tr>
+					<td>
 						<div class="row">
-							<div class="col-sm-2">
-								<img src="http://placehold.it/175x175" alt="placeholder img.">
-							</div>
-							<div class="col-sm-10">
-								<h3 class="favorite-listing-title">Listing Name2</h3>
-								<p class="favorite-listing-price">Price</p>
-								<p class="favorite-listing-type">Type</p>
-								<div style="clear: both">
-									<p>
-										listing information
-									</p>
-									<a href="#" class="btn btn-primary">View details</a>
-									<button class="btn btn-primary" type="submit">Delete</button>
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-3">
+										<img src="http://placehold.it/175x175" alt="placeholder img.">
+									</div>
+									<div class="col-md-9">
+										<div class="row">
+
+											<div class="col-md-12">
+												<h3>Listing Name1</h3>
+											</div>
+
+											<div class="col-md-2">
+												<p>Price</p>
+											</div>
+
+											<div class="col-md-2">
+												<p>Type</p>
+											</div>
+
+											<div class="col-md-8"></div>
+
+											<div style="clear: both" class="col-md-10">
+												<p>
+													listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information 
+												</p>
+											</div>
+
+											<div class="col-md-2">
+												<a href="#" class="btn btn-primary">Detail</a>
+												<button class="btn btn-primary" type="submit">Delete</button>
+											</div>
+
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<div class="row favorite-listing">
-					<div class="col-sm-12">
+					</td>
+				</tr><tr>
+					<td>
 						<div class="row">
-							<div class="col-sm-2">
-								<img src="http://placehold.it/175x175" alt="placeholder img.">
-							</div>
-							<div class="col-sm-10">
-								<h3 class="favorite-listing-title">Listing Name3</h3>
-								<p class="favorite-listing-price">Price</p>
-								<p class="favorite-listing-type">Type</p>
-								<div style="clear: both">
-									<p>
-										listing information
-									</p>
-									<a href="#" class="btn btn-primary">View details</a>
-									<button class="btn btn-primary" type="submit">Delete</button>
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-3">
+										<img src="http://placehold.it/175x175" alt="placeholder img.">
+									</div>
+									<div class="col-md-9">
+										<div class="row">
+
+											<div class="col-md-12">
+												<h3>Listing Name1</h3>
+											</div>
+
+											<div class="col-md-2">
+												<p>Price</p>
+											</div>
+
+											<div class="col-md-2">
+												<p >Type</p>
+											</div>
+
+											<div class="col-md-8"></div>
+
+											<div style="clear: both" class="col-md-10">
+												<p>
+													listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information 
+												</p>
+											</div>
+
+											<div class="col-md-2">
+												<a href="#" class="btn btn-primary">Detail</a>
+												<button class="btn btn-primary" type="submit">Delete</button>
+											</div>
+
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				</td>
-			</tr>
-		</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </div>
