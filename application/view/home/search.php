@@ -79,7 +79,6 @@
 						</label>
 					</div>
 
-
 				</div>
 
 			</div>
@@ -101,11 +100,11 @@
 							<h3 class="search-result-listing-title">Listing Name</h3>
 							<p class="search-result-listing-price">Price</p>
 							<div style="clear: both">
-									<p>
-										Info Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
-										st mattis ullamcorper. Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e.
-										</p>
-									<a href="#" class="btn btn-primary search-result-listing-btn">Rent</a>
+								<p>
+									Info Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
+									st mattis ullamcorper. Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e.
+								</p>
+								<a href="#" class="btn btn-primary search-result-listing-btn">Rent</a>
 							</div>
 						</div>
 					</div>

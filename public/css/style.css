@@ -8,6 +8,12 @@ body,
     overflow: hidden;
 }
 
+.custom-border {
+    border: 3px solid  #99CC99;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
 .linear-gradient-bg {
 /*    background: rgba(254,254,254,1);
     background: -moz-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(226,226,226,1) 100%);
@@ -325,7 +331,7 @@ div#header.container {
 }
 
 
-/*Search page*/
+/*Search page, User listings*/
 .search-filter {
     border: 3px solid #99CC99;
     border-radius: 10px;
@@ -351,7 +357,9 @@ div#header.container {
     padding-left: 15px;
 }
 
-.search-result-listing {
+
+.search-result-listing,
+.user-listing {
     margin: 15px;
     border: 3px solid #99CC99;
     border-radius: 10px;
@@ -363,7 +371,8 @@ div#header.container {
     padding-left: 15px;
 }
 
-.search-result-listing-img {
+.search-result-listing-img,
+.user-listing-img {
     margin-top: 15px;
     margin-bottom: 15px;
     width: 200px;
@@ -377,7 +386,8 @@ div#header.container {
     text-align: center;
 }
 
-.search-result-listing-title {
+.search-result-listing-title,
+.user-listing-title {
     font-size: 16px;
     font-weight: 700;
     margin-top: 15px;
@@ -387,12 +397,15 @@ div#header.container {
 
 }
 
-.search-result-listing-price {
+.search-result-listing-price,
+.user-listing-price {
    font-size: 17px;
    padding-left: 15px;
 }
 
-.search-result-listing-btn {
+.search-result-listing-btn,
+.user-listings-edit,
+.user-listings-remove {
     float: right;
     font-size: 16px;
     margin-bottom: 15px;
@@ -442,5 +455,17 @@ div#header.container {
 input[type=file] {
     display: inline;
     border: 1px solid #CCC;
+}
+
+
+/*User Listings*/
+.user-listings-edit {
+    margin: 15px;
+    float: right;
+}
+
+.user-listings-remove {
+    margin: 15px;
+    float: right;
 }
 
