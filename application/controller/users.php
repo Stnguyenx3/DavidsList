@@ -274,6 +274,7 @@ class Users extends Controller {
     		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingObject->getListingId());
     		$listingTempArray["listing"] = $listingResponse["listing"]->jsonSerialize();
     		$listingTempArray["listing_detail"] = $listingResponse["listing_detail"]->jsonSerialize();
+    		$listingTempArray["address"] = $listingResponse["address"]->jsonSerialize();
     		$listingArrayToReturn[] = $listingTempArray;
     	}
 

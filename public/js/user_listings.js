@@ -7,8 +7,6 @@ $(document).ready(function () {
 
 	console.log("userId = " + userId);
 
-
-
 	$.ajax({
 		type:'GET',
 		url: url+"/users/getalluserlistings/" + userId,
@@ -28,7 +26,15 @@ function formatUserListings(event) {
 
 	console.log(event);
 
-	var listings = JSON.parse(event);
+	//var listings = JSON.parse(event);
 
-	console.log("You have " + listings.length + " listings.");
+	console.log("listing is " + event[1].listing.price);
+
+	console.log("address is " + event[1].address.city);
+
+
+
+	
+
+	
 }

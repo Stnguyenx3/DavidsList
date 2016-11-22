@@ -11,7 +11,7 @@
 
 		<div class="col-md-10" id="listings">
 			<table class="table table-responsive" table frame="void">
-				<tr>
+				<!--tr>
 					<td>
 						<div class="row">
 							<div class="col-md-12">
@@ -53,7 +53,8 @@
 							</div>
 						</div>
 					</td>
-				</tr>
+				</tr-->
+
 				<tr>
 					<td>
 						<div class="row">

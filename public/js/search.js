@@ -39,6 +39,8 @@ function formatResults(event) {
 	var result = JSON.parse(event);
 	var numOfResults = result.length;
 
+	console.log("Search returned " + numOfResults + " results!");
+
 	//console.log(result[5]);
 
 	var pageContent = $("<div></div>").addClass("row");
