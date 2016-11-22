@@ -31,7 +31,7 @@
 										<li>Bath: <?php echo $newListings["listing_details"][0]->getNumberOfBathrooms() ?></li>
 										<li>Distance: #TODO</li>
 									</ul>
-									<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
+									<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][0]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
 							</div>
 						</div>
 					</div>
@@ -52,7 +52,7 @@
 										<li>Bath: <?php echo $newListings["listing_details"][1]->getNumberOfBathrooms() ?></li>
 										<li>Distance: #TODO</li>
 									</ul>
-									<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
+									<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][1]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
 							</div>
 						</div>
 					</div>
@@ -73,7 +73,7 @@
 										<li>Bath: <?php echo $newListings["listing_details"][2]->getNumberOfBathrooms() ?></li>
 										<li>Distance: #TODO</li>
 									</ul>
-									<a href="#" class="btn btn-primary featured-listing-btn">Rent</a>
+									<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][2]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
 							</div>
 						</div>
 					</div>

@@ -2,7 +2,7 @@
 	<div class="row rent-out">
 		<div class="col-sm-1"></div>
 		<div class="col-sm-10">
-			<form class="form-rentout linear-gradient-bg" id="rentout" action="#" method="post">
+			<form class="form-rentout linear-gradient-bg" id="edit" action="#" method="post">
 
 				<div class="form-group row">
 					<label for="form-image" class="col-sm-2 text-right">Image</label>

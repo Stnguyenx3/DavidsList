@@ -2,7 +2,6 @@ $(document).ready(function () {
 
 	//Get userid from url
 	var str = (window.location + '').split("/");
-	
 	var userId = str[str.length - 1];
 
 	console.log("userId = " + userId);
@@ -93,6 +92,10 @@ function onClickDeleteListing(event) {
 	});
 }
 
+//Maybe edit this so that it sends the user id as well?
+//That way, no other user can try to edit the page
 function onClickEditListing(event) {
+	var str = (window.location + '').split("/");
+	var userId = str[str.length - 1];
 	window.location.replace(url+"listings/edit/"+event.data.listingId);
 }
