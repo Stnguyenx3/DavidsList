@@ -60,8 +60,12 @@ class Listings extends Controller {
 	}
 
 	//deleteListing
-	//Function to delete a listing's page. Parameter is the id of the listing
-	public function deleteListing($listingID){
+	//Function to delete a listing's page
+	//No parameter, but sends a json that contains the listingId to delete
+	//Prevents anyone from deleting any listing
+	public function deleteListing(){
+
+		$listingID = $_POST["listingId"];
 
 		//thought process: Traverse the table of listings, and find the listing_id of the listing in question. Then delete the respective page
 		$listingRepo = RepositoryFactory::createRepository("listing");
@@ -97,6 +101,35 @@ class Listings extends Controller {
 		}
 	}
 
+	//This function is separate from editListing
+	//This only displays the page to allow editing
+	//The other one actually does the database call to edit
+	public function edit($listingID) {
+		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingID);
+
+		if(!empty($_SESSION)) {
+            $userRepo = RepositoryFactory::createRepository("user");
+            $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+            require APP . "view/_templates/logged_in_header.php";
+        } else {
+            require APP . 'view/_templates/header.php';
+        }
+
+		if ($listingResponse == null){
+			//detail of error page necessary
+			$errorMessage = "Error, Listing not found.";
+			require APP . 'view/problem/error_page.php';
+			require APP . 'view/_templates/footer.php';
+		}
+		else{
+			// $userResponse = UserResponseCreator::createGetUserResponse($listingResponse["listing"]->getId());
+			//the following will send back the header, body, and footer
+			//of the editlisting page
+        	require APP . 'view/listings/editlisting.php';
+        	require APP . 'view/_templates/footer.php';
+		}
+	}
+
 	//editListing
 	//Function to edit a listing. Parameter is the id of the listing. 
 	//External information is JSON encoded data which contains
@@ -127,7 +160,11 @@ class Listings extends Controller {
 			}
 		}
 	*/
-	public function editListing($listingID){
+	//No parameter, but sends a json that contains the listingId to delete
+	//Prevents anyone from deleting any listing
+	public function editListing(){
+		$listingID = $_POST["listingId"];
+
 		$listingRepo = RepositoryFactory::createRepository("listing");
 		$arrayOfListingObjects = $listingRepo->find($listingID, "listingId");
 

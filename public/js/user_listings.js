@@ -9,7 +9,7 @@ $(document).ready(function () {
 
 	$.ajax({
 		type:'GET',
-		url: url+"/users/getalluserlistings/" + userId,
+		url: url+"users/getalluserlistings/" + userId,
 		dataType: "json",
 		success: formatUserListings,
 		error: function(xhr, err, errThrown) {
@@ -78,9 +78,9 @@ function onClickDeleteListing(event) {
 
 	$.ajax({
 		type: 'POST',
-		url: url + "/listings/deletelisting/"+event.data.listingId,
+		url: url + "listings/deletelisting/",
 		data: {
-			userid: userId
+			listingId: event.data.listingId
 		},
 		success: function(e) {
 			console.log(e);
@@ -94,5 +94,5 @@ function onClickDeleteListing(event) {
 }
 
 function onClickEditListing(event) {
-	console.log("I'm editing "+event.data.listingId);
+	window.location.replace(url+"listings/edit/"+event.data.listingId);
 }
