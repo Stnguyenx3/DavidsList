@@ -3,8 +3,6 @@ function toggleBlockDisplay (blockID) {
 	var status = $(selector).css("display");
 
 	$(selector).css("display", "block");
-
-
 }
 
 //Allowing pressing the enter key to search
@@ -41,7 +39,9 @@ function formatResults(event) {
 	var result = JSON.parse(event);
 	var numOfResults = result.length;
 
-	console.log(result[5]);
+	console.log("Search returned " + numOfResults + " results!");
+
+	//console.log(result[5]);
 
 	var pageContent = $("<div></div>").addClass("row");
 	var filter = '<div class="col-sm-3">\
@@ -173,8 +173,6 @@ function formatResults(event) {
 	            console.log("page " + page + " clicked.");
 
 	            for (var r = ((page - 1) * resultsPerPage); r < (page * resultsPerPage); r++) {
-
-	            	console.log("r is " + r);
 
 	            	var resultIndex = r % resultsPerPage;
 
