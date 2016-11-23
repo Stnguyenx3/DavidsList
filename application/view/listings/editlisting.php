@@ -429,7 +429,7 @@
 				<div class="form-group row">
 					<label for="listing-description" class="col-sm-2 text-right">Description</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" id="listing-description" rows="4" value="<?php echo $listingResponse["listing_detail"]->getDescription(); ?>"></textarea>
+						<textarea class="form-control" id="listing-description" rows="4"><?php echo $listingResponse["listing_detail"]->getDescription(); ?></textarea>
 					</div>
 				</div>
 

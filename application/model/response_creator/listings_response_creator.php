@@ -169,7 +169,7 @@ class ListingsResponseCreator {
 		$insertListingDetails = $listingDetailRepo->update($listingDetailObject);
 		$insertListing = $listingRepo->update($listingObject);
 
-		$listingImageInfo = $listingInformation["listing_image"];
+		$listingImageInfo = $newListingInformation["listing_image"];
 
 		$insertListingImage = true;
 		if($listingImageInfo["image"] != null) {
