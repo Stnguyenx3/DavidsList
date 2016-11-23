@@ -281,4 +281,11 @@ class Users extends Controller {
     	echo json_encode($listingArrayToReturn);
     }
 
+    // Added by Steven to implement chat messages page, Remove when done.
+    public function messages($userID) {
+    	require APP . "view/_templates/header.php";
+    	require APP . 'view/users/messages.php';
+      	require APP . 'view/_templates/footer.php';
+    }
+
 } // end class User
