@@ -5,10 +5,9 @@
 			<ul id="myPills" class="nav nav-pills nav-stacked" style="margin-top: 45px">
 				<li><a href="<?php echo URL. "users/getuser/{$userID}";?>"><h4>Overview</h4></a></li>
 		<li><a href="<?php echo URL. "users/favorites/{$userID}";?>"><h4>Favorite</h4></a></li>
-		<li class="active"><a href="<?php echo URL. "users/listings/{$userID}"?>"><h4>My Listing</h4></a></li>
+		<li class="active"><a href="<?php echo URL. "users/userlistings/{$userID}"?>"><h4>My Listing</h4></a></li>
 			</ul>
 		</div>
-
 		<div class="col-md-10" id="listings">
 
 <!-- 			<div class="row user-listing linear-gradient-bg custom-border">

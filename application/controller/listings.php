@@ -60,8 +60,12 @@ class Listings extends Controller {
 	}
 
 	//deleteListing
-	//Function to delete a listing's page. Parameter is the id of the listing
-	public function deleteListing($listingID){
+	//Function to delete a listing's page
+	//No parameter, but sends a json that contains the listingId to delete
+	//Prevents anyone from deleting any listing
+	public function deleteListing(){
+
+		$listingID = $_POST["listingId"];
 
 		//thought process: Traverse the table of listings, and find the listing_id of the listing in question. Then delete the respective page
 		$listingRepo = RepositoryFactory::createRepository("listing");
@@ -81,19 +85,48 @@ class Listings extends Controller {
 
 			if ($removedCorrectly){
 				//need to create listing_delete_success page
-				require APP . 'view/_templates/header.php';
-				require APP . 'view/listings/listing_delete_success.php';
-				require APP . 'view/_templates/footer.php';
-
+				// require APP . 'view/_templates/header.php';
+				// require APP . 'view/listings/listing_delete_success.php';
+				// require APP . 'view/_templates/footer.php';
+				echo "SUCCESS";
 			}
 
 			else{
 				$errorMessage = "The listing with the listingID ({$listingID}) was found but not deleted!";
-				require APP . 'view/_templates/header.php';
-				require APP . 'view/problem/error_page.php';
-				require APP . 'view/_templates/footer.php';
-
+				// require APP . 'view/_templates/header.php';
+				// require APP . 'view/problem/error_page.php';
+				// require APP . 'view/_templates/footer.php';
+				echo $errorMessage;
 			}		
+		}
+	}
+
+	//This function is separate from editListing
+	//This only displays the page to allow editing
+	//The other one actually does the database call to edit
+	public function edit($listingID) {
+		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingID);
+
+		if(!empty($_SESSION)) {
+            $userRepo = RepositoryFactory::createRepository("user");
+            $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+            require APP . "view/_templates/logged_in_header.php";
+        } else {
+            require APP . 'view/_templates/header.php';
+        }
+
+		if ($listingResponse == null){
+			//detail of error page necessary
+			$errorMessage = "Error, Listing not found.";
+			require APP . 'view/problem/error_page.php';
+			require APP . 'view/_templates/footer.php';
+		}
+		else{
+			// $userResponse = UserResponseCreator::createGetUserResponse($listingResponse["listing"]->getId());
+			//the following will send back the header, body, and footer
+			//of the editlisting page
+        	require APP . 'view/listings/editlisting.php';
+        	require APP . 'view/_templates/footer.php';
 		}
 	}
 
@@ -125,9 +158,14 @@ class Listings extends Controller {
 				"zipcode": $('#test-zipcode').val(),
 				"state": $('#test-state').val()
 			}
+			"listing_image": {
+				"image": data.target.result
+			}
 		}
 	*/
-	public function editListing($listingID){
+	public function editListing(){
+		$listingID = $_POST["listingId"];
+
 		$listingRepo = RepositoryFactory::createRepository("listing");
 		$arrayOfListingObjects = $listingRepo->find($listingID, "listingId");
 
@@ -186,10 +224,20 @@ class Listings extends Controller {
 		}
 	*/
 	public function newListing(){
-		$createdCorrectly = ListingsResponseCreator::createNewListingResponse($_POST);
+		$userRepo = RepositoryFactory::createRepository("user");
+        $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
 
-		if($createdCorrectly) {
-			//message it created good
+        $_POST["user_id"] = $arrayOfUserObjects[0]->getId();
+
+		$createdResponse = ListingsResponseCreator::createNewListingResponse($_POST);
+
+		if($createdResponse["created_correctly"]) {
+			//redirect to listings
+			// header('Location: ' . URL . 'listings/getlisting/' . $createdResponse["listing_id"]);
+			$arrayOfResults = $listingRepo->find($arrayOfUserObjects[0]->getId(), "userid");
+			$listing = $arrayOfResults[count($arrayOfResults)-1];
+			$listingID = $listing->getListingId();
+			echo $listingID;
 		} else {
 			//message it created bad
 		}

@@ -138,7 +138,8 @@ function formatResults(event) {
 		var listingName = $("<p></p>").addClass("search-result-listing-title").appendTo($(col2));
 		var listingPrice = $("<p></p>").addClass("search-result-listing-price").appendTo($(col2));
 		var listingBasicInfo = $("<p></p>").addClass("search-result-listing-basic-info").appendTo($(col2));
-		var rentButton = $("<a></a>").addClass("btn btn-primary search-result-listing-btn").appendTo($(col2));
+		var rentButton = $("<a></a>").addClass("btn btn-primary search-result-listing-btn")
+							.appendTo($(col2));
 
 		var rowID = "search-result-listing-"+i;
 		$(row).attr("id", rowID);
@@ -190,7 +191,7 @@ function formatResults(event) {
 					$(resultDiv).find(".search-result-listing-title").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
 					$(resultDiv).find(".search-result-listing-price").text("$" + result[r].price);
 					$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished);
-					$(resultDiv).find(".search-result-listing-btn").text("Rent");
+					$(resultDiv).find(".search-result-listing-btn").click({listingId: result[r].listingId}, onClickToListings).text("Rent");
 
 
 					toggleBlockDisplay("search-result-listing-" + r);
@@ -212,6 +213,10 @@ function enterPressed(event) {
 		return true;
 	}
 
+}
+
+function onClickToListings(event) {
+	window.location.replace(url+"listings/getlisting/"+event.data.listingId);
 }
 
 function updateSearchResults(currentPage) {

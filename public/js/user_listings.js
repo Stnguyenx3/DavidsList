@@ -2,14 +2,13 @@ $(document).ready(function () {
 
 	//Get userid from url
 	var str = (window.location + '').split("/");
-	
 	var userId = str[str.length - 1];
 
 	console.log("userId = " + userId);
 
 	$.ajax({
 		type:'GET',
-		url: url+"/users/getalluserlistings/" + userId,
+		url: url+"users/getalluserlistings/" + userId,
 		dataType: "json",
 		success: formatUserListings,
 		error: function(xhr, err, errThrown) {
@@ -45,8 +44,12 @@ function formatUserListings(event) {
 			var p0 = $("<p></p>").addClass("user-listing-price").appendTo($(col2)); //Represents the price of listing
 			var div = $("<div></div>").css("clear", "both").appendTo($(col2));
 			var p1 = $("<p></p>").appendTo($(div));
-			var a0 = $("<a></a>").addClass("btn btn-primary user-listings-edit").appendTo($(div));
-			var a1 = $("<a></a>").addClass("btn btn-primary user-listings-remove").appendTo($(div));
+			var a0 = $("<a></a>").addClass("btn btn-primary user-listings-edit")
+						.click({listingId: event[i].listing.listingId}, onClickEditListing)
+						.appendTo($(div));
+			var a1 = $("<a></a>").addClass("btn btn-primary user-listings-remove")
+						.click({listingId: event[i].listing.listingId}, onClickDeleteListing)
+						.appendTo($(div));
 
 			//Store listing inforation into variables.
 			var listingImg = "data:image/png;base64,";// TODO get img from db.
@@ -66,4 +69,33 @@ function formatUserListings(event) {
 		
 	});
 
+}
+
+function onClickDeleteListing(event) {
+	var str = (window.location + '').split("/");
+	var userId = str[str.length - 1];
+
+	$.ajax({
+		type: 'POST',
+		url: url + "listings/deletelisting/",
+		data: {
+			listingId: event.data.listingId
+		},
+		success: function(e) {
+			console.log(e);
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+	});
+}
+
+//Maybe edit this so that it sends the user id as well?
+//That way, no other user can try to edit the page
+function onClickEditListing(event) {
+	var str = (window.location + '').split("/");
+	var userId = str[str.length - 1];
+	window.location.replace(url+"listings/edit/"+event.data.listingId);
 }
