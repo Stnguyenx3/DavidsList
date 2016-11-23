@@ -122,7 +122,10 @@ class ListingsResponseCreator {
 			$insertListingImage = ListingImageResponseCreator::createNewListingImageResponse($listingID, $listingImageInfo);
 		}
 
-		return $insertListing and $insertListingDetail and $insertAddress and $insertListingImage;
+		return array(
+			"listing_id" => $listingID,
+			"created_correctly" => $insertListing and $insertListingDetail and $insertAddress and $insertListingImage
+		);
 
 	}
 
@@ -166,6 +169,13 @@ class ListingsResponseCreator {
 		$insertListingDetails = $listingDetailRepo->update($listingDetailObject);
 		$insertListing = $listingRepo->update($listingObject);
 
-		return $insertAddress and $insertListingDetails and $insertListing;
+		$listingImageInfo = $listingInformation["listing_image"];
+
+		$insertListingImage = true;
+		if($listingImageInfo["image"] != null) {
+			$insertListingImage = ListingImageResponseCreator::createNewListingImageResponse($listingID, $listingImageInfo);
+		}
+
+		return $insertAddress and $insertListingDetails and $insertListing and $insertListingImage;
 	}
 }

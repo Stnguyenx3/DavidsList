@@ -8,15 +8,30 @@
 					<label for="form-image" class="col-sm-2 text-right">Image</label>
 					<div class="col-sm-10">
 						<input type="file" name="listing-image" id="form-image" multiple>
-						<button class="btn-link" id="upload-image" type="submit" onclick='uploadImage()'>Upload</button>
 					</div>
 
+				</div>
+
+				<div class="form-group row">
+					<label for="form-price" class="col-sm-2 text-right">Price</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" name="listingprice" id="form-price" placeholder="Price">
+					</div>
 				</div>
 
 				<div class="form-group row">
 					<label for="form-address" class="col-sm-2 text-right">Address</label>
 					<div class="col-sm-10">
 						<input class="form-control" type="text" name="listingaddress" id="form-address" placeholder="address">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 text-right">Approximate Address</label>
+					<div class="col-sm-10">
+						<label for="listing-internet">
+							<input type="checkbox" name="listingaddressapprox" id="form-approx" value="approximate">
+						</label>
 					</div>
 				</div>
 
@@ -128,7 +143,7 @@
 							<input type="checkbox" name="listingmisc" id="listing-internet" value="internet">Internet
 						</label>
 						<label for="listing-pets">
-							<input type="checkbox" name="listingmisc" id="listing-pets" value="internet">Pets
+							<input type="checkbox" name="listingmisc" id="listing-pets" value="pet">Pets
 						</label>
 						<label for="listing-elevator">
 							<input type="checkbox" name="listingmisc" id="listing-elevator" value="elevtor">Elevtor
@@ -161,6 +176,8 @@
 	</div>
 </div>
 
+<script src = "<?php echo URL; ?>js/listings.js"></script>
+
 <script>
 	
 	$(document).ready(function() {
@@ -184,9 +201,15 @@
 					listingstate: {
 						required: true
 					},
-					listingzipcode: {
+					listingprice: {
 						required: true,
 						number: true
+					},
+					listingzipcode: {
+						required: true,
+						number: true,
+						minlength: 5,
+						maxlength: 5
 					},
 					listingnumofbeds: {
 						required: true,
@@ -233,10 +256,10 @@
 				errorPlacement: function(error, element) {
 					error.insertAfter(element);
 					error.css('color', '#ff0000');
-				},
-				submitHandler: function(form) {
-					form.submit();
 				}
+				// submitHandler: function(form) {
+				// 	form.submit();
+				// }
 
 			});
 		});

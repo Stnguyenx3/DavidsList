@@ -158,10 +158,11 @@ class Listings extends Controller {
 				"zipcode": $('#test-zipcode').val(),
 				"state": $('#test-state').val()
 			}
+			"listing_image": {
+				"image": data.target.result
+			}
 		}
 	*/
-	//No parameter, but sends a json that contains the listingId to delete
-	//Prevents anyone from deleting any listing
 	public function editListing(){
 		$listingID = $_POST["listingId"];
 
@@ -223,10 +224,20 @@ class Listings extends Controller {
 		}
 	*/
 	public function newListing(){
-		$createdCorrectly = ListingsResponseCreator::createNewListingResponse($_POST);
+		$userRepo = RepositoryFactory::createRepository("user");
+        $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
 
-		if($createdCorrectly) {
-			//message it created good
+        $_POST["user_id"] = $arrayOfUserObjects[0]->getId();
+
+		$createdResponse = ListingsResponseCreator::createNewListingResponse($_POST);
+
+		if($createdResponse["created_correctly"]) {
+			//redirect to listings
+			// header('Location: ' . URL . 'listings/getlisting/' . $createdResponse["listing_id"]);
+			$arrayOfResults = $listingRepo->find($arrayOfUserObjects[0]->getId(), "userid");
+			$listing = $arrayOfResults[count($arrayOfResults)-1];
+			$listingID = $listing->getListingId();
+			echo $listingID;
 		} else {
 			//message it created bad
 		}

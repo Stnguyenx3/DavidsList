@@ -23,6 +23,7 @@ class ListingImageResponseCreator {
 
 	public static function createNewListingImageResponse($listingID, $listingImageInfo) {
 		$listingImageRepo = RepositoryFactory::createRepository("listing_image");
+		$newListingImage = new ListingImage();
 
 		$image = explode(",", $listingImageInfo["image"]);
 		$newListingImage->setListingId($listingID);
