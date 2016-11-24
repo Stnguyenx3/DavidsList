@@ -36,12 +36,6 @@
 				<img src="<?php echo URL; ?>img/logo.png" height="100" alt="logo">
 			</div>
 			
-<!-- 			<div class="col-sm-9" id="search-bar">
-    				<input id="search-input" type="text" placeholder="City, Street, Zipcode..." onkeypress="return enterPressed(event)" required autofocus/><button id="search-get" type="button" class="btn btn-primary" onclick="onSearchClick()">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                    </button>
-			</div> -->
-			
 		</div>
 
     <!-- navigation -->
@@ -68,12 +62,6 @@
 	    	</div>
 
     	</div>
-
-
-<!--         <a href="<?php echo URL. "home/index" ; ?>">home</a>
-        <a href="<?php echo URL. "home/rentout" ; ?>">rent out</a>
-        <a href="<?php echo URL. "info/about" ; ?>">about</a> -->
-
 
     </div>
 
