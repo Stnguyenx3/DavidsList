@@ -112,7 +112,7 @@ function formatResults(event) {
 
 
 			//Display message to user.
-			var row = $("<div></div>").addClass("row search-result-listing").appendTo($(searchResultContent));
+			var row = $("<div></div>").addClass("row search-result-listing linear-gradient-bg").appendTo($(searchResultContent));
 			var col = $("<div></div>").addClass("col-sm-12").appendTo($(row));
 			var message = $("<p></p>").addClass("search-result-listing-null").appendTo($(col));
 
