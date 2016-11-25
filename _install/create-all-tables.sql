@@ -67,6 +67,15 @@ CREATE TABLE `f16g01`.`listingDetail`(
 	PRIMARY KEY(`listingId`)
 );
 
+CREATE TABLE `f16g01`.`message` (
+	`listingId` INT(4) NOT NULL,
+	`senderUserId` INT(4) NOT NULL,
+	`recipientUserId` INT(4) NOT NULL,
+	`message` VARCHAR(2000) NOT NULL,
+	`datetime` DATETIME DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(`listingId`)
+);
+
 CREATE TABLE `f16g01`.`listingImage`(
 	`listingID` INT(4) NOT NULL,
 	`image` LONGBLOB,
