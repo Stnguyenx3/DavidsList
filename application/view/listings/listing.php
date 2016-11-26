@@ -111,7 +111,7 @@
 
 							<button type="button" class="btn btn-primary rent-button">Rent</button>
 
-							<button type="button" class="btn btn-primary listing-favorite-btn">
+							<button type="button" class="btn btn-primary listing-favorite-btn" onclick="onFavoriteClick()">
 								<span class="glyphicon glyphicon-heart"></span> Favorite
 							</button>
 							

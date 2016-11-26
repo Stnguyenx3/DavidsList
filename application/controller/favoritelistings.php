@@ -27,7 +27,6 @@ class FavoriteListings extends Controller{
 	 * Adds a listing to a users' list of favorite listings.
 	 * 
 	 * External data is JSON object containing the following key-value pairs:
-	 *     "userId" => $this->userId;
      *     "$listingId" => $this->$listingId.
 	 * 
 	 * @todo Add error checking / validation (for example, check to make sure the
@@ -36,14 +35,21 @@ class FavoriteListings extends Controller{
 	 */
 	public function addFavorite(){
 		// build FavoriteListing object from external JSON data
-		$favoriteListing = new FavoriteListing();
-		$favoriteListing->setUserId($_POST("userId"));
-		$favoriteListing->setListingId($POST("listingId"));
-		
-		// add the FavoriteListing to the DB
-        $favoriteListingsRepo = RepositoryFactory::createRepository(
-				"favorite_listing");		
-		$favoriteListingsRepo->save($favoriteListing);	
+		if(!empty($_SESSION)) {
+			$userRepo = RepositoryFactory::createRepository("user");
+        	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+
+			$favoriteListing = new FavoriteListing();
+			$favoriteListing->setUserId($arrayOfUserObjects[0]->getId());
+			$favoriteListing->setListingId($_POST["listingId"]);
+			
+			// add the FavoriteListing to the DB
+	        $favoriteListingsRepo = RepositoryFactory::createRepository(
+					"favorite_listing");		
+			echo $favoriteListingsRepo->save($favoriteListing);	
+		} else {
+			echo "You are not logged in";
+		}
 	} // end function addFavorite
 	
 	
@@ -51,7 +57,6 @@ class FavoriteListings extends Controller{
 	 * Deletes a listing from a user's list of favorite listings.
 	 * 
 	 * External data is JSON object containing the following ket-value pairs:
-	 *     "userId" => $this->userId,
      *     "$listingId" => $this->$listingId,
 	 * 
 	 * @todo Add error checking / validation (for example, check to make sure the
@@ -59,9 +64,11 @@ class FavoriteListings extends Controller{
 	 */
 	public function deleteFavorite(){
 		// build FavoriteListing object from external JSON data
+		$userRepo = RepositoryFactory::createRepository("user");
+        $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
 		$favoriteListing = new FavoriteListing();
-		$favoriteListing->setUserId($_POST("userId"));
-		$favoriteListing->setListingId($POST("listingId"));
+		$favoriteListing->setUserId($arrayOfUserObjects[0]->getId());
+		$favoriteListing->setListingId($_POST["listingId"]);
 		
 		// remove the FavoriteListing from the DB
         $favoriteListingsRepo = RepositoryFactory::createRepository(
