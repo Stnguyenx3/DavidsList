@@ -17,15 +17,6 @@
  */
 
 class Listings extends Controller {
-	//index
-	// This method handles what happens when you move http://yourproject/home/index
-	//TODO: Show all listings in a paginated format
-	public function index(){
-		require APP . 'view/_templates/header.php';
-		require APP . 'view/home/index.php';
-		require APP . 'view/_templates/footer.php';
-	}
-
 	//getListing
 	//Function to return a listing's page. Parameter is the id of the listing
 	//Returns HTML

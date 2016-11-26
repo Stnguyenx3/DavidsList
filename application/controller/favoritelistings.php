@@ -11,13 +11,6 @@
  *   1) A function to add a FavoriteListing 
  *   2) A function to delete a FavoriteListing
  * 
- * This class also contains a temporary test function, testDelete, which
- * confirms that the method I employ in the deleteFavorite function should
- * work.
- * 
- * TODO: Both functions should be updated to include error checking / validation.
- * 
- * Both functions need to be tested.
  * 
  * Copyright (C) 2016, Paul Derugin
  */
@@ -28,9 +21,6 @@ class FavoriteListings extends Controller{
 	 * 
 	 * External data is JSON object containing the following key-value pairs:
      *     "$listingId" => $this->$listingId.
-	 * 
-	 * @todo Add error checking / validation (for example, check to make sure the
-	 * listingId is valid).
 	 * 
 	 */
 	public function addFavorite(){
@@ -58,9 +48,6 @@ class FavoriteListings extends Controller{
 	 * 
 	 * External data is JSON object containing the following ket-value pairs:
      *     "$listingId" => $this->$listingId,
-	 * 
-	 * @todo Add error checking / validation (for example, check to make sure the
-	 *     listingId is valid).
 	 */
 	public function deleteFavorite(){
 		// build FavoriteListing object from external JSON data
@@ -76,28 +63,4 @@ class FavoriteListings extends Controller{
 		$favoriteListingsRepo->remove($favoriteListing);			
 	} // end function deleteFavorite
 	
-	
-	/**
-	 * Temporary function confirms that I have the right idea on how to
-	 * delete a favorite listing, given a userID and a listingID.
-	 * 
-	 * The function is executed when the user navigates to the URL
-	 * .../favoritelistings/testdelete/x-m, where x = userID, m = listingID 
-	 * of the listing that is to be removed. 
-	 * 
-	 * @param string $userIDAndFavoriteListingID Should be in the format "x-m", 
-	 * where x = userID, m = listingID of the listing that is to be removed.
-	 */
-	public function testDelete($userIDAndFavoriteListingID){
-		$params = explode("-", $userIDAndFavoriteListingID);
-		
-		$favoriteListing = new FavoriteListing();
-		$favoriteListing->setUserId($params[0]);
-		$favoriteListing->setListingId($params[1]);
-		
-		// remove the FavoriteListing from the DB
-        $favoriteListingsRepo = RepositoryFactory::createRepository(
-				"favorite_listing");		
-		$favoriteListingsRepo->remove($favoriteListing);			
-	} // end function testDelete
 } // end class FavoriteListings
