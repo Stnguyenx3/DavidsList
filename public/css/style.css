@@ -370,7 +370,8 @@ div#header.container {
 
 
 .search-result-listing,
-.user-listing {
+.user-listing,
+.user-favorite {
     margin: 15px;
     border: 3px solid #99CC99;
     border-radius: 10px;
@@ -383,7 +384,8 @@ div#header.container {
 }
 
 .search-result-listing-img,
-.user-listing-img {
+.user-listing-img,
+.user-favorite-img {
     margin-top: 15px;
     margin-bottom: 15px;
     width: 200px;
@@ -398,7 +400,8 @@ div#header.container {
 }
 
 .search-result-listing-title,
-.user-listing-title {
+.user-listing-title,
+.user-favorite-title {
     font-size: 16px;
     font-weight: 700;
     margin-top: 15px;
@@ -409,14 +412,16 @@ div#header.container {
 }
 
 .search-result-listing-price,
-.user-listing-price {
+.user-listing-price,
+.user-favorite-price {
    font-size: 17px;
    padding-left: 15px;
 }
 
 .search-result-listing-btn,
 .user-listings-edit,
-.user-listings-remove {
+.user-listings-remove,
+.user-favorite-remove {
     float: right;
     font-size: 16px;
     margin-bottom: 15px;
@@ -469,13 +474,14 @@ input[type=file] {
 }
 
 
-/*User Listings*/
+/*User Listings and favorites*/
 .user-listings-edit {
     margin: 15px;
     float: right;
 }
 
-.user-listings-remove {
+.user-listings-remove,
+.user-favorite-remove {
     margin: 15px;
     float: right;
 }

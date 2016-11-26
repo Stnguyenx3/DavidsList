@@ -10,137 +10,30 @@
 			</ul>
 		</div>
 
-		<div class="col-md-10" id="favorite">
-			<table class="table table-responsive" table frame="void">
-				<tr>
-					<td>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-3">
-										<img src="http://placehold.it/175x175" alt="placeholder img.">
-									</div>
-									<div class="col-md-9">
-										<div class="row">
+		<div class="col-md-10" id="favorites">
 
-											<div class="col-md-12">
-												<h3>Listing Name1</h3>
-											</div>
-
-											<div class="col-md-2">
-												<p>Price</p>
-											</div>
-
-											<div class="col-md-2">
-												<p>Type</p>
-											</div>
-
-											<div class="col-md-8"></div>
-
-											<div style="clear: both" class="col-md-10">
-												<p>
-													listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information 
-												</p>
-											</div>
-
-											<div class="col-md-2">
-												<a href="#" class="btn btn-primary">Detail</a>
-												<button class="btn btn-primary" type="submit">Delete</button>
-											</div>
-
-										</div>
-									</div>
-								</div>
+<!-- 		<div class="row user-favorite linear-gradient-bg custom-border">
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-sm-3 user-favorite-img">
+							<img src="http://placehold.it/175x175" alt="placeholder img.">
+						</div>
+						<div class="col-sm-9">
+							<h3 class="user-favorite-title">Listing Name</h3>
+							<p class="user-favorite-price">Price</p>
+							<div style="clear: both">
+								<p>
+									Info Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e
+									st mattis ullamcorper. Duis luctus pulvinar eros vel volutpat. Morbi ultrices dapibus hendrerit. Sed consectetur nibh et e.
+								</p>
+								<a href="#" class="btn btn-primary user-favorite-remove">Remove</a>
 							</div>
 						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-3">
-										<img src="http://placehold.it/175x175" alt="placeholder img.">
-									</div>
-									<div class="col-md-9">
-										<div class="row">
+					</div>
+				</div>
+			</div>
+-->
 
-											<div class="col-md-12">
-												<h3>Listing Name1</h3>
-											</div>
-
-											<div class="col-md-2">
-												<p>Price</p>
-											</div>
-
-											<div class="col-md-2">
-												<p>Type</p>
-											</div>
-
-											<div class="col-md-8"></div>
-
-											<div style="clear: both" class="col-md-10">
-												<p>
-													listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information 
-												</p>
-											</div>
-
-											<div class="col-md-2">
-												<a href="#" class="btn btn-primary">Detail</a>
-												<button class="btn btn-primary" type="submit">Delete</button>
-											</div>
-
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</td>
-				</tr><tr>
-					<td>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-3">
-										<img src="http://placehold.it/175x175" alt="placeholder img.">
-									</div>
-									<div class="col-md-9">
-										<div class="row">
-
-											<div class="col-md-12">
-												<h3>Listing Name1</h3>
-											</div>
-
-											<div class="col-md-2">
-												<p>Price</p>
-											</div>
-
-											<div class="col-md-2">
-												<p >Type</p>
-											</div>
-
-											<div class="col-md-8"></div>
-
-											<div style="clear: both" class="col-md-10">
-												<p>
-													listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information listing information 
-												</p>
-											</div>
-
-											<div class="col-md-2">
-												<a href="#" class="btn btn-primary">Detail</a>
-												<button class="btn btn-primary" type="submit">Delete</button>
-											</div>
-
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</td>
-				</tr>
-			</table>
 		</div>
 	</div>
 </div>
