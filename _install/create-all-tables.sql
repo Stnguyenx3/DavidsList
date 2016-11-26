@@ -24,7 +24,6 @@ CREATE TABLE `f16g01`.`userImage`(
 	`userid` INT(4) NOT NULL,
 	`image` LONGBLOB,
 	`imageThumbnail` BLOB,
-	PRIMARY KEY(`userid`)
 ); 
 
 CREATE TABLE `f16g01`.`listing` (
@@ -51,7 +50,6 @@ CREATE TABLE `f16g01`.`address` (
 CREATE TABLE `f16g01`.`favoriteListing` (
 	`userid` INT(4) NOT NULL,
 	`listingId` INT(4) NOT NULL,
-	PRIMARY KEY(`listingId`)
 );
 
 CREATE TABLE `f16g01`.`listingDetail`(
@@ -73,15 +71,12 @@ CREATE TABLE `f16g01`.`message` (
 	`recipientUserId` INT(4) NOT NULL,
 	`message` VARCHAR(2000) NOT NULL,
 	`datetime` DATETIME DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY(`listingId`)
 );
 
 CREATE TABLE `f16g01`.`listingImage`(
 	`listingID` INT(4) NOT NULL,
 	`image` LONGBLOB,
 	`imageThumbnail` BLOB,
-
-  PRIMARY KEY (`listingID`)
   #UNIQUE KEY `email` (`email`)
   # Used 'id' to link tables together, also removed 'renter' and 'owner' flags, additionally added 'listingID' to tie 'listings' and 'listingID' tables together
 );
