@@ -41,8 +41,10 @@ $('#rentout').submit(function (e) {
 			url: url+"/listings/newlisting/",
 			data: listingInformation,
 			success: function(event){
-				// window.location.replace(url+"listings/getlisting/"+event);
-				console.log(event);
+				let splitString = event.split(" ");
+				let listingId = splitString[11];
+				listingId = listingId.replace(/\'/g, "");
+				window.location.replace(url+"listings/getlisting/"+listingId);
 			},
 			error: function(xhr, err, errThrown) {
 				console.log("I failed");
@@ -121,5 +123,33 @@ function onEditLoad(data) {
 			console.log(err);
 			console.log(errThrown);
 		},
+	});
+}
+
+function onFavoriteClick() {
+	var str = (window.location + '').split("/");
+	var listingID = str[str.length - 1];
+
+	favoriteInformation = {
+		listingId: listingID
+	};
+
+	$.ajax({
+		type:'POST',
+		url: url+"favoritelistings/addfavorite/",
+		data: favoriteInformation,
+		success: function(event) {
+			if(event === 1) {
+				//Display something that says it's favorited
+				console.log(event);
+			} else {
+				console.log(event);
+			}
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
 	});
 }
