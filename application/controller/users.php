@@ -275,6 +275,8 @@ class Users extends Controller {
     		$listingTempArray["listing"] = $listingResponse["listing"]->jsonSerialize();
     		$listingTempArray["listing_detail"] = $listingResponse["listing_detail"]->jsonSerialize();
     		$listingTempArray["address"] = $listingResponse["address"]->jsonSerialize();
+            //Hardcoding one image for now
+            $listingTempArray["listing_images"] = base64_encode($listingResponse["listing_images"][0]->getImage());
     		$listingArrayToReturn[] = $listingTempArray;
     	}
 
@@ -298,6 +300,8 @@ class Users extends Controller {
             $listingTempArray["listing"] = $listingResponse["listing"]->jsonSerialize();
             $listingTempArray["listing_detail"] = $listingResponse["listing_detail"]->jsonSerialize();
             $listingTempArray["address"] = $listingResponse["address"]->jsonSerialize();
+            //Hardcoding one image for now
+            $listingTempArray["listing_images"] = base64_encode($listingResponse["listing_images"][0]->getImage());
             $listingArrayToReturn[] = $listingTempArray;
         }
 
