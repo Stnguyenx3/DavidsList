@@ -21,11 +21,11 @@
 
 							<div class="row">
 								<div class="col-md-4"><label style="padding-left: 15px; padding-right: 15px;">Username</label></div>
-								<div class="col-md-8"><p class="username">exampleUser1</p></div>
+								<div class="col-md-8"><p class="username"><?php echo $userResponse["user"]->getUsername() ?></p></div>
 							</div>
 							<div class="row">
 								<div class="col-md-3"><label style="padding-left: 15px; padding-right: 15px;">Email</label></div>
-								<div class="col-md-9"><p class="email">example@email.com</p></div>
+								<div class="col-md-9"><p class="email"><?php echo $userResponse["user"]->getEmail() ?></p></div>
 							</div>
 
 

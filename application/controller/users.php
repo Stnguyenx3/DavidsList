@@ -33,7 +33,7 @@ class Users extends Controller {
 
     	//Get the user object corresponding to the user id
     	$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
-
+        $arrayOfUserObjects;
     	//Checks if there is a session(whether the user is logged in or not)
     	//If so, require the logged in header, with user profile/logout
     	//If not, require the regular header with login/register
@@ -51,14 +51,19 @@ class Users extends Controller {
 	        $errorMessage = "User not found";
 	        require APP . "view/problem/error_page.php";
         }
+        else if(empty($_SESSION)) {
+            require APP . 'view/users/visitor.php';
+        }
 		else {
-            require APP . "view/users/index.php";
+            if($arrayOfUserObjects[0]->getId() == $userResponse["user"]->getId())
+                require APP . "view/users/index.php";
+            else
+                require APP . 'view/users/visitor.php';
         }
 
         //Lastly require the footer which will never change
     	require APP . "view/_templates/footer.php";
     } // end function getUser
-
 	
 	//Seems unsafe to publically have this available for anyone to delete a user from
 	//the database
@@ -289,12 +294,6 @@ class Users extends Controller {
     	require APP . "view/_templates/header.php";
     	require APP . 'view/users/messages.php';
       	require APP . 'view/_templates/footer.php';
-    }
-
-    public function visitor($userID) {
-        require APP . "view/_templates/header.php";
-        require APP . 'view/users/visitor.php';
-        require APP . 'view/_templates/footer.php';
     }
 
     // END -Added by Steven to implement chat messages page, Remove when done.
