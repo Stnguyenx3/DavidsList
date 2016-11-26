@@ -74,7 +74,7 @@ function onClickDeleteListing(event) {
 
 	$.ajax({
 		type: 'POST',
-		url: url + "favoritelistings/deletefavorites/",
+		url: url + "favoritelistings/deletefavorite/",
 		data: {
 			listingId: event.data.listingId
 		},
