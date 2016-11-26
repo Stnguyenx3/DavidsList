@@ -52,17 +52,17 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
  * Configuration for: Database
  * This is the place where you define your database credentials, database type etc.
  */
-// define('DB_TYPE', 'mysql');
-// define('DB_HOST', '127.0.0.1');
-// define('DB_NAME', 'f16g01');  #Change to student_USERNAME
-// define('DB_USER', 'f16g01'); 			#Used for testing, change to your mysql credentials
-// define('DB_PASS', 'f16g01');
-// define('DB_CHARSET', 'utf8');
-
-//HOSTGATOR INFO
 define('DB_TYPE', 'mysql');
 define('DB_HOST', '127.0.0.1');
-define('DB_NAME', 'stnguyen_DavidsList');
-define('DB_USER', 'stnguyen_f16g01'); 			#Used for testing, change to your mysql credentials
+define('DB_NAME', 'f16g01');  #Change to student_USERNAME
+define('DB_USER', 'f16g01'); 			#Used for testing, change to your mysql credentials
 define('DB_PASS', 'f16g01');
 define('DB_CHARSET', 'utf8');
+
+//HOSTGATOR INFO
+// define('DB_TYPE', 'mysql');
+// define('DB_HOST', '127.0.0.1');
+// define('DB_NAME', 'stnguyen_DavidsList');
+// define('DB_USER', 'stnguyen_f16g01'); 			#Used for testing, change to your mysql credentials
+// define('DB_PASS', 'f16g01');
+// define('DB_CHARSET', 'utf8');

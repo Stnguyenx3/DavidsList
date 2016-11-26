@@ -1,5 +1,17 @@
 $('#rentout').submit(function (e) {
 	e.preventDefault();
+
+	var fileUploadField = document.getElementById('form-image');
+	var fileList = new Array();
+
+	for (var f = 0; f < fileUploadField.files.length; f++){
+		//push each image file to array
+		fileList.push(fileUploadField.files[f]);
+	}
+
+	console.log("fileList is " + fileList);
+
+
 	var logo = $('#form-image')[0].files[0];
 	var reader = new FileReader();
 	reader.onload = function(data) {
