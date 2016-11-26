@@ -8,39 +8,39 @@
 			</ul>
 		</div>
 
-		<div class="col-md-10">
+		<div class="col-md-10 user-overview custom-border linear-gradient-bg">
 			<form id="accountoverview" action="#" method="post">
 				<div class="form-group row">
 
 					<div class="col-md-1"></div>
-					<div>
-						<div class="col-md-3">
-							<img src="http://placehold.it/175x175" alt="placeholder img.">
-						</div>
-						<div class="col-md-5">
+					<div class="col-md-3">
+						<img src="http://placehold.it/175x175" alt="placeholder img.">
+					</div>
+					<div class="col-md-5">
+						<div class="row">
+
 							<div class="row">
+								<div class="col-md-4"><label style="padding-left: 15px; padding-right: 15px;">Username</label></div>
+								<div class="col-md-8"><p class="username">exampleUser1</p></div>
+							</div>
+							<div class="row">
+								<div class="col-md-3"><label style="padding-left: 15px; padding-right: 15px;">Email</label></div>
+								<div class="col-md-9"><p class="email">example@email.com</p></div>
+							</div>
 
-								<div class="col-md-12"><label>Username</label></div>
-								<div class="col-md-12"><p class="username">username here</p></div>
-								<div class="col-md-12"><label>Email</label></div>
-								<div class="col-md-12"><p class="email">email here</p></div>
 
-								<div class="panel-group col-md-12" id="accordion">
-									<div class="panel">
-										<div class="form-group row">
-											<div class="col-md-12"><label>Password</label></div>
-											<div class="col-md-3"><p>***********</p></div>
-											<div class="col-md-9">
-												<div class="accordion-heading">
-													<a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-														<p>change</p>
-													</a>
-												</div>
-											</div>
+							<div class="panel-group col-md-12" id="accordion">
+								<div class="panel">
+									<div class="form-group row">
+
+										<a href="#collapseOne" data-toggle="collapse" data-parent="#accordion" class="btn btn-primary user-change-pw">Change Password</a>
+
+										<div class="row">
 											<div class="col-md-12">
 												<div id="collapseOne" class="panel-collapse collapse">
 													<div class="panel-body">
 														<form id="changepassword" action="#" method="post">
+
 															<div class="row">
 																<div class="col-md-6">
 																	<label class="text-right">Current Password</label>
@@ -48,24 +48,34 @@
 																<div class="col-md-6">
 																	<input type="password" name="currentpassword" placeholder="Current Password">
 																</div>
+															</div>
+
+															<div class="row">
 																<div class="col-md-6">
 																	<label class="text-right">New Password</label>
 																</div>
 																<div class="col-md-6">
 																	<input type="password" name="newpassword" placeholder="New Password">
 																</div>
+															</div>
+
+															<div class="row">
 																<div class="col-md-6">
 																	<label class="text-right">Confirm Password</label>
 																</div>
 																<div class="col-md-6">
 																	<input type="password" name="confirmpassword" placeholder="Confirm New Password">
 																</div>
-																<div class="col-md-9"></div>
-																<div class="col-md-3">
-																	<button class="btn btn-link" id="changepassword" type="submit">Submit</button>
+															</div>
+
+															<div class="row">
+																<div class="col-md-12">
+																	<button class="btn btn-primary" id="changepassword" type="submit" style=" margin: 15px; float: right;">Submit</button>
 																</div>
 															</div>
-														</form>	
+														</form>
+													</div>
+														
 													</div>
 												</div>
 											</div>
@@ -73,72 +83,99 @@
 									</div>
 								</div>	
 							</div>
+
 						</div>
+
 						<div class="col-md-3"></div>
 					</div>
-				</div>
-			</form>
+				</form>
+		
 
-			<form id="information" action="#" method="post">
+				<form id="information" action="#" method="post">
 
-				<div class="form-group row">
-					<div class="col-md-1"></div>
-					<div class="col-md-4">
-						<input type="file" name="account-image" id="account-image">
-					</div>
-					<div class="col-md-2">
-						<button class="btn btn-link" id="account-image" type="submit" onclick='uploadImage()'>Uplaod</button>
-					</div>
-					<div class="col-md-5"></div>
-				</div>
-			
+					<div class="form-group row">
 
-				<div class="form-group row">
-					<label for="form-address" class="col-md-1 text-right">Address</label>
-					<div class="col-md-6">
-						<input class="form-control" type="text" name="form-address" placeholder="address" readonly>
-					</div>
-					<div class="col-md-5"></div>
-				</div>
+						<div class="col-md-4"></div>
 
-				<div class="form-group row">
-					<label for="form-city" class="col-md-1 text-right">City</label>
-					<div class="col-md-6">
-						<input class="form-control" type="text" name="form-city" placeholder="city" readonly>
-					</div>
-					<div class="col-md-5"></div>
-				</div>
+						<div class="col-md-4">
+							<label for="account-image">Profile Image</label>
+							<input type="file" name="account-image" id="account-image">
+						</div>
 
-				<div class="form-group row">
-					<label for="form-state" class="col-md-1 text-right">State</label>
-					<div class="col-md-2">
-						<input class="form-control" type="text" name="form-state" placeholder="state" readonly>
-					</div>
-					<label for="form-phone" class="col-md-1 text-right">Phone</label>
-					<div class="col-md-3">
-						<input class="form-control" type="text" name="form-phone" placeholder="phone" >
-					</div>
-					<div class="col-md-5"></div>
-				</div>
+						<div class="col-md-4"></div>
 
-				<div class="form-group row">
-					<label for="form-biol" class="col-md-1 text-right">Biol</label>
-					<div class="col-md-6">
-						<textarea class="form-control" rows="4" readonly="">Biol</textarea>
 					</div>
-					<div class="col-md-5"></div>
-				</div>
+				
 
-				<div class="form-group row">
-					<div class="col-md-7"></div>
-					<div class="col-md-1">
-					<button class="btn btn-primary" id="information" type="submit">Edit</button>
+					<div class="form-group row">
+						
+						<div class="col-md-2"></div>
+
+						<div class="col-md-8">
+							<label for="form-address" class="text-right">Address</label>
+							<input class="form-control" type="text" name="form-address" placeholder="Address" readonly>
+						</div>
+
+						<div class="col-md-2"></div>
 					</div>
-					<div class="col-md-1">
-					<button class="btn btn-primary" id="information" type="submit">Save</button>
+
+					<div class="form-group row">
+						
+						<div class="col-md-2"></div>
+
+						<div class="col-md-8">
+							<label for="form-city" class="text-right">City</label>
+							<input class="form-control" type="text" name="form-city" placeholder="City" readonly>
+						</div>
+
+						<div class="col-md-2"></div>
+						
 					</div>
-					<div class="col-md-3"></div>
-			</form>
+
+					<div class="form-group row">
+
+						<div class="col-md-3"></div>
+
+						<div class="col-md-2">
+							<label for="form-state" class="text-right">State</label>
+							<input class="form-control" type="text" name="form-state" placeholder="State" readonly>
+						</div>
+						
+						<div class="col-md-4">
+							<label for="form-phone" class="text-right">Phone</label>
+							<input class="form-control" type="text" name="form-phone" placeholder="Phone" >
+						</div>
+
+						<div class="col-md-3"></div>
+						
+					</div>
+
+					<div class="form-group row">
+
+						
+						<div class="col-md-12">
+						<label for="form-biol">Bio</label>
+							<textarea class="form-control" rows="4" readonly="">Bio</textarea>
+						</div>
+
+					</div>
+
+					<div class="form-group row">
+
+
+						<div class="col-md-6"></div>
+
+						<div class="col-md-3">
+							<button class="btn btn-primary" id="information" type="submit" style="width: 100%;">Edit</button>
+						</div>
+
+						<div class="col-md-3">
+							<button class="btn btn-primary" id="information" type="submit" style="width: 100%;">Save</button>
+						</div>
+
+				</form>
+			</div>
 		</div>
+		<!-- <div class="col-md-2"></div> -->
 	</div>
 </div>

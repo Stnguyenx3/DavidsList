@@ -1,6 +1,7 @@
 body,
 #content {
 	font-family: Casteller;
+    font-size: 16px;
     overflow: scroll;
 }
 
@@ -474,7 +475,7 @@ input[type=file] {
 }
 
 
-/*User Listings and favorites*/
+/*User Listings, favorites, and overview*/
 .user-listings-edit {
     margin: 15px;
     float: right;
@@ -484,6 +485,19 @@ input[type=file] {
 .user-favorite-remove {
     margin: 15px;
     float: right;
+}
+
+.user-overview {
+    padding: 15px;
+}
+
+.user-change-pw {
+    margin: 15px;
+    width: 100%;
+}
+
+.panel {
+    background-color: transparent;
 }
 
 /*User Chat Messages Page*/
