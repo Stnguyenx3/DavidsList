@@ -290,17 +290,18 @@ class Users extends Controller {
     }
 
     public function getalluserfavorites($userID) {
-    $favoriteListingsRepo = RepositoryFactory::createRepository("favorite_listing");
-    $arrayOfFavoriteListingObjects = $favoriteListingsRepo->find($userID, "userid");
-    $listingArrayToReturn = array();
-    foreach ($arrayOfFavoriteListingObjects as $favoriteListingObject) {
-        $listingResponse = ListingsResponseCreator::createGetListingResponse($favoriteListingObject->getListingId());
-        $listingTempArray["listing"] = $listingResponse["listing"]->jsonSerialize();
-        $listingTempArray["listing_detail"] = $listingResponse["listing_detail"]->jsonSerialize();
-        $listingTempArray["address"] = $listingResponse["address"]->jsonSerialize();
-        $listingArrayToReturn[] = $listingTempArray;
-    }
+        $favoriteListingsRepo = RepositoryFactory::createRepository("favorite_listing");
+        $arrayOfFavoriteListingObjects = $favoriteListingsRepo->find($userID, "userid");
+        $listingArrayToReturn = array();
+        foreach ($arrayOfFavoriteListingObjects as $favoriteListingObject) {
+            $listingResponse = ListingsResponseCreator::createGetListingResponse($favoriteListingObject->getListingId());
+            $listingTempArray["listing"] = $listingResponse["listing"]->jsonSerialize();
+            $listingTempArray["listing_detail"] = $listingResponse["listing_detail"]->jsonSerialize();
+            $listingTempArray["address"] = $listingResponse["address"]->jsonSerialize();
+            $listingArrayToReturn[] = $listingTempArray;
+        }
 
-    echo json_encode($listingArrayToReturn);
+        echo json_encode($listingArrayToReturn);
+    }
 
 } // end class User

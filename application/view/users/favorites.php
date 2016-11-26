@@ -37,3 +37,5 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript" src="<?php echo URL; ?>js/user_favorites.js"></script>

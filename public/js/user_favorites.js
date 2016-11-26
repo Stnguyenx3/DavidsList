@@ -8,7 +8,7 @@ $(document).ready(function () {
 
 	$.ajax({
 		type:'GET',
-		url: url+"users/getalluserfavorites" + userId, 
+		url: url+"users/getalluserfavorites/" + userId, 
 		dataType: "json",
 		success: formatUserListings,
 		error: function(xhr, err, errThrown) {
