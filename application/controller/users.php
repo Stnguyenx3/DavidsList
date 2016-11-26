@@ -63,6 +63,7 @@ class Users extends Controller {
 	//Seems unsafe to publically have this available for anyone to delete a user from
 	//the database
 	//Maybe have it send a json to validate that this is the correct user
+    //TODO: modify to use UserResponse
     /**
      * Deletes a user from the database.
      * 

@@ -54,7 +54,6 @@ class ListingDetails extends Controller{
 		}
 	}
 
-	//TODO:Maybe pass in array, very unlikely this'll be called from the front-end
 	//editDetails
 	//Updates Listing Detail based on ID
 	public function editDetails($listingID){
@@ -84,7 +83,6 @@ class ListingDetails extends Controller{
 		}
 	}
 
-	//TODO: probably send in an array instead of using _POST array
 	//createDetails
 	//create new listing details to associate with listing id
 	public function createDetails($listingID, $listingDetail){

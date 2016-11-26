@@ -39,7 +39,6 @@
 
 class Addresses extends Controller{
 	
-	//TODO: May change this method to contain another parameter
 	/**
 	 * Creates a new address related to a listing ID.
 	 * 
@@ -92,9 +91,7 @@ class Addresses extends Controller{
         }
 		else {
 			$addressRepo->remove($arrayOfAddresses[0]);
-			
-			//TODO - check to make sure it was really removed
-			
+					
 			// display page indicating successful removal of address
             require APP . "view/_templates/header.php";
             require APP . "view/addresses/address_delete_success.php";
@@ -110,8 +107,6 @@ class Addresses extends Controller{
 	 * 
 	 * External data is a JSON object contining all variables of an
 	 * address object.
-	 * 
-	 * @todo Add code to communicate success to user.
 	 * 
 	 * @status Needs to be tested. 
 	 */
@@ -139,8 +134,7 @@ class Addresses extends Controller{
 			// Use the newly created Address object to update the Address object we
 			// found earlier
 			$addressRepo->update($address);
-			
-			// TODO - communicate success to the user		
+				
         } // end else			
 	} // end function udpateAddress
 } // end class FavoritesListingsController

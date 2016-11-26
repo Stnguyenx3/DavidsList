@@ -29,9 +29,30 @@ class UserResponseCreator {
 		$userRepo = RepositoryFactory::createRepository("user");
 		$arrayOfUserObjects = $userRepo->find($userID, "userid");
 
+		$listingRepo = RepositoryFactory::createRepository("listing");
+		$arrayOfListingObjects = $listingRepo->find($userID, 'userid');
+
+		$favoriteListingRepo = RepositoryFactory::createRepository("favorite_listing");
+		$arrayOfFavoriteListingObjects = $favoriteListingRepo->find($userID, 'userid');
+
+		//delete from user table
 		$deletedUser = $userRepo->remove($arrayOfUserObjects[0]);
 
+		//delete from user image table
 		$deletedUserImages = UserImageResponseCreator::createDeleteUserImageResponse($userID);
+
+		$deletedListings = true;
+
+		//delete from listings table + related tables (address, details, listing images, and messages)
+		for($arrayOfListingObjects as $listingObject) {
+			ListingsResponseCreator::createDeleteListingResponse($listingObject->getListingId());
+		}
+
+		//delete from favorites
+		//TODO: Need to reimplement removing for favorite listing object
+		for($arrayOfFavoriteListingObjects as $favoriteListingObjects) {
+			// $favoriteListingRepo->remove
+		}
 
 		return $deletedUser and $deletedUserImages;
 	}

@@ -52,7 +52,7 @@ function formatUserListings(event) {
 						.appendTo($(div));
 
 			//Store listing inforation into variables.
-			var listingImg = "data:image/png;base64,"+event[i].listing_images;// TODO get img from db.
+			var listingImg = "data:image/png;base64,"+event[i].listing_images;
 			var listingTitle = event[i].address.streetName + " " + event[i].address.city + " " + event[i].address.state + ", " + event[i].address.zipcode;
 			var listingPrice = event[i].listing.price;
 			var listingDescription = event[i].listing_detail.description;
