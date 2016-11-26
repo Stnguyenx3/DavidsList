@@ -17,15 +17,6 @@
  */
 
 class Listings extends Controller {
-	//index
-	// This method handles what happens when you move http://yourproject/home/index
-	//TODO: Show all listings in a paginated format
-	public function index(){
-		require APP . 'view/_templates/header.php';
-		require APP . 'view/home/index.php';
-		require APP . 'view/_templates/footer.php';
-	}
-
 	//getListing
 	//Function to return a listing's page. Parameter is the id of the listing
 	//Returns HTML
@@ -72,7 +63,7 @@ class Listings extends Controller {
 		$arrayOfListingObjects = $listingRepo->find($listingID, "listingId");
 
 
-		if ($arrayOfListingObjects == null){
+		if (count($arrayOfListingObjects) == 0){
 			//detail of error page necessary
 			$errorMessage = "The listing with the listingID ({$listingID}) was not found.";
 			require APP . 'view/_templates/header.php';
@@ -104,6 +95,7 @@ class Listings extends Controller {
 	//This function is separate from editListing
 	//This only displays the page to allow editing
 	//The other one actually does the database call to edit
+	//TODO: Check if the user logged in is the user who created the listing
 	public function edit($listingID) {
 		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingID);
 
@@ -114,20 +106,11 @@ class Listings extends Controller {
         } else {
             require APP . 'view/_templates/header.php';
         }
-
-		if ($listingResponse == null){
-			//detail of error page necessary
-			$errorMessage = "Error, Listing not found.";
-			require APP . 'view/problem/error_page.php';
-			require APP . 'view/_templates/footer.php';
-		}
-		else{
-			// $userResponse = UserResponseCreator::createGetUserResponse($listingResponse["listing"]->getId());
-			//the following will send back the header, body, and footer
-			//of the editlisting page
-        	require APP . 'view/listings/editlisting.php';
-        	require APP . 'view/_templates/footer.php';
-		}
+		// $userResponse = UserResponseCreator::createGetUserResponse($listingResponse["listing"]->getId());
+		//the following will send back the header, body, and footer
+		//of the editlisting page
+    	require APP . 'view/listings/editlisting.php';
+    	require APP . 'view/_templates/footer.php';
 	}
 
 	//editListing

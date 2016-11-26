@@ -7,8 +7,8 @@
  */
 class UserImage implements JsonSerializable { 
 	private $userid;
-	private $imageThumbnail;
 	private $image;
+	private $imageThumbnail;
 
 	public function __construct() {
 
@@ -31,7 +31,7 @@ class UserImage implements JsonSerializable {
 	}
 
 	public function setImageThumbNail($newImageThumbnail) {
-		$this->imageThumbNail = $newImageThumbnail;
+		$this->imageThumbnail = $newImageThumbnail;
 	}
 
 	public function setImage($newImage) {
@@ -39,14 +39,14 @@ class UserImage implements JsonSerializable {
 	}
 
 	public function __toString() {
-		return "{$this->userid}, {$this->imageThumbnail}, {$this->image}";
+		return "{$this->userid}, {$this->image}, {$this->imageThumbnail}";
 	}
 
 	public function jsonSerialize() {
 		return array(
 			'userid' => $this->userid,
+			'image' => $this->image,
 			'imageThumbnail' => $this->imageThumbnail,
-			'image' => $this->image
 		);
 	}
 }

@@ -30,22 +30,6 @@ class ListingDetails extends Controller{
 			require APP . 'view/_templates/header.php';
 			require APP . 'view/listings/listing_body.php';
 			require APP . 'view/_templates/footer.php';
-			// echo "Number of Bedrooms: ";
-			// echo $arrayOfListingDetailObjects[0]->getNumberOfBedrooms();
-			// echo ", Number of Bathrooms: ";
-			// echo $arrayOfListingDetailObjects[0]->getNumberOfBathrooms();
-			// echo ", Internet: ";
-			// echo $arrayOfListingDetailObjects[0]->getInternet();
-			// echo ", Pet Policy: ";
-			// echo $arrayOfListingDetailObjects[0]->getPetPolicy();
-			// echo ", Elevator Access: ";
-			// echo $arrayOfListingDetailObjects[0]->getElevatorAccess();
-			// echo ", Furnishing: ";
-			// echo $arrayOfListingDetailObjects[0]->getFurnishing();
-			// echo ", Air Conditioning: ";
-			// echo $arrayOfListingDetailObjects[0]->getAirConditioning();
-			// echo ", Description: ";
-			// echo $arrayOfListingDetailObjects[0]->getDescription();
 
 			json_encode($arrayOfListingDetaisObjects[0]);
 			//Maybe return the object, probably call from listing
@@ -70,7 +54,6 @@ class ListingDetails extends Controller{
 		}
 	}
 
-	//TODO:Maybe pass in array, very unlikely this'll be called from the front-end
 	//editDetails
 	//Updates Listing Detail based on ID
 	public function editDetails($listingID){
@@ -100,7 +83,6 @@ class ListingDetails extends Controller{
 		}
 	}
 
-	//TODO: probably send in an array instead of using _POST array
 	//createDetails
 	//create new listing details to associate with listing id
 	public function createDetails($listingID, $listingDetail){

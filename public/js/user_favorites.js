@@ -50,14 +50,14 @@ function formatUserListings(event) {
 						.appendTo($(div));
 
 			//Store listing inforation into variables.
-			var listingImg = "data:image/png;base64,";// TODO get img from db.
+			var listingImg = "data:image/png;base64,"+event[i].listing_images;
 			var listingTitle = event[i].address.streetName + " " + event[i].address.city + " " + event[i].address.state + ", " + event[i].address.zipcode;
 			var listingPrice = event[i].listing.price;
 			var listingDescription = event[i].listing_detail.description;
 
 			//Insert listing information into HTML elements.
 			$(h3).text(listingTitle);
-			$(img).attr("src", "http://placehold.it/175x175");
+			$(img).attr("src", listingImg).attr("width", "175").attr("height", "175");
 			$(p0).text("Price: $" + listingPrice);
 			$(p1).text("Description:"+ listingDescription);
 			$(a1).text("Remove");

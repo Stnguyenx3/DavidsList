@@ -14,9 +14,6 @@
  *   4) A function to create a new user;
  *   5) A function to log a user in.
  * 
- * The first two functions, getUser() and deleteUser(), have been tested and are
- * working; the other three functions need to be tested.
- * 
  * Copyright (C) 2016, Paul Derugin
  */
 
@@ -26,14 +23,12 @@ class Users extends Controller {
      * Loads a user's profile page.
      * 
      * @param int $userID The integer ID of the user.
-	 * 
-	 * @status Tested and working.
      */
     public function getUser($userID) {
 
     	//Get the user object corresponding to the user id
     	$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
-
+        $arrayOfUserObjects;
     	//Checks if there is a session(whether the user is logged in or not)
     	//If so, require the logged in header, with user profile/logout
     	//If not, require the regular header with login/register
@@ -51,24 +46,29 @@ class Users extends Controller {
 	        $errorMessage = "User not found";
 	        require APP . "view/problem/error_page.php";
         }
+        else if(empty($_SESSION)) {
+            require APP . 'view/users/visitor.php';
+        }
 		else {
-            require APP . "view/users/index.php";
+            if($arrayOfUserObjects[0]->getId() == $userResponse["user"]->getId())
+                require APP . "view/users/index.php";
+            else
+                require APP . 'view/users/visitor.php';
         }
 
         //Lastly require the footer which will never change
     	require APP . "view/_templates/footer.php";
     } // end function getUser
-
 	
 	//Seems unsafe to publically have this available for anyone to delete a user from
 	//the database
 	//Maybe have it send a json to validate that this is the correct user
+    //TODO: modify to use UserResponse
     /**
      * Deletes a user from the database.
      * 
      * @param int $userID
 	 * 
-	 * @status Tested and working.
      */
     public function deleteUser($userID) {
 
@@ -179,8 +179,6 @@ class Users extends Controller {
 	 * Displays a generic error message if the supplied username/password 
 	 * combination is invalid. Displays a message indicating success if the
 	 * supplied username/password combination is valid.
-	 * 
-	 * @status Needs to be tested.
 	 */
 	public function login(){
 		$email = $_POST["email"];
@@ -275,6 +273,8 @@ class Users extends Controller {
     		$listingTempArray["listing"] = $listingResponse["listing"]->jsonSerialize();
     		$listingTempArray["listing_detail"] = $listingResponse["listing_detail"]->jsonSerialize();
     		$listingTempArray["address"] = $listingResponse["address"]->jsonSerialize();
+            //Hardcoding one image for now
+            $listingTempArray["listing_images"] = base64_encode($listingResponse["listing_images"][0]->getImage());
     		$listingArrayToReturn[] = $listingTempArray;
     	}
 
@@ -282,12 +282,14 @@ class Users extends Controller {
     }
 
 
-    // Added by Steven to implement chat messages page, Remove when done.
+    // START -Added by Steven to implement chat messages page, Remove when done.
     public function messages($userID) {
     	require APP . "view/_templates/header.php";
     	require APP . 'view/users/messages.php';
       	require APP . 'view/_templates/footer.php';
     }
+
+    // END -Added by Steven to implement chat messages page, Remove when done.
 
     public function getalluserfavorites($userID) {
         $favoriteListingsRepo = RepositoryFactory::createRepository("favorite_listing");
@@ -298,6 +300,8 @@ class Users extends Controller {
             $listingTempArray["listing"] = $listingResponse["listing"]->jsonSerialize();
             $listingTempArray["listing_detail"] = $listingResponse["listing_detail"]->jsonSerialize();
             $listingTempArray["address"] = $listingResponse["address"]->jsonSerialize();
+            //Hardcoding one image for now
+            $listingTempArray["listing_images"] = base64_encode($listingResponse["listing_images"][0]->getImage());
             $listingArrayToReturn[] = $listingTempArray;
         }
 
