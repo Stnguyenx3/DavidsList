@@ -125,3 +125,31 @@ function onEditLoad(data) {
 		},
 	});
 }
+
+function onFavoriteClick() {
+	var str = (window.location + '').split("/");
+	var listingID = str[str.length - 1];
+
+	favoriteInformation = {
+		listingId: listingID
+	};
+
+	$.ajax({
+		type:'POST',
+		url: url+"favoritelistings/addfavorite/",
+		data: favoriteInformation,
+		success: function(event) {
+			if(event === 1) {
+				//Display something that says it's favorited
+				console.log(event);
+			} else {
+				console.log(event);
+			}
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+	});
+}
