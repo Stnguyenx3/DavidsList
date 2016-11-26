@@ -1,11 +1,19 @@
 body,
 #content {
-	font-family: Lucida Console;
+	font-family: Casteller;
     overflow: scroll;
+}
+
+.privacy > p {
+    font-size: 16px;
 }
 
 .container {
     overflow: hidden;
+}
+
+.centered-header {
+    text-align: center;
 }
 
 .custom-border {
@@ -15,14 +23,6 @@ body,
 }
 
 .linear-gradient-bg {
-/*    background: rgba(254,254,254,1);
-    background: -moz-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(226,226,226,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(254,254,254,1)), color-stop(100%, rgba(226,226,226,1)));
-    background: -webkit-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(226,226,226,1) 100%);
-    background: -o-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(226,226,226,1) 100%);
-    background: -ms-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(226,226,226,1) 100%);
-    background: linear-gradient(to bottom, rgba(254,254,254,1) 0%, rgba(226,226,226,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e2e2e2', GradientType=0 );*/
     background: rgba(226,226,226,1);
     background: -moz-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 100%);
     background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(226,226,226,1)), color-stop(100%, rgba(254,254,254,1)));
@@ -53,16 +53,16 @@ body,
 
 .navigation a {
     display: inline-block;
-    padding: 10px 15px;
-    font-size: 14px;
-    text-transform: uppercase;
+    padding: 15px;
+    font-size: 18px;
+    margin-top: 5px;
     font-weight: bold;
     background-color: #4682b4;
     color: #fff;
 }
 
 .navigation a:hover {
-    color: #fff;
+    background-color: #006400;
 }
 
 .user {
@@ -71,8 +71,19 @@ body,
     margin-right: 20px;
 }
 
+.user a {
+    font-size: 16px;
+}
+
+.search-button {
+    border: 3px solid #FFF;
+    border-radius: 5px;
+}
+
 #search-bar {
-    padding-top: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: right;
 }
 
 #search-bar input {
@@ -359,7 +370,8 @@ div#header.container {
 
 
 .search-result-listing,
-.user-listing {
+.user-listing,
+.user-favorite {
     margin: 15px;
     border: 3px solid #99CC99;
     border-radius: 10px;
@@ -372,7 +384,8 @@ div#header.container {
 }
 
 .search-result-listing-img,
-.user-listing-img {
+.user-listing-img,
+.user-favorite-img {
     margin-top: 15px;
     margin-bottom: 15px;
     width: 200px;
@@ -387,7 +400,8 @@ div#header.container {
 }
 
 .search-result-listing-title,
-.user-listing-title {
+.user-listing-title,
+.user-favorite-title {
     font-size: 16px;
     font-weight: 700;
     margin-top: 15px;
@@ -398,14 +412,16 @@ div#header.container {
 }
 
 .search-result-listing-price,
-.user-listing-price {
+.user-listing-price,
+.user-favorite-price {
    font-size: 17px;
    padding-left: 15px;
 }
 
 .search-result-listing-btn,
 .user-listings-edit,
-.user-listings-remove {
+.user-listings-remove,
+.user-favorite-remove {
     float: right;
     font-size: 16px;
     margin-bottom: 15px;
@@ -458,14 +474,46 @@ input[type=file] {
 }
 
 
-/*User Listings*/
+/*User Listings and favorites*/
 .user-listings-edit {
     margin: 15px;
     float: right;
 }
 
-.user-listings-remove {
+.user-listings-remove,
+.user-favorite-remove {
     margin: 15px;
     float: right;
 }
 
+/*User Chat Messages Page*/
+.user-messages {
+    font-size: 15px;
+}
+
+.messages-other-users {
+    margin-top: 15px;
+}
+
+.messages-content {
+    margin: 15px;
+}
+
+.user-message-history {
+    /*height: 500px; TODO: Scroll bar when overflow 500px*/
+}
+
+.messages-single{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+.user-message-to-send {
+    border-top:  3px solid #99CC99;
+    padding: 15px;
+}
+
+.messages-send-box {
+    resize: none;
+}
