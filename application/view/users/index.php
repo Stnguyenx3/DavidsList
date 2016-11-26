@@ -16,7 +16,7 @@
 					<div class="col-md-3">
 						<?php 
 							$outputImage = "";
-							count($userResponse["user_images"]) > 0 ? $outputImage = "data:image/png;base64," . $userResponse["user_images"][0]->getImage() : $outputImage = "http://placehold.it/175x175";
+							count($userResponse["user_images"]) > 0 ? $outputImage = "data:image/png;base64," .base64_encode($userResponse["user_images"][0]->getImage()) : $outputImage = "http://placehold.it/175x175";
 						?>
 						<img src="<?php echo $outputImage ?>" alt="placeholder img." width="175" height="175">
 					</div>
@@ -159,7 +159,7 @@
 						
 						<div class="col-md-12">
 						<label for="form-biol">Bio</label>
-							<textarea class="form-control" id="form-bio" rows="4" value="<?php echo $userResponse["user"]->getBiography(); ?>" readonly></textarea>
+							<textarea class="form-control" id="form-bio" rows="4" readonly><?php echo $userResponse["user"]->getBiography(); ?></textarea>
 						</div>
 
 					</div>

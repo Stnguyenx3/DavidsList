@@ -23,6 +23,54 @@ function onEditClick() {
 }
 
 function onSaveClick() {
-	console.log("I have saved");
-	//Ajax
+	var logo = $('#account-image')[0].files[0];
+	var reader = new FileReader();
+	reader.onload = function(data) {
+	 	onSaveLoad(data);
+	}
+	if (logo instanceof Blob) {
+		reader.readAsDataURL(logo);
+	} else {
+		onSaveLoad();
+	}
+}
+
+function onSaveLoad(data) {
+	var str = (window.location + '').split("/");
+	var userID = str[str.length - 1];
+
+ 	var userInformation = {
+ 		email: "",
+ 		username: "",
+ 		firstname: "",
+ 		lastname: "",
+ 		studentID: "",
+ 		phone: $("#form-phone").val(),
+ 		bio: $("#form-bio").val(),
+ 		password: "",
+ 		address: $("#form-address").val(),
+ 		city: $("#form-city").val(),
+ 		state: $("#form-state").val()
+	};
+	
+	if(data != null) {
+		userInformation["user_image"] = {
+			image: data.target.result
+		};
+	}
+
+	$.ajax({
+		type:'POST',
+		url: url+"users/edituser/"+userID,
+		data: userInformation,
+		success: function(event){
+			//Display change successful
+			console.log(event);
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		},
+	});
 }

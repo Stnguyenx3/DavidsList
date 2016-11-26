@@ -118,7 +118,7 @@ class ListingsResponseCreator {
 		$listingImageInfo = $listingInformation["listing_image"];
 
 		$insertListingImage = true;
-		if($listingImageInfo["image"] != null) {
+		if(array_key_exists("image", $listingImageInfo)) {
 			$insertListingImage = ListingImageResponseCreator::createNewListingImageResponse($listingID, $listingImageInfo);
 		}
 
@@ -172,7 +172,7 @@ class ListingsResponseCreator {
 		$listingImageInfo = $newListingInformation["listing_image"];
 
 		$insertListingImage = true;
-		if($listingImageInfo["image"] != null) {
+		if(array_key_exists("image", $listingImageInfo)) {
 			$insertListingImage = ListingImageResponseCreator::createNewListingImageResponse($listingID, $listingImageInfo);
 		}
 
