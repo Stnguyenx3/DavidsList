@@ -397,7 +397,7 @@
 							>Pets
 						</label>
 						<label for="listing-elevator">
-							<input type="checkbox" name="listingmisc" id="listing-elevator" value="elevtor" 
+							<input type="checkbox" name="listingmisc" id="listing-elevator" value="elevator" 
 							<?php 
 								if(!strcmp($listingResponse["listing_detail"]->getElevatorAccess(),"yes")){
 									echo "checked";

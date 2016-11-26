@@ -130,7 +130,7 @@
 			<div class="owner-info linear-gradient-bg">
 				<p style="font-size:24px; font-weight: bold">Landlord</p>
 				<p class="owner-username">Name: <?php echo $userResponse->getUsername(); ?></p>
-				<p class="owner-email">EMail: <?php echo $userResponse->getEmail(); ?></p>
+				<p class="owner-email">Email: <?php echo $userResponse->getEmail(); ?></p>
 
 			</div>
 

@@ -36,7 +36,14 @@ class FavoriteListings extends Controller{
 			// add the FavoriteListing to the DB
 	        $favoriteListingsRepo = RepositoryFactory::createRepository(
 					"favorite_listing");		
-			echo $favoriteListingsRepo->save($favoriteListing);	
+
+	        $arrayOfListingsRepo = $favoriteListingsRepo->find($_POST["listingId"], "listingId");
+	        if(count($arrayOfListingsRepo) > 0) {
+	        	echo "You have favorited this apartment already";
+	        } else {
+	        	echo $favoriteListingsRepo->save($favoriteListing);	
+	        }
+
 		} else {
 			echo "You are not logged in";
 		}
