@@ -7,7 +7,6 @@
  * or need to delete or insert one row
  */
 class UserRepo implements DatabaseRepositoryInterface {
-
     protected $db;
 
     public function __construct($db) {
@@ -22,7 +21,6 @@ class UserRepo implements DatabaseRepositoryInterface {
         return $this->db->fetch('user', 'User');
     }
 
-    // save == create // ?
 	public function save($user) {
         $this->db->save($user, 'user');
     }

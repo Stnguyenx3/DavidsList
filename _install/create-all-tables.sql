@@ -5,6 +5,7 @@ drop table if exists listingImage;
 drop table if exists address;
 drop table if exists listingDetail;
 drop table if exists favoriteListing;
+drop table if exists message;
 
 CREATE TABLE `f16g01`.`user` (
 	  `userid` INT(4) NOT NULL AUTO_INCREMENT,
@@ -71,8 +72,16 @@ CREATE TABLE `f16g01`.`listingImage`(
 	`listingID` INT(4) NOT NULL,
 	`image` LONGBLOB,
 	`imageThumbnail` BLOB,
-
-  PRIMARY KEY (`listingID`)
-  #UNIQUE KEY `email` (`email`)
+        PRIMARY KEY (`listingID`)
+        #UNIQUE KEY `email` (`email`)
   # Used 'id' to link tables together, also removed 'renter' and 'owner' flags, additionally added 'listingID' to tie 'listings' and 'listingID' tables together
+);
+
+CREATE TABLE `f16g01`.`message` (
+	`listingId` INT(4) NOT NULL,
+	`senderUserId` INT(4) NOT NULL,
+	`recipientUserId` INT(4) NOT NULL,
+	`message` VARCHAR(2000) NOT NULL,
+	`datetime` DATETIME DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(`listingId`)
 );
