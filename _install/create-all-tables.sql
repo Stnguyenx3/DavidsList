@@ -24,6 +24,7 @@ CREATE TABLE `f16g01`.`userImage`(
 	`userid` INT(4) NOT NULL,
 	`image` LONGBLOB,
 	`imageThumbnail` BLOB,
+	PRIMARY KEY(`userid`)
 ); 
 
 CREATE TABLE `f16g01`.`listing` (

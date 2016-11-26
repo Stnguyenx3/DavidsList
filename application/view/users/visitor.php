@@ -27,7 +27,7 @@
 	<div class="row">
 		<div class="col-md-3"></div>
 		<div class="col-md-3"><label style="padding-left: 15px; padding-right: 15px;">Email</label></div>
-		<div class="col-md-3"><p class="email"><?php echo $userResponse["user"]->getEmail() ?><</p></div>
+		<div class="col-md-3"><p class="email"><?php echo $userResponse["user"]->getEmail() ?></p></div>
 		<div class="col-md-3"></div>
 	</div>
 

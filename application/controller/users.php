@@ -14,9 +14,6 @@
  *   4) A function to create a new user;
  *   5) A function to log a user in.
  * 
- * The first two functions, getUser() and deleteUser(), have been tested and are
- * working; the other three functions need to be tested.
- * 
  * Copyright (C) 2016, Paul Derugin
  */
 
@@ -26,8 +23,6 @@ class Users extends Controller {
      * Loads a user's profile page.
      * 
      * @param int $userID The integer ID of the user.
-	 * 
-	 * @status Tested and working.
      */
     public function getUser($userID) {
 
@@ -73,7 +68,6 @@ class Users extends Controller {
      * 
      * @param int $userID
 	 * 
-	 * @status Tested and working.
      */
     public function deleteUser($userID) {
 
@@ -184,8 +178,6 @@ class Users extends Controller {
 	 * Displays a generic error message if the supplied username/password 
 	 * combination is invalid. Displays a message indicating success if the
 	 * supplied username/password combination is valid.
-	 * 
-	 * @status Needs to be tested.
 	 */
 	public function login(){
 		$email = $_POST["email"];

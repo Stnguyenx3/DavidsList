@@ -9,12 +9,16 @@
 		</div>
 
 		<div class="col-md-10 user-overview custom-border linear-gradient-bg">
-			<form id="accountoverview" action="#" method="post">
+			<form id="accountoverview">
 				<div class="form-group row">
 
 					<div class="col-md-1"></div>
 					<div class="col-md-3">
-						<img src="http://placehold.it/175x175" alt="placeholder img.">
+						<?php 
+							$outputImage = "";
+							count($userResponse["user_images"]) > 0 ? $outputImage = "data:image/png;base64," . $userResponse["user_images"][0]->getImage() : $outputImage = "http://placehold.it/175x175";
+						?>
+						<img src="<?php echo $outputImage ?>" alt="placeholder img." width="175" height="175">
 					</div>
 					<div class="col-md-5">
 						<div class="row">
@@ -46,7 +50,7 @@
 																	<label class="text-right">Current Password</label>
 																</div>
 																<div class="col-md-6">
-																	<input type="password" name="currentpassword" placeholder="Current Password">
+																	<input type="password" name="currentpassword" id="currentpassword" placeholder="Current Password">
 																</div>
 															</div>
 
@@ -55,7 +59,7 @@
 																	<label class="text-right">New Password</label>
 																</div>
 																<div class="col-md-6">
-																	<input type="password" name="newpassword" placeholder="New Password">
+																	<input type="password" name="newpassword" id="newpassword" placeholder="New Password">
 																</div>
 															</div>
 
@@ -64,7 +68,7 @@
 																	<label class="text-right">Confirm Password</label>
 																</div>
 																<div class="col-md-6">
-																	<input type="password" name="confirmpassword" placeholder="Confirm New Password">
+																	<input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm New Password">
 																</div>
 															</div>
 
@@ -91,7 +95,7 @@
 				</form>
 		
 
-				<form id="information" action="#" method="post">
+				<form id="information">
 
 					<div class="form-group row">
 
@@ -113,7 +117,7 @@
 
 						<div class="col-md-8">
 							<label for="form-address" class="text-right">Address</label>
-							<input class="form-control" type="text" name="form-address" placeholder="Address" readonly>
+							<input class="form-control" type="text" name="form-address" id="form-address" placeholder="Address" readonly>
 						</div>
 
 						<div class="col-md-2"></div>
@@ -125,7 +129,7 @@
 
 						<div class="col-md-8">
 							<label for="form-city" class="text-right">City</label>
-							<input class="form-control" type="text" name="form-city" placeholder="City" readonly>
+							<input class="form-control" type="text" name="form-city" id="form-city" placeholder="City" readonly>
 						</div>
 
 						<div class="col-md-2"></div>
@@ -138,12 +142,12 @@
 
 						<div class="col-md-2">
 							<label for="form-state" class="text-right">State</label>
-							<input class="form-control" type="text" name="form-state" placeholder="State" readonly>
+							<input class="form-control" type="text" name="form-state" id="form-state" placeholder="State" readonly>
 						</div>
 						
 						<div class="col-md-4">
 							<label for="form-phone" class="text-right">Phone</label>
-							<input class="form-control" type="text" name="form-phone" placeholder="Phone" >
+							<input class="form-control" type="text" name="form-phone" id="form-phone" placeholder="Phone" value="<?php echo $userResponse["user"]->getPhone(); ?>" readonly >
 						</div>
 
 						<div class="col-md-3"></div>
@@ -155,7 +159,7 @@
 						
 						<div class="col-md-12">
 						<label for="form-biol">Bio</label>
-							<textarea class="form-control" rows="4" readonly="">Bio</textarea>
+							<textarea class="form-control" id="form-bio" rows="4" value="<?php echo $userResponse["user"]->getBiography(); ?>" readonly></textarea>
 						</div>
 
 					</div>
@@ -166,11 +170,11 @@
 						<div class="col-md-6"></div>
 
 						<div class="col-md-3">
-							<button class="btn btn-primary" id="information" type="submit" style="width: 100%;">Edit</button>
+							<button class="btn btn-primary" id="edit" onclick="onEditClick()" style="width: 100%;">Edit</button>
 						</div>
 
 						<div class="col-md-3">
-							<button class="btn btn-primary" id="information" type="submit" style="width: 100%;">Save</button>
+							<button class="btn btn-primary" id="save" onclick="onSaveClick()" style="width: 100%;">Save</button>
 						</div>
 
 				</form>
@@ -179,3 +183,5 @@
 		<!-- <div class="col-md-2"></div> -->
 	</div>
 </div>
+
+<script src= "<?php echo URL; ?>js/users.js"></script>
