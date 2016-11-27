@@ -93,8 +93,8 @@ class Messages extends Controller{
 	 * This function gets the message thread within the listing
 	 * This function should return threads grouped by users
 	 */
+	//Need to filter to only show if either sender or receiver is the logged in user
 	public function getMessagesThread($listingId){
-		//Need to filter by userid
 		$messageRepo = RepositoryFactory::createRepository("message");
 		$allMessageObjects = $messageRepo->find($listingId, "listingId");
 
@@ -105,6 +105,7 @@ class Messages extends Controller{
 
 		//Reverse the array since the newer messages(towards the end) are what we want
 		$tmp = array_reverse($tmp);
+		$allMessageObjects = array_reverse($allMessageObjects);
 
 		// Find duplicates in temporary array
 		$tmp = array_unique($tmp);
