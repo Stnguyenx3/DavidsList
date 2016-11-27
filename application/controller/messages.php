@@ -93,7 +93,7 @@ class Messages extends Controller{
 	 * This function gets the message thread within the listing
 	 * This function should return threads grouped by users
 	 */
-	//Need to filter to only show if either sender or receiver is the logged in user
+	//TODO: Need to filter to only show if either sender or receiver is the logged in user
 	public function getMessagesThread($listingId){
 		$messageRepo = RepositoryFactory::createRepository("message");
 		$allMessageObjects = $messageRepo->find($listingId, "listingId");
