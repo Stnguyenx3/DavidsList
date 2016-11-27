@@ -72,7 +72,15 @@ class Messages extends Controller{
 	public function getConversation($listingId, $userId){
 		$messageRepo = RepositoryFactory::createRepository("message");
 		$arrayOfMessageObjects = $messageRepo->find($listingId, "listingId");
-		//Need to filter by userId as well
+		// Need to filter by userId as well
+		foreach($arrayOfMessageObjects as $key => $messageObjects) {
+			if($messageObjects->getClientId() != $userId) {
+				unset($arrayOfMessageObjects[$key]);
+			}
+		}
+		
+		//Send back users as well? ie call UserRepository
+		echo json_encode($arrayOfMessageObjects);
 	}
 
 	public function conversation($listingId, $userId) {

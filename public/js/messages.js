@@ -4,7 +4,7 @@ $(document).ready(function () {
 	var listingId = str[str.length - 2];
 	$.ajax({
 		type:'GET',
-		url: url+"messages/getconversation/"+userId+"/"+listingId,
+		url: url+"messages/getconversation/"+listingId+"/"+userId,
 		dataType: "json",
 		success: formatConversation,
 		error: function(xhr, err, errThrown) {
@@ -21,8 +21,13 @@ function formatConversation(event) {
 
 	$(document).ready(function() {
 		for (var i in event){
-			var row0 = $("<div></div>").addClass("row user-listing linear-gradient-bg custom-border").appendTo($("#allListingMessages"));
 
+			var row0 = $("<div></div>").addClass("row messages-single").appendTo($("#all-conversation"));
+
+			$(row0).attr("id", "message-thread-" + i);
+			var p0 = $("<p></p>").addClass("message").appendTo($(row0)); 
+
+			$(p0).text(event[i].senderUserId+" "+event[i].message);
 		}
 	});
 }

@@ -52,5 +52,5 @@ function formatAllListingMessages(event) {
 }
 
 function onClickGoToThread(event) {
-	window.location.replace(url+"messages/getconversation/"+event.listingId+"/"+event.clientId);
+	window.location.replace(url+"messages/conversation/"+event.data.listingId+"/"+event.data.clientId);
 }
