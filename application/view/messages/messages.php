@@ -51,7 +51,7 @@
 
 			<div class=" col-md-12 input-group">
 			    <textarea class="form-control messages-send-box" rows="3"></textarea>     
-			    <span class="input-group-addon btn btn-primary" id="chat-btn-send-reply">Send</span>
+			    <span class="input-group-addon btn btn-primary" onclick="onClickSend()" id="chat-btn-send-reply">Send</span>
 			</div>
 
 
@@ -63,3 +63,5 @@
 	</div>
 
 </div>
+
+<script type="text/javascript" src="<?php echo URL; ?>js/messages.js"></script>

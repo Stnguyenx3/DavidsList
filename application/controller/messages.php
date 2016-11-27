@@ -21,6 +21,7 @@ class Messages extends Controller{
 	 * 
 	 * External data is JSON object containing all attributes of a message
 	 */
+	//Need to redo based on how I implement the three get functions
 	public function createMessage(){
 		//Get the user session/identification
 		$userRepo = RepositoryFactory::createRepository("user");
@@ -47,8 +48,15 @@ class Messages extends Controller{
 			//If message exists, use a previous message's information, except change
 			//datetime to be null and change the message to be the actual message
 			//This allows less headaches in figuring out who's the sender and receiver
+			$senderId = $message->getSenderUserId();
+			$recipientId = $message->getRecipientUserId();
+
+
+
 			$message = $arrayOfMessageObjects[0];
-			$message->setMessage($_POST["message");
+			$message->setMessage($_POST["message"]);
+			$message->setSenderUserId($senderId);
+			$message->setRecipientUserId($recipientId);
 			$message->setDatetime(null);
 		}
 		
@@ -57,10 +65,17 @@ class Messages extends Controller{
 		//Send a message back to the front-end whether a message has been sent
 	} // end function createMessage()
 	
-	public function getConversation($listingId){
+	/*
+	 * This function gets the conversation within the threads
+	 * This function should return messages between two users based on userid
+	 */
+	public function getConversation($listingId, $userId){
 		$messageRepo = RepositoryFactory::createRepository("message");
 		$arrayOfMessageObjects = $messageRepo->find($listingId, "listingId");
+		//Need to filter by userId as well
+	}
 
+	public function conversation($listingId, $userId) {
 		if(!empty($_SESSION)) {
     		$userRepo = RepositoryFactory::createRepository("user");
         	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
@@ -70,18 +85,23 @@ class Messages extends Controller{
     		require APP . "view/_templates/header.php";
     	}
 
-    	require APP . 'view/users/messages.php';
+    	require APP . 'view/messages/messages.php';
       	require APP . 'view/_templates/footer.php';
 	}
 	
-	public function getMessagesThread(){
+	/*
+	 * This function gets the message thread within the listing
+	 * This function should return threads grouped by users
+	 */
+	public function getMessagesThread($listingId){
+		//Need to filter by userid
 		$messageRepo = RepositoryFactory::createRepository("message");
-		$allMessageObjects = $messageRepo->fetch();
+		$allMessageObjects = $messageRepo->find($listingId, "listingId");
 
 		// Build temporary array for array_unique
 		$tmp = array();
 		foreach($allMessageObjects as $k => $v)
-		    $tmp[$k] = $v->getListingId();
+		    $tmp[$k] = $v->getClientId();
 
 		//Reverse the array since the newer messages(towards the end) are what we want
 		$tmp = array_reverse($tmp);
@@ -92,8 +112,25 @@ class Messages extends Controller{
 		// Remove the duplicates from original array
 		foreach($allMessageObjects as $k => $v){
 		    if (!array_key_exists($k, $tmp))
-		        unset($array[$k]);
+		        unset($allMessageObjects[$k]);
 		}
+
+		//Send back users as well? ie call UserRepository
+		echo json_encode($allMessageObjects);
+	}
+
+	public function allMessages($listingId) {
+		if(!empty($_SESSION)) {
+    		$userRepo = RepositoryFactory::createRepository("user");
+        	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+
+            require APP . "view/_templates/logged_in_header.php";
+    	} else {
+    		require APP . "view/_templates/header.php";
+    	}
+
+    	require APP . 'view/messages/all_messages.php';
+      	require APP . 'view/_templates/footer.php';
 	}
 	
 	/**

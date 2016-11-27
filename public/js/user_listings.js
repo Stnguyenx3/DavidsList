@@ -30,7 +30,7 @@ function formatUserListings(event) {
 
 		for (var i = 0; i < numOfListings; i++){
 
-			var row0 = $("<div></div>").addClass("row user-listing linear-gradient-bg custom-border").appendTo($("#listings"));;
+			var row0 = $("<div></div>").addClass("row user-listing linear-gradient-bg custom-border").appendTo($("#listings"));
 
 			//Add unique ID for each row (remove if not needed!)
 			$(row0).attr("id", "user-listing-" + i);
@@ -50,6 +50,9 @@ function formatUserListings(event) {
 			var a1 = $("<a></a>").addClass("btn btn-primary user-listings-remove")
 						.click({listingId: event[i].listing.listingId}, onClickDeleteListing)
 						.appendTo($(div));
+			var a2 = $("<a></a>").addClass("btn btn-primary user-messages")
+						.click({listingId: event[i].listing.listingId}, onClickMessages)
+						.appendTo($(div));
 
 			//Store listing inforation into variables.
 			var listingImg = "data:image/png;base64,"+event[i].listing_images;
@@ -64,6 +67,7 @@ function formatUserListings(event) {
 			$(p1).text("Description:"+ listingDescription);
 			$(a0).text("Edit");
 			$(a1).text("Remove");
+			$(a2).text("Messages");
 
 		}
 		
@@ -98,4 +102,8 @@ function onClickEditListing(event) {
 	var str = (window.location + '').split("/");
 	var userId = str[str.length - 1];
 	window.location.replace(url+"listings/edit/"+event.data.listingId);
+}
+
+function onClickMessages(event) {
+	window.location.replace(url+"messages/allmessages/"+event.data.listingId);
 }

@@ -30,7 +30,7 @@ function formatUserListings(event) {
 
 		for (var i = 0; i < numOfListings; i++){
 
-			var row0 = $("<div></div>").addClass("row user-favorite linear-gradient-bg custom-border").appendTo($("#favorites"));;
+			var row0 = $("<div></div>").addClass("row user-favorite linear-gradient-bg custom-border").appendTo($("#favorites"));
 
 			//Add unique ID for each row (remove if not needed!)
 			$(row0).attr("id", "user-favorite-" + i);

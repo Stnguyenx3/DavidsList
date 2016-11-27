@@ -72,6 +72,7 @@ CREATE TABLE `f16g01`.`message` (
 	`senderUserId` INT(4) NOT NULL,
 	`recipientUserId` INT(4) NOT NULL,
 	`message` VARCHAR(2000) NOT NULL,
+	`clientId` INT(4) NOT NULL, #client id is the person who is not renting
 	`datetime` DATETIME DEFAULT CURRENT_TIMESTAMP,
 );
 
@@ -88,6 +89,7 @@ CREATE TABLE `f16g01`.`message` (
 	`senderUserId` INT(4) NOT NULL,
 	`recipientUserId` INT(4) NOT NULL,
 	`message` VARCHAR(2000) NOT NULL,
-	`datetime` DATETIME DEFAULT CURRENT_TIMESTAMP,
+	`clientId` INT(4) NOT NULL,
+	`datetime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(`listingId`)
 );

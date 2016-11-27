@@ -10,6 +10,7 @@ class Message implements JsonSerializable{
 	private $senderUserId;
 	private $recipientUserId;
 	private $message;
+	private $clientId;
 	private $datetime;
 
 	public function __construct() {
@@ -36,6 +37,9 @@ class Message implements JsonSerializable{
 		return $this->datetime;
 	}
 
+	public function getClientId() {
+		return $this->clientId;
+	}
 	
 	public function setId($listingId) {
 		$this->listingId = $listingId;
@@ -54,12 +58,16 @@ class Message implements JsonSerializable{
 	}
 	
 	public function setDatetime($newDatetime) {
-		$this->dateTime = $newDatetime;
+		$this->datetime = $newDatetime;
+	}	
+
+	public function setClientId($newClientId) {
+		$this->clientId = $newClientId;
 	}	
 
 	public function __toString() {
 		return "{$this->listingId}, {$this->senderUserId}, {$this->recipientUserId}, " 
-				. "{$this->message}, {$this->datetime}";
+				. "{$this->message}, {$this->clientId}, {$this->datetime}";
 	}
 
 	public function jsonSerialize() {
@@ -68,6 +76,7 @@ class Message implements JsonSerializable{
 			'senderUserId' => $this->senderUserId,
 			'recipientUserId' => $this->recipientUserId,
 			'message' => $this->message,
+			'clientId' => $this->clientId,
 			'datetime' => $this->datetime,
 		);	
 	}
