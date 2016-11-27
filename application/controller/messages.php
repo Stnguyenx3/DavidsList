@@ -22,18 +22,39 @@ class Messages extends Controller{
 	 * External data is JSON object containing all attributes of a message
 	 */
 	public function createMessage(){
-		// build the Message object from external JSON data
+		//Get the user session/identification
+		$userRepo = RepositoryFactory::createRepository("user");
+        $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+
+		$messageRepo = RepositoryFactory::createRepository("message");
+		$arrayOfMessageObjects = $messageRepo->find($listingId, "listingId");
 		$message = new Message();
-		$message->setId($_POST["listingId"]);
-		//Get senderId from session
-		$message->setSenderUserId($_POST["senderUserId"]);
-		//get recipient from listing
-		$message->setRecipientUserId($_POST["recipientUserId"]);
-		$message->setMessage($_POST["message"]);
+		//Check to see if there exists a conversation between the prospective rentee
+		//and the person who's renting our the place
+
+		if(empty($arrayOfMessageObjects)) {
+			// build the Message object from external JSON data
+			$message->setId($_POST["listingId"]);
+			//Get senderId from session
+			$message->setSenderUserId($arrayOfUserObjects[0]->getId());
+			//get recipient from listing
+			$listingRepo = RepositoryFactory::createRepository("listing");
+			$arrayOfListingObjects = $listingRepo->find($_POST["listingId"], "listingId");	
+			$message->setRecipientUserId($arrayOfListingObjects[0]->getId());
+
+			$message->setMessage($_POST["message"]);
+		} else {
+			//If message exists, use a previous message's information, except change
+			//datetime to be null and change the message to be the actual message
+			//This allows less headaches in figuring out who's the sender and receiver
+			$message = $arrayOfMessageObjects[0];
+			$message->setMessage($_POST["message");
+			$message->setDatetime(null);
+		}
 		
 		// add the message to the DB
-		$messageRepo = RepositoryFactory::createRepository("message");
 		$messageRepo->save($message);
+		//Send a message back to the front-end whether a message has been sent
 	} // end function createMessage()
 	
 	public function getConversation($listingId){

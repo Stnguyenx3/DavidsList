@@ -5,7 +5,7 @@ class UserResponseCreator {
 		$userRepo = RepositoryFactory::createRepository("user");
 		$arrayOfUserObjects = $userRepo->find($userID, "userid");
 
-		if(count($arrayOfUserObjects) == 0) {
+		if(empty($arrayOfUserObjects)) {
 			return null;
 		}
 
@@ -85,7 +85,7 @@ class UserResponseCreator {
 
 		$arrayOfUserObjects = $userRepo->find($userInformation["email"], "email");
 
-		if(count($arrayOfUserObjects) != 0) {
+		if(!empty($arrayOfUserObjects)) {
 			return null;
 		} else {
 			$user = new User();

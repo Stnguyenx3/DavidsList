@@ -32,7 +32,7 @@ class UserImageResponseCreator {
 		$newUserImage->setImageThumbNail(ImageResizeUtil::resizeImage($image[1]));
 
 		$insertUserImage;
-		if(count($arrayOfUserImages) == 0) {
+		if(empty($arrayOfUserImages)) {
 			$insertUserImage = $userImageRepo->save($newUserImage);
 		} else {
 			$insertUserImage = $userImageRepo->update($newUserImage);

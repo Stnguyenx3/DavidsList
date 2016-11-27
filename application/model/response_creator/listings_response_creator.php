@@ -14,7 +14,7 @@ class ListingsResponseCreator {
 
 		$arrayofListingImageObjects = ListingImageResponseCreator::createGetListingImageResponse($listingID);
 
-		if(count($arrayOfListingObjects) == 0) {
+		if(empty($arrayOfListingObjects)) {
 			return null;
 		}
 
