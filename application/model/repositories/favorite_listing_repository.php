@@ -34,14 +34,3 @@ class FavoriteListingRepo implements DatabaseRepositoryInterface {
 					$favoriteListing->getListingId(), 'listingid');
 	}
 }
-
-class AllFavoriteListingsQuery implements AllQueryInterface{
-	protected $db;
-
-	public function __construct($db){
-		$this->db = $db;
-	}
-
-	public function fetch($fields){
-	}
-}

@@ -33,14 +33,3 @@ class MessageRepo implements DatabaseRepositoryInterface{
 		return $this->db->update($message, 'message', $message->getListingId(), 'listingId');
 	}
 }
-
-class AllAddressQuery implements AllQueryInterface{
-	protected $db;
-
-	public function __construct($db){
-		$this->db = $db;
-	}
-
-	public function fetch($fields){
-	}
-}

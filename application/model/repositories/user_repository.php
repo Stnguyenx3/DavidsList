@@ -33,17 +33,3 @@ class UserRepo implements DatabaseRepositoryInterface {
         return $this->db->update($user, 'user', $user->getId(), 'userid');
     }
 }
-
-class AllUsersQuery implements AllQueryInterface {
-
-    protected $db;
-
-    public function __construct(Database $db) {
-        $this->db = $db;
-    }
-
-    public function fetch($fields) {
-        //return $this->db->select($fields)->from('users')->rows();
-    }
-
-}

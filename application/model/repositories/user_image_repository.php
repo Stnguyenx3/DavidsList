@@ -33,15 +33,3 @@ class UserImageRepo implements DatabaseRepositoryInterface{
 		return $this->db->update($userImage, 'userImage', $userImage->getId(), 'userid');
 	}
 }
-
-class AllUserImagesQuery implements AllQueryInterface{
-	protected $db;
-
-	public function __construct($db){
-		$this->db = $db;
-	}
-
-	public function fetch($fields){
-		//return $this->db->select($fields)->from('users')->rows();
-	}
-}

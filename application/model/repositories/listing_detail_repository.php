@@ -35,14 +35,3 @@ class ListingDetailRepo implements DatabaseRepositoryInterface{
 					$listingDetail->getListingId(), 'listingId');
 	}
 }
-
-class AllListingDetailQuery implements AllQueryInterface{
-	protected $db;
-
-	public function __construct($db){
-		$this->db = $db;
-	}
-
-	public function fetch($fields){
-	}
-}

@@ -12,7 +12,6 @@ class Message implements JsonSerializable{
 	private $message;
 	private $datetime;
 
-	
 	public function __construct() {
 
 	}

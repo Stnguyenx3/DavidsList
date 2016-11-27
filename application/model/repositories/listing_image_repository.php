@@ -34,15 +34,3 @@ class ListingImageRepo implements DatabaseRepositoryInterface{
 				$listingImage->getListingId(), 'listingID');
 	}
 }
-
-class AllListingImagesQuery implements AllQueryInterface{
-	protected $db;
-
-	public function __contruct($db){
-		$this->db = $db;
-	}
-
-	public function fetch($fields){
-		return $this->db->select($fields)->from('listingImages')->rows();
-	}
-}
