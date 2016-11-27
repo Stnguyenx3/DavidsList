@@ -21,45 +21,37 @@ class Messages extends Controller{
 	 * 
 	 * External data is JSON object containing all attributes of a message
 	 */
-	//Need to redo based on how I implement the three get functions
 	public function createMessage(){
 		//Get the user session/identification
 		$userRepo = RepositoryFactory::createRepository("user");
         $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
 
+        //get recipient from listing
+		$listingRepo = RepositoryFactory::createRepository("listing");
+		$arrayOfListingObjects = $listingRepo->find($_POST["listingId"], "listingId");	
+
 		$messageRepo = RepositoryFactory::createRepository("message");
-		$arrayOfMessageObjects = $messageRepo->find($listingId, "listingId");
 		$message = new Message();
-		//Check to see if there exists a conversation between the prospective rentee
-		//and the person who's renting our the place
 
-		if(empty($arrayOfMessageObjects)) {
-			// build the Message object from external JSON data
+		//If not the same, then this means the sender is the owner of listing
+		if($arrayOfUserObjects[0]->getId() != $_POST["userId"]) {
 			$message->setId($_POST["listingId"]);
-			//Get senderId from session
 			$message->setSenderUserId($arrayOfUserObjects[0]->getId());
-			//get recipient from listing
-			$listingRepo = RepositoryFactory::createRepository("listing");
-			$arrayOfListingObjects = $listingRepo->find($_POST["listingId"], "listingId");	
+			$message->setRecipientUserId($_POST["userId"]);
+			$message->setMessage($_POST["message"]);
+			$message->setClientId($_POST["userId"]);
+			$message->setDatetime(date_create()->format('Y-m-d H:i:s'));
+		} 
+		//This means the sender is the client, ie not the owner of the listing
+		else {
+			$message->setId($_POST["listingId"]);
+			$message->setSenderUserId($arrayOfUserObjects[0]->getId());
 			$message->setRecipientUserId($arrayOfListingObjects[0]->getId());
-
 			$message->setMessage($_POST["message"]);
-		} else {
-			//If message exists, use a previous message's information, except change
-			//datetime to be null and change the message to be the actual message
-			//This allows less headaches in figuring out who's the sender and receiver
-			$senderId = $message->getSenderUserId();
-			$recipientId = $message->getRecipientUserId();
-
-
-
-			$message = $arrayOfMessageObjects[0];
-			$message->setMessage($_POST["message"]);
-			$message->setSenderUserId($senderId);
-			$message->setRecipientUserId($recipientId);
-			$message->setDatetime(null);
+			$message->setClientId($_POST["userId"]);
+			$message->setDatetime(date_create()->format('Y-m-d H:i:s'));
 		}
-		
+
 		// add the message to the DB
 		$messageRepo->save($message);
 		//Send a message back to the front-end whether a message has been sent
@@ -78,7 +70,7 @@ class Messages extends Controller{
 				unset($arrayOfMessageObjects[$key]);
 			}
 		}
-		
+
 		//Send back users as well? ie call UserRepository
 		echo json_encode($arrayOfMessageObjects);
 	}

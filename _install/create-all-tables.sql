@@ -90,6 +90,6 @@ CREATE TABLE `f16g01`.`message` (
 	`recipientUserId` INT(4) NOT NULL,
 	`message` VARCHAR(2000) NOT NULL,
 	`clientId` INT(4) NOT NULL,
-	`datetime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`datetime` DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(`listingId`)
 );

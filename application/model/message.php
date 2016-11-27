@@ -77,8 +77,7 @@ class Message implements JsonSerializable{
 			'recipientUserId' => $this->recipientUserId,
 			'message' => $this->message,
 			'clientId' => $this->clientId,
-			'datetime' => $this->datetime,
+			'datetime' => $this->datetime
 		);	
 	}
-
 }

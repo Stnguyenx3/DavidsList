@@ -50,7 +50,7 @@
 			<div class="row user-message-to-send">
 
 			<div class=" col-md-12 input-group">
-			    <textarea class="form-control messages-send-box" rows="3"></textarea>     
+			    <textarea class="form-control messages-send-box" id="message-box" rows="3"></textarea>     
 			    <span class="input-group-addon btn btn-primary" onclick="onClickSend()" id="chat-btn-send-reply">Send</span>
 			</div>
 
