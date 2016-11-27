@@ -63,7 +63,7 @@ class Listings extends Controller {
 		$arrayOfListingObjects = $listingRepo->find($listingID, "listingId");
 
 
-		if (count($arrayOfListingObjects) == 0){
+		if (empty($arrayOfListingObjects)){
 			//detail of error page necessary
 			$errorMessage = "The listing with the listingID ({$listingID}) was not found.";
 			require APP . 'view/_templates/header.php';

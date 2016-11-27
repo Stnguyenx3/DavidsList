@@ -146,7 +146,7 @@
 							<input type="checkbox" name="listingmisc" id="listing-pets" value="pet">Pets
 						</label>
 						<label for="listing-elevator">
-							<input type="checkbox" name="listingmisc" id="listing-elevator" value="elevator">Elevtor
+							<input type="checkbox" name="listingmisc" id="listing-elevator" value="elevator">Elevator
 						</label>
 						<label for="listing-furnished">
 							<input type="checkbox" name="listingmisc" id="listing-furnished" value="furniture">Furnished

@@ -5,7 +5,7 @@ class UserResponseCreator {
 		$userRepo = RepositoryFactory::createRepository("user");
 		$arrayOfUserObjects = $userRepo->find($userID, "userid");
 
-		if(count($arrayOfUserObjects) == 0) {
+		if(empty($arrayOfUserObjects)) {
 			return null;
 		}
 
@@ -44,13 +44,13 @@ class UserResponseCreator {
 		$deletedListings = true;
 
 		//delete from listings table + related tables (address, details, listing images, and messages)
-		for($arrayOfListingObjects as $listingObject) {
+		foreach($arrayOfListingObjects as $listingObject) {
 			ListingsResponseCreator::createDeleteListingResponse($listingObject->getListingId());
 		}
 
 		//delete from favorites
 		//TODO: Need to reimplement removing for favorite listing object
-		for($arrayOfFavoriteListingObjects as $favoriteListingObjects) {
+		foreach($arrayOfFavoriteListingObjects as $favoriteListingObjects) {
 			// $favoriteListingRepo->remove
 		}
 
@@ -85,7 +85,7 @@ class UserResponseCreator {
 
 		$arrayOfUserObjects = $userRepo->find($userInformation["email"], "email");
 
-		if(count($arrayOfUserObjects) != 0) {
+		if(!empty($arrayOfUserObjects)) {
 			return null;
 		} else {
 			$user = new User();

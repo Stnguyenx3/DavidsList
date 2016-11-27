@@ -38,7 +38,14 @@ class FavoriteListings extends Controller{
 					"favorite_listing");		
 
 	        $arrayOfListingsRepo = $favoriteListingsRepo->find($_POST["listingId"], "listingId");
-	        if(count($arrayOfListingsRepo) > 0) {
+	        $isFavorited = false;
+	        foreach($arrayOfListingsRepo as $favoriteListings) {
+	        	if($favoriteListings->getUserId() == $arrayOfUserObjects[0]->getId()) {
+	        		$isFavorited = true;
+	        		break;
+	        	}
+	        }
+	        if($isFavorited) {
 	        	echo "You have favorited this apartment already";
 	        } else {
 	        	echo $favoriteListingsRepo->save($favoriteListing);	

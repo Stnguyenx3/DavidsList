@@ -34,15 +34,3 @@ class ListingRepo implements DatabaseRepositoryInterface{
 	}
 
 }
-
-class AllListingQuery implements AllQueryInterface{
-	protected $db;
-
-	public function __construct($db){
-		$this->db = $db;
-	}
-
-	public function fetch($fields){
-		//return $this->db->select($fields)->from('listings')->rows();
-	}
-}

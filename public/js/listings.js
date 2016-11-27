@@ -154,6 +154,8 @@ function onFavoriteClick() {
 			if(event === 1) {
 				//Display something that says it's favorited
 				console.log(event);
+			} else if (event === "You are not logged in") {
+				window.location.replace(url+"home/login/");
 			} else {
 				console.log(event);
 			}
