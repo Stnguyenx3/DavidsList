@@ -64,6 +64,10 @@ class RepositoryFactory {
 				return new AllListingDetailQuery($db);
 				break;
 			}
+			case "message": {
+				return new MessageRepo($db);
+				break;
+			}			
 		}
 	}
 }
