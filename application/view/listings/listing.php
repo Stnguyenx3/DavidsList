@@ -46,7 +46,7 @@
 
 			<div class="listing-map" id="listing-map">
 				
-				<script>
+				<!-- <script>
 			    	var map;
 			    	function initMap() {
 				   		map = new google.maps.Map(document.getElementById('listing-map'), {
@@ -54,9 +54,10 @@
 				        	zoom: 16
 				    	});
 			    	}
-			    </script>
 
-			    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUYeLz1DKD4PUAg_uef7OP986wXFlkN78&callback=initMap" async defer></script>
+			    </script> -->
+
+			    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUYeLz1DKD4PUAg_uef7OP986wXFlkN78&callback=initMap" async defer></script> -->
 
 			</div>
 
@@ -88,7 +89,8 @@
 							<ul class="listing-basic-info">
 								<li>Bed: <?php echo $listingResponse["listing_detail"]->getNumberOfBedrooms() ?></li>
 								<li>Bath: <?php echo $listingResponse["listing_detail"]->getNumberOfBathrooms() ?></li>
-								<li>Distance: #TODO</li>
+								<li>Distance:</li>
+								<li id="output"> </li>
 							</ul>
 
 							<ul class="listing-expanded-info">
@@ -139,3 +141,83 @@
 	</div>
 
 </div>
+
+
+
+<script>                                      //----------might move them to other place in order to let all pages got this
+	function initMap() {					  //listing page and home page, home page only need output
+  		var bounds = new google.maps.LatLngBounds;
+  		var markersArray = [];
+
+  		var origin = '1907 Geneva Ave, San Francisco';  //change it
+  		var destination = '1600 Holloway Ave, San Francisco'; //school address
+
+  		var destinationIcon = 'https://chart.googleapis.com/chart?' +
+  	    	'chst=d_map_pin_letter&chld=D|FF0000|000000';
+  		var originIcon = 'https://chart.googleapis.com/chart?' +
+    		'chst=d_map_pin_letter&chld=O|FFFF00|000000';
+    	var	map = new google.maps.Map(document.getElementById('listing-map'), {
+			center: {lat: 37.721178, lng: -122.476962},
+			zoom: 16
+  		});
+
+  		var geocoder = new google.maps.Geocoder;
+
+  		var service = new google.maps.DistanceMatrixService;
+
+  		service.getDistanceMatrix({
+    	origins: [origin],
+    	destinations: [destination],
+    	travelMode: google.maps.TravelMode.DRIVING,
+    	unitSystem: google.maps.UnitSystem.METRIC,
+    	avoidHighways: false,
+    	avoidTolls: false
+  		}, 
+
+  		function(response, status) {
+    		if (status !== google.maps.DistanceMatrixStatus.OK) {
+      			alert('Error was: ' + status);
+    		} else {
+    			var originList = response.originAddresses;
+      			var destinationList = response.destinationAddresses;
+      			var outputDiv = document.getElementById('output');
+
+      			outputDiv.innerHTML = '';
+      			deleteMarkers(markersArray);
+
+      			var showGeocodedAddressOnMap = function(asDestination) {
+        			var icon = asDestination ? destinationIcon : originIcon;
+        			return function(results, status) {
+          				if (status === google.maps.GeocoderStatus.OK) {
+            				map.fitBounds(bounds.extend(results[0].geometry.location));
+            				markersArray.push(new google.maps.Marker({
+              				map: map,
+              				position: results[0].geometry.location,
+              				icon: icon
+            				}));
+          				} else {
+            				alert('Geocode was not successful due to: ' + status);
+          				}
+        			};
+      			};
+
+      			var results = response.rows[0].elements;
+      			geocoder.geocode({'address' : originList[0]},
+      				showGeocodedAddressOnMap(false));
+      			geocoder.geocode({'address' : destinationList[0]},
+      				showGeocodedAddressOnMap(true));
+           		    outputDiv.innerHTML += results[0].distance.text
+    		}
+  		});
+	}
+
+	function deleteMarkers(markersArray) {
+  		for (var i = 0; i < markersArray.length; i++) {
+    		markersArray[i].setMap(null);
+  		}
+  		markersArray = [];
+	}
+</script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUYeLz1DKD4PUAg_uef7OP986wXFlkN78&callback=initMap"
+        async defer></script>
