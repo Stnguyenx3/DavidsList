@@ -74,6 +74,9 @@
 										<li>Distance To SFSU: #TODO</li>
 									</ul>
 									<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][2]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
+
+									<script src="https://maps.googleapis.com/maps/api/distancematrix/json?origins=San+Francisco&destinations=Seattle&mode=bicycling&language=fr-FR&key=AIzaSyBqaRtjuh9yOQakPVXhLEgEaBhmAMv9GmA"></script>
+									
 							</div>
 						</div>
 					</div>
