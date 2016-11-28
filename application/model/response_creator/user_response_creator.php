@@ -1,5 +1,21 @@
 <?php
 
+/*
+ *  Class: UserResponseCreator
+ *   File: application/model/response_creator/user_response_creator.php
+ * Author: David Chau
+ * 
+ * 
+ * This class provides back-end logic functionality, to try and ease the amount
+ * of computation the controller has to do. It calls upon the User repository
+ * and either fetches, creates, updates, or deletes users and return
+ * the responses from each of those actions.
+ * 
+ * Additionally does CRUD calls for user images if applicable.
+ * 
+ * Copyright (C) 2016, David Chau
+ */
+
 class UserResponseCreator {
 	public static function createGetUserResponse($userID) {
 		$userRepo = RepositoryFactory::createRepository("user");

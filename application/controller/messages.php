@@ -9,8 +9,6 @@
  * 
  * This class provides functions for creating, getting, and deleting messages.
  * 
- * TODO - Create the functions for getting messages and converstions/threads.
- * 
  * Copyright (C) 2016, Paul Derugin
  */
 

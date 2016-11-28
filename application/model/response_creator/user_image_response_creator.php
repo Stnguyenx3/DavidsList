@@ -1,5 +1,20 @@
 <?php
 
+/*
+ *  Class: UserImageResponseCreator
+ *   File: application/model/response_creator/user_image_response_creator.php
+ * Author: David Chau
+ * 
+ * 
+ * This class provides back-end logic functionality, to try and ease the amount
+ * of computation the controller has to do. It calls upon the UserImage repository
+ * and either fetches, creates, updates, or deletes user images and return
+ * the responses from each of those actions.
+ * 
+ * 
+ * Copyright (C) 2016, David Chau
+ */
+
 class UserImageResponseCreator {
 	public static function createGetUserImageResponse($userID) {
 		$userImageRepo = RepositoryFactory::createRepository("user_image");

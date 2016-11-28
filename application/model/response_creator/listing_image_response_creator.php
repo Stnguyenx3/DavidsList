@@ -1,5 +1,20 @@
 <?php
 
+/*
+ *  Class: ListingImageResponseCreator
+ *   File: application/model/response_creator/listing_image_response_creator.php
+ * Author: David Chau
+ * 
+ * 
+ * This class provides back-end logic functionality, to try and ease the amount
+ * of computation the controller has to do. It calls upon the ListingImage repository
+ * and either fetches, creates, updates, or deletes listing images and return
+ * the responses from each of those actions.
+ * 
+ * 
+ * Copyright (C) 2016, David Chau
+ */
+
 class ListingImageResponseCreator {
 	public static function createGetListingImageResponse($listingID) {
 		$listingImageRepo = RepositoryFactory::createRepository("listing_image");

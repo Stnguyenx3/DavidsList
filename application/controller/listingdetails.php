@@ -7,7 +7,22 @@
  * ALSO ALL CONTROLLERS SHOULD CORRESPOND TO A PAGE
  */
 
-//Listing Details class
+/*
+ *  Class: ListingDetails
+ *   File: application/controller/listingdetails.php
+ * Author: Imran Irfan
+ * 
+ * Controller for the ListingDetail class (model/listing_detail.php)
+ * 
+ * This class provides the following functionality:
+ *   1) A function to get the details based on listingId
+ *   2) A function to delete a listing detail based on listingId
+ *   3) A function to update a listing detail based on listingId
+ *   4) A functon to create a listing detail based on listingId
+ * 
+ * 
+ * Copyright (C) 2016, Imran Irfan
+ */
 
 class ListingDetails extends Controller{
 

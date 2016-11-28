@@ -12,9 +12,6 @@
  *   2) A function to delete a user images;
  *   3) A function to upload user images;
  * 
- * The getUserImages() and deleteUserImages() functions are tested and seem to work. 
- * The last function, uploadImage(), needs to be tested.
- * 
  * Copyright (C) 2016, Paul Derugin
  */
 

@@ -1,5 +1,19 @@
 <?php
-// Class ListingImages
+/*
+ *  Class: ListingImages
+ *   File: application/controller/listingimages.php
+ * Author: Imran Irfan
+ * 
+ * Controller for the ListingDetail class (model/listing_image.php)
+ * 
+ * This class provides the following functionality:
+ *   1) A function to get a list of listing images based on listingId
+ *   2) A function to delete a list of listing images based on listingId
+ *   3) A function to upload a list of listing images based on listingId
+ * 
+ * 
+ * Copyright (C) 2016, Imran Irfan
+ */
 
 class ListingImages extends Controller{
 

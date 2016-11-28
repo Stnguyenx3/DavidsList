@@ -31,9 +31,6 @@
  *	 private $zipcode;
  *	 private $state;
  * 
- * The function deleteAddress() has been tested and is working. The functions
- * createAddress() and updateAddress() need to be tested.
- * 
  * Copyright (C) 2016, Paul Derugin
  */
 
