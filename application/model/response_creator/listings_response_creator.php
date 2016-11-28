@@ -36,9 +36,9 @@ class ListingsResponseCreator {
 		$allAddresses = $addressRepo->fetch();
 
 		return array(
-			"listings" => array_slice($allListings, 0, 3),
-			"addresses" => array_slice($allAddresses, 0, 3),
-			"listing_details" => array_slice($allListingDetails, 0, 3),
+			"listings" => array_slice($allListings, 0, 6),
+			"addresses" => array_slice($allAddresses, 0, 6),
+			"listing_details" => array_slice($allListingDetails, 0, 6),
 		);
 	}
 
