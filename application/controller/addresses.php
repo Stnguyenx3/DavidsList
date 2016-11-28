@@ -65,11 +65,11 @@ class Addresses extends Controller{
 	} // end function createAddress
 	
 	
-	/**************************************************************************
-	 * REMOVED function searchByAddress() from here becuase its functionality
-	 * is already implemented in the Search Controller.
-	 *************************************************************************/
-	
+	public function getAddress($listingId) {
+		$addressRepo = RepositoryFactory::createRepository("address");
+        $arrayOfAddresses = $addressRepo->find($listingId, "listingId");
+        echo json_encode($arrayOfAddresses[0]);
+	}
 	
 	/**
 	 * Deletes an address, given a listingID. 
