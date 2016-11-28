@@ -1,8 +1,11 @@
-function toggleBlockDisplay (blockID) {
+function toggleBlockDisplay (blockID, on) {
 	var selector = "#" + blockID;
 	var status = $(selector).css("display");
-
-	$(selector).css("display", "block");
+	if(on) $(selector).css("display", "block");
+	else{
+		$(selector).css("display", "none");
+		console.log(selector);
+	}
 
 
 }
@@ -159,7 +162,7 @@ function formatResults(event) {
 	pageContent.append($(paginationWrapper));
 
 	if (numOfResults == 0) {
-		toggleBlockDisplay("result-pagination-wrapper");
+		toggleBlockDisplay("result-pagination-wrapper", true);
 	}
 
 	$(".container.main").html(pageContent);
@@ -206,7 +209,8 @@ function formatResults(event) {
 			} 
 			// check for rooms
 			else if (type === "bedroom"){
-				if (rooms == compareValue || (rooms >=compareValue && subtype == 3)){	
+				if (rooms == compareValue || (rooms >=compareValue && subtype == 3)){
+					console.log(rooms, compareValue);	
 					var index = resultIDs.indexOf(result[i].listingId);
 					if(!checked){
 						if (index > -1) resultIDs.splice(index, 1);
@@ -254,7 +258,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 	var numOfResults = result.length;
 	var numOfPages = Math.ceil(numOfResultIDs / resultsPerPage);
 
-	console.log(numOfPages, numOfResultIDs);
+	// console.log(numOfPages, numOfResultIDs);
 
 	var resultCombined = [];
 
@@ -294,22 +298,27 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 
 					var furnished;
 
-					if (result[r].furnishing == 1) {
-						furnished = "Yes";
+					if (result[r] == undefined){
+							console.log("oh no", r);
+							toggleBlockDisplay("search-result-listing-" + resultIndex, false);
 					} else {
-						furnished = "No";
+
+						if (result[r].furnishing == 1) {
+							furnished = "Yes";
+						} else {
+							furnished = "No";
+						}
+
+						$(resultDiv).find(".search-result-listing-img").attr("src", "data:image/png;base64," + result[r].imageThumbnail);
+						$(resultDiv).find(".search-result-listing-title").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
+						$(resultDiv).find(".search-result-listing-price").text("$" + result[r].price);
+						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished);
+						$(resultDiv).find(".search-result-listing-btn").text("Rent");
+
+
+						toggleBlockDisplay("search-result-listing-" + resultIndex, true);
+
 					}
-
-					$(resultDiv).find(".search-result-listing-img").attr("src", "data:image/png;base64," + result[r].imageThumbnail);
-					$(resultDiv).find(".search-result-listing-title").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
-					$(resultDiv).find(".search-result-listing-price").text("$" + result[r].price);
-					$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished);
-					$(resultDiv).find(".search-result-listing-btn").text("Rent");
-
-
-					toggleBlockDisplay("search-result-listing-" + r);
-
-					
 
 	            }
 
