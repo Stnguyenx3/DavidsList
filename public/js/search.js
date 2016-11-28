@@ -201,6 +201,8 @@ function formatResults(event) {
 					
 
 	            }
+	        revisitCheckboxes()
+
 			}
 	});
 }
@@ -253,6 +255,14 @@ function onSelectFilter(event){
 
 	// find a way to handle the different pages
 
+}
+
+// Revisits all checkboxes to apply the filters to the results
+function revisitCheckboxes(){
+	$('#select_all').change(function(){
+		$('.checkbox').each(function(){
+        	this.onChange(); 
+	})
 }
 
 
