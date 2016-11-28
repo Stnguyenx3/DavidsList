@@ -33,7 +33,7 @@ function formatUserListings(event) {
 			var row0 = $("<div></div>").addClass("row user-favorite linear-gradient-bg custom-border").appendTo($("#favorites"));
 
 			//Add unique ID for each row (remove if not needed!)
-			$(row0).attr("id", "user-favorite-" + i);
+			$(row0).attr("id", "user-favorite-" + event[i].listing.listingId);
 
 			var col0 = $("<div></div>").addClass("col-sm-12").appendTo($(row0));
 			var row1 = $("<div></div>").addClass("row").appendTo($(col0));
@@ -79,7 +79,8 @@ function onClickDeleteListing(event) {
 			listingId: event.data.listingId
 		},
 		success: function(e) {
-			console.log(e);
+			$("#user-favorite-"+event.data.listingId).remove();
+			$.notify("Listing has been deleted from your favorites!", "success");
 		},
 		error: function(xhr, err, errThrown) {
 			console.log("I failed");

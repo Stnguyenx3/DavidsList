@@ -113,7 +113,7 @@
 
 							<button type="button" class="btn btn-primary rent-button">Rent</button>
 
-							<button type="button" rel="popover" class="btn btn-primary listing-favorite-btn" onclick="onFavoriteClick()">
+							<button type="button" rel="popover" id="listing-favorite-btn" class="btn btn-primary listing-favorite-btn" onclick="onFavoriteClick()">
 								<span class="glyphicon glyphicon-heart"></span> Favorite
 							</button>
 							

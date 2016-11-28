@@ -51,8 +51,13 @@ class Messages extends Controller{
 		}
 
 		// add the message to the DB
-		$messageRepo->save($message);
+		$messageResponse = $messageRepo->save($message);
 		//Send a message back to the front-end whether a message has been sent
+		if($messageResponse) {
+			echo "Message has successfully sent!";
+		} else {
+			echo "Message did not send.";
+		}
 	} // end function createMessage()
 	
 	/*

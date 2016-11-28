@@ -50,7 +50,7 @@ function onClickSend() {
 		url: url+"messages/createmessage/",
 		data: message,
 		success: function(event) {
-			console.log(event);
+			$.notify(event, "success");
 		},
 		error: function(xhr, err, errThrown) {
 			console.log("I failed");
