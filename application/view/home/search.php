@@ -50,7 +50,7 @@
 					<br>
 
 					<label for="search-filter-price-range1">
-						<input type="checkbox" id="search-filter-price-range1" value="">Under $500
+						<input type="checkbox" id="search-filter-price-range1" value="" onselect="onSelectFilter()">Under $500
 					</label>
 
 					<br>
