@@ -7,7 +7,7 @@
 				students are more willing to rent from other students because they share something in common, going to
 				 an awesome school such as SFSU. Although we do not guarantee that your experience will be 100% safe,
 				it is much more safer than searching for an apartment posted by a complete stranger! We hope that you
-				will find a place to rent and have an awesome academic career!
+				will find a place to rent and have an awesome academic career! 
 			</p>
 		</div>
 	</div>
@@ -18,21 +18,21 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[0] ?>" alt="Image missing." style="width: 250px; height: 250px;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexOne] ?>" alt="Image missing." style="width: 250px; height: 250px;">
 
-				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][0]->getStreetName() ?></h3>
+				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][$indexOne]->getStreetName() ?></h3>
 
-				<p class="featured-listing-price">Price: $<?php echo $newListings["listings"][0]->getPrice() ?></p>
+				<p class="featured-listing-price">Price: $<?php echo $newListings["listings"][$indexOne]->getPrice() ?></p>
 
 				<div>
 					<ul class="featured-listing-info">
-						<li>Bed: <?php echo $newListings["listing_details"][0]->getNumberOfBedrooms() ?></li>
-						<li>Bath: <?php echo $newListings["listing_details"][0]->getNumberOfBathrooms() ?></li>
+						<li>Bed: <?php echo $newListings["listing_details"][$indexOne]->getNumberOfBedrooms() ?></li>
+						<li>Bath: <?php echo $newListings["listing_details"][$indexOne]->getNumberOfBathrooms() ?></li>
 						<li id="output-0">Distance To SFSU:</li>
 					</ul>
 				</div>
 
-				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][0]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
+				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexOne]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
 
 			</div>
 
@@ -42,21 +42,21 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[1] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexTwo] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
 
-				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][1]->getStreetName() ?></h3>
+				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][$indexTwo]->getStreetName() ?></h3>
 
-				<p class="featured-listing-price">Price: $<?php echo $newListings["listings"][1]->getPrice() ?></p>
+				<p class="featured-listing-price">Price: $<?php echo $newListings["listings"][$indexTwo]->getPrice() ?></p>
 
 				<div>
 					<ul class="featured-listing-info">
-						<li>Bed: <?php echo $newListings["listing_details"][1]->getNumberOfBedrooms() ?></li>
-						<li>Bath: <?php echo $newListings["listing_details"][1]->getNumberOfBathrooms() ?></li>
+						<li>Bed: <?php echo $newListings["listing_details"][$indexTwo]->getNumberOfBedrooms() ?></li>
+						<li>Bath: <?php echo $newListings["listing_details"][$indexTwo]->getNumberOfBathrooms() ?></li>
 						<li id="output-1">Distance To SFSU:</li>
 					</ul>
 				</div>
 
-				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][1]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
+				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexTwo]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
 
 			</div>
 
@@ -66,21 +66,21 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[2] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexThree] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
 
-				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][2]->getStreetName() ?></h3>
+				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][$indexThree]->getStreetName() ?></h3>
 
-				<p class="featured-listing-price">Price: $<?php echo $newListings["listings"][2]->getPrice() ?></p>
+				<p class="featured-listing-price">Price: $<?php echo $newListings["listings"][$indexThree]->getPrice() ?></p>
 
 				<div>
 					<ul class="featured-listing-info">
-						<li>Bed: <?php echo $newListings["listing_details"][2]->getNumberOfBedrooms() ?></li>
-						<li>Bath: <?php echo $newListings["listing_details"][2]->getNumberOfBathrooms() ?></li>
+						<li>Bed: <?php echo $newListings["listing_details"][$indexThree]->getNumberOfBedrooms() ?></li>
+						<li>Bath: <?php echo $newListings["listing_details"][$indexThree]->getNumberOfBathrooms() ?></li>
 						<li id="output-2">Distance To SFSU:</li>
 					</ul>
 				</div>
 
-				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][2]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
+				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexThree]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
 
 			</div>
 
@@ -94,21 +94,21 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[3] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexFour] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
 
-				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][3]->getStreetName() ?></h3>
+				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][$indexFour]->getStreetName() ?></h3>
 
-				<p class="featured-listing-price">Price: $<?php echo $newListings["listings"][3]->getPrice() ?></p>
+				<p class="featured-listing-price">Price: $<?php echo $newListings["listings"][$indexFour]->getPrice() ?></p>
 
 				<div>
 					<ul class="featured-listing-info">
-						<li>Bed: <?php echo $newListings["listing_details"][3]->getNumberOfBedrooms() ?></li>
-						<li>Bath: <?php echo $newListings["listing_details"][3]->getNumberOfBathrooms() ?></li>
+						<li>Bed: <?php echo $newListings["listing_details"][$indexFour]->getNumberOfBedrooms() ?></li>
+						<li>Bath: <?php echo $newListings["listing_details"][$indexFour]->getNumberOfBathrooms() ?></li>
 						<li id="output-3">Distance To SFSU:</li>
 					</ul>
 				</div>
 
-				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][3]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
+				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFour]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
 
 
 			</div>
@@ -119,21 +119,21 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[4] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexFive] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
 
-				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][4]->getStreetName() ?></h3>
+				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][$indexFive]->getStreetName() ?></h3>
 
-				<p class="featured-listing-price">Price: $<?php echo $newListings["listings"][4]->getPrice() ?></p>
+				<p class="featured-listing-price">Price: $<?php echo $newListings["listings"][$indexFive]->getPrice() ?></p>
 
 				<div>
 					<ul class="featured-listing-info">
-						<li>Bed: <?php echo $newListings["listing_details"][4]->getNumberOfBedrooms() ?></li>
-						<li>Bath: <?php echo $newListings["listing_details"][4]->getNumberOfBathrooms() ?></li>
+						<li>Bed: <?php echo $newListings["listing_details"][$indexFive]->getNumberOfBedrooms() ?></li>
+						<li>Bath: <?php echo $newListings["listing_details"][$indexFive]->getNumberOfBathrooms() ?></li>
 						<li id="output-4">Distance To SFSU:</li>
 					</ul>
 				</div>
 
-				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][4]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
+				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFive]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
 
 
 			</div>
@@ -144,21 +144,21 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[5] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexSix] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
 
-				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][5]->getStreetName() ?></h3>
+				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][$indexSix]->getStreetName() ?></h3>
 
-				<p class="featured-listing-price">Price: $<?php echo $newListings["listings"][5]->getPrice() ?></p>
+				<p class="featured-listing-price">Price: $<?php echo $newListings["listings"][$indexSix]->getPrice() ?></p>
 
 				<div>
 					<ul class="featured-listing-info">
-						<li>Bed: <?php echo $newListings["listing_details"][5]->getNumberOfBedrooms() ?></li>
-						<li>Bath: <?php echo $newListings["listing_details"][5]->getNumberOfBathrooms() ?></li>
+						<li>Bed: <?php echo $newListings["listing_details"][$indexSix]->getNumberOfBedrooms() ?></li>
+						<li>Bath: <?php echo $newListings["listing_details"][$indexSix]->getNumberOfBathrooms() ?></li>
 						<li id="output-5">Distance To SFSU:</li>
 					</ul>
 				</div>
 
-				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][5]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
+				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexSix]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
 
 
 			</div>
@@ -175,12 +175,12 @@
   		var bounds = new google.maps.LatLngBounds;
   		var markersArray = [];
 
-  		var origin1 = "<?php echo $newListings["addresses"][0]->getStreetName() . $newListings["addresses"][0]->getCity() ?>";
-  		var origin2 = "<?php echo $newListings["addresses"][1]->getStreetName() . $newListings["addresses"][1]->getCity() ?>";
-  		var origin3 = "<?php echo $newListings["addresses"][2]->getStreetName() . $newListings["addresses"][2]->getCity() ?>";
-  		var origin4 = "<?php echo $newListings["addresses"][3]->getStreetName() . $newListings["addresses"][3]->getCity() ?>";
-  		var origin5 = "<?php echo $newListings["addresses"][4]->getStreetName() . $newListings["addresses"][4]->getCity() ?>";
-  		var origin6 = "<?php echo $newListings["addresses"][5]->getStreetName() . $newListings["addresses"][5]->getCity() ?>";
+  		var origin1 = "<?php echo $newListings["addresses"][$indexOne]->getStreetName() . ", " . $newListings["addresses"][$indexOne]->getCity() ?>";
+  		var origin2 = "<?php echo $newListings["addresses"][$indexTwo]->getStreetName() . ", " . $newListings["addresses"][$indexTwo]->getCity() ?>";
+  		var origin3 = "<?php echo $newListings["addresses"][$indexThree]->getStreetName() . ", " . $newListings["addresses"][$indexThree]->getCity() ?>";
+  		var origin4 = "<?php echo $newListings["addresses"][$indexFour]->getStreetName() . ", " . $newListings["addresses"][$indexFour]->getCity() ?>";
+  		var origin5 = "<?php echo $newListings["addresses"][$indexFive]->getStreetName() . ", " . $newListings["addresses"][$indexFive]->getCity() ?>";
+  		var origin6 = "<?php echo $newListings["addresses"][$indexSix]->getStreetName() . ", " . $newListings["addresses"][$indexSix]->getCity() ?>";
 
   		var destination = '1600 Holloway Ave, San Francisco'; 
 

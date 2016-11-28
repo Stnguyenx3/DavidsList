@@ -116,7 +116,13 @@
 
 			<div class="owner-info linear-gradient-bg">
 				<p style="font-size:24px; font-weight: bold">Landlord</p>
-				<p class="owner-username">Name: <?php echo $userResponse->getUsername(); ?></p>
+				<?php  
+					$verifiedCss = "";
+					if($userResponse->getVerified() == 1) {
+						$verifiedCss = "style=\"color: purple\"";
+					}
+				?>
+				<p class="owner-username" <?php echo $verifiedCss ?>>Name: <?php echo $userResponse->getUsername(); ?></p>
 				<p class="owner-email">Email: <?php echo $userResponse->getEmail(); ?></p>
 
 			</div>
