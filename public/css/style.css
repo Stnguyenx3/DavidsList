@@ -540,3 +540,13 @@ input[type=file] {
 .messages-send-box {
     resize: none;
 }
+
+
+/*All messages page*/
+.message {
+    padding:15px;
+}
+
+.go-to-message {
+    vertical-align: bottom
+}

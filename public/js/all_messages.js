@@ -46,6 +46,9 @@ function formatAllListingMessages(event) {
 			// $(h3).text(listingTitle);
 			$(p0).text("Message:"+ message);
 			$(a0).text("Conversate");
+
+			$(img).attr("src", "http://placehold.it/150x150");
+
 		}
 		
 	});
