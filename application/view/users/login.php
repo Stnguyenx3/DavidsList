@@ -24,6 +24,11 @@
 </div>
 
 <script src = "<?php echo URL; ?>js/user_login.js"></script>
-<script type="text/javascript">
+
+<script>
+
+	$(document).ready({
+		
+	});
 
 </script>

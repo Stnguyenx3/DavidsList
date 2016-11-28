@@ -193,7 +193,7 @@ class Users extends Controller {
 		// if no such username exists in the database, return back the word null
 		//to render
 		if ($arrayOfResults == null){
-            echo "null";			
+            echo "null";	
 		}
 		else{
 			$user = $arrayOfResults[0];
@@ -201,7 +201,8 @@ class Users extends Controller {
 			// one stored in the user's User object, display error
 			$verifyPassword = password_verify($password, $user->getPassword());
 			if (!$verifyPassword){
-				echo "wrong";					
+                
+				echo "wrong";
 			}
 			
 			// else username exists AND the password entered matches the one on file

@@ -12,8 +12,10 @@ $('#login-form').submit(function (e) {
 		success: function(event){
 			if(event === "null") {
 				//TODO do jquery and say that you entered the wrong login/password
+				$.notify("Invalid Username/Password combination!", {position: "top center"});
 			} else if (event === "wrong") {
 				//TODO do jquery and say that you entered the wrong password
+				$.notify("Invalid Username/Password combination!", {position: "top center"});
 			} else {
 				window.location.replace(url);
 			}
