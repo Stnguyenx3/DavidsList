@@ -5,6 +5,11 @@ body,
     overflow: scroll;
 }
 
+.disclaimer {
+    color: #ffffff;
+    background-color: #4682b4;
+}
+
 .privacy > p {
     font-size: 16px;
 }
@@ -513,6 +518,10 @@ input[type=file] {
 }
 
 /*User Chat Messages Page*/
+.message {
+    padding-left: 15px;
+}
+
 .user-messages {
     font-size: 15px;
 }
@@ -529,12 +538,6 @@ input[type=file] {
     /*height: 500px; TODO: Scroll bar when overflow 500px*/
 }
 
-.messages-single{
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 15px;
-}
-
 .user-message-to-send {
     border-top:  3px solid #99CC99;
     padding: 15px;
@@ -546,8 +549,8 @@ input[type=file] {
 
 
 /*All messages page*/
-.message {
-    padding:15px;
+.message-thread-message {
+    padding: 15px;
 }
 
 .go-to-message {

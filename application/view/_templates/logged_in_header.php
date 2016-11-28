@@ -35,11 +35,17 @@
 			<div class="col-sm-3">
 				<img src="<?php echo URL; ?>img/logo.png" height="100" alt="logo">
 			</div>
+
+			<div class="col-sm-6 disclaimer">
+				<h3 class="centered-header">SFSU/FAU/Fulda Software Engineering Project, Fall 2016.  For Demonstration Only</h3>
+			</div>
+
+			<div class="col-sm-3"></div>
 			
 		</div>
 
-    <!-- navigation -->
     <div class="navigation">
+    <!-- navigation -->
 
     	<div class="row">
     		
