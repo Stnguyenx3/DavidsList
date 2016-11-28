@@ -41,17 +41,23 @@ function formatResults(event) {
 	var result = JSON.parse(event);
 	var numOfResults = result.length;
 
+	var resultsPerPage = 5; //MAX NUMBER OF RESULTS PER PAGINATION PAGE.
+
+	var numOfPages = Math.ceil(numOfResults / resultsPerPage);
+
 	// console.log(result[5]);
+
+
 
 	var pageContent = $("<div></div>").addClass("row");
 	var filter = '<div class="col-sm-3">\
 		<p class="search-title">Refine search</p>\
 			<div class="search-filter">\
-				<div class="form-group search-filter-price">\
+				<div class="form-group search-filter-price" id="filter-form">\
 					<label>Price</label>\
 					<br>\
 					<label for="search-filter-price-range1">\
-						<input type="checkbox" id="search-filter-price-range1" value="500" onChange="onSelectFilter(event)" checked=true>Under $500\
+						<input type="checkbox" id="search-filter-price-range1" value="500" checked=true>Under $500\
 					</label>\
 					<br>\
 					<label for="search-filter-price-range2">\
@@ -88,7 +94,7 @@ function formatResults(event) {
 						</label>\
 						<br>\
 						<label for="search-filter-distance-range2">\
-							<input type="checkbox" id="search-filter-distance-range2" value="3" onChange="onSelectFilter(event)" checked=true>2-3 miles\
+							<input type="checkbox" id="search-filter-distance-range2" value="2" onChange="onSelectFilter(event)" checked=true>2-3 miles\
 						</label>\
 						<br>\
 						<label for="search-filter-distance-range3">\
@@ -99,33 +105,29 @@ function formatResults(event) {
 			</div>\
 		</div>'
 
-		pageContent.append(filter);
+	pageContent.append(filter);
 
-		var searchResultContent = ($("<div></div>").addClass("col-sm-9"));
-		$(searchResultContent).attr("id", "searchResultContent");
+	var searchResultContent = ($("<div></div>").addClass("col-sm-9"));
+	$(searchResultContent).attr("id", "searchResultContent");
 
-		$(searchResultContent).append($("<p>Results</p>").addClass("search-title"));
+	$(searchResultContent).append($("<p>Results</p>").addClass("search-title"));
 
-		//Check for no results.
+	//Check for no results.
 
-		if (result.length == 0) {
-			//Disable search filters...
+	if (result.length == 0) {
+		//Disable search filters...
 
 
-			//Display message to user.
-			var row = $("<div></div>").addClass("row search-result-listing").appendTo($(searchResultContent));
-			var col = $("<div></div>").addClass("col-sm-12").appendTo($(row));
-			var message = $("<p></p>").addClass("search-result-listing-null").appendTo($(col));
+		//Display message to user.
+		var row = $("<div></div>").addClass("row search-result-listing").appendTo($(searchResultContent));
+		var col = $("<div></div>").addClass("col-sm-12").appendTo($(row));
+		var message = $("<p></p>").addClass("search-result-listing-null").appendTo($(col));
 
-			$(message).text("No results! Try another search!");
+		$(message).text("No results! Try another search!");
 
-			pageContent.append(searchResultContent);
+		pageContent.append(searchResultContent);
 
-		}
-
-	var resultsPerPage = 5; //MAX NUMBER OF RESULTS PER PAGINATION PAGE.
-
-	var numOfPages = Math.ceil(numOfResults / resultsPerPage);
+	}
 
 	//console.log("There will be " + numOfPages + " pages." + " results = " + numOfResults);
 
@@ -162,7 +164,179 @@ function formatResults(event) {
 
 	$(".container.main").html(pageContent);
 
+	
+	var checkboxes = document.getElementById("filter-form").getElementsByTagName("input");
+	for (var i = 0; i < checkboxes.length; i++) {
+		checkboxes[i].onchange = function(event) {
+			onSelectFilter(event, result);
+		}
+	}
 
+	var resultIDs = writeListingID(result, numOfResults); // start with showing everything
+
+	updateSearchResults(resultsPerPage, result, resultIDs);
+
+	function onSelectFilter(event, result){
+		console.log(event);
+
+		// get all values needed form the event to filter
+		var id = event.target.id;
+		var subtype = parseInt(id.slice(-1));
+		var type = id.substr(14);
+		type = type.substr(0, type.length -7);
+
+		var checked = event.target.checked;
+		var compareValue = parseInt(event.target.value);
+
+		// filter results displayed on page
+		// var result, details, price, rooms;
+		// var searchContent = document.getElementById("searchResultContent");
+
+		// result = searchContent.getElementsByTagName("div");
+
+		// start going through them
+		// var len = result.length;
+		for (var i = 0; i < numOfResults; i++) {
+			// details = result[i].getElementsByTagName("p");
+			// price = parseInt(details[1].innerHTML.substr(1));
+			// rooms = parseInt(details[2].innerHTML.substr(5, 6));
+
+			var price = parseInt(result[i].price);
+			var rooms = parseInt(result[i].numberOfBedrooms);
+
+			// check for price
+			if (type === "price"){
+				if ((subtype == 1 && price < compareValue) || (subtype == 4 && price >= compareValue) || (price <compareValue && price >= compareValue-250 && subtype != 4)){
+					// if(checked) result[i-2].style.display = 'block';
+					// else result[i-2].style.display = 'none';
+					var index = resultIDs.indexOf(result[i].listingId);
+					if(!checked){
+						if (index > -1) resultIDs.splice(index, 1);
+					} else { 
+						if (index == -1) resultIDs.push(result[i].listingId);
+					}
+				}
+			} 
+
+			else if (type === "bedroom"){
+				if (rooms == compareValue || (rooms >=compareValue && subtype == 3)){
+					console.log(rooms);
+					// if(checked) result[i-2].style.display = 'block';
+					// else result[i-2].style.display = 'none';
+					if(!checked){
+						var index = resultArray.indexOf(result);
+						if (index > -1) resultArray.splice(index, 1);
+					} else resultArray.push(result);
+				}
+			}
+
+			if (type === "distance" && 1 <= compareValue){
+				console.log("distance");
+			}	
+		}
+
+		console.log(resultIDs);
+
+		updateSearchResults(resultsPerPage, result, resultIDs);
+	}
+
+}
+
+// // Revisits all checkboxes to apply the filters to the results
+// function revisitCheckboxes(){
+// 	console.log("found it");
+// 	// $('input:checkbox').each(function(){
+// 	// 	console.log("found checkbox");
+// 	// 	this.change();
+//  //        	// this.onchange(); 
+// 	// })
+// 	// // console.log("found checkbox");
+
+// 	var checkboxes = document.getElementById("filter-form").getElementsByTagName("input");
+// 	console.log(checkboxes);
+// 	for (var i = 0; i < checkboxes.length; i++) {
+// 		console.log(checkboxes[i]);
+// 		checkboxes[i].onchange();
+// 	};
+// }
+
+
+//Handles ENTER keypress in search field.
+function enterPressed(event) {
+
+	if (event.which == 13 || event.keyCode == 13) {
+		
+		onSearchClick();
+
+		return true;
+	}
+
+}
+
+function writeListingID(result, numOfResults){
+	var listingIDs = [];
+
+	for(var i = 0; i < numOfResults; i++){
+		listingIDs.push(result[i].listingId);
+	}
+	return listingIDs;
+}
+
+function binarySearch(Id, result){
+	numOfResults = result.length;
+	var middle = Math.ceil(numOfResults/2-1);
+	console.log(middle);
+	console.log(result, numOfResults);
+	
+	if (numOfResults == 2){
+		console.log("done");
+		if(result[0].listingId == Id){
+			console.log("yaya");
+			return result[0];
+
+		}
+		else if(result[1].listingId == Id){
+			console.log("yaya");
+		 return result[1];
+		}
+		else return -1;
+
+	} else if (numOfResults == 1) {
+		if(result[0].listingId == Id){
+			console.log("yaya");
+			return result[0];
+		} else return -1;
+	}
+
+	var curResult = result[middle].listingId;
+	if(curResult == Id) return result[middle];
+	else if (curResult < Id ) return binarySearch(Id, result.slice(0,middle), middle);
+	else if (curResult > Id) return binarySearch(Id, result.slice(middle, numOfResults-1), middle);
+}
+
+
+function updateSearchResults(resultsPerPage, result, resultIDs) {
+	var numOfResultIDs = resultIDs.length;
+	var numOfResults = result.length;
+	var numOfPages = Math.ceil(numOfResultIDs / resultsPerPage);
+
+	var resultCombined = [];
+
+	for(var i = 0; i < numOfResultIDs; i++){
+		// resultCombined.push(binarySearch(resultIDs[i],result));
+
+		ID = resultIDs[i];
+		for(var j = 0; j <numOfResults;j++){
+			if(result[j].listingId == ID){
+				resultCombined.push(result[j]);
+				break;
+			}
+		}
+	}
+
+	result = resultCombined;
+	console.log(resultCombined);
+	console.log(result);
 	// Handle Pagination events
 
 	$(".result-pagination").twbsPagination({
@@ -201,85 +375,7 @@ function formatResults(event) {
 					
 
 	            }
-	        revisitCheckboxes()
 
 			}
 	});
-}
-
-function onSelectFilter(event){
-	console.log(event);
-
-	// get all values needed form the event to filter
-	var id = event.target.id;
-	var subtype = parseInt(id.slice(-1));
-	var type = id.substr(14);
-	type = type.substr(0, type.length -7);
-
-	var checked = event.target.checked;
-	var compareValue = parseInt(event.target.value);
-
-	// filter results displayed on page
-	var result, details, price, rooms;
-	var searchContent = document.getElementById("searchResultContent");
-
-	result = searchContent.getElementsByTagName("div");
-
-	// start going through them
-	var len = result.length;
-	for (var i = 2; i < len; i+=3) {
-		details = result[i].getElementsByTagName("p");
-		price = parseInt(details[1].innerHTML.substr(1));
-		rooms = details[2].innerHTML.charAt(5);
-
-		// check for price
-		if (type === "price"){
-			if ((subtype == 1 && price <= compareValue) || (subtype == 4 && price >= compareValue) || (price <=compareValue && price >= compareValue-250 && subtype != 4)){
-				console.log(price);
-				if(checked) result[i-2].style.display = 'block';
-				else result[i-2].style.display = 'none';
-			}
-		} else if (type === "bedroom"){
-			if (rooms == compareValue || (rooms >=compareValue && subtype == 3)){
-				if(checked) result[i-2].style.display = 'block';
-				else result[i-2].style.display = 'none';
-			}
-		}
-
-		if (type === "distance" && 1 <= compareValue){
-			console.log("distance");
-		}
-		
-	}
-
-
-	// find a way to handle the different pages
-
-}
-
-// Revisits all checkboxes to apply the filters to the results
-function revisitCheckboxes(){
-	$('#select_all').change(function(){
-		$('.checkbox').each(function(){
-        	this.onChange(); 
-	})
-}
-
-
-//Handles ENTER keypress in search field.
-function enterPressed(event) {
-
-	if (event.which == 13 || event.keyCode == 13) {
-		
-		onSearchClick();
-
-		return true;
-	}
-
-}
-
-
-
-function updateSearchResults(currentPage) {
-
 }
