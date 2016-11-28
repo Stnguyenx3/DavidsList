@@ -19,13 +19,13 @@
 
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
-						<img src= <?php echo 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][0]->getImage()) ?> alt="placeholder img.">
+						<img src= "<?php echo 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][0]->getImage()) ?>"" alt="placeholder img." style="width: 350px; height: 340px">
 					</div>
 					<div class="item">
-						<img src= <?php echo count($listingResponse["listing_images"]) > 1 ? 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][1]->getImage()) : 'http://placehold.it/700x700' ?> alt="placeholder img.">
+						<img src="<?php echo count($listingResponse["listing_images"]) > 1 ? 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][1]->getImage()) : 'http://placehold.it/700x700' ?>" alt="placeholder img." style="width: 350px; height: 340px">
 					</div>
 					<div class="item">
-						<img src= <?php echo count($listingResponse["listing_images"]) > 2 ? 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][2]->getImage()) : 'http://placehold.it/700x700' ?>  alt="placeholder img.">
+						<img src="<?php echo count($listingResponse["listing_images"]) > 2 ? 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][2]->getImage()) : 'http://placehold.it/700x700' ?>"  alt="placeholder img." style="width: 350px; height: 340px">
 					</div>
 				</div>
 
