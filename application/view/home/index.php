@@ -28,7 +28,8 @@
 					<ul class="featured-listing-info">
 						<li>Bed: <?php echo $newListings["listing_details"][0]->getNumberOfBedrooms() ?></li>
 						<li>Bath: <?php echo $newListings["listing_details"][0]->getNumberOfBathrooms() ?></li>
-						<li>Distance To SFSU: #TODO</li>
+						<li>Distance To SFSU:</li>
+						<li id="output"></li>
 					</ul>
 				</div>
 
@@ -52,7 +53,8 @@
 					<ul class="featured-listing-info">
 						<li>Bed: <?php echo $newListings["listing_details"][1]->getNumberOfBedrooms() ?></li>
 						<li>Bath: <?php echo $newListings["listing_details"][1]->getNumberOfBathrooms() ?></li>
-						<li>Distance To SFSU: #TODO</li>
+						<li>Distance To SFSU:</li>
+						<li id="output"></li>
 					</ul>
 				</div>
 
@@ -76,7 +78,8 @@
 					<ul class="featured-listing-info">
 						<li>Bed: <?php echo $newListings["listing_details"][2]->getNumberOfBedrooms() ?></li>
 						<li>Bath: <?php echo $newListings["listing_details"][2]->getNumberOfBathrooms() ?></li>
-						<li>Distance To SFSU: #TODO</li>
+						<li>Distance To SFSU:</li>
+						<li id="output"></li>
 					</ul>
 				</div>
 
@@ -104,7 +107,8 @@
 					<ul class="featured-listing-info">
 						<li>Bed: <?php echo $newListings["listing_details"][3]->getNumberOfBedrooms() ?></li>
 						<li>Bath: <?php echo $newListings["listing_details"][3]->getNumberOfBathrooms() ?></li>
-						<li>Distance To SFSU: #TODO</li>
+						<li>Distance To SFSU:</li>
+						<li id="output"></li>
 					</ul>
 				</div>
 
@@ -129,7 +133,8 @@
 					<ul class="featured-listing-info">
 						<li>Bed: <?php echo $newListings["listing_details"][4]->getNumberOfBedrooms() ?></li>
 						<li>Bath: <?php echo $newListings["listing_details"][4]->getNumberOfBathrooms() ?></li>
-						<li>Distance To SFSU: #TODO</li>
+						<li>Distance To SFSU:</li>
+						<li id="output"></li>
 					</ul>
 				</div>
 
@@ -154,7 +159,8 @@
 					<ul class="featured-listing-info">
 						<li>Bed: <?php echo $newListings["listing_details"][5]->getNumberOfBedrooms() ?></li>
 						<li>Bath: <?php echo $newListings["listing_details"][5]->getNumberOfBathrooms() ?></li>
-						<li>Distance To SFSU: #TODO</li>
+						<li>Distance To SFSU:</li>
+						<li id="output"></li>
 					</ul>
 				</div>
 
@@ -168,3 +174,92 @@
 	</div>
 
 </div>
+
+<div class="listing-map" id="listing-map" style="visibility: hidden;"></div>
+<script>                                    
+	function initMap() {					
+  		var bounds = new google.maps.LatLngBounds;
+  		var markersArray = [];
+
+  		var origin1 = "<?php echo $newListings["addresses"][0]->getStreetName() . $newListings["addresses"][0]->getCity() ?>";
+  		var origin2 = "<?php echo $newListings["addresses"][1]->getStreetName() . $newListings["addresses"][1]->getCity() ?>";
+  		var origin3 = "<?php echo $newListings["addresses"][2]->getStreetName() . $newListings["addresses"][2]->getCity() ?>";
+  		var origin4 = "<?php echo $newListings["addresses"][3]->getStreetName() . $newListings["addresses"][3]->getCity() ?>";
+  		var origin5 = "<?php echo $newListings["addresses"][4]->getStreetName() . $newListings["addresses"][4]->getCity() ?>";
+  		var origin6 = "<?php echo $newListings["addresses"][5]->getStreetName() . $newListings["addresses"][5]->getCity() ?>";
+
+  		var destination = '1600 Holloway Ave, San Francisco'; 
+
+  		var destinationIcon = 'https://chart.googleapis.com/chart?' +
+  	    	'chst=d_map_pin_letter&chld=D|FF0000|000000';
+  		var originIcon = 'https://chart.googleapis.com/chart?' +
+    		'chst=d_map_pin_letter&chld=O|FFFF00|000000';
+    	var	map = new google.maps.Map(document.getElementById('listing-map'), {
+			center: {lat: 37.721178, lng: -122.476962},
+			zoom: 16
+  		});
+
+  		var geocoder = new google.maps.Geocoder;
+
+  		var service = new google.maps.DistanceMatrixService;
+
+  		service.getDistanceMatrix({
+    	origins: [origin1, origin2, origin3, origin4, origin5, origin6],
+    	destinations: [destination],
+    	travelMode: google.maps.TravelMode.DRIVING,
+    	unitSystem: google.maps.UnitSystem.METRIC,
+    	avoidHighways: false,
+    	avoidTolls: false
+  		}, 
+
+  		function(response, status) {
+    		if (status !== google.maps.DistanceMatrixStatus.OK) {
+      			alert('Error was: ' + status);
+    		} else {
+    			var originList = response.originAddresses;
+      			var destinationList = response.destinationAddresses;
+      			var outputDiv = document.getElementById('output');
+
+      			outputDiv.innerHTML = '';
+      			deleteMarkers(markersArray);
+
+      			var showGeocodedAddressOnMap = function(asDestination) {
+        			var icon = asDestination ? destinationIcon : originIcon;
+        			return function(results, status) {
+          				if (status === google.maps.GeocoderStatus.OK) {
+            				map.fitBounds(bounds.extend(results[0].geometry.location));
+            				markersArray.push(new google.maps.Marker({
+              				map: map,
+              				position: results[0].geometry.location,
+              				icon: icon
+            				}));
+          				} else {
+            				alert('Geocode was not successful due to: ' + status);
+          				}
+        			};
+      			};
+
+      			for (var i = 0; i < originList.length; i++) {
+        			var results = response.rows[i].elements;
+        			geocoder.geocode({'address': originList[i]},
+            		showGeocodedAddressOnMap(false));
+        			for (var j = 0; j < results.length; j++) {
+          				geocoder.geocode({'address': destinationList[j]},
+              			showGeocodedAddressOnMap(true));
+          				outputDiv.innerHTML += results[j].distance.text 
+        			}
+      			}
+    		}
+  		});
+	}
+
+	function deleteMarkers(markersArray) {
+  		for (var i = 0; i < markersArray.length; i++) {
+    		markersArray[i].setMap(null);
+  		}
+  		markersArray = [];
+	}
+</script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUYeLz1DKD4PUAg_uef7OP986wXFlkN78&callback=initMap"
+        async defer></script>

@@ -44,22 +44,7 @@
 
 		<div class="col-sm-8">
 
-			<div class="listing-map" id="listing-map">
-				
-				<!-- <script>
-			    	var map;
-			    	function initMap() {
-				   		map = new google.maps.Map(document.getElementById('listing-map'), {
-				        	center: {lat: 37.721178, lng: -122.476962},
-				        	zoom: 16
-				    	});
-			    	}
-
-			    </script> -->
-
-			    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUYeLz1DKD4PUAg_uef7OP986wXFlkN78&callback=initMap" async defer></script> -->
-
-			</div>
+			<div class="listing-map" id="listing-map"></div>
 
 		</div>
 
@@ -144,13 +129,13 @@
 
 
 
-<script>                                      //----------might move them to other place in order to let all pages got this
-	function initMap() {					  //listing page and home page, home page only need output
+<script>                                    
+	function initMap() {					
   		var bounds = new google.maps.LatLngBounds;
   		var markersArray = [];
 
-  		var origin = '1907 Geneva Ave, San Francisco';  //change it
-  		var destination = '1600 Holloway Ave, San Francisco'; //school address
+  		var origin = "<?php echo $listingResponse["address"]->getStreetName() . $listingResponse["address"]->getCity() ?>";
+  		var destination = '1600 Holloway Ave, San Francisco'; 
 
   		var destinationIcon = 'https://chart.googleapis.com/chart?' +
   	    	'chst=d_map_pin_letter&chld=D|FF0000|000000';
