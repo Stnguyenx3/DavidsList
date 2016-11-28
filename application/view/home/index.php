@@ -28,8 +28,7 @@
 					<ul class="featured-listing-info">
 						<li>Bed: <?php echo $newListings["listing_details"][0]->getNumberOfBedrooms() ?></li>
 						<li>Bath: <?php echo $newListings["listing_details"][0]->getNumberOfBathrooms() ?></li>
-						<li>Distance To SFSU:</li>
-						<li id="output"></li>
+						<li id="output-0">Distance To SFSU:</li>
 					</ul>
 				</div>
 
@@ -53,8 +52,7 @@
 					<ul class="featured-listing-info">
 						<li>Bed: <?php echo $newListings["listing_details"][1]->getNumberOfBedrooms() ?></li>
 						<li>Bath: <?php echo $newListings["listing_details"][1]->getNumberOfBathrooms() ?></li>
-						<li>Distance To SFSU:</li>
-						<li id="output"></li>
+						<li id="output-1">Distance To SFSU:</li>
 					</ul>
 				</div>
 
@@ -78,8 +76,7 @@
 					<ul class="featured-listing-info">
 						<li>Bed: <?php echo $newListings["listing_details"][2]->getNumberOfBedrooms() ?></li>
 						<li>Bath: <?php echo $newListings["listing_details"][2]->getNumberOfBathrooms() ?></li>
-						<li>Distance To SFSU:</li>
-						<li id="output"></li>
+						<li id="output-2">Distance To SFSU:</li>
 					</ul>
 				</div>
 
@@ -107,8 +104,7 @@
 					<ul class="featured-listing-info">
 						<li>Bed: <?php echo $newListings["listing_details"][3]->getNumberOfBedrooms() ?></li>
 						<li>Bath: <?php echo $newListings["listing_details"][3]->getNumberOfBathrooms() ?></li>
-						<li>Distance To SFSU:</li>
-						<li id="output"></li>
+						<li id="output-3">Distance To SFSU:</li>
 					</ul>
 				</div>
 
@@ -133,8 +129,7 @@
 					<ul class="featured-listing-info">
 						<li>Bed: <?php echo $newListings["listing_details"][4]->getNumberOfBedrooms() ?></li>
 						<li>Bath: <?php echo $newListings["listing_details"][4]->getNumberOfBathrooms() ?></li>
-						<li>Distance To SFSU:</li>
-						<li id="output"></li>
+						<li id="output-4">Distance To SFSU:</li>
 					</ul>
 				</div>
 
@@ -159,8 +154,7 @@
 					<ul class="featured-listing-info">
 						<li>Bed: <?php echo $newListings["listing_details"][5]->getNumberOfBedrooms() ?></li>
 						<li>Bath: <?php echo $newListings["listing_details"][5]->getNumberOfBathrooms() ?></li>
-						<li>Distance To SFSU:</li>
-						<li id="output"></li>
+						<li id="output-5">Distance To SFSU:</li>
 					</ul>
 				</div>
 
@@ -175,7 +169,7 @@
 
 </div>
 
-<div class="listing-map" id="listing-map" style="visibility: hidden;"></div>
+<div class="listing-map" id="listing-map" style="visibility: hidden; position: absolute; top: -9999px;"></div>
 <script>                                    
 	function initMap() {					
   		var bounds = new google.maps.LatLngBounds;
@@ -204,23 +198,22 @@
   		var service = new google.maps.DistanceMatrixService;
 
   		service.getDistanceMatrix({
-    	origins: [origin1, origin2, origin3, origin4, origin5, origin6],
-    	destinations: [destination],
-    	travelMode: google.maps.TravelMode.DRIVING,
-    	unitSystem: google.maps.UnitSystem.METRIC,
-    	avoidHighways: false,
-    	avoidTolls: false
+	    	origins: [origin1, origin2, origin3, origin4, origin5, origin6],
+	    	destinations: [destination],
+	    	travelMode: google.maps.TravelMode.DRIVING,
+	    	unitSystem: google.maps.UnitSystem.IMPERIAL,
+	    	avoidHighways: false,
+	    	avoidTolls: false
   		}, 
+  		//google.maps.UnitSystem.METRIC
 
   		function(response, status) {
     		if (status !== google.maps.DistanceMatrixStatus.OK) {
-      			alert('Error was: ' + status);
+      			// alert('Error was: ' + status);
     		} else {
     			var originList = response.originAddresses;
       			var destinationList = response.destinationAddresses;
-      			var outputDiv = document.getElementById('output');
 
-      			outputDiv.innerHTML = '';
       			deleteMarkers(markersArray);
 
       			var showGeocodedAddressOnMap = function(asDestination) {
@@ -234,7 +227,7 @@
               				icon: icon
             				}));
           				} else {
-            				alert('Geocode was not successful due to: ' + status);
+            				// alert('Geocode was not successful due to: ' + status);
           				}
         			};
       			};
@@ -246,7 +239,7 @@
         			for (var j = 0; j < results.length; j++) {
           				geocoder.geocode({'address': destinationList[j]},
               			showGeocodedAddressOnMap(true));
-          				outputDiv.innerHTML += results[j].distance.text 
+          				$("#output-"+i).text("Distance To SFSU: "+results[j].distance.text);
         			}
       			}
     		}
@@ -261,5 +254,9 @@
 	}
 </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUYeLz1DKD4PUAg_uef7OP986wXFlkN78&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWtyDBXetSnDbisVRKmZ4AXzDBd1ohSyo&callback=initMap"
         async defer></script>
+
+
+        <!--            AIzaSyAWtyDBXetSnDbisVRKmZ4AXzDBd1ohSyo -->
+        <!-- original : AIzaSyDUYeLz1DKD4PUAg_uef7OP986wXFlkN78 -->

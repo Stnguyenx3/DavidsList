@@ -151,12 +151,12 @@
   		var service = new google.maps.DistanceMatrixService;
 
   		service.getDistanceMatrix({
-    	origins: [origin],
-    	destinations: [destination],
-    	travelMode: google.maps.TravelMode.DRIVING,
-    	unitSystem: google.maps.UnitSystem.METRIC,
-    	avoidHighways: false,
-    	avoidTolls: false
+	    	origins: [origin],
+	    	destinations: [destination],
+	    	travelMode: google.maps.TravelMode.DRIVING,
+	    	unitSystem: google.maps.UnitSystem.METRIC,
+	    	avoidHighways: false,
+	    	avoidTolls: false
   		}, 
 
   		function(response, status) {
