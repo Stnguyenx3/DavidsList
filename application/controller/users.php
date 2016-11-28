@@ -225,6 +225,24 @@ class Users extends Controller {
 		header('refresh: 0; URL=' . URL . 'home');
 	}
 
+    //Takes in json encoded string that contains username
+    public function resetPassword() {
+        //Send user an email to reset password saying the standard things
+        //link them to resetPassword page
+    }
+
+    //Function to show actual view
+    public function resetPasswordPage() {
+        require APP . "view/_templates/header.php";
+        //Some page that is a fill in form for new password
+        require APP . 'view/_templates/footer.php';
+    }
+
+    //Function to show confirmation that password has been reset
+    public function resetConfirmation() {
+
+    }
+
 	public function favorites($userID) {
 		$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
 
