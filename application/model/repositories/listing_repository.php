@@ -17,24 +17,20 @@ class ListingRepo implements DatabaseRepositoryInterface{
 		return $this->db->find($searchParam, 'listing', 'Listing', $column);
 	}
 
+	public function fetch(){
+ 		return $this->db->fetch('listing', 'Listing');
+ 	}
+
 	public function save($listing){
-		$this->db->save($listing, 'listing');
+		return $this->db->save($listing, 'listing');
 	}
 
 	public function remove($listing){
-		$this->db->remove($listing, 'listing');
+		return $this->db->remove($listing->getListingId(), 'listing', 'listingId');
 	}
 
-}
-
-class AllListingQuery implements AllQueryInterface{
-	protected $db;
-
-	public function __construct($db){
-		$this->db = $db;
+	public function update($listing){
+		return $this->db->update($listing, 'listing', $listing->getListingId(), 'listingId');
 	}
 
-	public function fetch($fields){
-		//return $this->db->select($fields)->from('listings')->rows();
-	}
 }

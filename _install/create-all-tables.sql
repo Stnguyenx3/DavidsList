@@ -5,35 +5,39 @@ drop table if exists listingImage;
 drop table if exists address;
 drop table if exists listingDetail;
 drop table if exists favoriteListing;
+drop table if exists message;
 
-CREATE TABLE `student_dtchau`.`user` (
-  `userid` INT(4) NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(100) NOT NULL,
-  `password` VARCHAR(64) NOT NULL,
-  `studentID` VARCHAR(9),
-  `phone` VARCHAR(10),
-  `bio` VARCHAR(2000),
-  `verified` TINYINT(1) NOT NULL
-  PRIMARY KEY(`userid`)
+CREATE TABLE `f16g01`.`user` (
+	  `userid` INT(4) NOT NULL AUTO_INCREMENT,
+	  `email` VARCHAR(100) NOT NULL,
+	  `username` VARCHAR(40) NOT NULL,
+	  `password` VARCHAR(255) NOT NULL,
+	  `studentID` VARCHAR(9),
+	  `phone` VARCHAR(10),
+	  `bio` VARCHAR(2000),
+	  `verified` TINYINT(1) NOT NULL,
+	  `firstname` VARCHAR(40) NOT NULL,
+	  `lastname` VARCHAR(40) NOT NULL,
+	  PRIMARY KEY(`userid`)
  );
 
-CREATE TABLE `student_dtchau`.`userImage`(
+CREATE TABLE `f16g01`.`userImage`(
 	`userid` INT(4) NOT NULL,
 	`image` LONGBLOB,
 	`imageThumbnail` BLOB,
 	PRIMARY KEY(`userid`)
-);
+); 
 
-CREATE TABLE `student_dtchau`.`listing` (
+CREATE TABLE `f16g01`.`listing` (
 	`userid` INT(4) NOT NULL,
 	`listingId` INT(4) NOT NULL AUTO_INCREMENT,
 	`price` INT(4) NOT NULL,
 	`type` VARCHAR(100) NOT NULL,
 	`status` TINYINT(1) NOT NULL,
-	PRIMARY KEY(`userid`)
+	PRIMARY KEY(`listingId`)
 );
 
-CREATE TABLE `student_dtchau`.`address` (
+CREATE TABLE `f16g01`.`address` (
 	`listingId` INT(4) NOT NULL,
 	`approximateAddress` TINYINT(1) NOT NULL,
 	`streetName` VARCHAR(100),
@@ -42,14 +46,15 @@ CREATE TABLE `student_dtchau`.`address` (
 	`state` VARCHAR(100),
 	PRIMARY KEY(`listingId`)
 );
+# note that appromixate addressis a tiny int because we want to know whether or 
+# note the user wishes to show his/her exact address
 
-CREATE TABLE `student_dtchau`.`favoriteListing` (
+CREATE TABLE `f16g01`.`favoriteListing` (
 	`userid` INT(4) NOT NULL,
 	`listingId` INT(4) NOT NULL,
-	PRIMARY KEY(`listingId`)
 );
 
-CREATE TABLE `student_dtchau`.`listingDetail`(
+CREATE TABLE `f16g01`.`listingDetail`(
 	`listingId` INT(4) NOT NULL,
 	`numberOfBedrooms` INT(4) NOT NULL,
 	`numberOfBathrooms` INT(4) NOT NULL,
@@ -62,12 +67,29 @@ CREATE TABLE `student_dtchau`.`listingDetail`(
 	PRIMARY KEY(`listingId`)
 );
 
-CREATE TABLE `student_dtchau`.`listingImage`(
-	`listingID` INT(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `f16g01`.`message` (
+	`listingId` INT(4) NOT NULL,
+	`senderUserId` INT(4) NOT NULL,
+	`recipientUserId` INT(4) NOT NULL,
+	`message` VARCHAR(2000) NOT NULL,
+	`clientId` INT(4) NOT NULL, #client id is the person who is not renting
+	`datetime` DATETIME DEFAULT CURRENT_TIMESTAMP,
+);
+
+CREATE TABLE `f16g01`.`listingImage`(
+	`listingID` INT(4) NOT NULL,
 	`image` LONGBLOB,
 	`imageThumbnail` BLOB,
+  	#UNIQUE KEY `email` (`email`)
+  	# Used 'id' to link tables together, also removed 'renter' and 'owner' flags, additionally added 'listingID' to tie 'listings' and 'listingID' tables together
+);
 
-  PRIMARY KEY (`listingId`)
-  #UNIQUE KEY `email` (`email`)
-  # Used 'id' to link tables together, also removed 'renter' and 'owner' flags, additionally added 'listingID' to tie 'listings' and 'listingID' tables together
+CREATE TABLE `f16g01`.`message` (
+	`listingId` INT(4) NOT NULL,
+	`senderUserId` INT(4) NOT NULL,
+	`recipientUserId` INT(4) NOT NULL,
+	`message` VARCHAR(2000) NOT NULL,
+	`clientId` INT(4) NOT NULL,
+	`datetime` DATETIME DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(`listingId`)
 );

@@ -17,23 +17,20 @@ class ListingImageRepo implements DatabaseRepositoryInterface{
 		return $this->db->find($searchParam, 'listingImage', 'ListingImage', $column);
 	}
 
+	public function fetch(){
+ 		return $this->db->fetch('listingImage', 'ListingImage');
+ 	}
+
 	public function save($listingImage){
-		$this->db->save($listingImage, 'listingImage');
+		return $this->db->save($listingImage, 'listingImage');
 	}
 
 	public function remove($listingImage){
-		$this->db->remove($listingImage, 'listingImage');
-	}
-}
-
-class AllListingImagesQuery implements AllQueryInterface{
-	protected $db;
-
-	public function __contruct($db){
-		$this->db = $db;
+		return $this->db->remove($listingImage->getListingId(), 'listingImage', 'listingID');
 	}
 
-	public function fetch($fields){
-		return $this->db->select($fields)->from('listingImages')->rows();
+	public function update($listingImage){
+		return $this->db->update($listingImage, 'listingImage', 
+				$listingImage->getListingId(), 'listingID');
 	}
 }

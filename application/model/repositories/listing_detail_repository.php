@@ -17,22 +17,21 @@ class ListingDetailRepo implements DatabaseRepositoryInterface{
 		return $this->db->find($searchParam, 'listingDetail', 'ListingDetail', $column);
 	}
 
-	public function save($userImage){
-		$this->db->save($userImage, 'listingDetail');
+	public function fetch(){
+ 		return $this->db->fetch('listingDetail', 'ListingDetail');
+ 	}
+
+	public function save($listingDetail){
+		$this->db->save($listingDetail, 'listingDetail');
+		return $this->db->save($listingDetail, 'listingDetail');
 	}
 
-	public function remove($userImage){
-		$this->db->save($userImage, 'listingDetail');
-	}
-}
-
-class AllListingDetailQuery implements AllQueryInterface{
-	protected $db;
-
-	public function __construct($db){
-		$this->db = $db;
+	public function remove($listingDetail){
+		return $this->db->remove($listingDetail->getListingId(), 'listingDetail', 'listingId');
 	}
 
-	public function fetch($fields){
+	public function update($listingDetail){
+		return $this->db->update($listingDetail, 'listingDetail', 
+					$listingDetail->getListingId(), 'listingId');
 	}
 }

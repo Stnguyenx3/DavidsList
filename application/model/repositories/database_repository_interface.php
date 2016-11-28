@@ -5,7 +5,9 @@
  * such as retrieving using one search param, saving/inserting, and removing
  */
 interface DatabaseRepositoryInterface{
-	public function find($id, $column);
+	public function find($searchParam, $column);
+	public function fetch();
 	public function save($object);
 	public function remove($object);
+	public function update($object);
 }

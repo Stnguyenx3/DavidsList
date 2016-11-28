@@ -4,7 +4,7 @@
  * Repository pattern
  * Class that acts as the interface between the app and the Address table
  * Make calls with this class if you need to find rows using one column parameter
- * or need to delete or insert one row
+ * or need to delete, update or insert one row
  */
 class AddressRepo implements DatabaseRepositoryInterface{
 	protected $db;
@@ -17,22 +17,19 @@ class AddressRepo implements DatabaseRepositoryInterface{
 		return $this->db->find($searchParam, 'address', 'Address', $column);
 	}
 
+	public function fetch(){
+		return $this->db->fetch('address', 'Address');
+	}
+
 	public function save($address){
-		$this->db->save($address, 'address');
+		return $this->db->save($address, 'address');
 	}
 
 	public function remove($address){
-		$this->db->save($address, 'address');
-	}
-}
-
-class AllAddressQuery implements AllQueryInterface{
-	protected $db;
-
-	public function __construct($db){
-		$this->db = $db;
+		return $this->db->remove($address->getListingId(), 'address', 'listingId');
 	}
 
-	public function fetch($fields){
+	public function update($address){
+		return $this->db->update($address, 'address', $address->getListingId(), 'listingId');
 	}
 }

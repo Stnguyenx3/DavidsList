@@ -1,21 +1,21 @@
 <?php
 
 /*
- * Class that represents a single user image
- * normal plain old PHP object, with the implementation of a JsonSerializable
+ * Class that represents a single user image.
+ * Normal plain old PHP object, with the implementation of a JsonSerializable
  * which allows sending this object back to the client side
  */
 class UserImage implements JsonSerializable { 
-	private $id;
-	private $imageThumbnail;
+	private $userid;
 	private $image;
+	private $imageThumbnail;
 
 	public function __construct() {
 
 	}
 
-	public function getListingId() {
-		return $this->listingID;
+	public function getId() {
+		return $this->userid;
 	}
 
 	public function getImageThumbNail() {
@@ -26,12 +26,12 @@ class UserImage implements JsonSerializable {
 		return $this->image;
 	}
 
-	public function setListingId($newListingId) {
-		$this->listingID = $newListingId;
+	public function setId($newId) {
+		$this->userid = $newId;
 	}
 
 	public function setImageThumbNail($newImageThumbnail) {
-		$this->imageThumbNail = $newImageThumbnail;
+		$this->imageThumbnail = $newImageThumbnail;
 	}
 
 	public function setImage($newImage) {
@@ -39,10 +39,14 @@ class UserImage implements JsonSerializable {
 	}
 
 	public function __toString() {
-		return "{$this->id}, {$this->imageThumbnail}, {$this->image}";
+		return "{$this->userid}, {$this->image}, {$this->imageThumbnail}";
 	}
 
 	public function jsonSerialize() {
-		
+		return array(
+			'userid' => $this->userid,
+			'image' => $this->image,
+			'imageThumbnail' => $this->imageThumbnail,
+		);
 	}
 }

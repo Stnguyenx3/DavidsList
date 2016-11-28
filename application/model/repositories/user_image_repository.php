@@ -14,27 +14,22 @@ class UserImageRepo implements DatabaseRepositoryInterface{
 	}
 
 	public function find($searchParam, $column){
-		return $this->db->find($searchParam, 'userImage', 'UserImages', $column);
+		return $this->db->find($searchParam, 'userImage', 'UserImage', $column);
 	}
 
+	public function fetch(){
+ 		return $this->db->fetch('userImage', 'UserImage');
+ 	}
+
 	public function save($userImage){
-		$this->db->save($userImage, 'userImage');
+		return $this->db->save($userImage, 'userImage');
 	}
 
 	public function remove($userImage){
-		$this->db->remove($userImage, 'userImage');
-
-	}
-}
-
-class AllUserImagesQuery implements AllQueryInterface{
-	protected $db;
-
-	public function __construct($db){
-		$this->db = $db;
+		return $this->db->remove($userImage->getId(), 'userImage', 'userid');
 	}
 
-	public function fetch($fields){
-		//return $this->db->select($fields)->from('users')->rows();
+	public function update($userImage){
+		return $this->db->update($userImage, 'userImage', $userImage->getId(), 'userid');
 	}
 }

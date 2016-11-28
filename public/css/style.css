@@ -1,90 +1,545 @@
-body {
-    font-family: Arial;
-    font-size: 14px;
+body,
+#content {
+	font-family: Casteller;
+    font-size: 16px;
+    overflow: scroll;
 }
+
+.privacy > p {
+    font-size: 16px;
+}
+
+.container {
+    overflow: hidden;
+}
+
+.centered-header {
+    text-align: center;
+}
+
+.custom-border {
+    border: 3px solid  #99CC99;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.linear-gradient-bg {
+    background: rgba(226,226,226,1);
+    background: -moz-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(226,226,226,1)), color-stop(100%, rgba(254,254,254,1)));
+    background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 100%);
+    background: -o-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 100%);
+    background: -ms-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 100%);
+    background: linear-gradient(to bottom, rgba(226,226,226,1) 0%, rgba(254,254,254,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=0 );
+}
+
+.form-error {
+    border-color: #ff0000;
+}
+
+/*Home page*/
 .logo {
     font-size: 100px;
     font-weight: bolder;
     letter-spacing: -6px;
     color: #222;
     margin: 20px 30px;
+    float: left;
 }
-.logo .number {
-    color: #222;
-    opacity: 0.1;
-}
+
 .navigation {
-    margin-left: 33px;
+    background-color: #4682b4;
 }
+
 .navigation a {
     display: inline-block;
-    padding: 10px 15px;
-    text-decoration: none;
-    font-size: 14px;
-    text-transform: uppercase;
+    padding: 15px;
+    font-size: 18px;
+    margin-top: 5px;
     font-weight: bold;
-    border: 2px solid #222;
-    background: #222;
+    background-color: #4682b4;
     color: #fff;
 }
+
 .navigation a:hover {
-    color: #222;
-    background: transparent;
+    background-color: #191970;
 }
-.container {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin: 33px;
+
+.user {
+    color: #123;
+    float: right;
+    margin-right: 20px;
 }
-.container a {
-    color: #222;
+
+.user a {
+    font-size: 16px;
 }
-.container table {
-    font-size: 11px;
-    margin-top: 20px;
+
+.search-button {
+    border: 3px solid #FFF;
+    border-radius: 5px;
 }
-.container table thead td {
-    background-color: #f5f5f5;
-    padding: 4px 10px;
-}
-.container table tbody td {
-    padding: 4px 10px;
-}
-.container .box {
-    border-top: 1px solid #ddd;
-    padding-top: 10px;
-    margin-top: 30px;
-}
-.container input {
-    background-color: #f5f5f5;
-    border: 0;
-    padding: 5px 10px;
-}
-.container input[type="submit"] {
-    background-color: #ccc;
-    cursor: pointer;
-}
-.container input[type="submit"]:hover {
-    background-color: #222;
-    color: #fff;
-}
-.container button {
-    background-color: #ccc;
-    border: 0;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-.container button:hover {
-    background-color: #222;
-    color: #fff;
-}
-.footer {
-    padding: 20px;
-    margin: 33px;
+
+#search-bar {
+    padding-top: 15px;
+    padding-bottom: 15px;
     text-align: right;
-    font-size: 11px;
-    opacity: 0.5;
 }
+
+#search-bar input {
+    padding: 5px;
+    width: 600px;
+}
+
 .footer a {
     color: #454545;
+}
+
+#header {
+    padding: 0px;
+    margin: 0px;
+}
+
+div#header.container {
+    width: 100%;
+}
+
+.featured-listing-container {
+    margin: 15px;
+    background-color: gray;
+}
+
+.featured-listing {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 3px solid  #99CC99;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.featured-listing-img {
+    padding-top: 0px;
+    padding-bottom: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.featured-listing-info {
+
+}
+
+.featured-listing-title {
+    text-align: center;
+}
+
+.featured-listing-price {
+    margin: 15px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.featured-listing-btn {
+    color: #fff;
+    font-size: 16px;
+    width: 90%;
+    margin: 15px;
+    text-align: center;
+}
+
+/*Login/Registration*/
+.form-signin {
+    margin-top: 50px;
+    margin-bottom: 25px;
+    padding: 25px;
+    width: 600px;
+    height: auto;
+    border: 3px solid #99CC99;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.form-signin input {
+    border-color: #808080;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.form-signup {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 25px;
+    width: 900px;
+    border: 3px solid  #99CC99;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.form-signup input {
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.login-link {
+    text-align: center;
+    padding: 10px;
+}
+
+.login-link a {
+    padding-right: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 2% auto;
+    padding: 20px;
+    border: 3px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #000000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    opacity: .75;
+}
+
+/*Listing page*/
+.carousel-control.left,
+.carousel-control.right {
+    background: transparent;
+}
+
+.listing-details {
+    margin: 15px;
+    width: 700px;
+    height: auto;
+    clear: both;
+    border: 3px solid #99CC99;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.owner-info {
+    margin: 15px;
+    padding: 15px;
+    width: 100%;
+    height: auto;
+    border: 3px solid #99CC99;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.listing-map {
+    background-color: #99CC99;
+    margin: 15px;
+    width: 100%;
+    height: 350px;
+    border: 3px solid #99CC99;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.carousel {
+    padding: 0px;
+    margin: 15px;
+    border: 3px solid #99CC99;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-control {
+    position: absolute;
+    top: 40%;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.5;
+}
+
+.carousel-control .glyphicon-chevron-right,
+.right .carousel-control {
+    margin-right: 0;
+}
+
+.listing-title {
+    float: left;
+    padding: 15px;
+    margin-top: 0px;
+}
+
+.listing-price {
+    float: right;
+    padding: 15px;
+    margin-top: 0px;
+    font-size: 20px;
+}
+
+.listing-detail-info {
+    padding: 15px;
+}
+
+.listing-street-name,
+.listing-city,
+.listing-zipcode,
+.listing-state {
+    display: inline;
+    padding-left: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.listing-street-name {
+    padding-left: 15px;
+}
+
+.listing-basic-info {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.listing-basic-info,
+.listing-expanded-info,
+.listing-desc {
+    list-style: none;
+}
+
+.listing-basic-info li{
+    display: inline;
+    font-size: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.listing-expanded-info li{
+    font-size: 16px;
+    padding-left: 15px;
+}
+
+.listing-desc {
+    font-size: 16px;
+    padding-top: 15px;
+    padding-left: 50px;
+    padding-right: 15px;
+}
+
+.owner-username,
+.owner-email {
+    font-size: 16px;
+}
+
+.container .rent-button,
+.container .listing-favorite-btn {
+    margin: 15px;
+    padding: 15px;
+    float: right;
+    font-size: 16px;
+    
+}
+
+
+/*Search page, User listings*/
+.search-filter {
+    border: 3px solid #99CC99;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+}
+
+.search-title {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.search-filter-price input {
+    width: 15px;
+    height: 15px;
+    margin: 0px;
+    margin-right: 5px;
+}
+
+.search-filter-price label {
+    padding-left: 15px;
+}
+
+
+.search-result-listing,
+.user-listing,
+.user-favorite {
+    margin: 15px;
+    border: 3px solid #99CC99;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.search-result-listing-basic-info {
+    font-size: 16px;
+    padding-left: 15px;
+}
+
+.search-result-listing-img,
+.user-listing-img,
+.user-favorite-img {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 200px;
+    height: auto;
+}
+
+.search-result-listing-null {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 15px;
+    text-align: center;
+}
+
+.search-result-listing-title,
+.user-listing-title,
+.user-favorite-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+    padding-left: 15px;
+
+}
+
+.search-result-listing-price,
+.user-listing-price,
+.user-favorite-price {
+   font-size: 17px;
+   padding-left: 15px;
+}
+
+.search-result-listing-btn,
+.user-listings-edit,
+.user-listings-remove,
+.user-favorite-remove {
+    float: right;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.result-pagination {
+    font-size: 16px;
+}
+
+.result-pagination-wrapper {
+    text-align: center;
+}
+
+.pagination>.active>a,
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover,
+.pagination>.disabled>a,
+.pagination>.disabled>a:focus, 
+.pagination>.disabled>a:hover, 
+.pagination>.disabled>span, 
+.pagination>.disabled>span:focus, 
+.pagination>.disabled>span:hover,
+.pagination>li>a,
+.pagination>li>span,
+.pagination>li>a:hover,
+.pagination>li>span:hover {
+    border: 2px solid #99CC99;
+}
+
+
+/*Rent out page */
+.rent-out {
+    margin: 15px; 
+}
+
+.form-rentout {
+    border: 3px solid #99CC99;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+input[type=file] {
+    display: inline;
+    border: 1px solid #CCC;
+}
+
+
+/*User Listings, favorites, and overview*/
+.user-listings-edit {
+    margin: 15px;
+    float: right;
+}
+
+.user-listings-remove,
+.user-favorite-remove {
+    margin: 15px;
+    float: right;
+}
+
+.user-overview {
+    padding: 15px;
+}
+
+.user-change-pw {
+    margin: 15px;
+    width: 100%;
+}
+
+.panel {
+    background-color: transparent;
+}
+
+/*User Chat Messages Page*/
+.user-messages {
+    font-size: 15px;
+}
+
+.messages-other-users {
+    margin-top: 15px;
+}
+
+.messages-content {
+    margin: 15px;
+}
+
+.user-message-history {
+    /*height: 500px; TODO: Scroll bar when overflow 500px*/
+}
+
+.messages-single{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+.user-message-to-send {
+    border-top:  3px solid #99CC99;
+    padding: 15px;
+}
+
+.messages-send-box {
+    resize: none;
 }

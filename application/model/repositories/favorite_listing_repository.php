@@ -17,22 +17,20 @@ class FavoriteListingRepo implements DatabaseRepositoryInterface {
 		return $this->db->find($searchParam, 'favoriteListing', 'FavoriteListing', $column);
 	}
 
+	public function fetch(){
+ 		return $this->db->fetch('favoriteListing', 'FavoriteListing');
+ 	}
+
 	public function save($favoriteListing){
-		$this->db->save($favoriteListing, 'favoriteListing');
+		return $this->db->save($favoriteListing, 'favoriteListing');
 	}
 
 	public function remove($favoriteListing){
-		$this->db->remove($favoriteListing, 'favoriteListing');
-	}
-}
-
-class AllFavoriteListingsQuery implements AllQueryInterface{
-	protected $db;
-
-	public function __construct($db){
-		$this->db = $db;
+		return $this->db->remove($favoriteListing->getListingId(), 'favoriteListing', 'listingid');
 	}
 
-	public function fetch($fields){
+	public function update($favoriteListing){
+		return $this->db->update($favoriteListing, 'favoriteListing', 
+					$favoriteListing->getListingId(), 'listingid');
 	}
 }
