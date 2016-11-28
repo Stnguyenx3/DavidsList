@@ -126,8 +126,6 @@ function formatResults(event) {
 
 	var numOfPages = Math.ceil(numOfResults / resultsPerPage);
 
-	//console.log("There will be " + numOfPages + " pages." + " results = " + numOfResults);
-
 	//Result page layout.
 
 	for (i = 0; i < resultsPerPage; i++) {
@@ -171,8 +169,6 @@ function formatResults(event) {
 	        onPageClick: function (event, page) {
 	            //Populate HTML divs with results.
 
-	            console.log("page " + page + " clicked.");
-
 	            for (var r = ((page - 1) * resultsPerPage); r < (page * resultsPerPage); r++) {
 
 	            	var resultIndex = r % resultsPerPage;
@@ -196,7 +192,19 @@ function formatResults(event) {
 
 					toggleBlockDisplay("search-result-listing-" + r);
 
-					
+					if (r == (numOfResults - 1)) {						
+
+						//Hide extra divs.
+						var validIndex = numOfResults % resultsPerPage;
+						var extrasIndex = (resultsPerPage * numOfPages) - numOfResults;
+
+						for (var e = (resultsPerPage - 1); e >= validIndex; e--) {
+							var idToHide = "#search-result-listing-" + e;
+							$(idToHide).css("display", "none");
+						}
+
+						break;
+					}					
 
 	            }
 			}
