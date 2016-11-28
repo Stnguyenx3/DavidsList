@@ -177,7 +177,6 @@ function formatResults(event) {
 	updateSearchResults(resultsPerPage, result, resultIDs);
 
 	function onSelectFilter(event, result){
-		console.log(event);
 
 		// get all values needed form the event to filter
 		var id = event.target.id;
@@ -188,18 +187,8 @@ function formatResults(event) {
 		var checked = event.target.checked;
 		var compareValue = parseInt(event.target.value);
 
-		// filter results displayed on page
-		// var result, details, price, rooms;
-		// var searchContent = document.getElementById("searchResultContent");
-
-		// result = searchContent.getElementsByTagName("div");
-
-		// start going through them
-		// var len = result.length;
+		// start going through all results
 		for (var i = 0; i < numOfResults; i++) {
-			// details = result[i].getElementsByTagName("p");
-			// price = parseInt(details[1].innerHTML.substr(1));
-			// rooms = parseInt(details[2].innerHTML.substr(5, 6));
 
 			var price = parseInt(result[i].price);
 			var rooms = parseInt(result[i].numberOfBedrooms);
@@ -207,8 +196,6 @@ function formatResults(event) {
 			// check for price
 			if (type === "price"){
 				if ((subtype == 1 && price < compareValue) || (subtype == 4 && price >= compareValue) || (price <compareValue && price >= compareValue-250 && subtype != 4)){
-					// if(checked) result[i-2].style.display = 'block';
-					// else result[i-2].style.display = 'none';
 					var index = resultIDs.indexOf(result[i].listingId);
 					if(!checked){
 						if (index > -1) resultIDs.splice(index, 1);
@@ -217,48 +204,28 @@ function formatResults(event) {
 					}
 				}
 			} 
-
+			// check for rooms
 			else if (type === "bedroom"){
-				if (rooms == compareValue || (rooms >=compareValue && subtype == 3)){
-					console.log(rooms);
-					// if(checked) result[i-2].style.display = 'block';
-					// else result[i-2].style.display = 'none';
+				if (rooms == compareValue || (rooms >=compareValue && subtype == 3)){	
+					var index = resultIDs.indexOf(result[i].listingId);
 					if(!checked){
-						var index = resultArray.indexOf(result);
-						if (index > -1) resultArray.splice(index, 1);
-					} else resultArray.push(result);
+						if (index > -1) resultIDs.splice(index, 1);
+					} else { 
+						if (index == -1) resultIDs.push(result[i].listingId);
+					}
 				}
 			}
 
+			// DOES NOT WORK
 			if (type === "distance" && 1 <= compareValue){
 				console.log("distance");
 			}	
 		}
 
-		console.log(resultIDs);
-
 		updateSearchResults(resultsPerPage, result, resultIDs);
 	}
 
 }
-
-// // Revisits all checkboxes to apply the filters to the results
-// function revisitCheckboxes(){
-// 	console.log("found it");
-// 	// $('input:checkbox').each(function(){
-// 	// 	console.log("found checkbox");
-// 	// 	this.change();
-//  //        	// this.onchange(); 
-// 	// })
-// 	// // console.log("found checkbox");
-
-// 	var checkboxes = document.getElementById("filter-form").getElementsByTagName("input");
-// 	console.log(checkboxes);
-// 	for (var i = 0; i < checkboxes.length; i++) {
-// 		console.log(checkboxes[i]);
-// 		checkboxes[i].onchange();
-// 	};
-// }
 
 
 //Handles ENTER keypress in search field.
@@ -282,49 +249,16 @@ function writeListingID(result, numOfResults){
 	return listingIDs;
 }
 
-function binarySearch(Id, result){
-	numOfResults = result.length;
-	var middle = Math.ceil(numOfResults/2-1);
-	console.log(middle);
-	console.log(result, numOfResults);
-	
-	if (numOfResults == 2){
-		console.log("done");
-		if(result[0].listingId == Id){
-			console.log("yaya");
-			return result[0];
-
-		}
-		else if(result[1].listingId == Id){
-			console.log("yaya");
-		 return result[1];
-		}
-		else return -1;
-
-	} else if (numOfResults == 1) {
-		if(result[0].listingId == Id){
-			console.log("yaya");
-			return result[0];
-		} else return -1;
-	}
-
-	var curResult = result[middle].listingId;
-	if(curResult == Id) return result[middle];
-	else if (curResult < Id ) return binarySearch(Id, result.slice(0,middle), middle);
-	else if (curResult > Id) return binarySearch(Id, result.slice(middle, numOfResults-1), middle);
-}
-
-
 function updateSearchResults(resultsPerPage, result, resultIDs) {
 	var numOfResultIDs = resultIDs.length;
 	var numOfResults = result.length;
 	var numOfPages = Math.ceil(numOfResultIDs / resultsPerPage);
 
+	console.log(numOfPages, numOfResultIDs);
+
 	var resultCombined = [];
 
 	for(var i = 0; i < numOfResultIDs; i++){
-		// resultCombined.push(binarySearch(resultIDs[i],result));
-
 		ID = resultIDs[i];
 		for(var j = 0; j <numOfResults;j++){
 			if(result[j].listingId == ID){
@@ -335,21 +269,24 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 	}
 
 	result = resultCombined;
-	console.log(resultCombined);
-	console.log(result);
+
+
 	// Handle Pagination events
 
+	// Destroy if data already present
+	if($('.result-pagination').data("twbs-pagination")){
+    	$('.result-pagination').twbsPagination('destroy');
+    }
+
+    // Repopulate
 	$(".result-pagination").twbsPagination({
 	        totalPages: numOfPages,
 	        visiblePages: 10,
 	        onPageClick: function (event, page) {
 	            //Populate HTML divs with results.
 
-	            console.log("page " + page + " clicked.");
 
 	            for (var r = ((page - 1) * resultsPerPage); r < (page * resultsPerPage); r++) {
-
-	            	console.log("r is " + r);
 
 	            	var resultIndex = r % resultsPerPage;
 
