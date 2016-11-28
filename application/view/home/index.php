@@ -18,7 +18,7 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[0] ?>" alt="Image missing." style="width: 320 ; height: 160;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[0] ?>" alt="Image missing." style="width: 250px; height: 250px;">
 
 				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][0]->getStreetName() ?></h3>
 
@@ -42,7 +42,7 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[1] ?>" alt="Image missing." style="width: 320 ; height: 160;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[1] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
 
 				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][1]->getStreetName() ?></h3>
 
@@ -66,7 +66,7 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[2] ?>" alt="Image mising." style="width: 320 ; height: 160;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[2] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
 
 				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][2]->getStreetName() ?></h3>
 
@@ -94,7 +94,7 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[3] ?>">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[3] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
 
 				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][3]->getStreetName() ?></h3>
 
@@ -119,7 +119,7 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[4] ?>">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[4] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
 
 				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][4]->getStreetName() ?></h3>
 
@@ -144,7 +144,7 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[5] ?>">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[5] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
 
 				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][5]->getStreetName() ?></h3>
 
