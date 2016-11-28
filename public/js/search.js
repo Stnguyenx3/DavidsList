@@ -309,7 +309,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 						$(resultDiv).find(".search-result-listing-title").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
 						$(resultDiv).find(".search-result-listing-price").text("$" + result[r].price);
 						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished);
-						$(resultDiv).find(".search-result-listing-btn").text("Rent");
+						$(resultDiv).find(".search-result-listing-btn").click({listingId: result[r].listingId}, onClickToListings).text("Rent");
 
 
 						toggleBlockDisplay("search-result-listing-" + resultIndex, true);
