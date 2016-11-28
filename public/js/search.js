@@ -40,7 +40,7 @@ function onSearchClick() {
 }
 
 function formatResults(event) {
-	//console.log(event);
+
 	var result = JSON.parse(event);
 	var numOfResults = result.length;
 
@@ -132,8 +132,6 @@ function formatResults(event) {
 
 	}
 
-	//console.log("There will be " + numOfPages + " pages." + " results = " + numOfResults);
-
 	//Result page layout.
 
 	for (i = 0; i < resultsPerPage; i++) {
@@ -210,7 +208,7 @@ function formatResults(event) {
 			// check for rooms
 			else if (type === "bedroom"){
 				if (rooms == compareValue || (rooms >=compareValue && subtype == 3)){
-					console.log(rooms, compareValue);	
+					// console.log(rooms, compareValue);	
 					var index = resultIDs.indexOf(result[i].listingId);
 					if(!checked){
 						if (index > -1) resultIDs.splice(index, 1);
@@ -299,7 +297,6 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 					var furnished;
 
 					if (result[r] == undefined){
-							console.log("oh no", r);
 							toggleBlockDisplay("search-result-listing-" + resultIndex, false);
 					} else {
 
