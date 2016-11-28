@@ -168,23 +168,12 @@ function onFavoriteClick() {
 		url: url+"favoritelistings/addfavorite/",
 		data: favoriteInformation,
 		success: function(event) {
-			var popOverSettings = {
-			    placement: 'bottom',
-			    container: 'body',
-			    html: false,
-			    content: event
-			}
-
-			if(event === 1) {
-				//Display something that says it's favorited
-				popOverSettings.content = "It's favorited!";
-				$("button[rel=popover]").popover(popOverSettings);
-				console.log(event);
+			if(event == 1) {
+				$.notify("It favorited!", "success");
 			} else if (event === "You are not logged in") {
 				window.location.replace(url+"home/login/");
 			} else {
-				console.log(event);
-				$("button[rel=popover]").popover(popOverSettings);
+				$.notify(event, {position: "top center"});
 			}
 		},
 		error: function(xhr, err, errThrown) {

@@ -33,7 +33,7 @@ function formatAllListingMessages(event) {
 			var col1 = $("<div></div>").addClass("col-sm-3 user-listing-img").appendTo($(row1));
 			var img = $("<img></img>").appendTo($(col1));
 			var col2 = $("<div></div>").addClass("col-sm-9").appendTo($(row1));
-			var p0 = $("<p></p>").addClass("message").appendTo($(col2)); 
+			var p0 = $("<p></p>").addClass("message-thread-message").appendTo($(col2)); 
 			var div = $("<div></div>").css("clear", "both").appendTo($(col2));
 			var a0 = $("<a></a>").addClass("btn btn-primary go-to-message")
 						.click({listingId: event[i].listingId, clientId: event[i].clientId}, onClickGoToThread)
@@ -46,6 +46,9 @@ function formatAllListingMessages(event) {
 			// $(h3).text(listingTitle);
 			$(p0).text("Message:"+ message);
 			$(a0).text("Conversate");
+
+			$(img).attr("src", "http://placehold.it/150x150");
+
 		}
 		
 	});

@@ -65,6 +65,7 @@ function onSaveLoad(data) {
 		data: userInformation,
 		success: function(event){
 			//Display change successful
+			$.notify("User profile is saved!", "success");
 			console.log(event);
 		},
 		error: function(xhr, err, errThrown) {

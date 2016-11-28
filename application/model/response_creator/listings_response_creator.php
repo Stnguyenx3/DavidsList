@@ -52,10 +52,15 @@ class ListingsResponseCreator {
 		$allListingDetails = $listingDetailRepo->fetch();
 		$allAddresses = $addressRepo->fetch();
 
+		// return array(
+		// 	"listings" => array_slice($allListings, 0, 6),
+		// 	"addresses" => array_slice($allAddresses, 0, 6),
+		// 	"listing_details" => array_slice($allListingDetails, 0, 6),
+		// );
 		return array(
-			"listings" => array_slice($allListings, 0, 6),
-			"addresses" => array_slice($allAddresses, 0, 6),
-			"listing_details" => array_slice($allListingDetails, 0, 6),
+			"listings" => $allListings,
+			"addresses" => $allAddresses,
+			"listing_details" => $allListingDetails,
 		);
 	}
 

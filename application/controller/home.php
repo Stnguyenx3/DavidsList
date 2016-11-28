@@ -28,7 +28,13 @@ class Home extends Controller{
             $newListingImages[] = 
                "data:image/png;base64," . base64_encode($image->getImageThumbNail());
         }
-
+        $size = count($newListings["addresses"])-1;
+        $indexOne = mt_rand(0, $size);
+        $indexTwo = mt_rand(0, $size);
+        $indexThree = mt_rand(0, $size);
+        $indexFour = mt_rand(0, $size);
+        $indexFive = mt_rand(0, $size);
+        $indexSix = mt_rand(0, $size);
         // load views
 
         if(!empty($_SESSION)) {

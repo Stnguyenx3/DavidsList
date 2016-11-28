@@ -193,7 +193,7 @@ class Users extends Controller {
 		// if no such username exists in the database, return back the word null
 		//to render
 		if ($arrayOfResults == null){
-            echo "null";			
+            echo "null";	
 		}
 		else{
 			$user = $arrayOfResults[0];
@@ -201,7 +201,8 @@ class Users extends Controller {
 			// one stored in the user's User object, display error
 			$verifyPassword = password_verify($password, $user->getPassword());
 			if (!$verifyPassword){
-				echo "wrong";					
+                
+				echo "wrong";
 			}
 			
 			// else username exists AND the password entered matches the one on file
@@ -223,6 +224,24 @@ class Users extends Controller {
 
 		header('refresh: 0; URL=' . URL . 'home');
 	}
+
+    //Takes in json encoded string that contains username
+    public function resetPassword() {
+        //Send user an email to reset password saying the standard things
+        //link them to resetPassword page
+    }
+
+    //Function to show actual view
+    public function resetPasswordPage() {
+        require APP . "view/_templates/header.php";
+        //Some page that is a fill in form for new password
+        require APP . 'view/_templates/footer.php';
+    }
+
+    //Function to show confirmation that password has been reset
+    public function resetConfirmation() {
+
+    }
 
 	public function favorites($userID) {
 		$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
@@ -280,16 +299,6 @@ class Users extends Controller {
 
     	echo json_encode($listingArrayToReturn);
     }
-
-
-    // START -Added by Steven to implement chat messages page, Remove when done.
-    public function messages($userID) {
-    	require APP . "view/_templates/header.php";
-    	require APP . 'view/users/messages.php';
-      	require APP . 'view/_templates/footer.php';
-    }
-
-    // END -Added by Steven to implement chat messages page, Remove when done.
 
     public function getalluserfavorites($userID) {
         $favoriteListingsRepo = RepositoryFactory::createRepository("favorite_listing");
