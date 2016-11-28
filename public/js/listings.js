@@ -3,83 +3,100 @@ $('#rentout').submit(function (e) {
 
 	var fileUploadField = document.getElementById('form-image');
 	var fileList = new Array();
+	var blobList = new Array();
 
-	for (var f = 0; f < fileUploadField.files.length; f++){
-		//push each image file to array
-		fileList.push(fileUploadField.files[f]);
-	}
+	var index = 0;
 
-	console.log("fileList is " + fileList);
+	$.each(fileUploadField.files, function(i, j) {
+		var reader = new FileReader();
+		reader.readAsDataURL(j);
+		reader.onload = function(data) {
+			index++;
+			blobList.push(data.target.result);
 
-
-	var logo = $('#form-image')[0].files[0];
-	var reader = new FileReader();
-	reader.onload = function(data) {
-
-		var type = '';
-
-		if($("input[type='radio'][name='listingtype']").is(':checked')) {
-    		var type = $("input[type='radio'][name='listingtype']:checked").val();
-		}
-
-	 	var listingInformation = {
-			listing_price: $('#form-price').val(),
-			listing_type: type,
-			listing_status: 1,
-			listing_detail: {
-				listing_numBedrooms: $('#form-numofbeds').val(),
-				listing_numBathrooms: $('#form-numofbaths').val(),
-				listing_internet: $('#listing-internet').is(":checked") ? 1 : 0,
-				listing_pet_policy: $('#listing-pets').is(":checked") ? "Yes" : "No",
-				listing_elevator_access: $('#listing-elevator').is(":checked") ? "Yes" : "No",
-				listing_furnishing: $('#listing-furnished').is(":checked") ? 1 : 0,
-				listing_air_conditioning: $('#listing-ac').is(":checked") ? 1 : 0,
-				listing_description: $('#listing-description').val(),
-			},
-			address: {
-				approximateAddress: $('#form-approx').is(":checked") ? 1 : 0,
-				streetName: $('#form-address').val(),
-				city: $('#form-city').val(),
-				zipcode: $('#form-zipcode').val(),
-				state: $('#form-state').val(),
-			},
-			listing_image: {
-				image: data.target.result
+			if(index === fileUploadField.files.length) {
+				submitListing(blobList);
 			}
-		};
-		
-		$.ajax({
-			type:'POST',
-			url: url+"/listings/newlisting/",
-			data: listingInformation,
-			success: function(event){
-				let splitString = event.split(" ");
-				let listingId = splitString[11];
-				listingId = listingId.replace(/\'/g, "");
-				window.location.replace(url+"listings/getlisting/"+listingId);
-			},
-			error: function(xhr, err, errThrown) {
-				console.log("I failed");
-				console.log(err);
-				console.log(errThrown);
-			},
-		});
-	}
-	reader.readAsDataURL(logo);
+		}
+	});
 });
+
+function submitListing(blobList) {
+	var type = '';
+
+	if($("input[type='radio'][name='listingtype']").is(':checked')) {
+		var type = $("input[type='radio'][name='listingtype']:checked").val();
+	}
+
+ 	var listingInformation = {
+		listing_price: $('#form-price').val(),
+		listing_type: type,
+		listing_status: 1,
+		listing_detail: {
+			listing_numBedrooms: $('#form-numofbeds').val(),
+			listing_numBathrooms: $('#form-numofbaths').val(),
+			listing_internet: $('#listing-internet').is(":checked") ? 1 : 0,
+			listing_pet_policy: $('#listing-pets').is(":checked") ? "Yes" : "No",
+			listing_elevator_access: $('#listing-elevator').is(":checked") ? "Yes" : "No",
+			listing_furnishing: $('#listing-furnished').is(":checked") ? 1 : 0,
+			listing_air_conditioning: $('#listing-ac').is(":checked") ? 1 : 0,
+			listing_description: $('#listing-description').val(),
+		},
+		address: {
+			approximateAddress: $('#form-approx').is(":checked") ? 1 : 0,
+			streetName: $('#form-address').val(),
+			city: $('#form-city').val(),
+			zipcode: $('#form-zipcode').val(),
+			state: $('#form-state').val(),
+		},
+		listing_image: {
+			image: blobList
+		}
+	};
+	
+	$.ajax({
+		type:'POST',
+		url: url+"/listings/newlisting/",
+		data: listingInformation,
+		success: function(event){
+			let splitString = event.split(" ");
+			let listingId = splitString[11];
+			listingId = listingId.replace(/\'/g, "");
+			window.location.replace(url+"listings/getlisting/"+listingId);
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		},
+	});
+}
 
 $('#edit').submit(function (e) {
 	e.preventDefault();
-	var logo = $('#form-image')[0].files[0];
-	var reader = new FileReader();
-	reader.onload = function(data) {
-	 	onEditLoad(data);
-	}
-	if (logo instanceof Blob) {
-		reader.readAsDataURL(logo);
-	} else {
+
+	var fileUploadField = document.getElementById('form-image');
+	var fileList = new Array();
+	var blobList = new Array();
+
+	var index = 0;
+
+	$.each(fileUploadField.files, function(i, j) {
+		var reader = new FileReader();
+		reader.readAsDataURL(j);
+		reader.onload = function(data) {
+			index++;
+			blobList.push(data.target.result);
+
+			if(index === fileUploadField.files.length) {
+				onEditLoad(blobList);
+			}
+		}
+	});
+
+	if (fileUploadField.files.length === 0) {
 		onEditLoad();
-	}
+	} 
 	return false;
 });
 
@@ -119,7 +136,7 @@ function onEditLoad(data) {
 	
 	if(data != null) {
 		listingInformation["listing_image"] = {
-			image: data.target.result
+			image: data
 		};
 	}
 
@@ -151,13 +168,23 @@ function onFavoriteClick() {
 		url: url+"favoritelistings/addfavorite/",
 		data: favoriteInformation,
 		success: function(event) {
+			var popOverSettings = {
+			    placement: 'bottom',
+			    container: 'body',
+			    html: false,
+			    content: event
+			}
+
 			if(event === 1) {
 				//Display something that says it's favorited
+				popOverSettings.content = "It's favorited!";
+				$("button[rel=popover]").popover(popOverSettings);
 				console.log(event);
 			} else if (event === "You are not logged in") {
 				window.location.replace(url+"home/login/");
 			} else {
 				console.log(event);
+				$("button[rel=popover]").popover(popOverSettings);
 			}
 		},
 		error: function(xhr, err, errThrown) {
