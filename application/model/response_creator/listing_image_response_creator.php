@@ -23,13 +23,18 @@ class ListingImageResponseCreator {
 
 	public static function createNewListingImageResponse($listingID, $listingImageInfo) {
 		$listingImageRepo = RepositoryFactory::createRepository("listing_image");
-		$newListingImage = new ListingImage();
+		$listingImageArray = $listingImageInfo["image"];
+		$insertListingImage = true;
 
-		$image = explode(",", $listingImageInfo["image"]);
-		$newListingImage->setListingId($listingID);
-		$newListingImage->setImage(base64_decode($image[1]));
-		$newListingImage->setImageThumbNail(ImageResizeUtil::resizeImage($image[1]));
-		$insertListingImage = $listingImageRepo->save($newListingImage);
+		foreach($listingImageArray as $listingImage) {
+			$newListingImage = new ListingImage();
+
+			$image = explode(",", $listingImage);
+			$newListingImage->setListingId($listingID);
+			$newListingImage->setImage(base64_decode($image[1]));
+			$newListingImage->setImageThumbNail(ImageResizeUtil::resizeImage($image[1]));
+			$insertListingImage = $insertListingImage and $listingImageRepo->save($newListingImage);
+		}
 
 		return $insertListingImage;
 	}
