@@ -53,20 +53,8 @@
 	    	<div class="col-md-3 nav-link-div">
 	    		<a href="<?php echo URL. "home/index" ; ?>">Home</a>
 	    		<a href="<?php echo URL. "home/rentout" ; ?>">Rent Out</a>
-	    		<a href="<?php echo URL. "info/about" ; ?>">Contact Us</a>
+	    		<a href="<?php echo URL. "users/userlistings/". $arrayOfUserObjects[0]->getId() ?>">My Listings</a>
 	    	</div>
-
-<!-- 	    	<div class="col-md-1 nav-link-div">
-	    		<a href="<?php echo URL. "home/index" ; ?>">Home</a>
-	    	</div>
-
-	    	<div class="col-md-1 nav-link-div">
-	    		<a href="<?php echo URL. "home/rentout" ; ?>">Rent Out</a>
-	    	</div>
-
-	    	<div class="col-md-1 nav-link-div">
-	    		 <a href="<?php echo URL. "info/about" ; ?>">Contact Us</a>
-	    	</div> -->
 
 	    	<div class="col-md-9" id="search-bar">
 				<input id="search-input" type="text" placeholder="Enter an Address, City, or ZIP code..." onkeypress="return enterPressed(event)" required autofocus/><button id="search-get" type="button" class="btn btn-primary search-button" onclick="onSearchClick()">
