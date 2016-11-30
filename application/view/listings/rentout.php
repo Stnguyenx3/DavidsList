@@ -1,4 +1,13 @@
 <div class="container main">
+
+	<div class="row">
+		<div class="col-sm-5"></div>
+		<div class="col-sm-3">
+			<label><h1>Rent Out</h1></label>
+		</div>
+		<div class="col-sm-4"></div>
+	</div>
+
 	<div class="row rent-out">
 		<div class="col-sm-1"></div>
 		<div class="col-sm-10">

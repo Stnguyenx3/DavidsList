@@ -6,6 +6,14 @@
 <div class="container main">
 
 	<div class="row">
+		<div class="col-sm-5"></div>
+		<div class="col-sm-3">
+			<label><h1>Listing Detail</h1></label>
+		</div>
+		<div class="col-sm-4"></div>
+	</div>
+
+	<div class="row">
 
 		<div class="col-sm-4">
 
