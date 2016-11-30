@@ -12,6 +12,7 @@ class Address implements JsonSerializable{
 	private $city;
 	private $zipcode;
 	private $state;
+	private $distance;
 
 	public function __construct() {
 
@@ -41,6 +42,10 @@ class Address implements JsonSerializable{
 		return $this->state;
 	}
 
+	public function getDistance() {
+		return $this->distance;
+	}
+
 	public function setId($newId) {
 		$this->listingId = $newId;
 	}
@@ -65,9 +70,13 @@ class Address implements JsonSerializable{
 		$this->state = $newState;
 	}
 
+	public function setDistance($newDistance) {
+		$this->distance = $newDistance;
+	}
+
 	public function __toString() {
 		return "{$this->listingId}, {$this->approximateAddress}, {$this->streetName}, " 
-				. "{$this->city}, {$this->zipcode}, {$this->state}";
+				. "{$this->city}, {$this->zipcode}, {$this->state}, {$this->distance}";
 	}
 
 	public function jsonSerialize() {
@@ -77,7 +86,8 @@ class Address implements JsonSerializable{
 			'streetName' => $this->streetName,
 			'city' => $this->city,
 			'zipcode' => $this->zipcode,
-			'state' => $this->state
+			'state' => $this->state,
+			'distance' => $this->distance
 		);	
 	}
 

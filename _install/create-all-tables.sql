@@ -44,6 +44,7 @@ CREATE TABLE `f16g01`.`address` (
 	`city` VARCHAR(100),
 	`zipcode` VARCHAR(100),
 	`state` VARCHAR(100),
+	`distance` VARCHAR(45)
 	PRIMARY KEY(`listingId`)
 );
 # note that appromixate addressis a tiny int because we want to know whether or 
