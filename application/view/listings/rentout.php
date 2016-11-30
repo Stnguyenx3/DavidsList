@@ -5,11 +5,10 @@
 			<form class="form-rentout linear-gradient-bg" id="rentout" action="#" method="post">
 
 				<div class="form-group row">
-					<label for="form-image" class="col-sm-2 text-right">Image</label>
+					<label for="form-title" class="col-sm-2 text-right">Title</label>
 					<div class="col-sm-10">
-						<input type="file" name="listing-image" id="form-image" multiple>
+						<input class="form-control" type="text" name="listingtitle" id="form-title" placeholder="Title">
 					</div>
-
 				</div>
 
 				<div class="form-group row">
@@ -162,6 +161,14 @@
 					<div class="col-sm-10">
 						<textarea class="form-control" id="listing-description" rows="4" placeholder="Description"></textarea>
 					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="form-image" class="col-sm-2 text-right">Image(s)</label>
+					<div class="col-sm-10">
+						<input type="file" name="listing-image" id="form-image" multiple>
+					</div>
+
 				</div>
 
 				<div class="row">
