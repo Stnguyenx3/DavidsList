@@ -42,13 +42,12 @@ function formatResults(event) {
 
 	var result = JSON.parse(event);
 	var numOfResults = result.length;
-
 	var resultsPerPage = 5; //MAX NUMBER OF RESULTS PER PAGINATION PAGE.
-
 	var numOfPages = Math.ceil(numOfResults / resultsPerPage);
 
 	var pageContent = $("<div></div>").addClass("row");
-	var filter = '<div class="col-sm-3">\
+	var filter = '<div class="listing-map" id="listing-map" style="visibility: hidden; position: absolute; top: -9999px;"></div>\
+	<div class="col-sm-3">\
 		<p class="search-title">Refine search</p>\
 			<div class="search-filter linear-gradient-bg">\
 				<div class="form-group search-filter-price" id="filter-form">\
@@ -92,11 +91,11 @@ function formatResults(event) {
 						</label>\
 						<br>\
 						<label for="search-filter-distance-range2">\
-							<input type="checkbox" id="search-filter-distance-range2" value="2" onChange="onSelectFilter(event)" checked=true>2-3 miles\
+							<input type="checkbox" id="search-filter-distance-range2" value="3" onChange="onSelectFilter(event)" checked=true>1-3 miles\
 						</label>\
 						<br>\
 						<label for="search-filter-distance-range3">\
-							<input type="checkbox" id="search-filter-distance-range3" value="3" onChange="onSelectFilter(event)" checked=true>4 miles &amp; Above\
+							<input type="checkbox" id="search-filter-distance-range3" value="3" onChange="onSelectFilter(event)" checked=true>3 miles &amp; Above\
 						</label>\
 					</div>\
 				</div>\
@@ -147,7 +146,6 @@ function formatResults(event) {
 
 	pageContent.append(searchResultContent);
 
-
 	// Pagination
 	var paginationWrapper = $("<div></div>").addClass("result-pagination-wrapper");
 	var pagination = $("<ul></ul>").addClass("result-pagination").appendTo($(paginationWrapper));
@@ -160,7 +158,7 @@ function formatResults(event) {
 
 	$(".container.main").html(pageContent);
 
-	
+	// couple the onSelectFilter function to all checkboxes
 	var checkboxes = document.getElementById("filter-form").getElementsByTagName("input");
 	for (var i = 0; i < checkboxes.length; i++) {
 		checkboxes[i].onchange = function(event) {
@@ -169,9 +167,9 @@ function formatResults(event) {
 	}
 
 	var resultIDs = writeListingID(result, numOfResults); // start with showing everything
-
 	updateSearchResults(resultsPerPage, result, resultIDs);
 
+	// filters when one of teh checkboxes is checked
 	function onSelectFilter(event, result){
 
 		// get all values needed form the event to filter
@@ -188,6 +186,9 @@ function formatResults(event) {
 
 			var price = parseInt(result[i].price);
 			var rooms = parseInt(result[i].numberOfBedrooms);
+			var distance = result[i].distance;
+			if (distance === undefined) distance = 500; // HOW ELSE TO HANDLE??
+			else distance = parseFloat(distance);
 
 			// check for price
 			if (type === "price"){
@@ -213,12 +214,20 @@ function formatResults(event) {
 				}
 			}
 
-			// DOES NOT WORK
-			if (type === "distance" && 1 <= compareValue){
-				console.log("distance");
+			// check for distance
+			if (type === "distance"){
+				if ((distance < compareValue && distance >= compareValue-1)||(distances >= compareValue && subtype==3)){
+					
+					var index = resultIDs.indexOf(result[i].listingId);
+					if(!checked){
+						if (index > -1) resultIDs.splice(index, 1);
+					} else { 
+						if (index == -1) resultIDs.push(result[i].listingId);
+					}
+				}
 			}	
 		}
-
+		// update live on page
 		updateSearchResults(resultsPerPage, result, resultIDs);
 	}
 
@@ -241,6 +250,7 @@ function onClickToListings(event) {
 	window.location.replace(url+"listings/getlisting/"+event.data.listingId);
 }
 
+// Collect all listing ids
 function writeListingID(result, numOfResults){
 	var listingIDs = [];
 
@@ -250,13 +260,12 @@ function writeListingID(result, numOfResults){
 	return listingIDs;
 }
 
+// updates search results on search page,
+// refills all divs
 function updateSearchResults(resultsPerPage, result, resultIDs) {
 	var numOfResultIDs = resultIDs.length;
 	var numOfResults = result.length;
 	var numOfPages = Math.ceil(numOfResultIDs / resultsPerPage);
-
-	// console.log(numOfPages, numOfResultIDs);
-
 	var resultCombined = [];
 
 	for(var i = 0; i < numOfResultIDs; i++){
@@ -268,9 +277,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 			}
 		}
 	}
-
 	result = resultCombined;
-
 
 	// Handle Pagination events
 
@@ -284,40 +291,92 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 	        totalPages: numOfPages,
 	        visiblePages: 10,
 	        onPageClick: function (event, page) {
+	        	var rememberDiv, rememberResult,rememberFurnished;
 	            //Populate HTML divs with results.
-
 
 	            for (var r = ((page - 1) * resultsPerPage); r < (page * resultsPerPage); r++) {
 
 	            	var resultIndex = r % resultsPerPage;
-
 					var resultDiv = $(searchResultContent).find("#search-result-listing-" + resultIndex);
-
 					var furnished;
 
 					if (result[r] == undefined){
 							toggleBlockDisplay("search-result-listing-" + resultIndex, false);
 					} else {
 
+						// fix for missing distances
+						var distance = result[r].distance;
+						if (distance == undefined){ // if this happens more than once on a page it breaks
+							// remember the result that failed
+							rememberDiv = resultDiv;
+							rememberResult = result[r];
+							rememberFurnished = furnished;
+							callAPI(rememberResult, function(distanceFound){
+								// replace distance with found distance through API
+								$(rememberDiv).find(".search-result-listing-basic-info").text("Bed: " + rememberResult.numberOfBedrooms + " | " + "Bath: " + rememberResult.numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance from campus: " + distanceFound);
+							});
+							distance = "";
+						}
+
+						// get furnishings
 						if (result[r].furnishing == 1) {
 							furnished = "Yes";
 						} else {
 							furnished = "No";
 						}
 
+						// put in divs on page
 						$(resultDiv).find(".search-result-listing-img").attr("src", "data:image/png;base64," + result[r].imageThumbnail);
 						$(resultDiv).find(".search-result-listing-title").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
 						$(resultDiv).find(".search-result-listing-price").text("$" + result[r].price);
-						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished);
+						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance from campus: " + result[r].distance);
 						$(resultDiv).find(".search-result-listing-btn").click({listingId: result[r].listingId}, onClickToListings).text("Rent");
-
 
 						toggleBlockDisplay("search-result-listing-" + resultIndex, true);
 
 					}
-
 	            }
-
 			}
 	});
 }
+
+// Calls google API and returns distance between address and sfsu via callback
+function callAPI(result, callback){
+	// reload google maps API if not present
+	if (!(typeof google === 'object' && typeof google.maps === 'object')) {
+		$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAWtyDBXetSnDbisVRKmZ4AXzDBd1ohSyo&callback=initMap", function(){
+   			alert("Reloaded google maps.");
+		});
+	}
+
+	var destination = '1600 Holloway Ave, San Francisco'; 
+	var service = new google.maps.DistanceMatrixService;
+	var address = result.streetName + ", " + result.city;
+	var distances = [];
+
+	service.getDistanceMatrix({
+    	origins: [address],
+    	destinations: [destination],
+    	travelMode: google.maps.TravelMode.DRIVING,
+    	unitSystem: google.maps.UnitSystem.IMPERIAL,
+    	avoidHighways: false,
+    	avoidTolls: false
+		},
+		function(response, status) {
+			if (status !== google.maps.DistanceMatrixStatus.OK) {
+	  			// alert('Error was: ' + status);
+			} else {		
+				var originList = response.originAddresses;
+	  			var destinationList = response.destinationAddresses;
+
+	  			for (var i = 0; i < originList.length; i++) {
+	    			var results = response.rows[i].elements;
+
+	    			if (results[0].distance === undefined) distances.push("unknown");
+	    			else  distances.push(results[0].distance.text);
+  				}
+			}
+		callback(distances);
+	});
+}
+
