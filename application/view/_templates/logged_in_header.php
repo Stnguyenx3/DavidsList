@@ -53,6 +53,7 @@
 	    	<div class="col-md-3 nav-link-div">
 	    		<a href="<?php echo URL. "home/index" ; ?>">Home</a>
 	    		<a href="<?php echo URL. "home/rentout" ; ?>">Rent Out</a>
+	    		<a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId() ; ?>">My Profile</a>
 	    		<a href="<?php echo URL. "users/userlistings/". $arrayOfUserObjects[0]->getId() ?>">My Listings</a>
 	    	</div>
 
