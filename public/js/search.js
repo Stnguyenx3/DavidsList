@@ -327,6 +327,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 
 						// put in divs on page
 						$(resultDiv).find(".search-result-listing-img").attr("src", "data:image/png;base64," + result[r].imageThumbnail);
+						$(resultDiv).find(".search-result-listing-img").click({listingId: result[r].listingId}, onClickToListings);
 						$(resultDiv).find(".search-result-listing-title").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
 						$(resultDiv).find(".search-result-listing-price").text("$" + result[r].price);
 						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance from campus: " + result[r].distance);
