@@ -18,7 +18,7 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexOne] ?>" alt="Image missing." style="width: 250px; height: 250px;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexOne] ?>" alt="Image missing." style="width: 250px; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexOne]->getListingId() ?>")>
 
 				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][$indexOne]->getStreetName() ?></h3>
 
@@ -31,8 +31,8 @@
 						<li id="output-0">Distance To SFSU:</li>
 					</ul>
 				</div>
-
-				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexOne]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
+			
+				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexOne]->getListingId() ?>")>Rent</button>
 
 			</div>
 
@@ -42,7 +42,7 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexTwo] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexTwo] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexTwo]->getListingId() ?>")>
 
 				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][$indexTwo]->getStreetName() ?></h3>
 
@@ -56,7 +56,7 @@
 					</ul>
 				</div>
 
-				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexTwo]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
+				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexTwo]->getListingId() ?>")>Rent</button>
 
 			</div>
 
@@ -66,7 +66,7 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexThree] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexThree] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexThree]->getListingId() ?>")>
 
 				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][$indexThree]->getStreetName() ?></h3>
 
@@ -80,8 +80,8 @@
 					</ul>
 				</div>
 
-				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexThree]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
-
+			<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexThree]->getListingId() ?>")>Rent</button>
+			
 			</div>
 
 		</div>
@@ -94,7 +94,7 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexFour] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexFour] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFour]->getListingId() ?>")>
 
 				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][$indexFour]->getStreetName() ?></h3>
 
@@ -108,8 +108,7 @@
 					</ul>
 				</div>
 
-				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFour]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
-
+				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFour]->getListingId() ?>")>Rent</button>
 
 			</div>
 
@@ -119,7 +118,7 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexFive] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexFive] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFive]->getListingId() ?>")>
 
 				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][$indexFive]->getStreetName() ?></h3>
 
@@ -133,8 +132,7 @@
 					</ul>
 				</div>
 
-				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFive]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
-
+				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFive]->getListingId() ?>")>Rent</button>
 
 			</div>
 
@@ -144,7 +142,7 @@
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
 			
-				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexSix] ?>" alt="Image missing." style="width: 250px ; height: 250px;">
+				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexSix] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexSix]->getListingId() ?>")>
 
 				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][$indexSix]->getStreetName() ?></h3>
 
@@ -158,8 +156,7 @@
 					</ul>
 				</div>
 
-				<a href="<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexSix]->getListingId() ?>" class="btn btn-primary featured-listing-btn">Rent</a>
-
+				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexSix]->getListingId() ?>")>Rent</button>
 
 			</div>
 
