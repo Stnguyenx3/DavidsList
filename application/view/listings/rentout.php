@@ -106,15 +106,31 @@
 
 				<div class="form-group row">
 					<label for="form-numofbeds" class="col-sm-2 text-right">Number of Bedrooms</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="listingnumofbeds" id="form-numofbeds" placeholder="Number of Bedrooms">
+					<div class="col-sm-2">
+					<!-- 	<input class="form-control" type="text" name="listingnumofbeds" id="form-numofbeds" placeholder="Number of Bedrooms"> -->
+						<select class="form-control" name="listingnumofbeds" id="form-numofbeds" style="width: auto;">
+							<option value="">N/A</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
 					</div>
-				</div>
-				<div class="form-group row">
+
 					<label for="form-numofbaths" class="col-sm-2 text-right">Number of Bathrooms</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="listingnumofbaths" id="form-numofbaths" placeholder="Number of Bathrooms">
+					<div class="col-sm-2">
+						<!-- <input class="form-control" type="text" name="listingnumofbaths" id="form-numofbaths" placeholder="Number of Bathrooms"> -->
+						<select class="form-control" name="listingnumofbaths" id="form-numofbaths" style="width: auto;">
+							<option value="">N/A</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
 					</div>
+					<div class="col-sm-4"></div>
 				</div>
 				
 				<div class="form-group row">
@@ -172,7 +188,11 @@
 				</div>
 
 				<div class="row">
-					<div class="col-sm-3"></div>
+					<div class="col-sm-1"></div>
+					<div class="col-sm-1">
+						<a href="<?php echo URL. "home/index" ; ?>" class="btn btn-primary">Cancel</a>
+					</div>
+					<div class="col-sm-1"></div>
 					<button class="btn btn-primary col-sm-6" id="submit-listing" type="submit">Post Listing</button>
 					<div class="col-sm-3"></div>
 				</div>
