@@ -247,7 +247,7 @@ function enterPressed(event) {
 }
 
 function onClickToListings(event) {
-	window.location.replace(url+"listings/getlisting/"+event.data.listingId);
+	window.open(url+"listings/getlisting/"+event.data.listingId);
 }
 
 // Collect all listing ids
