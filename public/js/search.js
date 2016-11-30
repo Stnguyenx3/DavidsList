@@ -216,7 +216,7 @@ function formatResults(event) {
 
 			// check for distance
 			if (type === "distance"){
-				if ((distance < compareValue && distance >= compareValue-1)||(distances >= compareValue && subtype==3)){
+				if ((distance < compareValue && distance >= compareValue-1)||(distance >= compareValue && subtype==3)){
 					
 					var index = resultIDs.indexOf(result[i].listingId);
 					if(!checked){
