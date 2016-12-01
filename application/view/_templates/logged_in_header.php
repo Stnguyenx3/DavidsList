@@ -34,7 +34,7 @@
 		<div class="row">
 		
 			<div class="col-sm-3">
-				<img src="<?php echo URL; ?>img/logo.png" height="100" alt="logo">
+				<img src="<?php echo URL; ?>img/logo.png" height="100" alt="logo" onclick="onLogoClick()">
 			</div>
 
 			<div class="col-sm-6 disclaimer">
@@ -66,3 +66,9 @@
     	</div>
 
     </div>
+
+<script>
+	function onLogoClick() {
+		window.location.replace("<?php echo URL . 'home/index' ?>");
+	}
+</script>
