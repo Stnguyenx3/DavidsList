@@ -6,6 +6,11 @@ $(document).ready(function () {
 
 	console.log("userId = " + userId);
 
+	var headerDiv = $("<div></div>").addClass("row").appendTo($("#listings"));
+	var header = $("<h2></h2>").addClass("centered-header").appendTo($("#listings"));
+
+	$(header).text("Your listings");
+
 	$.ajax({
 		type:'GET',
 		url: url+"users/getalluserlistings/" + userId,
@@ -107,4 +112,8 @@ function onClickEditListing(event) {
 
 function onClickMessages(event) {
 	window.location.replace(url+"messages/allmessages/"+event.data.listingId);
+}
+
+function fetchMessages(event) {
+
 }

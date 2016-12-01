@@ -10,6 +10,10 @@ body,
     background-color: #4682b4;
 }
 
+.disclaimer > h3 {
+    margin: 15px;
+}
+
 .privacy > p {
     font-size: 16px;
 }

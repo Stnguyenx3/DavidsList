@@ -9,6 +9,9 @@
 		</div>
 
 		<div class="col-md-10 user-overview custom-border linear-gradient-bg">
+
+			<h2 class="centered-header">Profile</h2>
+
 			<form id="accountoverview">
 				<div class="form-group row">
 
