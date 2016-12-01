@@ -126,7 +126,6 @@ function formatResults(event) {
 
 	if (numOfResults == 0) {
 		$(row).css("display", "block");
-		console.log(row);
 	}
 	pageContent.append(searchResultContent);
 
@@ -202,7 +201,7 @@ function formatResults(event) {
 		var foundFirstRooms = false;
 		var foundFirstDist = false;
 
-		console.log(firstPrice, firstRooms, firstDist);
+		// console.log(firstPrice, firstRooms, firstDist);
 
 		// start going through all results
 		for (var i = 0; i < numOfResults; i++) {
