@@ -17,7 +17,7 @@
 		<div class="col-md-4">
 
 			<div class="featured-listing-container custom-border linear-gradient-bg" style="overflow:hidden">
-			
+
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexOne] ?>" alt="Image missing." style="width: 250px; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexOne]->getListingId() ?>")>
 
 				<h3 class="featured-listing-title"><?php echo $newListings["addresses"][$indexOne]->getStreetName() ?></h3>
@@ -167,7 +167,11 @@
 </div>
 
 <div class="listing-map" id="listing-map" style="visibility: hidden; position: absolute; top: -9999px;"></div>
-<script>                                    
+<script>
+
+	//Highlight the current pages' navbar link.
+	$("#nav-link-0").css("background-color", "#23527c");
+
 	function initMap() {					
   		var bounds = new google.maps.LatLngBounds;
   		var markersArray = [];
@@ -257,7 +261,3 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWtyDBXetSnDbisVRKmZ4AXzDBd1ohSyo&callback=initMap"
         async defer></script>
-
-
-        <!--            AIzaSyAWtyDBXetSnDbisVRKmZ4AXzDBd1ohSyo -->
-        <!-- original : AIzaSyDUYeLz1DKD4PUAg_uef7OP986wXFlkN78 -->

@@ -51,10 +51,10 @@
     	<div class="row">
     		
 	    	<div class="col-md-3 nav-link-div">
-	    		<a href="<?php echo URL. "home/index" ; ?>">Home</a>
-	    		<a href="<?php echo URL. "home/rentout" ; ?>">Rent Out</a>
+	    		<a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a>
+	    		<a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Rent Out</a>
 	    		<a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId() ; ?>">My Profile</a>
-	    		<a href="<?php echo URL. "users/userlistings/". $arrayOfUserObjects[0]->getId() ?>">My Listings</a>
+	    		<a href="<?php echo URL. "users/userlistings/". $arrayOfUserObjects[0]->getId() ?>" id="nav-link-2">My Listings</a>
 	    	</div>
 
 	    	<div class="col-md-9" id="search-bar">
@@ -68,7 +68,9 @@
     </div>
 
 <script>
+
 	function onLogoClick() {
 		window.location.replace("<?php echo URL . 'home/index' ?>");
 	}
+
 </script>

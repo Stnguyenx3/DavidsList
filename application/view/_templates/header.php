@@ -51,9 +51,9 @@
     	<div class="row">
     		
 	    	<div class="col-md-3 nav-link-div">
-	    		<a href="<?php echo URL. "home/index" ; ?>">Home</a>
-	    		<a href="<?php echo URL. "home/rentout" ; ?>">Rent Out</a>
-	    		<a href="<?php echo URL. "home/login" ; ?>">My Listings</a>
+	    		<a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a>
+	    		<a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Rent Out</a>
+	    		<a href="<?php echo URL. "home/login" ; ?>" id="nav-link-2">My Listings</a>
 	    		<!--a href="<?php echo URL. "info/about" ; ?>">Contact Us</a-->
 	    	</div>
 
