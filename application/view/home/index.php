@@ -236,7 +236,11 @@
         			for (var j = 0; j < results.length; j++) {
           				geocoder.geocode({'address': destinationList[j]},
               			showGeocodedAddressOnMap(true));
-          				$("#output-"+i).text("Distance To SFSU: "+results[j].distance.text);
+              			if (results[j].distance != null) {
+          					$("#output-"+i).text("Distance To SFSU: "+results[j].distance.text);
+          				} else {
+          					$("#output-"+i).text("Distance To SFSU: Unavailable.");
+          				}
         			}
       			}
     		}
