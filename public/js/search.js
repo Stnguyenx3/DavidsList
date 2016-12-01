@@ -120,7 +120,7 @@ function formatResults(event) {
 	var message = $("<p></p>").addClass("search-result-listing-null").appendTo($(col));
 	$(message).text("No results! Try another search!");
 	
-	toggleBlockDisplay("search-result-listing-null-div.linear-gradient-bg", false);
+	toggleBlockDisplay("row.search-result-listing-null-div.linear-gradient-bg", false);
 
 	if (numOfResults == 0) {
 		toggleBlockDisplay("search-result-listing-null-div", true);
@@ -195,7 +195,11 @@ function formatResults(event) {
 			first = false;
 		}
 
-		var foundFirstPrice = false, foundFirstRooms = false, foundFirstDist = false;
+		var foundFirstPrice = false;
+		var foundFirstRooms = false;
+		var foundFirstDist = false;
+
+		console.log(firstPrice, firstRooms, firstDist);
 
 		// start going through all results
 		for (var i = 0; i < numOfResults; i++) {
@@ -231,7 +235,7 @@ function formatResults(event) {
 					}
 				} else if (firstRooms){
 					roomResultIDs.splice(index, 1);
-					foundFirstRooms = false;
+					foundFirstRooms = true;
 				}
 			}
 
@@ -246,7 +250,7 @@ function formatResults(event) {
 					}
 				} else if (firstDist){ 
 					distResultIDs.splice(index, 1);
-					foundFirstDist = false;
+					foundFirstDist = true;
 				}
 			}	
 		}

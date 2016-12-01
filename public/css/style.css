@@ -369,7 +369,7 @@ div#header.container {
 #result-pagination-wrapper {
     display: block;
 }
-.search-result-listing-null-div.linear-gradient-bg{
+#row.search-result-listing-null-div.linear-gradient-bg{
     display: block;
 }
 
