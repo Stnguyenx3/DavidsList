@@ -5,7 +5,7 @@ function toggleBlockDisplay (blockID, on) {
 	if(on) $(selector).css("display", "block");
 	else{
 		$(selector).css("display", "none");
-		console.log(selector);
+		// console.log(selector);
 	}
 }
 
@@ -54,48 +54,48 @@ function formatResults(event) {
 					<label>Price</label>\
 					<br>\
 					<label for="search-filter-price-range1">\
-						<input type="checkbox" id="search-filter-price-range1" value="500" checked=true>Under $500\
+						<input type="checkbox" id="search-filter-price-range1" value="500">Under $500\
 					</label>\
 					<br>\
 					<label for="search-filter-price-range2">\
-						<input type="checkbox" id="search-filter-price-range2" value="750" onChange="onSelectFilter(event)" checked=true>$500 to $750\
+						<input type="checkbox" id="search-filter-price-range2" value="750"> $500 to $750\
 					</label>\
 					<br>\
 					<label for="search-filter-price-range3">\
-						<input type="checkbox" id="search-filter-price-range3" value="1000" onChange="onSelectFilter(event)" checked=true>$750 to $1000\
+						<input type="checkbox" id="search-filter-price-range3" value="1000" >$750 to $1000\
 					</label>\
 					<br>\
 					<label for="search-filter-price-range4">\
-						<input type="checkbox" id="search-filter-price-range4" value="1000" onChange="onSelectFilter(event)" checked=true>$1000 &amp; Above\
+						<input type="checkbox" id="search-filter-price-range4" value="1000">$1000 &amp; Above\
 					</label>\
 					<div class="form-group">\
 						<label>Rooms</label>\
 						<br>\
 						<label for="search-filter-bedroom-range1">\
-							<input type="checkbox" id="search-filter-bedroom-range1" value="1" onChange="onSelectFilter(event)" checked=true>1\
+							<input type="checkbox" id="search-filter-bedroom-range1" value="1" >1\
 						</label>\
 						<br>\
 						<label for="search-filter-bedroom-range2">\
-							<input type="checkbox" id="search-filter-bedroom-range2" value="2" onChange="onSelectFilter(event)" checked=true>2\
+							<input type="checkbox" id="search-filter-bedroom-range2" value="2">2\
 						</label>\
 						<br>\
 						<label for="search-filter-bedroom-range3">\
-							<input type="checkbox" id="search-filter-bedroom-range3" value="3" onChange="onSelectFilter(event)" checked=true>3+\
+							<input type="checkbox" id="search-filter-bedroom-range3" value="3">3+\
 						</label>\
 					</div>\
 					<div class="form-group">\
 						<label>Distance from SFSU</label>\
 						<br>\
 						<label for="search-filter-distance-range1">\
-							<input type="checkbox" id="search-filter-distance-range1" value="1" onChange="onSelectFilter(event)" checked=true>Under 1 mile\
+							<input type="checkbox" id="search-filter-distance-range1" value="1">Under 1 mile\
 						</label>\
 						<br>\
 						<label for="search-filter-distance-range2">\
-							<input type="checkbox" id="search-filter-distance-range2" value="3" onChange="onSelectFilter(event)" checked=true>1-3 miles\
+							<input type="checkbox" id="search-filter-distance-range2" value="3">1-3 miles\
 						</label>\
 						<br>\
 						<label for="search-filter-distance-range3">\
-							<input type="checkbox" id="search-filter-distance-range3" value="3" onChange="onSelectFilter(event)" checked=true>3 miles &amp; Above\
+							<input type="checkbox" id="search-filter-distance-range3" value="3">3 miles &amp; Above\
 						</label>\
 					</div>\
 				</div>\
@@ -111,19 +111,23 @@ function formatResults(event) {
 
 	//Check for no results.
 
-	if (result.length == 0) {
+	// if (result.length == 0) {
 		//Disable search filters...
 
-		//Display message to user.
-		var row = $("<div></div>").addClass("row search-result-listing linear-gradient-bg").appendTo($(searchResultContent));
-		var col = $("<div></div>").addClass("col-sm-12").appendTo($(row));
-		var message = $("<p></p>").addClass("search-result-listing-null").appendTo($(col));
+	//Display message to user.
+	var row = $("<div></div>").addClass("row search-result-listing-null-div linear-gradient-bg").appendTo($(searchResultContent));
+	var col = $("<div></div>").addClass("col-sm-12").appendTo($(row));
+	var message = $("<p></p>").addClass("search-result-listing-null").appendTo($(col));
+	$(message).text("No results! Try another search!");
+	
+	toggleBlockDisplay("search-result-listing-null-div.linear-gradient-bg", false);
 
-		$(message).text("No results! Try another search!");
-
-		pageContent.append(searchResultContent);
-
+	if (numOfResults == 0) {
+		toggleBlockDisplay("search-result-listing-null-div", true);
 	}
+	pageContent.append(searchResultContent);
+
+	//}
 
 	//Result page layout.
 
@@ -153,7 +157,7 @@ function formatResults(event) {
 	pageContent.append($(paginationWrapper));
 
 	if (numOfResults == 0) {
-		toggleBlockDisplay("result-pagination-wrapper", true);
+		toggleBlockDisplay("result-pagination-wrapper", false);
 	}
 
 	$(".container.main").html(pageContent);
@@ -167,7 +171,12 @@ function formatResults(event) {
 	}
 
 	var resultIDs = writeListingID(result, numOfResults); // start with showing everything
+	var priceResultIDs = writeListingID(result, numOfResults);
+	var roomResultIDs = writeListingID(result, numOfResults);
+	var distResultIDs = writeListingID(result, numOfResults);
 	updateSearchResults(resultsPerPage, result, resultIDs);
+
+	var first = true, firstPrice = true, firstRooms = true, firstDist = true;
 
 	// filters when one of teh checkboxes is checked
 	function onSelectFilter(event, result){
@@ -181,56 +190,89 @@ function formatResults(event) {
 		var checked = event.target.checked;
 		var compareValue = parseInt(event.target.value);
 
+		if (first){
+			resultIDs = [];
+			first = false;
+		}
+
+		var foundFirstPrice = false, foundFirstRooms = false, foundFirstDist = false;
+
 		// start going through all results
 		for (var i = 0; i < numOfResults; i++) {
 
 			var price = parseInt(result[i].price);
 			var rooms = parseInt(result[i].numberOfBedrooms);
 			var distance = result[i].distance;
-			if (distance === undefined) distance = 500; // HOW ELSE TO HANDLE??
+			if (distance == null) distance = 500; // HOW ELSE TO HANDLE??
 			else distance = parseFloat(distance);
 
 			// check for price
 			if (type === "price"){
-				if ((subtype == 1 && price < compareValue) || (subtype == 4 && price >= compareValue) || (price <compareValue && price >= compareValue-250 && subtype != 4)){
-					var index = resultIDs.indexOf(result[i].listingId);
+				var index = priceResultIDs.indexOf(result[i].listingId);
+				if ((subtype == 1 && price < compareValue) || (subtype == 4 && price >= compareValue) || (price <compareValue && price >= compareValue-250 && subtype != 4)){	
 					if(!checked){
-						if (index > -1) resultIDs.splice(index, 1);
+						if (index > -1) priceResultIDs.splice(index, 1);
 					} else { 
-						if (index == -1) resultIDs.push(result[i].listingId);
+						if (index == -1) priceResultIDs.push(result[i].listingId);
 					}
+				} else if (firstPrice){ 
+					priceResultIDs.splice(index, 1);
+					foundFirstPrice = true;
 				}
 			} 
 			// check for rooms
 			else if (type === "bedroom"){
+				var index = roomResultIDs.indexOf(result[i].listingId);
 				if (rooms == compareValue || (rooms >=compareValue && subtype == 3)){
-					// console.log(rooms, compareValue);	
-					var index = resultIDs.indexOf(result[i].listingId);
 					if(!checked){
-						if (index > -1) resultIDs.splice(index, 1);
+						if (index > -1) roomResultIDs.splice(index, 1);
 					} else { 
-						if (index == -1) resultIDs.push(result[i].listingId);
+						if (index == -1) roomResultIDs.push(result[i].listingId);
 					}
+				} else if (firstRooms){
+					roomResultIDs.splice(index, 1);
+					foundFirstRooms = false;
 				}
 			}
 
 			// check for distance
 			if (type === "distance"){
+				var index = distResultIDs.indexOf(result[i].listingId);
 				if ((distance < compareValue && distance >= compareValue-1)||(distance >= compareValue && subtype==3)){
-					
-					var index = resultIDs.indexOf(result[i].listingId);
 					if(!checked){
-						if (index > -1) resultIDs.splice(index, 1);
+						if (index > -1) distResultIDs.splice(index, 1);
 					} else { 
-						if (index == -1) resultIDs.push(result[i].listingId);
+						if (index == -1) distResultIDs.push(result[i].listingId);
 					}
+				} else if (firstDist){ 
+					distResultIDs.splice(index, 1);
+					foundFirstDist = false;
 				}
 			}	
 		}
+		if(foundFirstPrice) firstPrice = false;
+		if(foundFirstRooms) firstRooms = false;
+		if(foundFirstDist) firstDist = false;
+
+		resultIDs = intersection(priceResultIDs, roomResultIDs, distResultIDs);
+		console.log(priceResultIDs, roomResultIDs, distResultIDs);
+		console.log(resultIDs);
 		// update live on page
 		updateSearchResults(resultsPerPage, result, resultIDs);
 	}
 
+}
+
+function intersection(list1, list2, list3){
+	var intersection = [];
+	// var lenght1 = list1.length, lenght2 = list2.length, lenght3 = list3.length;
+
+	intersetion = list1.filter(function (elem) {
+        if (list2.indexOf(elem) !== -1) return true;
+    });
+	return intersetion.filter(function (elem) {
+        if (list3.indexOf(elem) !== -1) return true;
+    });
 }
 
 
@@ -286,14 +328,25 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
     	$('.result-pagination').twbsPagination('destroy');
     }
 
+    // handle no results
+    if (numOfResultIDs == 0) {
+		toggleBlockDisplay("search-result-listing-null-div", true); // fuck this thing
+		toggleBlockDisplay("result-pagination-wrapper", false); // stop showing scroll bar 
+		for(var i = 0; i<resultsPerPage; i++){
+			toggleBlockDisplay("search-result-listing-" + i, false); // stop showing listing divs
+		}
+		return;
+	} else {
+		toggleBlockDisplay("search-result-listing-null-div", false); // fuck it again
+		toggleBlockDisplay("result-pagination-wrapper", true);
+	}
+
     // Repopulate
 	$(".result-pagination").twbsPagination({
 	        totalPages: numOfPages,
 	        visiblePages: 10,
 	        onPageClick: function (event, page) {
-	        	var rememberDiv, rememberResult,rememberFurnished;
 	            //Populate HTML divs with results.
-
 	            for (var r = ((page - 1) * resultsPerPage); r < (page * resultsPerPage); r++) {
 
 	            	var resultIndex = r % resultsPerPage;
@@ -306,17 +359,13 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 
 						// fix for missing distances
 						var distance = result[r].distance;
-						if (distance == undefined){ // if this happens more than once on a page it breaks
-							// remember the result that failed
-							rememberDiv = resultDiv;
-							rememberResult = result[r];
-							rememberFurnished = furnished;
-							callAPI(rememberResult, function(distanceFound){
-								// replace distance with found distance through API
-								$(rememberDiv).find(".search-result-listing-basic-info").text("Bed: " + rememberResult.numberOfBedrooms + " | " + "Bath: " + rememberResult.numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance from campus: " + distanceFound);
-							});
-							distance = "";
-						}
+						if (distance == null){ // if this happens more than once on a page it breaks
+							distance = "Unknown";
+							// callAPI(result[r], function(distanceFound){
+							// 	// replace distance with found distance through API
+							// 	$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance from campus: " + distanceFound);
+							// });		
+						} else distance += " miles"
 
 						// get furnishings
 						if (result[r].furnishing == 1) {
@@ -330,7 +379,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 						$(resultDiv).find(".search-result-listing-img").click({listingId: result[r].listingId}, onClickToListings);
 						$(resultDiv).find(".search-result-listing-title").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
 						$(resultDiv).find(".search-result-listing-price").text("$" + result[r].price);
-						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance from campus: " + result[r].distance);
+						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance);
 						$(resultDiv).find(".search-result-listing-btn").click({listingId: result[r].listingId}, onClickToListings).text("Rent");
 
 						toggleBlockDisplay("search-result-listing-" + resultIndex, true);
