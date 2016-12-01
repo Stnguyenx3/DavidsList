@@ -369,9 +369,9 @@ div#header.container {
 #result-pagination-wrapper {
     display: block;
 }
-#row.search-result-listing-null-div.linear-gradient-bg{
+/*.search-result-listing-null-div{
     display: block;
-}
+}*/
 
 
 .search-filter {
@@ -428,6 +428,7 @@ div#header.container {
     font-weight: 700;
     padding: 15px;
     text-align: center;
+    display: block;
 }
 
 .search-result-listing-title,

@@ -1,5 +1,5 @@
 function toggleBlockDisplay (blockID, on) {
-	var selector = "#" + blockID;
+	var selector = blockID;
 	var status = $(selector).css("display");
 
 	if(on) $(selector).css("display", "block");
@@ -115,15 +115,18 @@ function formatResults(event) {
 		//Disable search filters...
 
 	//Display message to user.
-	var row = $("<div></div>").addClass("row search-result-listing-null-div linear-gradient-bg").appendTo($(searchResultContent));
+	var row = $("<div></div>").addClass("row search-result-listing-null linear-gradient-bg").appendTo($(searchResultContent));
 	var col = $("<div></div>").addClass("col-sm-12").appendTo($(row));
 	var message = $("<p></p>").addClass("search-result-listing-null").appendTo($(col));
 	$(message).text("No results! Try another search!");
-	
-	toggleBlockDisplay("row.search-result-listing-null-div.linear-gradient-bg", false);
+
+	$(row).attr("id", "no-result");
+	$(row).css("display", "none");
+	// toggleBlockDisplay("#search-result-listing-null", false);
 
 	if (numOfResults == 0) {
-		toggleBlockDisplay("search-result-listing-null-div", true);
+		$(row).css("display", "block");
+		console.log(row);
 	}
 	pageContent.append(searchResultContent);
 
@@ -157,7 +160,7 @@ function formatResults(event) {
 	pageContent.append($(paginationWrapper));
 
 	if (numOfResults == 0) {
-		toggleBlockDisplay("result-pagination-wrapper", false);
+		toggleBlockDisplay("#result-pagination-wrapper", false);
 	}
 
 	$(".container.main").html(pageContent);
@@ -259,8 +262,8 @@ function formatResults(event) {
 		if(foundFirstDist) firstDist = false;
 
 		resultIDs = intersection(priceResultIDs, roomResultIDs, distResultIDs);
-		console.log(priceResultIDs, roomResultIDs, distResultIDs);
-		console.log(resultIDs);
+		// console.log(priceResultIDs, roomResultIDs, distResultIDs);
+		// console.log(resultIDs);
 		// update live on page
 		updateSearchResults(resultsPerPage, result, resultIDs);
 	}
@@ -334,15 +337,15 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 
     // handle no results
     if (numOfResultIDs == 0) {
-		toggleBlockDisplay("search-result-listing-null-div", true); // fuck this thing
-		toggleBlockDisplay("result-pagination-wrapper", false); // stop showing scroll bar 
+		$(searchResultContent).find("#no-result").css("display", "block"); // show no result message
+		toggleBlockDisplay("#result-pagination-wrapper", false); // stop showing scroll bar 
 		for(var i = 0; i<resultsPerPage; i++){
-			toggleBlockDisplay("search-result-listing-" + i, false); // stop showing listing divs
+			toggleBlockDisplay("#search-result-listing-" + i, false); // stop showing listing divs
 		}
 		return;
 	} else {
-		toggleBlockDisplay("search-result-listing-null-div", false); // fuck it again
-		toggleBlockDisplay("result-pagination-wrapper", true);
+		$(searchResultContent).find("#no-result").css("display", "none"); // stop showing no result mess
+		toggleBlockDisplay("#result-pagination-wrapper", true);
 	}
 
     // Repopulate
@@ -358,7 +361,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 					var furnished;
 
 					if (result[r] == undefined){
-							toggleBlockDisplay("search-result-listing-" + resultIndex, false);
+							toggleBlockDisplay("#search-result-listing-" + resultIndex, false);
 					} else {
 
 						// fix for missing distances
@@ -386,7 +389,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance);
 						$(resultDiv).find(".search-result-listing-btn").click({listingId: result[r].listingId}, onClickToListings).text("Rent");
 
-						toggleBlockDisplay("search-result-listing-" + resultIndex, true);
+						toggleBlockDisplay("#search-result-listing-" + resultIndex, true);
 
 					}
 	            }
