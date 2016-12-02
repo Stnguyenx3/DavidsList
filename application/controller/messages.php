@@ -123,6 +123,31 @@ class Messages extends Controller{
 		echo json_encode($allMessageObjects);
 	}
 
+	public function getAllMessages($userid) {
+		$messageRepo = RepositoryFactory::createRepository("message");
+		$allMessageObjects = $messageRepo->fetch();
+
+		$tmp = array();
+		foreach($allMessageObjects as $k => $v)
+			$tmp[$k] = $v->getListingId();
+
+		//Reverse the array since the newer messages(towards the end) are what we want
+		$tmp = array_reverse($tmp);
+		$allMessageObjects = array_reverse($allMessageObjects);
+
+		// Find duplicates in temporary array
+		$tmp = array_unique($tmp);
+
+		// Remove the duplicates from original array
+		foreach($allMessageObjects as $k => $v){
+		    if (!array_key_exists($k, $tmp))
+		        unset($allMessageObjects[$k]);
+		}
+
+		//Send back users as well? ie call UserRepository
+		echo json_encode($allMessageObjects);
+	}
+
 	public function allMessages($listingId) {
 		if(!empty($_SESSION)) {
     		$userRepo = RepositoryFactory::createRepository("user");

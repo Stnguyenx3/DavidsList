@@ -67,7 +67,7 @@
 					<a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId() ; ?>" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li><a href="<?php echo URL. "users/userlistings/". $arrayOfUserObjects[0]->getId() ?>">My Listings</a></li>
-						<li><a href="#">Messages</a></li>
+						<li><a href="<?php echo URL. "messages/allmessages/". $_SESSION['userid']?>">Messages</a></li>
 					</ul>
 
 				</div>	    		

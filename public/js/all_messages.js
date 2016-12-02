@@ -3,28 +3,13 @@ $(document).ready(function () {
 	var str = (window.location + '').split("/");
 	var listingId = str[str.length - 1];
 
-	console.log("str is " + str);
-
 	$.ajax({
 		type:'GET',
-		url: url+"users/getalluserlistings/" + userID,
+		url: url+"messages/getallmessages/" + userID,
 		dataType: "json",
 		beforeSend: function () {
 			
 		},
-		success: getAllListingIDs,
-		error: function(xhr, err, errThrown) {
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
-		}
-	});
-
-
-	$.ajax({
-		type:'GET',
-		url: url+"messages/getmessagesthread/"+listingId,
-		dataType: "json",
 		success: formatAllListingMessages,
 		error: function(xhr, err, errThrown) {
 			console.log("I failed");
@@ -33,14 +18,20 @@ $(document).ready(function () {
 		}
 	});
 
+
+	// $.ajax({
+	// 	type:'GET',
+	// 	url: url+"messages/getmessagesthread/"+listingId,
+	// 	dataType: "json",
+	// 	success: formatAllListingMessages,
+	// 	error: function(xhr, err, errThrown) {
+	// 		console.log("I failed");
+	// 		console.log(err);
+	// 		console.log(errThrown);
+	// 	}
+	// });
+
 });
-
-//All listings with messages.
-function getAllListingIDs (event) {
-
-	
-	
-}
 
 function formatAllListingMessages(event) {
 
@@ -72,7 +63,7 @@ function formatAllListingMessages(event) {
 			//Insert listing information into HTML elements.
 			// $(h3).text(listingTitle);
 			$(p0).text("Message:"+ message);
-			$(a0).text("Conversate");
+			$(a0).text("Reply");
 
 			$(img).attr("src", "http://placehold.it/150x150");
 
