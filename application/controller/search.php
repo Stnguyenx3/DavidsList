@@ -31,9 +31,11 @@ class Search extends Controller {
             $thresh = 80; // threshold for percentage of similar_text
             $addresses = array(); //prepare array
 
-            // If searchInput ends in street or avenue, reduce to str or ave
-            if(strcmp(substr($searchInput, -6),"street")==0 || strcmp(substr($searchInput, -6),"avenue")==0){
-                $searchInput = substr($searchInput, 0, -3);
+            // If searchInput ends in street or avenue, reduce
+            if(strcmp(substr($searchInput, -6),"street")==0 || strcmp(substr($searchInput, -6),"st")==0 || strcmp(substr($searchInput, -6),"avenue")==0 || strcmp(substr($searchInput, -6),"ave")==0){
+                $searchInput = substr($searchInput, 0, -6);
+            } elseif (strcmp(substr($searchInput, -2),"st")==0 || strcmp(substr($searchInput, -3),"ave")==0) {
+                    $compareStreetName = substr($compareStreetName, 0, -3);
             }
 
 
@@ -54,11 +56,17 @@ class Search extends Controller {
 
                 // Check for street and avenue in compareStreetName
                 if(strcmp(substr($compareStreetName, -6),"street")==0 || strcmp(substr($compareStreetName, -6),"avenue")==0){
+                    $compareStreetName = substr($compareStreetName, 0, -6);
+                } elseif (strcmp(substr($compareStreetName, -2),"st")==0 || strcmp(substr($compareStreetName, -3),"ave")==0) {
                     $compareStreetName = substr($compareStreetName, 0, -3);
                 }
 
+                // check for house number and remove
+                $compareStreetNameNoNumbers = trim(str_replace(range(0,9),'',$compareStreetName));
+
                 similar_text($compareStreetName , $searchInput, $percentageStreetName);
-                if($percentageStreetName > $thresh){
+                similar_text($compareStreetNameNoNumbers , $searchInput, $percentageStreetNameNoNumbers);
+                if($percentageStreetName > $thresh || $percentageStreetNameNoNumbers > $thresh){
                     $addresses[] = $address;
                     continue;
                 }
@@ -76,6 +84,8 @@ class Search extends Controller {
 
 
         $returnArray = array();
+
+        $returnArray[] = $searchInput;
 
         // fetch all fields and make ready for return
         foreach ($addresses as $address) {

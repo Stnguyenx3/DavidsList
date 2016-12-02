@@ -1,5 +1,5 @@
 function toggleBlockDisplay (blockID, on) {
-	var selector = "#" + blockID;
+	var selector = blockID;
 	var status = $(selector).css("display");
 
 	if(on) $(selector).css("display", "block");
@@ -41,6 +41,10 @@ function onSearchClick() {
 function formatResults(event) {
 
 	var result = JSON.parse(event);
+	// Replace search input value in search bar
+	var searchInput = result.shift();
+	document.getElementById("search-input").value = searchInput;
+
 	var numOfResults = result.length;
 	var resultsPerPage = 5; //MAX NUMBER OF RESULTS PER PAGINATION PAGE.
 	var numOfPages = Math.ceil(numOfResults / resultsPerPage);
@@ -109,25 +113,27 @@ function formatResults(event) {
 
 	$(searchResultContent).append($("<p>Results</p>").addClass("search-title"));
 
-	//Check for no results.
+	// Add number of results displayed at top of page
+	var row = $("<div></div>").addClass("row search-result-number").appendTo($(searchResultContent));
+	var col = $("<div></div>").addClass("col-sm-12").appendTo($(row));
+	var message = $("<p></p>").addClass("search-result-number-message").appendTo($(col));
+	$(row).attr("id", "result-number");
 
-	// if (result.length == 0) {
-		//Disable search filters...
-
-	//Display message to user.
-	var row = $("<div></div>").addClass("row search-result-listing-null-div linear-gradient-bg").appendTo($(searchResultContent));
+	//Display no result message to user.
+	var row = $("<div></div>").addClass("row search-result-listing-null linear-gradient-bg").appendTo($(searchResultContent));
 	var col = $("<div></div>").addClass("col-sm-12").appendTo($(row));
 	var message = $("<p></p>").addClass("search-result-listing-null").appendTo($(col));
 	$(message).text("No results! Try another search!");
-	
-	toggleBlockDisplay("search-result-listing-null-div.linear-gradient-bg", false);
 
+	//No-result message is default not shown
+	$(row).attr("id", "no-result");
+	$(row).css("display", "none");
+
+	// If no results, display message
 	if (numOfResults == 0) {
-		toggleBlockDisplay("search-result-listing-null-div", true);
+		$(row).css("display", "block");
 	}
 	pageContent.append(searchResultContent);
-
-	//}
 
 	//Result page layout.
 
@@ -157,7 +163,8 @@ function formatResults(event) {
 	pageContent.append($(paginationWrapper));
 
 	if (numOfResults == 0) {
-		toggleBlockDisplay("result-pagination-wrapper", false);
+		toggleBlockDisplay("#result-pagination-wrapper", false);
+		toggleBlockDisplay("#result-number", false); // stop showing number of results
 	}
 
 	$(".container.main").html(pageContent);
@@ -170,7 +177,7 @@ function formatResults(event) {
 		}
 	}
 
-	var resultIDs = writeListingID(result, numOfResults); // start with showing everything
+	var resultIDs = writeListingID(result, numOfResults); // start with showing all listings
 	var priceResultIDs = writeListingID(result, numOfResults);
 	var roomResultIDs = writeListingID(result, numOfResults);
 	var distResultIDs = writeListingID(result, numOfResults);
@@ -195,7 +202,11 @@ function formatResults(event) {
 			first = false;
 		}
 
-		var foundFirstPrice = false, foundFirstRooms = false, foundFirstDist = false;
+		var foundFirstPrice = false;
+		var foundFirstRooms = false;
+		var foundFirstDist = false;
+
+		// console.log(firstPrice, firstRooms, firstDist);
 
 		// start going through all results
 		for (var i = 0; i < numOfResults; i++) {
@@ -231,7 +242,7 @@ function formatResults(event) {
 					}
 				} else if (firstRooms){
 					roomResultIDs.splice(index, 1);
-					foundFirstRooms = false;
+					foundFirstRooms = true;
 				}
 			}
 
@@ -246,7 +257,7 @@ function formatResults(event) {
 					}
 				} else if (firstDist){ 
 					distResultIDs.splice(index, 1);
-					foundFirstDist = false;
+					foundFirstDist = true;
 				}
 			}	
 		}
@@ -255,8 +266,8 @@ function formatResults(event) {
 		if(foundFirstDist) firstDist = false;
 
 		resultIDs = intersection(priceResultIDs, roomResultIDs, distResultIDs);
-		console.log(priceResultIDs, roomResultIDs, distResultIDs);
-		console.log(resultIDs);
+		// console.log(priceResultIDs, roomResultIDs, distResultIDs);
+		// console.log(resultIDs);
 		// update live on page
 		updateSearchResults(resultsPerPage, result, resultIDs);
 	}
@@ -330,15 +341,17 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 
     // handle no results
     if (numOfResultIDs == 0) {
-		toggleBlockDisplay("search-result-listing-null-div", true); // fuck this thing
-		toggleBlockDisplay("result-pagination-wrapper", false); // stop showing scroll bar 
+		$(searchResultContent).find("#no-result").css("display", "block"); // show no result message
+		toggleBlockDisplay("#result-number", false); // stop showing number of results
+		toggleBlockDisplay("#result-pagination-wrapper", false); // stop showing scroll bar 
 		for(var i = 0; i<resultsPerPage; i++){
-			toggleBlockDisplay("search-result-listing-" + i, false); // stop showing listing divs
+			toggleBlockDisplay("#search-result-listing-" + i, false); // stop showing listing divs
 		}
 		return;
 	} else {
-		toggleBlockDisplay("search-result-listing-null-div", false); // fuck it again
-		toggleBlockDisplay("result-pagination-wrapper", true);
+		$(searchResultContent).find("#no-result").css("display", "none"); // stop showing no result mess
+		toggleBlockDisplay("#result-number", true); // start showing number of results
+		toggleBlockDisplay("#result-pagination-wrapper", true); // start showing scroll bar 
 	}
 
     // Repopulate
@@ -346,6 +359,8 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 	        totalPages: numOfPages,
 	        visiblePages: 10,
 	        onPageClick: function (event, page) {
+	        	var notShown = [false, false, false, false];
+
 	            //Populate HTML divs with results.
 	            for (var r = ((page - 1) * resultsPerPage); r < (page * resultsPerPage); r++) {
 
@@ -353,8 +368,10 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 					var resultDiv = $(searchResultContent).find("#search-result-listing-" + resultIndex);
 					var furnished;
 
+					// Handle last page with possibly not 5 items
 					if (result[r] == undefined){
-							toggleBlockDisplay("search-result-listing-" + resultIndex, false);
+							toggleBlockDisplay("#search-result-listing-" + resultIndex, false);
+							notShown[r-((page - 1) * resultsPerPage)-1] = true;
 					} else {
 
 						// fix for missing distances
@@ -382,10 +399,22 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance);
 						$(resultDiv).find(".search-result-listing-btn").click({listingId: result[r].listingId}, onClickToListings).text("Rent");
 
-						toggleBlockDisplay("search-result-listing-" + resultIndex, true);
+						toggleBlockDisplay("#search-result-listing-" + resultIndex, true);
 
 					}
 	            }
+
+	            // Determine last shown listing
+	            var lastShown = (page * resultsPerPage);
+	            for (var i = 0; i < resultsPerPage; i++) {
+	            	if (notShown[i]){
+	            		lastShown = i + ((page - 1) * resultsPerPage + 1);
+	            		break;
+	            	}
+	            };
+
+	            // Update results shown in number-of-results bar
+	            $(searchResultContent).find(".search-result-number-message").text("Showing results " + ((page - 1) * resultsPerPage + 1) + "-" + lastShown + " of " + numOfResults);
 			}
 	});
 }
