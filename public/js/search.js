@@ -220,15 +220,16 @@ function formatResults(event) {
 			// start going through all results
 			for (var i = 0; i < numOfResults; i++) {
 
+				var id = result[i].listingId;
 				var price = parseInt(result[i].price);
 				var rooms = parseInt(result[i].numberOfBedrooms);
 				var distance = result[i].distance;
-				if (distance == null) distance = 500; // HOW ELSE TO HANDLE??
+				if (distance == null) distance = 500.1; // HOW ELSE TO HANDLE??
 				else distance = parseFloat(distance);
 
 				// check for price
 				if (type === "price"){
-					var index = priceResultIDs.indexOf(result[i].listingId);
+					var index = priceResultIDs.indexOf(id);
 					if ((subtype == 1 && price < compareValue) || (subtype == 4 && price >= compareValue) || (price <compareValue && price >= compareValue-250 && subtype != 4)){	
 						if(!checked){
 							if (index > -1) priceResultIDs.splice(index, 1);
@@ -242,7 +243,7 @@ function formatResults(event) {
 				} 
 				// check for rooms
 				else if (type === "bedroom"){
-					var index = roomResultIDs.indexOf(result[i].listingId);
+					var index = roomResultIDs.indexOf(id);
 					if (rooms == compareValue || (rooms >=compareValue && subtype == 3)){
 						if(!checked){
 							if (index > -1) roomResultIDs.splice(index, 1);
@@ -257,14 +258,14 @@ function formatResults(event) {
 
 				// check for distance
 				if (type === "distance"){
-					var index = distResultIDs.indexOf(result[i].listingId);
-					if ((distance < compareValue && distance >= compareValue-1)||(distance >= compareValue && subtype==3)){
+					var index = distResultIDs.indexOf(id);
+					if ((distance < compareValue && distance >= compareValue-2)||(distance >= compareValue && subtype==3)){
 						if(!checked){
 							if (index > -1) distResultIDs.splice(index, 1);
 						} else { 
 							if (index == -1) distResultIDs.push(result[i].listingId);
 						}
-					} else if (unchecked){ 
+					} else if (uncheckedDist){ 
 						distResultIDs.splice(index, 1);
 						foundFirstDist = true;
 					}
@@ -276,7 +277,7 @@ function formatResults(event) {
 		}
 
 		resultIDs = intersection(priceResultIDs, roomResultIDs, distResultIDs);
-		// console.log(priceResultIDs, roomResultIDs, distResultIDs);
+		console.log(priceResultIDs, roomResultIDs, distResultIDs);
 		// console.log(resultIDs);
 		// update live on page
 		updateSearchResults(resultsPerPage, result, resultIDs);
