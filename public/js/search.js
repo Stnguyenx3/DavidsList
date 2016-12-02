@@ -41,6 +41,7 @@ function onSearchClick() {
 function formatResults(event) {
 
 	var result = JSON.parse(event);
+	// Replace search input value in search bar
 	var searchInput = result.shift();
 	document.getElementById("search-input").value = searchInput;
 
@@ -112,27 +113,27 @@ function formatResults(event) {
 
 	$(searchResultContent).append($("<p>Results</p>").addClass("search-title"));
 
-	//Check for no results.
+	// Add number of results displayed at top of page
+	var row = $("<div></div>").addClass("row search-result-number").appendTo($(searchResultContent));
+	var col = $("<div></div>").addClass("col-sm-12").appendTo($(row));
+	var message = $("<p></p>").addClass("search-result-number-message").appendTo($(col));
+	$(row).attr("id", "result-number");
 
-	// if (result.length == 0) {
-		//Disable search filters...
-
-	//Display message to user.
+	//Display no result message to user.
 	var row = $("<div></div>").addClass("row search-result-listing-null linear-gradient-bg").appendTo($(searchResultContent));
 	var col = $("<div></div>").addClass("col-sm-12").appendTo($(row));
 	var message = $("<p></p>").addClass("search-result-listing-null").appendTo($(col));
 	$(message).text("No results! Try another search!");
 
+	//No-result message is default not shown
 	$(row).attr("id", "no-result");
 	$(row).css("display", "none");
-	// toggleBlockDisplay("#search-result-listing-null", false);
 
+	// If no results, display message
 	if (numOfResults == 0) {
 		$(row).css("display", "block");
 	}
 	pageContent.append(searchResultContent);
-
-	//}
 
 	//Result page layout.
 
@@ -355,6 +356,8 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 	        totalPages: numOfPages,
 	        visiblePages: 10,
 	        onPageClick: function (event, page) {
+	        	var notShown = [false, false, false, false];
+
 	            //Populate HTML divs with results.
 	            for (var r = ((page - 1) * resultsPerPage); r < (page * resultsPerPage); r++) {
 
@@ -362,8 +365,10 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 					var resultDiv = $(searchResultContent).find("#search-result-listing-" + resultIndex);
 					var furnished;
 
+					// Handle last page with possibly not 5 items
 					if (result[r] == undefined){
 							toggleBlockDisplay("#search-result-listing-" + resultIndex, false);
+							notShown[r-((page - 1) * resultsPerPage)-1] = true;
 					} else {
 
 						// fix for missing distances
@@ -395,6 +400,18 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 
 					}
 	            }
+
+	            // Determine last shown listing
+	            var lastShown = (page * resultsPerPage);
+	            for (var i = 0; i < resultsPerPage; i++) {
+	            	if (notShown[i]){
+	            		lastShown = i + ((page - 1) * resultsPerPage + 1);
+	            		break;
+	            	}
+	            };
+
+	            // Update results shown in number-of-results bar
+	            $(searchResultContent).find(".search-result-number-message").text("Showing results " + ((page - 1) * resultsPerPage + 1) + "-" + lastShown + " of " + numOfResults);
 			}
 	});
 }
