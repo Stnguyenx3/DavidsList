@@ -183,7 +183,7 @@ function formatResults(event) {
 	var distResultIDs = writeListingID(result, numOfResults);
 	updateSearchResults(resultsPerPage, result, resultIDs);
 
-	var first = true, firstPrice = true, firstRooms = true, firstDist = true;
+	var first = true, uncheckedPrice = true, uncheckedRooms = true, uncheckedDist = true;
 
 	// filters when one of teh checkboxes is checked
 	function onSelectFilter(event, result){
@@ -206,64 +206,74 @@ function formatResults(event) {
 		var foundFirstRooms = false;
 		var foundFirstDist = false;
 
-		// console.log(firstPrice, firstRooms, firstDist);
+		// If everything is unchecked, reset list of ID's to everything
+		if (type === "price" && checkCheckboxes("price", 4)){
+			uncheckedPrice = true;
+			priceResultIDs = writeListingID(result, numOfResults);
+		} else if (type === "bedroom" && checkCheckboxes("bedroom", 3)){
+			uncheckedRooms = true;
+			roomResultIDs = writeListingID(result, numOfResults);
+		} else if (type === "distance" && checkCheckboxes("distance", 3)){
+			uncheckedDist = true;
+			distResultIDs = writeListingID(result, numOfResults);
+		} else {
+			// start going through all results
+			for (var i = 0; i < numOfResults; i++) {
 
-		// start going through all results
-		for (var i = 0; i < numOfResults; i++) {
+				var price = parseInt(result[i].price);
+				var rooms = parseInt(result[i].numberOfBedrooms);
+				var distance = result[i].distance;
+				if (distance == null) distance = 500; // HOW ELSE TO HANDLE??
+				else distance = parseFloat(distance);
 
-			var price = parseInt(result[i].price);
-			var rooms = parseInt(result[i].numberOfBedrooms);
-			var distance = result[i].distance;
-			if (distance == null) distance = 500; // HOW ELSE TO HANDLE??
-			else distance = parseFloat(distance);
-
-			// check for price
-			if (type === "price"){
-				var index = priceResultIDs.indexOf(result[i].listingId);
-				if ((subtype == 1 && price < compareValue) || (subtype == 4 && price >= compareValue) || (price <compareValue && price >= compareValue-250 && subtype != 4)){	
-					if(!checked){
-						if (index > -1) priceResultIDs.splice(index, 1);
-					} else { 
-						if (index == -1) priceResultIDs.push(result[i].listingId);
+				// check for price
+				if (type === "price"){
+					var index = priceResultIDs.indexOf(result[i].listingId);
+					if ((subtype == 1 && price < compareValue) || (subtype == 4 && price >= compareValue) || (price <compareValue && price >= compareValue-250 && subtype != 4)){	
+						if(!checked){
+							if (index > -1) priceResultIDs.splice(index, 1);
+						} else { 
+							if (index == -1) priceResultIDs.push(result[i].listingId);
+						}
+					} else if (uncheckedPrice){ 
+						priceResultIDs.splice(index, 1);
+						foundFirstPrice = true;
 					}
-				} else if (firstPrice){ 
-					priceResultIDs.splice(index, 1);
-					foundFirstPrice = true;
-				}
-			} 
-			// check for rooms
-			else if (type === "bedroom"){
-				var index = roomResultIDs.indexOf(result[i].listingId);
-				if (rooms == compareValue || (rooms >=compareValue && subtype == 3)){
-					if(!checked){
-						if (index > -1) roomResultIDs.splice(index, 1);
-					} else { 
-						if (index == -1) roomResultIDs.push(result[i].listingId);
+				} 
+				// check for rooms
+				else if (type === "bedroom"){
+					var index = roomResultIDs.indexOf(result[i].listingId);
+					if (rooms == compareValue || (rooms >=compareValue && subtype == 3)){
+						if(!checked){
+							if (index > -1) roomResultIDs.splice(index, 1);
+						} else { 
+							if (index == -1) roomResultIDs.push(result[i].listingId);
+						}
+					} else if (uncheckedRooms){
+						roomResultIDs.splice(index, 1);
+						foundFirstRooms = true;
 					}
-				} else if (firstRooms){
-					roomResultIDs.splice(index, 1);
-					foundFirstRooms = true;
 				}
+
+				// check for distance
+				if (type === "distance"){
+					var index = distResultIDs.indexOf(result[i].listingId);
+					if ((distance < compareValue && distance >= compareValue-1)||(distance >= compareValue && subtype==3)){
+						if(!checked){
+							if (index > -1) distResultIDs.splice(index, 1);
+						} else { 
+							if (index == -1) distResultIDs.push(result[i].listingId);
+						}
+					} else if (unchecked){ 
+						distResultIDs.splice(index, 1);
+						foundFirstDist = true;
+					}
+				}	
 			}
-
-			// check for distance
-			if (type === "distance"){
-				var index = distResultIDs.indexOf(result[i].listingId);
-				if ((distance < compareValue && distance >= compareValue-1)||(distance >= compareValue && subtype==3)){
-					if(!checked){
-						if (index > -1) distResultIDs.splice(index, 1);
-					} else { 
-						if (index == -1) distResultIDs.push(result[i].listingId);
-					}
-				} else if (firstDist){ 
-					distResultIDs.splice(index, 1);
-					foundFirstDist = true;
-				}
-			}	
+			if(foundFirstPrice) uncheckedPrice = false;
+			if(foundFirstRooms) uncheckedRooms = false;
+			if(foundFirstDist) uncheckedDist = false;
 		}
-		if(foundFirstPrice) firstPrice = false;
-		if(foundFirstRooms) firstRooms = false;
-		if(foundFirstDist) firstDist = false;
 
 		resultIDs = intersection(priceResultIDs, roomResultIDs, distResultIDs);
 		// console.log(priceResultIDs, roomResultIDs, distResultIDs);
@@ -272,6 +282,20 @@ function formatResults(event) {
 		updateSearchResults(resultsPerPage, result, resultIDs);
 	}
 
+}
+
+function checkCheckboxes(type, ranges){
+	var checkboxes = document.getElementById("filter-form").getElementsByTagName("input");
+	var currentBox;
+	var allUnchecked = true;
+	for (var i = 1; i <= ranges; i++) {
+		currentBox = document.getElementById("search-filter-" + type+ "-range" + i);
+		if(currentBox.checked == true){
+			allUnchecked = false;
+			break;
+		}
+	}
+	return allUnchecked;
 }
 
 function intersection(list1, list2, list3){
