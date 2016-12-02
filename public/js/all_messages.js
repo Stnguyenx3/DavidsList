@@ -35,8 +35,11 @@ $(document).ready(function () {
 
 });
 
+//All listings with messages.
 function getAllListingIDs (event) {
 
+	
+	
 }
 
 function formatAllListingMessages(event) {

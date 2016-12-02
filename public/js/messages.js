@@ -33,11 +33,11 @@ function formatConversation(event) {
 }
 
 function onClickSend() {
-	console.log("I have sent");
-
 	var str = (window.location + '').split("/");
 	var userID = str[str.length - 1];
 	var listingID = str[str.length - 2];
+
+	console.log("messages.js userID listingID" + userID + " " + listingID);
 
 	let message = {
 		message: $("#message-box").val(),

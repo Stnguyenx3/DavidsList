@@ -50,12 +50,28 @@
 
     	<div class="row">
     		
-	    	<div class="col-md-3 nav-link-div">
+	    	<div class="col-md-2 nav-link-div">
 	    		<a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a>
 	    		<a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Rent Out</a>
-	    		<a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId() ; ?>">My Profile</a>
+
+<!-- 	    		<a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId() ; ?>">My Profile</a>
 	    		<a href="<?php echo URL. "users/userlistings/". $arrayOfUserObjects[0]->getId() ?>" id="nav-link-2">My Listings</a>
-	    		<a href="<?php echo URL. "users/userlistings/". $arrayOfUserObjects[0]->getId() ?>" id="nav-link-3">Messages</a>
+	    		<a href="#" id="nav-link-3">Messages</a> -->
+
+	    	</div>
+
+	    	<div class="col-md-1 nav-link-div">
+
+				<div class="dropdown">
+					
+					<a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId() ; ?>" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="<?php echo URL. "users/userlistings/". $arrayOfUserObjects[0]->getId() ?>">My Listings</a></li>
+						<li><a href="#">Messages</a></li>
+					</ul>
+
+				</div>	    		
+
 	    	</div>
 
 	    	<div class="col-md-9" id="search-bar">

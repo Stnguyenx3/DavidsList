@@ -57,6 +57,25 @@ body,
     float: left;
 }
 
+.dropdown-menu {
+    background-color: #4682b4;
+}
+
+.nav>li>a:focus,
+.nav>li>a:hover,
+.nav .open>a,
+.nav .open>a:focus,
+.nav .open>a:hover,
+.dropdown-menu>li>a:focus,
+.dropdown-menu>li>a:hover, {
+    background-color: #23527c;
+}
+
+.dropdown-menu>li>a {
+    color: #fff;
+    font-size: 18px;
+}
+
 .navigation {
     background-color: #4682b4;
 }
