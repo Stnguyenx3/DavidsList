@@ -164,6 +164,7 @@ function formatResults(event) {
 
 	if (numOfResults == 0) {
 		toggleBlockDisplay("#result-pagination-wrapper", false);
+		toggleBlockDisplay("#result-number", false); // stop showing number of results
 	}
 
 	$(".container.main").html(pageContent);
@@ -176,7 +177,7 @@ function formatResults(event) {
 		}
 	}
 
-	var resultIDs = writeListingID(result, numOfResults); // start with showing everything
+	var resultIDs = writeListingID(result, numOfResults); // start with showing all listings
 	var priceResultIDs = writeListingID(result, numOfResults);
 	var roomResultIDs = writeListingID(result, numOfResults);
 	var distResultIDs = writeListingID(result, numOfResults);
@@ -341,6 +342,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
     // handle no results
     if (numOfResultIDs == 0) {
 		$(searchResultContent).find("#no-result").css("display", "block"); // show no result message
+		toggleBlockDisplay("#result-number", false); // stop showing number of results
 		toggleBlockDisplay("#result-pagination-wrapper", false); // stop showing scroll bar 
 		for(var i = 0; i<resultsPerPage; i++){
 			toggleBlockDisplay("#search-result-listing-" + i, false); // stop showing listing divs
@@ -348,7 +350,8 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 		return;
 	} else {
 		$(searchResultContent).find("#no-result").css("display", "none"); // stop showing no result mess
-		toggleBlockDisplay("#result-pagination-wrapper", true);
+		toggleBlockDisplay("#result-number", true); // start showing number of results
+		toggleBlockDisplay("#result-pagination-wrapper", true); // start showing scroll bar 
 	}
 
     // Repopulate
