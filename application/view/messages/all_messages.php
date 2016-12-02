@@ -19,3 +19,9 @@
 </div>
 
 <script type="text/javascript" src="<?php echo URL; ?>js/all_messages.js"></script>
+
+<script>
+	
+	var userID = <?php echo $_SESSION['userid'] ?>;
+
+</script>

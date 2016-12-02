@@ -55,6 +55,7 @@
 	    		<a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Rent Out</a>
 	    		<a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId() ; ?>">My Profile</a>
 	    		<a href="<?php echo URL. "users/userlistings/". $arrayOfUserObjects[0]->getId() ?>" id="nav-link-2">My Listings</a>
+	    		<a href="<?php echo URL. "users/userlistings/". $arrayOfUserObjects[0]->getId() ?>" id="nav-link-3">Messages</a>
 	    	</div>
 
 	    	<div class="col-md-9" id="search-bar">

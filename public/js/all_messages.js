@@ -1,6 +1,26 @@
 $(document).ready(function () {
+
 	var str = (window.location + '').split("/");
 	var listingId = str[str.length - 1];
+
+	console.log("str is " + str);
+
+	$.ajax({
+		type:'GET',
+		url: url+"users/getalluserlistings/" + userID,
+		dataType: "json",
+		beforeSend: function () {
+			
+		},
+		success: getAllListingIDs,
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+	});
+
+
 	$.ajax({
 		type:'GET',
 		url: url+"messages/getmessagesthread/"+listingId,
@@ -14,6 +34,10 @@ $(document).ready(function () {
 	});
 
 });
+
+function getAllListingIDs (event) {
+
+}
 
 function formatAllListingMessages(event) {
 
