@@ -380,6 +380,15 @@ div#header.container {
 
 
 /*Search page, User listings*/
+
+#result-pagination-wrapper {
+    display: block;
+}
+/*.search-result-listing-null-div{
+    display: block;
+}*/
+
+
 .search-filter {
     border: 3px solid #99CC99;
     border-radius: 10px;
@@ -434,6 +443,7 @@ div#header.container {
     font-weight: 700;
     padding: 15px;
     text-align: center;
+    display: block;
 }
 
 .search-result-listing-title,
