@@ -139,6 +139,7 @@ class ListingsResponseCreator {
 		$address->setCity($addressInfo["city"]);
 		$address->setZipcode($addressInfo["zipcode"]);
 		$address->setState($addressInfo["state"]);
+		$address->setDistance("2.1");
 	
 		$insertAddress = $addressRepo->save($address);
 
