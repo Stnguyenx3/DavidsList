@@ -414,7 +414,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 	            };
 
 	            // Update results shown in number-of-results bar
-	            $(searchResultContent).find(".search-result-number-message").text("Showing results " + ((page - 1) * resultsPerPage + 1) + "-" + lastShown + " of " + numOfResults);
+	            $(searchResultContent).find(".search-result-number-message").text("Showing results " + ((page - 1) * resultsPerPage + 1) + "-" + lastShown + " of " + numOfResultIDs);
 			}
 	});
 }
