@@ -58,7 +58,7 @@
 	    	</div>
 
 	    	<div class="col-md-9" id="search-bar">
-				<input id="search-input" type="text" placeholder="Enter an Address, City, or ZIP code..." onkeypress="return enterPressed(event)" required autofocus/><button id="search-get" type="button" class="btn btn-primary search-button" onclick="onSearchClick()">
+				<input id="search-input" type="text" placeholder="Enter an Address, City, or ZIP code..." value = "" onkeypress="return enterPressed(event)" required autofocus/><button id="search-get" type="button" class="btn btn-primary search-button" onclick="onSearchClick()">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 </button>
 	    	</div>

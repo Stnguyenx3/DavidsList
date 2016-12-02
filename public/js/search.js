@@ -41,6 +41,9 @@ function onSearchClick() {
 function formatResults(event) {
 
 	var result = JSON.parse(event);
+	var searchInput = result.shift();
+	document.getElementById("search-input").value = searchInput;
+
 	var numOfResults = result.length;
 	var resultsPerPage = 5; //MAX NUMBER OF RESULTS PER PAGINATION PAGE.
 	var numOfPages = Math.ceil(numOfResults / resultsPerPage);
