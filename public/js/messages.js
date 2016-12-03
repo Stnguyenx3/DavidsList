@@ -20,29 +20,32 @@ function formatConversation(event) {
 	console.log(event);
 
 	$(document).ready(function() {
+
+		$("#conversation-title").text("Chatting about listing # " + event[0].listingId); // TODO: Add check for undefined listing id.
+
 		for (var i in event){
 
 			var row0 = $("<div></div>").addClass("row messages-single").appendTo($("#all-conversation"));
 
-			$(row0).attr("id", "message-thread-" + i);
+			//$(row0).attr("id", "message-thread-" + i);
 			var p0 = $("<p></p>").addClass("message").appendTo($(row0)); 
 
 			$(p0).text(event[i].senderUserId+" "+event[i].message);
+
 		}
 	});
 }
 
 function onClickSend() {
 	var str = (window.location + '').split("/");
-	var userID = str[str.length - 1];
+	//userID is now defined in the view messages.php!
+	var receiverUserID = str[str.length - 1]; //userID of OTHER person!
 	var listingID = str[str.length - 2];
-
-	console.log("messages.js userID listingID" + userID + " " + listingID);
 
 	let message = {
 		message: $("#message-box").val(),
 		listingId: listingID,
-		userId: userID
+		userId: receiverUserID
 	};
 
 	$.ajax({
@@ -51,6 +54,16 @@ function onClickSend() {
 		data: message,
 		success: function(event) {
 			$.notify(event, "success");
+
+			//Display sent message in chatbox.
+			var sentMessageRow = $("<div></div>").addClass("row messages-single").appendTo($("#all-conversation"));
+			//$(sentMessageRow).attr("id", "message-thread-" + );
+			var sentMsg = $("<p></p>").addClass("message").appendTo($(sentMessageRow));
+			$(sentMsg).text( userID + " " + $("#message-box").val());
+
+			//Clear input textarea after clicking send.
+			$("#message-box").val('');
+
 		},
 		error: function(xhr, err, errThrown) {
 			console.log("I failed");
