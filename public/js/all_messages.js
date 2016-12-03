@@ -18,19 +18,6 @@ $(document).ready(function () {
 		}
 	});
 
-
-	// $.ajax({
-	// 	type:'GET',
-	// 	url: url+"messages/getmessagesthread/"+listingId,
-	// 	dataType: "json",
-	// 	success: formatAllListingMessages,
-	// 	error: function(xhr, err, errThrown) {
-	// 		console.log("I failed");
-	// 		console.log(err);
-	// 		console.log(errThrown);
-	// 	}
-	// });
-
 });
 
 function formatAllListingMessages(event) {
@@ -39,7 +26,11 @@ function formatAllListingMessages(event) {
 
 	$(document).ready(function() {
 
-		for (var i in event){
+		var details = event.listing_details;
+		var messages = event.messages;
+		var users = event.users;
+
+		for (var i = 0; i < messages.length; i++){
 
 			var row0 = $("<div></div>").addClass("row user-listing linear-gradient-bg custom-border").appendTo($("#allListingMessages"));
 
@@ -55,17 +46,35 @@ function formatAllListingMessages(event) {
 			var p0 = $("<p></p>").addClass("message-thread-message").appendTo($(col2));
 			var div = $("<div></div>").css("clear", "both").appendTo($(col2));
 			var a0 = $("<a></a>").addClass("btn btn-primary go-to-message")
-						.click({listingId: event[i].listingId, clientId: event[i].clientId}, onClickGoToThread)
+						.click({listingId: messages[i].listingId, clientId: messages[i].clientId}, onClickGoToThread)
 						.appendTo($(div));
 
 			$(a0).css("float", "right");
 
-			var message = event[i].message;
-			var dateTime = event[i].dateTime;
+			var message = messages[i].message;
+			var dateTime = messages[i].dateTime;
+
+			//Get sender and receiver usernames from userid.
+			var senderUserID = messages[i].senderUserId;
+			var receiverUserID = messages[i].receiverUserID;
+			var senderUsername;
+			var receiverUsername;
+
+			//Determine username based on userid.
+			for (var j = 0; j < users.length; j++){
+				for (var k = 0; k < users[j].length; k++){
+					if (users[j][k].userid == senderUserID) {
+						senderUsername = users[j][k].username;
+					}
+					if(users[j][k].userid == receiverUserID) {
+						receiverUsername = users[j][k].username;
+					}
+				}
+			}
 
 			//Insert listing information into HTML elements.
 			$(h0).text("Listing title Here");
-			$(p0).text(event[i].senderUserId + " " + message);
+			$(p0).text(senderUsername + ": " + message);
 			$(a0).text("Reply");
 			$(img).attr("src", "http://placehold.it/150x150");
 

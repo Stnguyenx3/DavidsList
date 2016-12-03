@@ -21,18 +21,33 @@ function formatConversation(event) {
 
 	$(document).ready(function() {
 
-		$("#conversation-title").text("Chatting about listing # " + event[0].listingId); // TODO: Add check for undefined listing id.
+		var messages = event.messages;
+		var users = event.users;
 
-		for (var i in event){
+		$("#conversation-title").text("Chatting about listing #" + messages[0].listingId); // TODO: Add check for undefined listing id.
 
+		for (var i = 0; i < messages.length; i++) {
 			var row0 = $("<div></div>").addClass("row messages-single").appendTo($("#all-conversation"));
 
-			//$(row0).attr("id", "message-thread-" + i);
-			var p0 = $("<p></p>").addClass("message").appendTo($(row0)); 
+			$(row0).attr("id", "message-thread-" + i);
 
-			$(p0).text(event[i].senderUserId+" "+event[i].message);
+			var p0 = $("<p></p>").addClass("message").appendTo($(row0));
+
+			//Determine the correct username from senderUserId to display.
+
+			var senderUserId = messages[i].senderUserId;
+			var senderUsername;
+
+			for (var j = 0; j < users.length; j++) {
+				if (senderUserId == users[j][0].userid) {
+					senderUsername = users[j][0].username;
+				}
+			}
+
+			$(p0).text(senderUsername + ": " + messages[i].message);
 
 		}
+
 	});
 }
 
@@ -59,7 +74,8 @@ function onClickSend() {
 			var sentMessageRow = $("<div></div>").addClass("row messages-single").appendTo($("#all-conversation"));
 			//$(sentMessageRow).attr("id", "message-thread-" + );
 			var sentMsg = $("<p></p>").addClass("message").appendTo($(sentMessageRow));
-			$(sentMsg).text( userID + " " + $("#message-box").val());
+
+			$(sentMsg).text("You: " + $("#message-box").val());
 
 			//Clear input textarea after clicking send.
 			$("#message-box").val('');
