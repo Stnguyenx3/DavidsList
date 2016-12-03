@@ -26,15 +26,30 @@ body,
     background-color: rgba(254,254,254,1);
 }
 
+.divider{
+    height: 50px;
+    background-color: rgba(226,226,226,1);
+    margin-top: 5px; 
+}
+
 .centered-header {
     text-align: center;
 }
 
 .home-info{
-    background-color: #FFA500;
+    background-color: rgba(226,226,226,1);
     margin: 15px;
     padding: 15px;
-    height: 500px;
+    padding-top: 10px;
+    height: 225px;
+    text-align: center;
+}
+
+.home-icon{
+    color: #fff;
+    font-size: 70px;
+    text-align: center;
+    display: inline;
 }
 
 .custom-border {
@@ -131,7 +146,7 @@ div#header.container {
     margin: 15px;
     padding: 5px;
     background-color: rgba(226,226,226,1);
-    height: 500px;
+    height: 475px;
 }
 
 .featured-listing {
@@ -152,12 +167,11 @@ div#header.container {
     margin-right: auto;
 }
 
-.featured-listing-info {
-
-}
-
 .featured-listing-title {
     text-align: center;
+    height: 45px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .featured-listing-price {
