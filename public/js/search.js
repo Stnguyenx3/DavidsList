@@ -53,7 +53,7 @@ function formatResults(event) {
 	var filter = '<div class="listing-map" id="listing-map" style="visibility: hidden; position: absolute; top: -9999px;"></div>\
 	<div class="col-sm-3">\
 		<p class="search-title">Refine search</p>\
-			<div class="search-filter linear-gradient-bg">\
+			<div class="search-filter">\
 				<div class="form-group search-filter-price" id="filter-form">\
 					<label>Price</label>\
 					<br>\
@@ -120,7 +120,7 @@ function formatResults(event) {
 	$(row).attr("id", "result-number");
 
 	//Display no result message to user.
-	var row = $("<div></div>").addClass("row search-result-listing-null linear-gradient-bg").appendTo($(searchResultContent));
+	var row = $("<div></div>").addClass("row search-result-listing-null").appendTo($(searchResultContent));
 	var col = $("<div></div>").addClass("col-sm-12").appendTo($(row));
 	var message = $("<p></p>").addClass("search-result-listing-null").appendTo($(col));
 	$(message).text("No results! Try another search!");
@@ -138,7 +138,7 @@ function formatResults(event) {
 	//Result page layout.
 
 	for (i = 0; i < resultsPerPage; i++) {
-		var row = $("<div></div>").addClass("row search-result-listing linear-gradient-bg").appendTo($(searchResultContent));
+		var row = $("<div></div>").addClass("row search-result-listing").appendTo($(searchResultContent));
 		var col1 = $("<div></div>").addClass("col-sm-3").appendTo($(row));
 		var col2 = $("<div></div>").addClass("col-sm-9").appendTo($(row));
 		var resultThumbnail = $("<img></img>").addClass("search-result-listing-img").appendTo($(col1));

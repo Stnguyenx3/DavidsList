@@ -31,7 +31,7 @@ body,
 }
 
 .custom-border {
-    border: 3px solid  #99CC99;
+    border: 3px solid  #564C46;/*#99CC99;*/
     border-radius: 10px;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
 }
@@ -122,19 +122,20 @@ div#header.container {
 
 .featured-listing-container {
     margin: 15px;
-    background-color: gray;
+    padding: 5px;
+    background-color: rgba(226,226,226,1);
 }
 
 .featured-listing {
     margin-top: 15px;
     margin-bottom: 15px;
-    border: 3px solid  #99CC99;
-    border-radius: 10px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    /*border: 3px solid  #99CC99;*/
+    /*border-radius: 10px;*/
+    /*box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);*/
 }
 
 .featured-listing-img {
-    padding-top: 0px;
+    /*padding-top: 15px;*/
     padding-bottom: 15px;
     padding-left: 0px;
     padding-right: 0px;
@@ -307,6 +308,7 @@ div#header.container {
 .listing-price {
     float: right;
     padding: 15px;
+    padding-top: 0px;
     margin-top: 0px;
     font-size: 24px;
     font-weight: bold
@@ -364,7 +366,7 @@ div#header.container {
 .listing-subtitle{
     float: left;
     margin: 0px;
-    margin-right: 2px;
+    margin-right: 5px;
     font-weight: bold;
 }
 
@@ -393,15 +395,13 @@ div#header.container {
 #result-pagination-wrapper {
     display: block;
 }
-/*.search-result-listing-null-div{
-    display: block;
-}*/
+
 
 
 .search-filter {
-    border: 3px solid #99CC99;
+    /*border: 3px solid #99CC99;*/
     border-radius: 10px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    /*box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);*/
     padding: 15px;
 }
 
@@ -428,9 +428,10 @@ div#header.container {
 .user-listing,
 .user-favorite {
     margin: 15px;
-    border: 3px solid #99CC99;
-    border-radius: 10px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    /*border: 3px solid #99CC99;*/
+    background-color: rgba(226,226,226,1);
+    /*border-radius: 10px;*/
+    /*box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);*/
 }
 
 .search-result-listing-basic-info {
@@ -507,7 +508,7 @@ div#header.container {
 .pagination>li>span,
 .pagination>li>a:hover,
 .pagination>li>span:hover {
-    border: 2px solid #99CC99;
+    border: 2px solid #564C46;/*#99CC99;*/
 }
 
 
