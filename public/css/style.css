@@ -430,6 +430,12 @@ div#header.container {
     padding: 15px;
 }
 
+.search-listing-info{
+    /*padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 5px;*/
+}
+
 .search-title {
     text-align: center;
     font-size: 16px;
@@ -453,23 +459,31 @@ div#header.container {
 .user-listing,
 .user-favorite {
     margin: 15px;
+    padding: 15px;
     /*border: 3px solid #99CC99;*/
     background-color: rgba(226,226,226,1);
     /*border-radius: 10px;*/
     /*box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);*/
 }
 
+.search-result-listing-address{
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 20px;
+}
 .search-result-listing-basic-info {
     font-size: 16px;
     padding-left: 15px;
+    margin: 10px;
 }
 
 .search-result-listing-img,
 .user-listing-img,
 .user-favorite-img {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    width: 200px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 100%;
     height: auto;
 }
 
@@ -481,7 +495,6 @@ div#header.container {
     display: block;
 }
 
-.search-result-listing-title,
 .user-listing-title,
 .user-favorite-title {
     font-size: 16px;

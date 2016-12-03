@@ -139,11 +139,12 @@ function formatResults(event) {
 
 	for (i = 0; i < resultsPerPage; i++) {
 		var row = $("<div></div>").addClass("row search-result-listing").appendTo($(searchResultContent));
-		var col1 = $("<div></div>").addClass("col-sm-3").appendTo($(row));
-		var col2 = $("<div></div>").addClass("col-sm-9").appendTo($(row));
+		var col1 = $("<div></div>").addClass("col-sm-4").appendTo($(row));
+		var col2 = $("<div></div>").addClass("col-sm-8 search-listing-info").appendTo($(row));
 		var resultThumbnail = $("<img></img>").addClass("search-result-listing-img").appendTo($(col1));
-		var listingName = $("<p></p>").addClass("search-result-listing-title").appendTo($(col2));
-		var listingPrice = $("<p></p>").addClass("search-result-listing-price").appendTo($(col2));
+		var listingName = $("<p></p>").addClass("search-result-listing-title listing-title").appendTo($(col2));
+		var listingPrice = $("<p></p></br>").addClass("search-result-listing-price listing-price").appendTo($(col2));
+		var listingAddress = $("<p></p>").addClass("search-result-listing-address").appendTo($(col2));
 		var listingBasicInfo = $("<p></p>").addClass("search-result-listing-basic-info").appendTo($(col2));
 		var rentButton = $("<a></a>").addClass("btn btn-primary search-result-listing-btn")
 							.appendTo($(col2));
@@ -419,8 +420,9 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 						// put in divs on page
 						$(resultDiv).find(".search-result-listing-img").attr("src", "data:image/png;base64," + result[r].imageThumbnail);
 						$(resultDiv).find(".search-result-listing-img").click({listingId: result[r].listingId}, onClickToListings);
-						$(resultDiv).find(".search-result-listing-title").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
+						$(resultDiv).find(".search-result-listing-address").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
 						$(resultDiv).find(".search-result-listing-price").text("$" + result[r].price);
+						$(resultDiv).find(".search-result-listing-title").text("NAME"); //result[r].name);
 						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance);
 						$(resultDiv).find(".search-result-listing-btn").click({listingId: result[r].listingId}, onClickToListings).text("Rent");
 
