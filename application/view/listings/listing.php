@@ -54,14 +54,15 @@
 
 		<div class="col-sm-8">
 
-			<div class="listing-details linear-gradient-bg">
+			<div class="listing-details">
 
 				<div class="row">
 					<div class="col-sm-12">
 
-
-						<h3 class="listing-title">Listing Name</h3>
-						<p class="listing-price"> $<?php echo $listingResponse["listing"]->getPrice() ?></p>
+						<div>
+							<p class="listing-title">Listing Name</p>
+							<p class="listing-price"> $<?php echo $listingResponse["listing"]->getPrice() ?></p>
+						</div>
 						<div style="clear: both">
 								
 							<p class="listing-street-name"><?php echo $listingResponse["address"]->getStreetName() ?></p>
@@ -79,28 +80,17 @@
 							</ul>
 
 							<ul class="listing-expanded-info">
-								<li>Internet: <?php echo $listingResponse["listing_detail"]->getInternet() ? "Yes" : "No" ?></li>
-								<li>Pets: <?php echo $listingResponse["listing_detail"]->getPetPolicy() ?></li>
-								<li>Elevator: <?php echo $listingResponse["listing_detail"]->getElevatorAccess() ?></li>
-								<li>Furnished: <?php echo $listingResponse["listing_detail"]->getFurnishing() ? "Yes" : "No" ?></li>
-								<li>A/C: <?php echo $listingResponse["listing_detail"]->getAirConditioning() ? "Yes" : "No" ?></li>
+								<li><p class="listing-subtitle">Internet</p> <?php echo $listingResponse["listing_detail"]->getInternet() ? "Yes" : "No" ?></li>
+								<li><p class="listing-subtitle">Pets</p> <?php echo $listingResponse["listing_detail"]->getPetPolicy() ?></li>
+								<li><p class="listing-subtitle">Elevator</p> <?php echo $listingResponse["listing_detail"]->getElevatorAccess() ?></li>
+								<li><p class="listing-subtitle">Furnished</p> <?php echo $listingResponse["listing_detail"]->getFurnishing() ? "Yes" : "No" ?></li>
+								<li><p class="listing-subtitle">A/C</p> <?php echo $listingResponse["listing_detail"]->getAirConditioning() ? "Yes" : "No" ?></li>
 							</ul>
-
-
-
 
 							<ul class="listing-desc">
-								<li>
-									Description: <br>
-									<?php echo $listingResponse["listing_detail"]->getDescription() ?>
-								</li>
+								<li> <p class="listing-subtitle"> Description </p></br> </li>
+								<li> <?php echo $listingResponse["listing_detail"]->getDescription() ?></li>
 							</ul>
-
-							<button type="button" class="btn btn-primary rent-button">Rent</button>
-
-							<button type="button" rel="popover" id="listing-favorite-btn" class="btn btn-primary listing-favorite-btn" onclick="onFavoriteClick()">
-								<span class="glyphicon glyphicon-heart"></span> Favorite
-							</button>
 							
 						</div>
 
@@ -114,7 +104,15 @@
 
 		<div class="col-sm-4">
 
-			<div class="owner-info linear-gradient-bg">
+			<div class="row buttons">
+				<button type="button" class="btn btn-primary rent-button">Rent</button>
+
+				<button type="button" rel="popover" id="listing-favorite-btn" class="btn btn-primary listing-favorite-btn" onclick="onFavoriteClick()">
+						<span class="glyphicon glyphicon-heart"></span> Favorite
+				</button>
+			</div>
+
+			<div class="row owner-info">
 				<p style="font-size:24px; font-weight: bold">Landlord</p>
 				<?php  
 					$verifiedCss = "";

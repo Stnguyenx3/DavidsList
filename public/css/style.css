@@ -3,11 +3,12 @@ body,
 	font-family: Helvetica;
     font-size: 16px;
     overflow: scroll;
+    background-color: rgba(226,226,226,1);
 }
 
 .disclaimer {
     color: #ffffff;
-    background-color: #4682b4;
+    background-color: #FFA500; /*#4682b4;*/
 }
 
 .disclaimer > h3 {
@@ -20,6 +21,9 @@ body,
 
 .container {
     overflow: hidden;
+}
+.main {
+    background-color: rgba(254,254,254,1);
 }
 
 .centered-header {
@@ -58,7 +62,7 @@ body,
 }
 
 .navigation {
-    background-color: #4682b4;
+    background-color:  #564C46;/*#4682b4;*/
 }
 
 .navigation a {
@@ -67,12 +71,13 @@ body,
     font-size: 18px;
     margin-top: 5px;
     font-weight: bold;
-    background-color: #4682b4;
+    background-color: #564C46; /*#3f1f09;/*#4682b4;*/
     color: #fff;
 }
 
 .navigation a:hover {
-    background-color: #191970;
+    /*background-color: #191970;*/
+    color: rgba(226,226,226,1);
 }
 
 .user {
@@ -108,6 +113,7 @@ body,
 #header {
     padding: 0px;
     margin: 0px;
+    background-color: rgba(254,254,254,1);
 }
 
 div#header.container {
@@ -238,12 +244,13 @@ div#header.container {
 
 .listing-details {
     margin: 15px;
+    padding: 15px;
     width: 700px;
     height: auto;
     clear: both;
-    border: 3px solid #99CC99;
-    border-radius: 10px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    /*border: 3px solid #99CC99;*/
+    /*border-radius: 10px;*/
+    /*box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);*/
 }
 
 .owner-info {
@@ -251,27 +258,28 @@ div#header.container {
     padding: 15px;
     width: 100%;
     height: auto;
-    border: 3px solid #99CC99;
-    border-radius: 10px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    /*border: 3px solid #99CC99;*/
+    /*border-radius: 10px;*/
+    /*box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);*/
 }
 
 .listing-map {
     background-color: #99CC99;
     margin: 15px;
-    width: 100%;
+    /*width: 100%;*/
     height: 350px;
-    border: 3px solid #99CC99;
-    border-radius: 10px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    /*border: 3px solid #99CC99;*/
+    /*border-radius: 10px;*/
+    /*box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);*/
 }
+
 
 .carousel {
     padding: 0px;
     margin: 15px;
-    border: 3px solid #99CC99;
-    border-radius: 10px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    /*border: 3px solid #99CC99;*/
+    /*border-radius: 10px;*/
+    /*box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);*/
 }
 
 .carousel-control {
@@ -292,13 +300,16 @@ div#header.container {
     float: left;
     padding: 15px;
     margin-top: 0px;
+    font-size: 24px;
+    font-weight: bold
 }
 
 .listing-price {
     float: right;
     padding: 15px;
     margin-top: 0px;
-    font-size: 20px;
+    font-size: 24px;
+    font-weight: bold
 }
 
 .listing-detail-info {
@@ -328,6 +339,7 @@ div#header.container {
 .listing-expanded-info,
 .listing-desc {
     list-style: none;
+    padding-left: 0px;
 }
 
 .listing-basic-info li{
@@ -345,8 +357,20 @@ div#header.container {
 .listing-desc {
     font-size: 16px;
     padding-top: 15px;
-    padding-left: 50px;
+    padding-left: 15px;
     padding-right: 15px;
+}
+
+.listing-subtitle{
+    float: left;
+    margin: 0px;
+    margin-right: 2px;
+    font-weight: bold;
+}
+
+.listing-php{
+    float: right;
+    margin-top: 0px;
 }
 
 .owner-username,
@@ -359,8 +383,8 @@ div#header.container {
     margin: 15px;
     padding: 15px;
     float: right;
-    font-size: 16px;
-    
+    font-size: 20px;
+    width: 40%;
 }
 
 
