@@ -254,7 +254,7 @@ div#header.container {
 .listing-details {
     margin: 15px;
     padding: 15px;
-    width: 700px;
+    width: 100%;
     height: auto;
     clear: both;
     /*border: 3px solid #99CC99;*/
@@ -308,6 +308,7 @@ div#header.container {
 .listing-title {
     float: left;
     padding: 15px;
+    padding-top: 0px;
     margin-top: 0px;
     font-size: 24px;
     font-weight: bold
@@ -393,9 +394,10 @@ div#header.container {
 .container .listing-favorite-btn {
     margin: 15px;
     padding: 15px;
-    float: right;
+    float: left;
     font-size: 20px;
     width: 40%;
+    display: inline-block;
 }
 
 

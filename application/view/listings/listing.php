@@ -9,7 +9,7 @@
 
 		<div class="col-sm-4">
 
-			<div id="listingCarousel" class="col-sm-8 carousel slide" style="width: 350px; height: 350px" data-ride="carousel" data-interval="false">
+			<div id="listingCarousel" class="col-sm-8 carousel slide" style="width: 100%; height: 100%" data-ride="carousel" data-interval="false">
 
 				<ol class="carousel-indicators">
 					<li data-target="#listingCarousel" data-slide-to="0" class="active"></li>
@@ -18,8 +18,8 @@
 				</ol>
 
 				<div class="carousel-inner" role="listbox">
-					<div class="item active">
-						<img src= "<?php echo 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][0]->getImage()) ?>"" alt="placeholder img." style="width: 350px; height: 340px">
+					<div class="item active" style="width: 350px; height: 350px">
+						<img src= "<?php echo 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][0]->getImage()) ?>"" alt="placeholder img." style="width: 350px; height: 350px">
 					</div>
 					<div class="item">
 						<img src="<?php echo count($listingResponse["listing_images"]) > 1 ? 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][1]->getImage()) : 'http://placehold.it/700x700' ?>" alt="placeholder img." style="width: 350px; height: 340px">
@@ -103,13 +103,12 @@
 		</div>
 
 		<div class="col-sm-4">
-
 			<div class="row buttons">
-				<button type="button" class="btn btn-primary rent-button">Rent</button>
+				<div><button type="button" class="btn btn-primary rent-button">Rent</button></div>
 
-				<button type="button" rel="popover" id="listing-favorite-btn" class="btn btn-primary listing-favorite-btn" onclick="onFavoriteClick()">
+				<div><button type="button" rel="popover" id="listing-favorite-btn" class="btn btn-primary listing-favorite-btn" onclick="onFavoriteClick()">
 						<span class="glyphicon glyphicon-heart"></span> Favorite
-				</button>
+				</button></div>
 			</div>
 
 			<div class="row owner-info">
