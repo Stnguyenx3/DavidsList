@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 25px">
+<div class="container main" style="margin-top: 25px">
 
 	<div class="row">
 		<div class="col-md-2">
@@ -61,3 +61,8 @@
 </div>
 
 <script type="text/javascript" src="<?php echo URL; ?>js/user_listings.js"></script>
+
+<script>
+		//Highlight the current pages' navbar link.
+	$("#nav-link-2").css("background-color", "#23527c");
+</script>

@@ -222,6 +222,9 @@
 <script src = "<?php echo URL; ?>js/listings.js"></script>
 
 <script>
+
+	//Highlight the current pages' navbar link.
+	$("#nav-link-1").css("background-color", "#23527c");
 	
 	$(document).ready(function() {
 

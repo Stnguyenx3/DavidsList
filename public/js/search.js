@@ -167,7 +167,7 @@ function formatResults(event) {
 		toggleBlockDisplay("#result-number", false); // stop showing number of results
 	}
 
-	$(".container.main").html(pageContent);
+	$(".container.main").html(pageContent); //Append to classes "container main", since there can be multiple containers on one page.
 
 	// couple the onSelectFilter function to all checkboxes
 	var checkboxes = document.getElementById("filter-form").getElementsByTagName("input");
