@@ -6,6 +6,11 @@ $(document).ready(function () {
 
 	console.log("userId = " + userId);
 
+	var headerDiv = $("<div></div>").addClass("row").appendTo($("#favorites"));
+	var header = $("<h2></h2>").addClass("centered-header").appendTo($("#favorites"));
+
+	$(header).text("Your Favorite Listings");
+
 	$.ajax({
 		type:'GET',
 		url: url+"users/getalluserfavorites/" + userId, 
