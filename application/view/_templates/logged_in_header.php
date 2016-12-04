@@ -24,7 +24,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="user">
-					<a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId() ; ?>"><?php echo $arrayOfUserObjects[0]->getUsername() ?></a>
+					<a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId() ; ?>"><?php echo "Signed in as " . $arrayOfUserObjects[0]->getUsername() ?></a>
 					<p style="display:inline">|</p>
 					<a href="<?php echo URL. "users/logout" ; ?>">Logout</a>
 				</div>
