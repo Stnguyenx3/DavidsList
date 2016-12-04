@@ -47,17 +47,17 @@
 				        <span class="icon-bar"></span>
 				    </button>
 			    </div>
-	    		<div class="collapse navbar-collapse" id="account-dropdown-links-to-home">
+	    		<div class="collapse navbar-collapse" id="account-dropdown-links-to-home" style="position:fixed">
 	    			<ul class="nav navbar-nav">
 	    				<li><a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a></li>
 	    				<li><a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Rent Out</a></li>
 	    				<li class="dropdown">
 	    					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account<span class="caret"></span></a>
 	    					<ul class="dropdown-menu">
-	    						<li><a href="home/login">Profile</a></li>
-	    						<li><a href ="home/login">Messages</a></li>
-	    						<li><a href="home/login">My Listings</a></li>
-	    						<li><a href="home/login">My Favorites</a></li>
+	    						<li><a href="<?php echo URL."home/login" ; ?>">Profile</a></li>
+	    						<li><a href ="<?php echo URL."home/login" ; ?>">Messages</a></li>
+	    						<li><a href="<?php echo URL."home/login" ; ?>">My Listings</a></li>
+	    						<li><a href="<?php echo URL."home/login" ; ?>">My Favorites</a></li>
 	    					</ul>
 	    				</li>
 	    			</ul>
