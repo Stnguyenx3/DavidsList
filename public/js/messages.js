@@ -34,11 +34,17 @@ function formatConversation(event) {
 			var p0 = $("<p></p>").addClass("message").appendTo($(row0));
 
 			//Determine the correct username from senderUserId to display.
-
 			var senderUserId = messages[i].senderUserId;
 			var senderUsername;
 
 			for (var j = 0; j < users.length; j++) {
+
+
+				if (senderUserId == webClientUserID) {
+					senderUsername = "You";
+					break;
+				}
+
 				if (senderUserId == users[j][0].userid) {
 					senderUsername = users[j][0].username;
 				}

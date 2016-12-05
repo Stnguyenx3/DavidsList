@@ -8,7 +8,7 @@
 		<!-- Main chat message window -->
 
 			<div class="row user-message-history linear-gradient-bg">
-				<h3 class="messages-header centered-header" id="conversation-title">Chat title here</h3>
+				<h3 class="messages-header centered-header" id="conversation-title">Message the owner!</h3>
 
 				<div class="col-md-1"></div>
 				<div class="col-md-10" id="all-conversation">
@@ -37,6 +37,7 @@
 
 <script type="text/javascript" src="<?php echo URL; ?>js/messages.js"></script>
 
-<script>
+<script type="text/javascript">
 	var userID = <?php echo $_SESSION['userid'] ?>;
+	<?php echo 'var webClientUserID = ' . json_encode($_SESSION['userid'])?>;
 </script>
