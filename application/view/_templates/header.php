@@ -18,6 +18,9 @@
 	<link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
 </head>
 <body id="content">
+
+	<?php include_once("analyticstracking.php") ?>
+
 	<div class="container" id="header">
 		<div class="row">
 			<div class="col-sm-12">
