@@ -104,7 +104,7 @@
 								</li>
 							</ul>
 
-							<button type="button" class="btn btn-primary rent-button">Rent</button>
+							<button type="button" class="btn btn-primary rent-button" onclick="onContactClick()">Rent</button>
 
 							<button type="button" rel="popover" id="listing-favorite-btn" class="btn btn-primary listing-favorite-btn" onclick="onFavoriteClick()">
 								<span class="glyphicon glyphicon-heart"></span> Favorite
@@ -143,7 +143,15 @@
 
 
 
-<script>                                    
+<script>
+
+	function onContactClick() {
+		var str = (window.location + '').split("/");
+		var listingID = str[str.length - 1];
+		var ownerID = "<?php echo $listingResponse["listing"]->getId() ?>"
+		window.location.replace(url+"messages/conversation/" + listingID + "/" + ownerID);
+	}
+
 	function initMap() {					
   		var bounds = new google.maps.LatLngBounds;
   		var markersArray = [];

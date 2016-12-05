@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+	var listingIDToDelete;
+
 	//Get userid from url
 	var str = (window.location + '').split("/");
 	var userId = str[str.length - 1];
@@ -84,22 +86,10 @@ function onClickDeleteListing(event) {
 	var str = (window.location + '').split("/");
 	var userId = str[str.length - 1];
 
-	$.ajax({
-		type: 'POST',
-		url: url + "listings/deletelisting/",
-		data: {
-			listingId: event.data.listingId
-		},
-		success: function(e) {
-			$("#user-listing-"+event.data.listingId).remove();
-			$.notify("Listing has been deleted!", "success");
-		},
-		error: function(xhr, err, errThrown) {
-			console.log("I failed");
-			console.log(err);
-			console.log(errThrown);
-		}
-	});
+	listingIDToDelete = event.data.listingId;
+
+	$.notify({title: "Are you sure?", button: "Yes"}, {style: "remove-confirmation", position: "top center", autoHide: false});
+
 }
 
 //Maybe edit this so that it sends the user id as well?
@@ -114,6 +104,40 @@ function onClickMessages(event) {
 	window.location.replace(url+"messages/allmessages/"+event.data.listingId);
 }
 
-function fetchMessages(event) {
+$.notify.addStyle('remove-confirmation', {
+	html: "<div>" +
+      "<div class='clearfix'>" +
+        "<div class='title' data-notify-html='title'/>" +
+        "<div class='buttons'>" +
+          "<button class='no'>No</button>" +
+          "<button class='yes' data-notify-text='button'></button>" +
+        "</div>" +
+      "</div>" +
+    "</div>"
+});
 
-}
+//listen for click events from this style
+$(document).on('click', '.notifyjs-remove-confirmation-base .no', function() {
+  //programmatically trigger propogating hide event
+  $(this).trigger('notify-hide');
+});
+$(document).on('click', '.notifyjs-remove-confirmation-base .yes', function() {
+		$.ajax({
+		type: 'POST',
+		url: url + "listings/deletelisting/",
+		data: {
+			listingId: listingIDToDelete
+		},
+		success: function(e) {
+			$("#user-listing-"+listingIDToDelete).remove();
+			$.notify("Listing has been deleted!", {position: "top center"});
+		},
+		error: function(xhr, err, errThrown) {
+			console.log("I failed");
+			console.log(err);
+			console.log(errThrown);
+		}
+	});
+  //hide notification
+  $(this).trigger('notify-hide');
+});

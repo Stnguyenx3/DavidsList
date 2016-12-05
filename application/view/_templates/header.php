@@ -18,9 +18,7 @@
 	<link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
 </head>
 <body id="content">
-
 	<div class="container" id="header">
-	
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="user">
@@ -30,42 +28,53 @@
 				</div>
 			</div>
 		</div>
-		
 		<div class="row">
-		
 			<div class="col-sm-3">
 				<img src="<?php echo URL; ?>img/logo.png" height="100" alt="logo" onclick="onLogoClick()">
 			</div>
-
 			<div class="col-sm-6 disclaimer">
 				<h3 class="centered-header">SFSU/FAU/Fulda Software Engineering Project, Fall 2016.  For Demonstration Only</h3>
 			</div>
-
 			<div class="col-sm-3"></div>
-			
 		</div>
-
-    <!-- navigation -->
-    <div class="navigation">
-
-    	<div class="row">
-    		
-	    	<div class="col-md-3 nav-link-div">
-	    		<a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a>
-	    		<a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Rent Out</a>
-	    		<a href="<?php echo URL. "home/login" ; ?>" id="nav-link-2">My Listings</a>
-	    		<!--a href="<?php echo URL. "info/about" ; ?>">Contact Us</a-->
-	    	</div>
-
-	    	<div class="col-md-9" id="search-bar">
-				<input id="search-input" type="text" placeholder="Enter an Address, City, or ZIP code..." value = "" onkeypress="return enterPressed(event)" required autofocus/><button id="search-get" type="button" class="btn btn-primary search-button" onclick="onSearchClick()">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                </button>
-	    	</div>
-
-    	</div>
-
-    </div>
+		<div class="row navigation">
+			<div class="col-md-4">
+				<div class="navbar-header">
+				    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#account-dropdown-links-to-home" aria-expanded="false">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				    </button>
+			    </div>
+	    		<div class="collapse navbar-collapse" id="account-dropdown-links-to-home" style="position:fixed">
+	    			<ul class="nav navbar-nav">
+	    				<li><a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a></li>
+	    				<li><a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Rent Out</a></li>
+	    				<li class="dropdown">
+	    					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account<span class="caret"></span></a>
+	    					<ul class="dropdown-menu">
+	    						<li><a href="<?php echo URL."home/login" ; ?>">Profile</a></li>
+	    						<li><a href ="<?php echo URL."home/login" ; ?>">Messages</a></li>
+	    						<li><a href="<?php echo URL."home/login" ; ?>">My Listings</a></li>
+	    						<li><a href="<?php echo URL."home/login" ; ?>">My Favorites</a></li>
+	    					</ul>
+	    				</li>
+	    			</ul>
+	    		</div>
+			</div>
+			<div class="col-md-4">
+				<div class="input-group" id="search-bar">
+			      	<input id="search-input" type="text" class="form-control" placeholder="Enter an Address, City, or ZIP code..." onkeypress="return enterPressed(event)" required autofocus>
+			      	<span class="input-group-btn">
+			        	<button class="btn btn-secondary" type="button" onclick="onSearchClick()">
+			        		<span class="glyphicon glyphicon-search"></span>
+			        	</button>
+			      	</span>
+			    </div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
 
 </div><!--End header-->
 

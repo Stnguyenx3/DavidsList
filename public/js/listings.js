@@ -169,12 +169,13 @@ function onFavoriteClick() {
 		url: url+"favoritelistings/addfavorite/",
 		data: favoriteInformation,
 		success: function(event) {
+
 			if(event == 1) {
-				$.notify("It favorited!", "success");
+				$.notify("Listing added to favorites!", {position: "top center", autoHideDelay: 5000});
 			} else if (event === "You are not logged in") {
 				window.location.replace(url+"home/login/");
 			} else {
-				$.notify(event, {position: "top center"});
+				$.notify(event, {position: "top center", autoHideDelay: 5000});
 			}
 		},
 		error: function(xhr, err, errThrown) {
