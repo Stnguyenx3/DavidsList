@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+	var listingIDToDelete;
+
 	//Get userid from url
 	var str = (window.location + '').split("/");
 	var userId = str[str.length - 1];
@@ -50,9 +52,14 @@ function formatUserListings(event) {
 			var div = $("<div></div>").css("clear", "both").appendTo($(col2));
 			var p1 = $("<p></p>").appendTo($(div));
 
-			var a1 = $("<a></a>").addClass("btn btn-primary user-favorite-remove")
-						.click({listingId: event[i].listing.listingId}, onClickDeleteListing)
-						.appendTo($(div));
+			var a1 = $("<a></a>").addClass("btn btn-primary user-favorite-remove-" + event[i].listing.listingId)
+						.click({listingId: event[i].listing.listingId}, onClickDeleteListing);
+
+			var a2 = $("<a></a>").addClass("btn btn-primary user-favorite-go")
+						.click({listingId: event[i].listing.listingId}, onClickGoToListing);
+
+			$(a2).appendTo($(div));
+			$(a1).appendTo($(div));
 
 			//Store listing inforation into variables.
 			var listingImg = "data:image/png;base64,"+event[i].listing_images;
@@ -66,6 +73,7 @@ function formatUserListings(event) {
 			$(p0).text("Price: $" + listingPrice);
 			$(p1).text("Description:"+ listingDescription);
 			$(a1).text("Remove");
+			$(a2).text("Go to listing");
 
 		}
 		
@@ -77,15 +85,43 @@ function onClickDeleteListing(event) {
 	var str = (window.location + '').split("/");
 	var userId = str[str.length - 1];
 
+	listingIDToDelete = event.data.listingId;
+
+	$.notify({title: "Are you sure?", button: "Yes"}, {style: "remove-confirmation", position: "top center", autoHide: false});
+
+}
+
+function onClickGoToListing(event) {
+	window.location.replace(url + "listings/getlisting/" + event.data.listingId);
+}
+
+$.notify.addStyle('remove-confirmation', {
+	html: "<div>" +
+      "<div class='clearfix'>" +
+        "<div class='title' data-notify-html='title'/>" +
+        "<div class='buttons'>" +
+          "<button class='no'>No</button>" +
+          "<button class='yes' data-notify-text='button'></button>" +
+        "</div>" +
+      "</div>" +
+    "</div>"
+});
+
+//listen for click events from this style
+$(document).on('click', '.notifyjs-remove-confirmation-base .no', function() {
+  //programmatically trigger propogating hide event
+  $(this).trigger('notify-hide');
+});
+$(document).on('click', '.notifyjs-remove-confirmation-base .yes', function() {
 	$.ajax({
 		type: 'POST',
 		url: url + "favoritelistings/deletefavorite/",
 		data: {
-			listingId: event.data.listingId
+			listingId: listingIDToDelete
 		},
 		success: function(e) {
-			$("#user-favorite-"+event.data.listingId).remove();
-			$.notify("Listing has been deleted from your favorites!", "success");
+			$("#user-favorite-"+listingIDToDelete).remove();
+			$.notify("Listing has been deleted from your favorites!", {position: "top center"});
 		},
 		error: function(xhr, err, errThrown) {
 			console.log("I failed");
@@ -93,4 +129,6 @@ function onClickDeleteListing(event) {
 			console.log(errThrown);
 		}
 	});
-}
+  //hide notification
+  $(this).trigger('notify-hide');
+});
