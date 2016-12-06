@@ -141,11 +141,14 @@ function formatResults(event) {
 		var row = $("<div></div>").addClass("row search-result-listing").appendTo($(searchResultContent));
 		var col1 = $("<div></div>").addClass("col-sm-4").appendTo($(row));
 		var col2 = $("<div></div>").addClass("col-sm-8 search-listing-info").appendTo($(row));
+		var row2 = $("<div></div>").addClass("row").appendTo($(col2));
+		var row3 = $("<div></div>").addClass("row").appendTo($(col2));
 		var resultThumbnail = $("<img></img>").addClass("search-result-listing-img").appendTo($(col1));
-		var listingName = $("<p></p>").addClass("search-result-listing-title listing-title").appendTo($(col2));
-		var listingPrice = $("<p></p></br>").addClass("search-result-listing-price listing-price").appendTo($(col2));
-		var listingAddress = $("<p></p>").addClass("search-result-listing-address").appendTo($(col2));
-		var listingBasicInfo = $("<p></p>").addClass("search-result-listing-basic-info").appendTo($(col2));
+		var listingName = $("<p></p>").addClass("search-result-listing-title listing-title").appendTo($(row2));
+		var listingPrice = $("<p></p>").addClass("search-result-listing-price listing-price").appendTo($(row2));
+		$("</br>").appendTo($(col2));
+		var listingAddress = $("<p></p>").addClass("search-result-listing-address").appendTo($(row3));
+		var listingBasicInfo = $("<p></p>").addClass("search-result-listing-basic-info").appendTo($(row3));
 		var rentButton = $("<a></a>").addClass("btn btn-primary search-result-listing-btn")
 							.appendTo($(col2));
 

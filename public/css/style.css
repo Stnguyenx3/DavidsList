@@ -443,7 +443,7 @@ div#header.container {
     margin-top: 15px;
 }
 
-.search-filter-price input {
+/*.search-filter-price input {
     width: 15px;
     height: 15px;
     margin: 0px;
@@ -452,7 +452,7 @@ div#header.container {
 
 .search-filter-price label {
     padding-left: 15px;
-}
+}*/
 
 
 .search-result-listing,
@@ -468,14 +468,18 @@ div#header.container {
 
 .search-result-listing-address{
     font-size: 16px;
-    padding: 0px;
-    margin: 0px;
+    padding-left: 15px;
+    /*margin: 0px;*/
     margin-top: 20px;
+    display: inline;
+    float: left;
 }
 .search-result-listing-basic-info {
     font-size: 16px;
     padding-left: 15px;
-    margin: 10px;
+    /*margin: 10px;*/
+    display: inline;
+    float: left;
 }
 
 .search-result-listing-img,
@@ -506,7 +510,7 @@ div#header.container {
 
 }
 
-.search-result-listing-price,
+/*.search-result-listing-price,*/
 .user-listing-price,
 .user-favorite-price {
    font-size: 17px;
