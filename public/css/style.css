@@ -83,6 +83,37 @@ body,
     float: left;
 }
 
+.navbar-toggle {
+    background-color: #23527c;
+}
+
+.navbar-toggle .icon-bar {
+    background-color: #ffffff;
+}
+
+.nav .open>a, 
+.nav .open>a:focus, 
+.nav .open>a:hover,
+.dropdown-menu li > a:hover,
+.dropdown-menu li > a:focus, 
+.dropdown-submenu:hover > a,
+.dropdown-menu li.active > a,
+.dropdown-menu li.active > a:hover,
+.dropdown-menu li.active > a:focus {
+    background-color: #23527c;
+    color: #fff;
+}
+
+.dropdown-menu {
+    background-color: #4682b4;
+    border: 1px solid #000;
+}
+
+.dropdown-menu>li>a {
+    color: #fff;
+    font-size: 18px;
+}
+
 .navigation {
     background-color:  #564C46;/*#4682b4;*/
 }
@@ -97,9 +128,12 @@ body,
     color: #fff;
 }
 
-.navigation a:hover {
-    /*background-color: #191970;*/
-    color: rgba(226,226,226,1);
+
+    /*color: rgba(226,226,226,1);*/
+
+.navbar-nav>li>a:hover {
+    background-color: #23527c;
+
 }
 
 .user {
@@ -120,12 +154,14 @@ body,
 #search-bar {
     padding-top: 15px;
     padding-bottom: 15px;
-    text-align: right;
+}
+
+#search-bar .form-control {
+    font-size: 16px;
 }
 
 #search-bar input {
     padding: 5px;
-    width: 600px;
 }
 
 .footer a {
@@ -162,6 +198,7 @@ div#header.container {
     padding-bottom: 15px;
     padding-left: 0px;
     padding-right: 0px;
+
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -580,9 +617,13 @@ input[type=file] {
 }
 
 .user-listings-remove,
-.user-favorite-remove {
+a[class^="user-favorite-remove-"],
+a[class*="user-favorite-remove-"],
+.user-listings-go,
+.user-favorite-go {
     margin: 15px;
     float: right;
+    font-size: 16px;
 }
 
 .user-overview {
@@ -636,4 +677,39 @@ input[type=file] {
 
 .go-to-message {
     vertical-align: bottom
+}
+
+
+/*Notifyjs plugin styles*/
+.notifyjs-remove-confirmation-base {
+  width: 100%;
+  height: 150px;
+  margin-top: 50px;
+  background: lightblue;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.notifyjs-remove-confirmation-base .title {
+  width: 100px;
+  float: left;
+  margin: 10px 0 0 10px;
+  text-align: right;
+  font-size: 16px;
+}
+
+.notifyjs-remove-confirmation-base .buttons {
+  width: 70px;
+  display: inline;
+  font-size: 16px;
+  padding: 5px;
+  margin: 2px;
+}
+
+.notifyjs-remove-confirmation-base button {
+  font-size: 16px;
+  padding: 5px;
+  margin: 2px;
+  width: 60px;
 }

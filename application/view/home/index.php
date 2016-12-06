@@ -186,7 +186,11 @@
 </div>
 
 <!-- <div class="listing-map" id="listing-map" style="visibility: hidden; position: absolute; top: -9999px;"></div> -->
-<script>                               
+<script>
+
+	// //Highlight the current pages' navbar link.
+	// $("#nav-link-0").css("background-color", "#23527c");
+
 	// function initMap() {					
  //  		var bounds = new google.maps.LatLngBounds;
  //  		var markersArray = [];
@@ -271,13 +275,8 @@
  //    		markersArray[i].setMap(null);
  //  		}
  //  		markersArray = [];
-	// }
-	// <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWtyDBXetSnDbisVRKmZ4AXzDBd1ohSyo&callback=initMap"
- //        async defer>
+	// }<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWtyDBXetSnDbisVRKmZ4AXzDBd1ohSyo&callback=initMap"
+   //     async defer></script>
 </script>
 
 
-
-
-        <!--            AIzaSyAWtyDBXetSnDbisVRKmZ4AXzDBd1ohSyo -->
-        <!-- original : AIzaSyDUYeLz1DKD4PUAg_uef7OP986wXFlkN78 -->

@@ -6,6 +6,14 @@
 <div class="container main">
 
 	<div class="row">
+		<div class="col-sm-5"></div>
+		<div class="col-sm-3">
+			<label><h1>Listing Detail</h1></label>
+		</div>
+		<div class="col-sm-4"></div>
+	</div>
+
+	<div class="row">
 
 		<div class="col-sm-4">
 
@@ -132,7 +140,17 @@
 
 
 
-<script>                                    
+<script>
+
+	var clientUserID = <?php echo $_SESSION['userid'] ?>;
+
+	function onContactClick() {
+		var str = (window.location + '').split("/");
+		var listingID = str[str.length - 1];
+		var ownerID = "<?php echo $listingResponse["listing"]->getId() ?>"
+		window.location.replace(url+"messages/conversation/" + listingID + "/" + clientUserID);
+	}
+
 	function initMap() {					
   		var bounds = new google.maps.LatLngBounds;
   		var markersArray = [];

@@ -11,9 +11,9 @@ $('#login-form').submit(function (e) {
 		data: loginCredential,
 		success: function(event){
 			if(event === "null") {
-				$.notify("Invalid Username/Password combination!", {position: "top center"});
+				$("#inputPassword").notify("Invalid Username/Password combination!", {position: "right-middle"});
 			} else if (event === "wrong") {
-				$.notify("Invalid Username/Password combination!", {position: "top center"});
+				$("#inputPassword").notify("Invalid Username/Password combination!", {position: "right-middle"});
 			} else {
 				window.location.replace(url);
 			}

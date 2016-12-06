@@ -13,7 +13,7 @@
             <button class="btn btn-lg btn-primary btn-signin center-block" type="submit">Sign in</button>
 			
 			<div class="login-link">
-				<a href="<?php echo URL. "home/register" ; ?>">Sign up!</a>
+				<a href="<?php echo URL. "home/register" ; ?>">New User?</a>
 				
 				<a href="#">Forgot Password?</a>
 			</div>
@@ -24,11 +24,3 @@
 </div>
 
 <script src = "<?php echo URL; ?>js/user_login.js"></script>
-
-<script>
-
-	$(document).ready({
-		
-	});
-
-</script>

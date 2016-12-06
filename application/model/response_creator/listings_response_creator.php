@@ -106,6 +106,7 @@ class ListingsResponseCreator {
 		$listing->setPrice($listingInformation["listing_price"]);
 		$listing->setType($listingInformation["listing_type"]);
 		$listing->setStatus($listingInformation["listing_status"]);
+		$listing->setTitle($listingInformation["listing_title"]);
 
 		$insertListing = $listingRepo->save($listing);
 
@@ -139,6 +140,7 @@ class ListingsResponseCreator {
 		$address->setCity($addressInfo["city"]);
 		$address->setZipcode($addressInfo["zipcode"]);
 		$address->setState($addressInfo["state"]);
+		$address->setDistance("2.1");
 	
 		$insertAddress = $addressRepo->save($address);
 
@@ -173,6 +175,7 @@ class ListingsResponseCreator {
 		$listingObject = $arrayOfListingObjects[0];
 		$listingObject->setPrice($newListingInformation["listing_price"]);
 		$listingObject->setType($newListingInformation["listing_type"]);
+		$listingObject->setTitle($newListingInformation["listing_title"]);
 
 		$listingDetailObject = $arrayOfListingDetailObjects[0];
 		$listingDetailObject->setNumberOfBedrooms($listingDetail["listing_numBedrooms"]);
