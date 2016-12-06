@@ -5,8 +5,8 @@
 			<div class="home-info">	
 				<span class="glyphicon glyphicon-check home-icon" aria-hidden="true"></span>
 				<h3 style="font-weight: bold;" >SECURE</h3>
-				<p style="font-size: 20px;">
-					SFSU students are /forgot this word/ user on DavidsList. 
+				<p>
+					SFSU students are verified on DavidsList. 
 					
 					<!-- DavidsList is an apartment rental website created by SFSU students for SFSU students. We believe that
 					students are more willing to rent from other students because they share something in common, going to
@@ -22,8 +22,8 @@
 			<div class="home-info">
 				<span class="glyphicon glyphicon-tasks home-icon" aria-hidden="true"></span>
 				<h3 style="font-weight: bold;">EASY</h3>
-				<p style="font-size: 20px;">
-					Order all your listings on the 'My Profile' page.
+				<p>
+					Manage your listings in 'My Profile'.
 				</p>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 			<div class="home-info">	
 				<span class="glyphicon glyphicon-send home-icon" aria-hidden="true"></span>
 				<h3 style="font-weight: bold;">QUICK</h3>
-				<p style="font-size: 20px;">
+				<p>
 					Message the owner in one click.
 				</p>
 			</div>

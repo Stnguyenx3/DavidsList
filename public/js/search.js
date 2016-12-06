@@ -9,17 +9,12 @@ function toggleBlockDisplay (blockID, on) {
 	}
 }
 
-//Allowing pressing the enter key to search
-// $(document).keypress(function(event){
-//     if(event.keyCode === 13) {
-//         onSearchClick();
-//     }
-// });
 
 //Creates an AJAX request to search for apartments(More like search for addresses)
 function onSearchClick() {
 
 	var searchInput = $('#search-input').val();
+	buildPage();
 
 	if(searchInput !== "" && valid(searchInput)) {
 		var searchQuery = {
@@ -44,25 +39,20 @@ function valid(input){
 	var valid = true;
 	var zipcode = Number(input);
 	if (!isNaN(zipcode)){
-		console.log(zipcode);
-		if (zipcode < 0 || zipcode.length != 6){
-			alert("enter valid zip");
+		if (zipcode < 10000 || zipcode > 99999){
+			console.log(zipcode);
+			$(searchResultContent).find("#no-result-message").text("Please enter a valid zipcode"); // show no result message
+			$(searchResultContent).find("#no-result").css("display", "block"); // show no result message
 			valid = false;
 		}
 	}
 	return valid;
 }
 
-function formatResults(event) {
 
-	var result = JSON.parse(event);
-	// Replace search input value in search bar
-	var searchInput = result.shift();
-	document.getElementById("search-input").value = searchInput;
+function buildPage(){
 
-	var numOfResults = result.length;
 	var resultsPerPage = 5; //MAX NUMBER OF RESULTS PER PAGINATION PAGE.
-	var numOfPages = Math.ceil(numOfResults / resultsPerPage);
 
 	var pageContent = $("<div></div>").addClass("row");
 	var filter = '<div class="listing-map" id="listing-map" style="visibility: hidden; position: absolute; top: -9999px;"></div>\
@@ -73,7 +63,7 @@ function formatResults(event) {
 					<label>Price</label>\
 					<br>\
 					<label for="search-filter-price-range1">\
-						<input type="checkbox" id="search-filter-price-range1" value="500">Under $500\
+						<input type="checkbox" id="search-filter-price-range1" value="500"> Under $500\
 					</label>\
 					<br>\
 					<label for="search-filter-price-range2">\
@@ -85,7 +75,7 @@ function formatResults(event) {
 					</label>\
 					<br>\
 					<label for="search-filter-price-range4">\
-						<input type="checkbox" id="search-filter-price-range4" value="1000">$1000 &amp; Above\
+						<input type="checkbox" id="search-filter-price-range4" value="1000">$1000 or more\
 					</label>\
 					<div class="form-group">\
 						<label>Rooms</label>\
@@ -99,7 +89,7 @@ function formatResults(event) {
 						</label>\
 						<br>\
 						<label for="search-filter-bedroom-range3">\
-							<input type="checkbox" id="search-filter-bedroom-range3" value="3">3+\
+							<input type="checkbox" id="search-filter-bedroom-range3" value="3">3 or more\
 						</label>\
 					</div>\
 					<div class="form-group">\
@@ -114,7 +104,7 @@ function formatResults(event) {
 						</label>\
 						<br>\
 						<label for="search-filter-distance-range3">\
-							<input type="checkbox" id="search-filter-distance-range3" value="3">3 miles &amp; Above\
+							<input type="checkbox" id="search-filter-distance-range3" value="3">3 miles or more\
 						</label>\
 					</div>\
 				</div>\
@@ -139,15 +129,12 @@ function formatResults(event) {
 	var col = $("<div></div>").addClass("col-sm-12").appendTo($(row));
 	var message = $("<p></p>").addClass("search-result-listing-null").appendTo($(col));
 	$(message).text("No results! Try another search!");
+	$(message).attr("id", "no-result-message");
 
 	//No-result message is default not shown
 	$(row).attr("id", "no-result");
 	$(row).css("display", "none");
 
-	// If no results, display message
-	if (numOfResults == 0) {
-		$(row).css("display", "block");
-	}
 	pageContent.append(searchResultContent);
 
 	//Result page layout.
@@ -181,12 +168,28 @@ function formatResults(event) {
 
 	pageContent.append($(paginationWrapper));
 
+	$(".container.main").html(pageContent);
+
+}
+
+
+
+
+function formatResults(event) {
+
+	var resultsPerPage = 5; //MAX NUMBER OF RESULTS PER PAGINATION PAGE.
+	var result = JSON.parse(event);
+	var numOfResults = result.length;
+	var numOfPages = Math.ceil(numOfResults / resultsPerPage);
+
+	// If no results, display message
+	if (numOfResults == 0) {
+		$(searchResultContent).find("#no-result").css("display", "block"); // show no result message
+	}
 	if (numOfResults == 0) {
 		toggleBlockDisplay("#result-pagination-wrapper", false);
 		toggleBlockDisplay("#result-number", false); // stop showing number of results
 	}
-
-	$(".container.main").html(pageContent);
 
 	// couple the onSelectFilter function to all checkboxes
 	var checkboxes = document.getElementById("filter-form").getElementsByTagName("input");
@@ -195,6 +198,8 @@ function formatResults(event) {
 			onSelectFilter(event, result);
 		}
 	}
+
+
 
 	var resultIDs = writeListingID(result, numOfResults); // start with showing all listings
 	var priceResultIDs = writeListingID(result, numOfResults);

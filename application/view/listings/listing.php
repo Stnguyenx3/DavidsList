@@ -116,10 +116,10 @@
 				<?php  
 					$verifiedCss = "";
 					if($userResponse->getVerified() == 1) {
-						$verifiedCss = "style=\"color: purple\"";
+						$verifiedCss = "<span style=\"color: #FFA500\"> verified </span>";
 					}
 				?>
-				<p class="owner-username" <?php echo $verifiedCss ?>>Name: <?php echo $userResponse->getUsername(); ?></p>
+				<p class="owner-username">Name: <?php echo $verifiedCss ?> <?php echo $userResponse->getUsername(); ?></p>
 				<p class="owner-email">Email: <?php echo $userResponse->getEmail(); ?></p>
 
 			</div>

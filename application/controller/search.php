@@ -85,8 +85,6 @@ class Search extends Controller {
 
         $returnArray = array();
 
-        $returnArray[] = $searchInput;
-
         // fetch all fields and make ready for return
         foreach ($addresses as $address) {
             $listingID = $address->getListingId();
