@@ -16,7 +16,7 @@ class Search extends Controller {
     public function searchApartments() {
         $thresh = 70;
 
-        $searchInput = strtolower($_POST["city"]); // change this
+        $searchInput = strip_tags(strtolower($_POST["search"])); // change this
         $addressRepo = RepositoryFactory::createRepository("address");
         $listingImageRepo = RepositoryFactory::createRepository("listing_image");
 

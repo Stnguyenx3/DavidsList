@@ -10,20 +10,22 @@ function toggleBlockDisplay (blockID, on) {
 }
 
 //Allowing pressing the enter key to search
-$(document).keypress(function(event){
-    if(event.keyCode === 13) {
-        onSearchClick();
-    }
-});
+// $(document).keypress(function(event){
+//     if(event.keyCode === 13) {
+//         onSearchClick();
+//     }
+// });
 
 //Creates an AJAX request to search for apartments(More like search for addresses)
 function onSearchClick() {
 
-	if($('#search-input').val() !== "") {
+	var searchInput = $('#search-input').val();
+
+	if(searchInput !== "" && valid(searchInput)) {
 		var searchQuery = {
-		city: $('#search-input').val()
+		search: searchInput
 		}
-		$('#search-input').val("");
+		// $('#search-input').val("");
 		$.ajax({
 			type:'POST',
 			url: url+"/search/searchapartments/",
@@ -36,6 +38,19 @@ function onSearchClick() {
 			},
 		});
 	}
+}
+
+function valid(input){
+	var valid = true;
+	var zipcode = Number(input);
+	if (!isNaN(zipcode)){
+		console.log(zipcode);
+		if (zipcode < 0 || zipcode.length != 6){
+			alert("enter valid zip");
+			valid = false;
+		}
+	}
+	return valid;
 }
 
 function formatResults(event) {
