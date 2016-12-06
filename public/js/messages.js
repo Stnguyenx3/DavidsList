@@ -24,7 +24,9 @@ function formatConversation(event) {
 		var messages = event.messages;
 		var users = event.users;
 
-		$("#conversation-title").text("Chatting about listing #" + messages[0].listingId); // TODO: Add check for undefined listing id.
+		if (messages.length != 0) {
+			$("#conversation-title").text("Chatting about listing #" + messages[0].listingId);
+		}
 
 		for (var i = 0; i < messages.length; i++) {
 			var row0 = $("<div></div>").addClass("row messages-single").appendTo($("#all-conversation"));
@@ -38,12 +40,6 @@ function formatConversation(event) {
 			var senderUsername;
 
 			for (var j = 0; j < users.length; j++) {
-
-
-				if (senderUserId == webClientUserID) {
-					senderUsername = "You";
-					break;
-				}
 
 				if (senderUserId == users[j][0].userid) {
 					senderUsername = users[j][0].username;

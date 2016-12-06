@@ -145,11 +145,13 @@
 
 <script>
 
+	var clientUserID = <?php echo $_SESSION['userid'] ?>;
+
 	function onContactClick() {
 		var str = (window.location + '').split("/");
 		var listingID = str[str.length - 1];
 		var ownerID = "<?php echo $listingResponse["listing"]->getId() ?>"
-		window.location.replace(url+"messages/conversation/" + listingID + "/" + ownerID);
+		window.location.replace(url+"messages/conversation/" + listingID + "/" + clientUserID);
 	}
 
 	function initMap() {					
