@@ -25,7 +25,7 @@ hr{
 }
 
 .container {
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .main {
     background-color: rgba(254,254,254,1);
@@ -89,7 +89,7 @@ hr{
 }
 
 .navbar-toggle {
-    background-color: #23527c;
+    background-color: rgba(226,226,226,1);/*#23527c;*/
 }
 
 .navbar-toggle .icon-bar {
