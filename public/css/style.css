@@ -100,12 +100,12 @@ body,
 .dropdown-menu li.active > a,
 .dropdown-menu li.active > a:hover,
 .dropdown-menu li.active > a:focus {
-    background-color: #23527c;
+    background-color: rgba(226,226,226,1);/*#23527c;*/
     color: #fff;
 }
 
 .dropdown-menu {
-    background-color: #4682b4;
+    background-color: #564C46;/*#4682b4;*/
     border: 1px solid #000;
 }
 
@@ -132,7 +132,7 @@ body,
     /*color: rgba(226,226,226,1);*/
 
 .navbar-nav>li>a:hover {
-    background-color: #23527c;
+    background-color: rgba(226,226,226,1);/*#23527c;*/
 
 }
 
@@ -229,28 +229,29 @@ div#header.container {
 .form-signin {
     margin-top: 50px;
     margin-bottom: 25px;
-    padding: 25px;
-    width: 600px;
+   /* padding: 25px;*/
+    width: 300px;
     height: auto;
-    border: 3px solid #99CC99;
+    /*border: 3px solid #99CC99;
     border-radius: 10px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);*/
 }
 
 .form-signin input {
     border-color: #808080;
     margin-bottom: 15px;
     margin-top: 15px;
+    width: 300px;
 }
 
 .form-signup {
     margin-top: 50px;
     margin-bottom: 50px;
     padding: 25px;
-    width: 900px;
-    border: 3px solid  #99CC99;
+    width: 600px;
+    /*border: 3px solid  #99CC99;
     border-radius: 10px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);*/
 }
 
 .form-signup input {
