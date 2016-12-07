@@ -15,6 +15,11 @@ body,
     margin: 15px;
 }
 
+hr{
+    border-top: 1px solid #FFA500;
+    width: 80%;
+}
+
 .privacy > p {
     font-size: 16px;
 }
@@ -598,16 +603,21 @@ div#header.container {
 }
 
 .form-rentout {
-    border: 3px solid #99CC99;
+  /*  border: 3px solid #99CC99;
     border-radius: 10px;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);*/
     padding: 15px;
     margin-bottom: 15px;
 }
 
+
 input[type=file] {
     display: inline;
     border: 1px solid #CCC;
+}
+
+.text-danger{
+    color: #FFA500;
 }
 
 

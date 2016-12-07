@@ -11,45 +11,39 @@
 	<div class="row rent-out">
 		<div class="col-sm-1"></div>
 		<div class="col-sm-10">
-			<form class="form-rentout linear-gradient-bg" id="rentout" action="#" method="post">
+			<form class="form-rentout" id="rentout" action="#" method="post">
 
 				<div class="form-group row">
-					<label for="form-title" class="col-sm-2 text-right">Title<label class="text-danger">*</label></label>
+					<label for="form-title" class="col-sm-2 text-right">Title <label class="text-danger">*</label></label>
 					<div class="col-sm-10">
 						<input class="form-control" type="text" name="listingtitle" id="form-title" placeholder="Title">
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label for="form-price" class="col-sm-2 text-right">Price<label class="text-danger">*</label></label>
+					<label for="form-price" class="col-sm-2 text-right">Price <label class="text-danger">*</label></label>
 					<div class="col-sm-10">
 						<input class="form-control" type="text" name="listingprice" id="form-price" placeholder="Price">
 					</div>
 				</div>
 
+				<hr/>
+
 				<div class="form-group row">
-					<label for="form-address" class="col-sm-2 text-right">Address<label class="text-danger">*</label></label>
-					<div class="col-sm-10">
+					<label for="form-address" class="col-sm-2 text-right">Address <label class="text-danger">*</label></label>
+					<div class="col-sm-6">
 						<input class="form-control" type="text" name="listingaddress" id="form-address" placeholder="address">
 					</div>
 				</div>
 
-				<div class="form-group row">
-					<label class="col-sm-2 text-right">Approximate Address<label class="text-danger">*</label></label>
-					<div class="col-sm-10">
-						<label for="listing-internet">
-							<input type="checkbox" name="listingaddressapprox" id="form-approx" value="approximate">
-						</label>
-					</div>
-				</div>
 
 				<div class="form-group row">
-					<label for="form-city" class="col-sm-2 text-right">City<label class="text-danger">*</label></label>
+					<label for="form-city" class="col-sm-2 text-right">City <label class="text-danger">*</label></label>
 					<div class="col-sm-3">
 						<input class="form-control" type="text" name="listingcity" id="form-city" placeholder="city">
 					</div>
 
-					<label for="form-state" class="col-sm-1 text-right">State<label class="text-danger">*</label></label>
+					<label for="form-state" class="col-sm-1 text-right">State <label class="text-danger">*</label></label>
 					<div class="col-sm-2">
 						<select class="form-control" name="listingstate" id="form-state" style="width: auto;">
 							<option value="">N/A</option>
@@ -110,10 +104,22 @@
 
 					<label for="form-zipcode" class="col-sm-2 text-right">Zip<label class="text-danger">*</label></label>
 					<div class="col-sm-2">
-						<input class="form-control" type="text" name="listingzipcode" id="form-zipcode" placeholder="zip code">
+						<input class="form-control" type="text" name="listingzipcode" id="form-zipcode" placeholder="Zipcode">
 					</div>
 
 				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 text-right">Approximate Address <label class="text-danger">*</label></label>
+					<div class="col-sm-10">
+						<label for="listing-internet">
+							<input type="checkbox" name="listingaddressapprox" id="form-approx" value="approximate">
+						</label>
+						<label style="color:#FFA500; font-weight:normal;">Please check this box when you don't want the exact location of the home displayed.</label>
+					</div>
+				</div>
+
+				<hr/>
 
 				<div class="form-group row">
 					<label for="form-numofbeds" class="col-sm-2 text-right">Bedrooms</label>
@@ -150,40 +156,40 @@
 				</div>
 				
 				<div class="form-group row">
-					<label for="form-type" class="col-sm-2 text-right">Type<label class="text-danger">*</label></label>
+					<label for="form-type" class="col-sm-2 text-right">Type <label class="text-danger">*</label></label>
 					<div class="col-sm-10">
 						<label for="listing-apt">
-							<input type="radio" name="listingtype" id="listing-apt" value="apartment">Apartment
+							<input type="radio" name="listingtype" id="listing-apt" value="apartment"> Apartment
 						</label>
 						<label for="listing-house">
-							<input type="radio" name="listingtype" id="listing-house" value="house">House
+							<input type="radio" name="listingtype" id="listing-house" value="house"> House
 						</label>
 						<label for="listing-room">
-							<input type="radio" name="listingtype" id="listing-room" value="room">Room
+							<input type="radio" name="listingtype" id="listing-room" value="room"> Room
 						</label>
 						<label for="listing-shared-room">
-							<input type="radio" name="listingtype" id="listing-shared-room" value="sharedroom">Shared room
+							<input type="radio" name="listingtype" id="listing-shared-room" value="sharedroom"> Shared room
 						</label>
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label class="col-sm-2 text-right">Misc</label>
+					<label class="col-sm-2 text-right">Benefits</label>
 					<div class="col-sm-10">
 						<label for="listing-internet">
-							<input type="checkbox" name="listingmisc" id="listing-internet" value="internet">Internet
+							<input type="checkbox" name="listingmisc" id="listing-internet" value="internet"> Internet
 						</label>
 						<label for="listing-pets">
-							<input type="checkbox" name="listingmisc" id="listing-pets" value="pet">Pets
+							<input type="checkbox" name="listingmisc" id="listing-pets" value="pet"> Pets
 						</label>
 						<label for="listing-elevator">
-							<input type="checkbox" name="listingmisc" id="listing-elevator" value="elevator">Elevator
+							<input type="checkbox" name="listingmisc" id="listing-elevator" value="elevator"> Elevator
 						</label>
 						<label for="listing-furnished">
-							<input type="checkbox" name="listingmisc" id="listing-furnished" value="furniture">Furnished
+							<input type="checkbox" name="listingmisc" id="listing-furnished" value="furniture"> Furnished
 						</label>
 						<label for="listing-ac">
-							<input type="checkbox" name="listingmisc" id="listing-ac" value="airconditioning">Air Conditioning
+							<input type="checkbox" name="listingmisc" id="listing-ac" value="airconditioning"> Air Conditioning
 						</label>
 					</div>
 				</div>
@@ -195,12 +201,21 @@
 					</div>
 				</div>
 
+				<hr/>
+
 				<div class="form-group row">
 					<label for="form-image" class="col-sm-2 text-right">Image(s)</label>
 					<div class="col-sm-10">
 						<input type="file" name="listing-image" id="form-image" multiple>
-						<label><h5>choose one or more</h5></label>
+						<label style="color:#FFA500; font-weight:normal;">Choose one or more</label>
 					</div>
+				</div>
+
+				<hr/>
+
+				<div class="form-group row">
+					<div class="col-sm-2"></div>
+					<label class="col-sm-10" style="color:#FFA500; font-weight:normal;">All fields marked with * must be filled in</label>
 				</div>
 
 				<div class="row">
