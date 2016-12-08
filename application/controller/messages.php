@@ -243,4 +243,16 @@ class Messages extends Controller{
 		$arrayOfMessageObjects = $messageRepo->find($_POST["listingId"], "listingId");
 		$messageRepo->remove($arrayOfMessageObjects[0]);		
 	} // end function deleteMessage()
+
+	public function goToMessage($listingID) {
+
+		if(empty($_SESSION)){
+			echo URL . 'home/login';
+
+		} else {
+			echo URL . 'messages/conversation/' . $listingID . '/' . $_SESSION['userid'];
+			
+		}
+
+	}
 } // end class Messages

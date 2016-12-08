@@ -163,6 +163,7 @@ class Users extends Controller {
 		//Save the email and password into $_SESSION
 		$_SESSION["email"] = $user->getEmail();
 		$_SESSION["password"] = $user->getPassword();
+        $_SESSION["userid"] = $userID;
 		
 		// display the user's page
 		//Change it to home page?
@@ -209,15 +210,9 @@ class Users extends Controller {
 				//Save the email and password into $_SESSION
 				$_SESSION["email"] = $email;
 				$_SESSION["password"] = $password;
-
-                //Find, store and echo the userid.
-                $arrayOfResults = $userRepo->find($_SESSION["email"], "email");
-                $user = $arrayOfResults[0];
-
                 $_SESSION["userid"] = $user->getId();
 
                 echo $_SESSION["previous_url"];
-
 				//Don't need to do anything else as the ajax callback will redirect
 				//Maybe have it redirect to user page than homepage
 			
