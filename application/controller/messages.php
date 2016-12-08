@@ -246,12 +246,11 @@ class Messages extends Controller{
 
 	public function goToMessage($listingID) {
 
-		if(empty($_SESSION)){
+		if(!isset($_SESSION['userid'])){
 			echo URL . 'home/login';
 
 		} else {
 			echo URL . 'messages/conversation/' . $listingID . '/' . $_SESSION['userid'];
-			
 		}
 
 	}
