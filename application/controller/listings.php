@@ -26,7 +26,7 @@ class Listings extends Controller {
 		
 		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingID);
 
-		if(!empty($_SESSION)) {
+		if(isset($_SESSION["email"])) {
             $userRepo = RepositoryFactory::createRepository("user");
             $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
             require APP . "view/_templates/logged_in_header.php";
@@ -99,7 +99,7 @@ class Listings extends Controller {
 	public function edit($listingID) {
 		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingID);
 
-		if(!empty($_SESSION)) {
+		if(isset($_SESSION["email"])) {
             $userRepo = RepositoryFactory::createRepository("user");
             $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
             require APP . "view/_templates/logged_in_header.php";

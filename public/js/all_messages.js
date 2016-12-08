@@ -10,7 +10,7 @@ $(document).ready(function () {
 		beforeSend: function () {
 			
 		},
-		success: formatAllListingMessages,
+		success: handleEvent,
 		error: function(xhr, err, errThrown) {
 			console.log("I failed");
 			console.log(err);
@@ -19,6 +19,14 @@ $(document).ready(function () {
 	});
 
 });
+
+function handleEvent(event) {
+	if(event === "You are not logged in") {
+		console.log("GG son");
+	} else {
+		formatAllListingMessages(event);
+	}
+}
 
 function formatAllListingMessages(event) {
 

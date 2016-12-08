@@ -32,7 +32,7 @@ class Users extends Controller {
     	//Checks if there is a session(whether the user is logged in or not)
     	//If so, require the logged in header, with user profile/logout
     	//If not, require the regular header with login/register
-    	if(!empty($_SESSION)) {
+    	if(isset($_SESSION["email"])) {
     		$userRepo = RepositoryFactory::createRepository("user");
         	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
 
@@ -201,7 +201,6 @@ class Users extends Controller {
 			// one stored in the user's User object, display error
 			$verifyPassword = password_verify($password, $user->getPassword());
 			if (!$verifyPassword){
-                
 				echo "wrong";
 			}
 			
@@ -217,7 +216,7 @@ class Users extends Controller {
 
                 $_SESSION["userid"] = $user->getId();
 
-                echo $_SESSION["userid"];
+                echo $_SESSION["previous_url"];
 
 				//Don't need to do anything else as the ajax callback will redirect
 				//Maybe have it redirect to user page than homepage
@@ -254,7 +253,7 @@ class Users extends Controller {
 	public function favorites($userID) {
 		$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
 
-		if(!empty($_SESSION)) {
+		if(isset($_SESSION["email"])) {
     		$userRepo = RepositoryFactory::createRepository("user");
         	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
 
@@ -274,7 +273,7 @@ class Users extends Controller {
     public function userlistings($userID) {
     	$userResponse = UserResponseCreator::createGetUserProfileResponse($userID);
 
-    	if(!empty($_SESSION)) {
+    	if(isset($_SESSION["email"])) {
     		$userRepo = RepositoryFactory::createRepository("user");
         	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
 

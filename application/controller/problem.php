@@ -19,7 +19,7 @@ class Problem extends Controller
     public function index()
     {
         // load views
-        if(!empty($_SESSION)) {
+        if(isset($_SESSION["email"])) {
             $userRepo = RepositoryFactory::createRepository("user");
             $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
             require APP . "view/_templates/logged_in_header.php";
