@@ -247,6 +247,7 @@ class Messages extends Controller{
 	public function goToMessage($listingID) {
 
 		if(!isset($_SESSION['userid'])){
+			$_SESSION["previous_url"] = URL . 'listings/getlisting/' . $listingID;
 			echo URL . 'home/login';
 
 		} else {
