@@ -50,13 +50,15 @@
 				<h3 class="featured-listing-title"><?php echo $newListings["listings"][$indexOne]->getTitle() ?></h3>
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexOne] ?>" alt="Image missing." style="width: 250px; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexOne]->getListingId() ?>")>
 
+
 				<?php
+					// check for approx address
 					$address = "";
 					if ($newListings["addresses"][$indexOne]->getApproximateAddress() == 0) {
-						$address = $newListings["addresses"][$indexOne]->getStreetName();
-					else $address = $newListings["addresses"][$indexOne]->getZipcode();
+						$address = $newListings["addresses"][$indexOne]->getStreetName(); 
 					}
-
+					else $address = $newListings["addresses"][$indexOne]->getZipcode();
+				?>
 
 				<div>
 					<p class="listing-price">$<?php echo $newListings["listings"][$indexOne]->getPrice() ?></p>
@@ -81,12 +83,21 @@
 				<h3 class="featured-listing-title"><?php echo $newListings["listings"][$indexTwo]->getTitle() ?></h3>
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexTwo] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexTwo]->getListingId() ?>")>
 
+				<?php
+					// check for approx address
+					$address = "";
+					if ($newListings["addresses"][$indexTwo]->getApproximateAddress() == 0) {
+						$address = $newListings["addresses"][$indexTwo]->getStreetName(); 
+					}
+					else $address = $newListings["addresses"][$indexTwo]->getZipcode();
+				?>
+
 				<div>
 					<p class="listing-price">$<?php echo $newListings["listings"][$indexTwo]->getPrice() ?></p>
 					<ul class="listing-expanded-info">
 						<li><p class="listing-subtitle">Bed</p> <?php echo $newListings["listing_details"][$indexTwo]->getNumberOfBedrooms() ?></li>
 						<li><p class="listing-subtitle">Bath</p> <?php echo $newListings["listing_details"][$indexTwo]->getNumberOfBathrooms() ?></li>
-						<li><span class="listing-subtitle">Address</span> <?php echo $newListings["addresses"][$indexTwo]->getStreetName() ?></li>
+						<li><span class="listing-subtitle">Address</span> <?php echo $address ?></li>
 						<li><p class="listing-subtitle">Distance To SFSU</p> <?php echo $newListings["addresses"][$indexTwo]->getDistance() ?> miles</li>
 					</ul>
 				</div>
@@ -104,12 +115,21 @@
 				<h3 class="featured-listing-title"><?php echo $newListings["listings"][$indexThree]->getTitle() ?></h3>
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexThree] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexThree]->getListingId() ?>")>
 
+				<?php
+					// check for approx address
+					$address = "";
+					if ($newListings["addresses"][$indexThree]->getApproximateAddress() == 0) {
+						$address = $newListings["addresses"][$indexThree]->getStreetName(); 
+					}
+					else $address = $newListings["addresses"][$indexThree]->getZipcode();
+				?>
+
 				<div>
 					<p class="listing-price"> $<?php echo $newListings["listings"][$indexThree]->getPrice() ?></p>
 					<ul class="listing-expanded-info">
 						<li><span class="listing-subtitle">Bed</span> <?php echo $newListings["listing_details"][$indexThree]->getNumberOfBedrooms() ?></li>
 						<li><span class="listing-subtitle">Bath</span> <?php echo $newListings["listing_details"][$indexThree]->getNumberOfBathrooms() ?></li>
-						<li><span class="listing-subtitle">Address</span> <?php echo $newListings["addresses"][$indexThree]->getStreetName() ?></li>
+						<li><span class="listing-subtitle">Address</span> <?php echo $address ?></li>
 						<li><span class="listing-subtitle">Distance To SFSU</span> <?php echo $newListings["addresses"][$indexThree]->getDistance() ?> miles</li>
 					</ul>
 				</div>
@@ -131,12 +151,21 @@
 				<h3 class="featured-listing-title"><?php echo $newListings["listings"][$indexFour]->getTitle() ?></h3>
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexFour] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFour]->getListingId() ?>")>
 
+				<?php
+					// check for approx address
+					$address = "";
+					if ($newListings["addresses"][$indexFour]->getApproximateAddress() == 0) {
+						$address = $newListings["addresses"][$indexFour]->getStreetName(); 
+					}
+					else $address = $newListings["addresses"][$indexFour]->getZipcode();
+				?>
+
 				<div>
 					<p class="listing-price"> $<?php echo $newListings["listings"][$indexFour]->getPrice() ?></p>
 					<ul class="listing-expanded-info">
 						<li><p class="listing-subtitle">Bed</p> <?php echo $newListings["listing_details"][$indexFour]->getNumberOfBedrooms() ?></li>
 						<li><p class="listing-subtitle">Bath</p> <?php echo $newListings["listing_details"][$indexFour]->getNumberOfBathrooms() ?></li>
-						<li><span class="listing-subtitle">Address</span> <?php echo $newListings["addresses"][$indexFour]->getStreetName() ?></li>
+						<li><span class="listing-subtitle">Address</span> <?php echo $address ?></li>
 						<li><p class="listing-subtitle">Distance To SFSU</p> <?php echo $newListings["addresses"][$indexFour]->getDistance() ?> miles</li>
 					</ul>
 				</div>
@@ -153,13 +182,22 @@
 
 				<h3 class="featured-listing-title"><?php echo $newListings["listings"][$indexFive]->getTitle() ?></h3>
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexFive] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFive]->getListingId() ?>")>
+				
+				<?php
+					// check for approx address
+					$address = "";
+					if ($newListings["addresses"][$indexFive]->getApproximateAddress() == 0) {
+						$address = $newListings["addresses"][$indexFive]->getStreetName(); 
+					}
+					else $address = $newListings["addresses"][$indexFive]->getZipcode();
+				?>
 
 				<div>
 					<p class="listing-price"> $<?php echo $newListings["listings"][$indexFive]->getPrice() ?></p>
 					<ul class="listing-expanded-info">
 						<li><p class="listing-subtitle">Bed</p> <?php echo $newListings["listing_details"][$indexFive]->getNumberOfBedrooms() ?></li>
 						<li><p class="listing-subtitle">Bath</p> <?php echo $newListings["listing_details"][$indexFive]->getNumberOfBathrooms() ?></li>
-						<li><span class="listing-subtitle">Address</span> <?php echo $newListings["addresses"][$indexFive]->getStreetName() ?></li>
+						<li><span class="listing-subtitle">Address</span> <?php echo $address ?></li>
 						<li><p class="listing-subtitle">Distance To SFSU</p> <?php echo $newListings["addresses"][$indexFive]->getDistance() ?> miles</li>
 					</ul>
 				</div>
@@ -177,12 +215,21 @@
 				<h3 class="featured-listing-title"><?php echo $newListings["listings"][$indexSix]->getTitle() ?></h3>
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexSix] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexSix]->getListingId() ?>")>
 
+				<?php
+					// check for approx address
+					$address = "";
+					if ($newListings["addresses"][$indexSix]->getApproximateAddress() == 0) {
+						$address = $newListings["addresses"][$indexSix]->getStreetName(); 
+					}
+					else $address = $newListings["addresses"][$indexSix]->getZipcode();
+				?>
+
 				<div>
 					<p class="listing-price"> $<?php echo $newListings["listings"][$indexSix]->getPrice() ?></p>
 					<ul class="listing-expanded-info">
 						<li><p class="listing-subtitle">Bed</p> <?php echo $newListings["listing_details"][$indexSix]->getNumberOfBedrooms() ?></li>
 						<li><p class="listing-subtitle">Bath</p> <?php echo $newListings["listing_details"][$indexSix]->getNumberOfBathrooms() ?></li>
-						<li><span class="listing-subtitle">Address</span> <?php echo $newListings["addresses"][$indexSix]->getStreetName() ?></li>
+						<li><span class="listing-subtitle">Address</span> <?php echo $address ?></li>
 						<li><p class="listing-subtitle">Distance To SFSU</p> <?php echo $newListings["addresses"][$indexSix]->getDistance() ?> miles</li>
 					</ul>
 				</div>
