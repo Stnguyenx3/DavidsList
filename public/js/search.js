@@ -420,6 +420,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 	            	var resultIndex = r % resultsPerPage;
 					var resultDiv = $(searchResultContent).find("#search-result-listing-" + resultIndex);
 					var furnished;
+					var address;
 
 					// Handle last page with possibly not 5 items
 					if (result[r] == undefined){
@@ -427,6 +428,11 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 							notShown[r-((page - 1) * resultsPerPage)-1] = true;
 					} else {
 
+						if (result[r].approximateAddress == 0){
+							address = result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode;
+						} else {
+							address = result[r].city + " " + result[r].state + ", " + result[r].zipcode;
+						}
 						// fix for missing distances
 						var distance = result[r].distance;
 						if (distance == null){ // if this happens more than once on a page it breaks
@@ -447,7 +453,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 						// put in divs on page
 						$(resultDiv).find(".search-result-listing-img").attr("src", "data:image/png;base64," + result[r].imageThumbnail);
 						$(resultDiv).find(".search-result-listing-img").click({listingId: result[r].listingId}, onClickToListings);
-						$(resultDiv).find(".search-result-listing-address").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
+						$(resultDiv).find(".search-result-listing-address").text(address);
 						$(resultDiv).find(".search-result-listing-price").text("$" + result[r].price);
 						$(resultDiv).find(".search-result-listing-title").text(result[r].title);
 						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance);

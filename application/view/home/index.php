@@ -50,13 +50,20 @@
 				<h3 class="featured-listing-title"><?php echo $newListings["listings"][$indexOne]->getTitle() ?></h3>
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexOne] ?>" alt="Image missing." style="width: 250px; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexOne]->getListingId() ?>")>
 
+				<?php
+					$address = "";
+					if ($newListings["addresses"][$indexOne]->getApproximateAddress() == 0) {
+						$address = $newListings["addresses"][$indexOne]->getStreetName();
+					else $address = $newListings["addresses"][$indexOne]->getZipcode();
+					}
+
 
 				<div>
 					<p class="listing-price">$<?php echo $newListings["listings"][$indexOne]->getPrice() ?></p>
 					<ul class="listing-expanded-info">
 						<li><p class="listing-subtitle">Bed</p> <?php echo $newListings["listing_details"][$indexOne]->getNumberOfBedrooms() ?></li>
 						<li><p class="listing-subtitle">Bath</p> <?php echo $newListings["listing_details"][$indexOne]->getNumberOfBathrooms() ?></li>
-						<li><span class="listing-subtitle">Address</span> <?php echo $newListings["addresses"][$indexOne]->getStreetName() ?></li>
+						<li><span class="listing-subtitle">Address</span> <?php echo $address ?></li>
 						<li><p class="listing-subtitle">Distance To SFSU</p> <?php echo $newListings["addresses"][$indexOne]->getDistance() ?> miles</li>
 					</ul>
 				</div>
