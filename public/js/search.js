@@ -180,6 +180,7 @@ function buildPage(){
 function formatResults(event) {
 
 	var resultsPerPage = 5; //MAX NUMBER OF RESULTS PER PAGINATION PAGE.
+	console.log(event);
 	var result = JSON.parse(event);
 	var numOfResults = result.length;
 	var numOfPages = Math.ceil(numOfResults / resultsPerPage);
@@ -393,6 +394,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 
     // handle no results
     if (numOfResultIDs == 0) {
+    	$(searchResultContent).find("#no-result-message").text("No results for these restrictions. Please use the filters."); // show no result message
 		$(searchResultContent).find("#no-result").css("display", "block"); // show no result message
 		toggleBlockDisplay("#result-number", false); // stop showing number of results
 		toggleBlockDisplay("#result-pagination-wrapper", false); // stop showing scroll bar 
