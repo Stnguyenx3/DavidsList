@@ -83,6 +83,10 @@ function formatUserListings(event) {
 				} else {
 					furnished = "No";
 				}
+				
+				if (event[i].address.approximateAddress == 1){
+						listingAddress = event[i].address.city + " " + event[i].address.state + ", " + event[i].address.zipcode;
+				} 
 				var distance = event[i].address.distance;
 				var listingPrice = event[i].listing.price;
 				var listingDescription = event[i].listing_detail.description;
