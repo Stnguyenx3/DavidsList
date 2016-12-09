@@ -35,63 +35,74 @@ function formatUserListings(event) {
 
 		var numOfListings = event.length;
 
-		for (var i = 0; i < numOfListings; i++){
+		if(numOfListings == 0){
+			//Display no result message to user.
+			var row = $("<div></div>").addClass("row search-result-listing-null").appendTo($("#favorites"));
+			$("<div></div>").addClass("col-sm-3").appendTo($(row));
+			var col = $("<div></div>").addClass("col-sm-6").appendTo($(row));
+			var message = $("<p></p>").addClass("search-result-listing-null no-center").appendTo($(col));
+			$(message).text("You currently have no favorites. Try adding favorites by pressing the 'Favorite' button while looking at a house. This will help you find back your favorite listings at a later time.");
 
-			var row0 = $("<div></div>").addClass("row search-result-listing").appendTo($("#favorites"));
+		} else {
+			for (var i = 0; i < numOfListings; i++){
 
-			//Add unique ID for each row (remove if not needed!)
-			$(row0).attr("id", "user-favorite-" + event[i].listing.listingId);
+				var row0 = $("<div></div>").addClass("row search-result-listing").appendTo($("#favorites"));
 
-			// var col0 = $("<div></div>").addClass("col-sm-12").appendTo($(row0));
-			// var row1 = $("<div></div>").addClass("row").appendTo($(col0));
-			var col1 = $("<div></div>").addClass("col-sm-4").appendTo($(row0));
-			var img = $("<img></img>").addClass("search-result-listing-img").appendTo($(col1));
-			var col2 = $("<div></div>").addClass("col-sm-8").appendTo($(row0));
-			var row2 = $("<div></div>").addClass("row").appendTo($(col2));
-			var row3 = $("<div></div>").addClass("row").appendTo($(col2)); 
-			var title = $("<p></p>").addClass("search-result-listing-title listing-title").appendTo($(row2));
-			var price = $("<p></p>").addClass("search-result-listing-price listing-price").appendTo($(row2));
-			$("</br>").appendTo($(col2));
-			var address = $("<p></p>").addClass("search-result-listing-address").appendTo($(row3));
-			var basicInfo = $("<p></p>").addClass("search-result-listing-basic-info").appendTo($(row3));
-			var description= $("<p></p>").addClass("search-result-listing-basic-info").appendTo($(row3));
+				//Add unique ID for each row (remove if not needed!)
+				$(row0).attr("id", "user-favorite-" + event[i].listing.listingId);
 
-			var a1 = $("<a></a>").addClass("btn btn-primary user-favorite-remove-" + event[i].listing.listingId)
-						.click({listingId: event[i].listing.listingId}, onClickDeleteListing);
+				var col1 = $("<div></div>").addClass("col-sm-4").appendTo($(row0));
+				var img = $("<img></img>").addClass("search-result-listing-img").appendTo($(col1));
+				var col2 = $("<div></div>").addClass("col-sm-8").appendTo($(row0));
+				var row2 = $("<div></div>").addClass("row").appendTo($(col2));
+				var row3 = $("<div></div>").addClass("row").appendTo($(col2)); 
+				var title = $("<p></p>").addClass("search-result-listing-title listing-title").appendTo($(row2));
+				var price = $("<p></p>").addClass("search-result-listing-price listing-price").appendTo($(row2));
+				var address = $("<p></p>").addClass("search-result-listing-address").appendTo($(row3));
+				var basicInfo = $("<p></p>").addClass("search-result-listing-basic-info").appendTo($(row3));
+				var description= $("<p></p>").addClass("search-result-listing-basic-info").appendTo($(row3));
 
-			var a2 = $("<a></a>").addClass("btn btn-primary user-favorite-go")
-						.click({listingId: event[i].listing.listingId}, onClickGoToListing);
+				var a1 = $("<a></a>").addClass("btn btn-primary user-favorite-remove-" + event[i].listing.listingId)
+							.click({listingId: event[i].listing.listingId}, onClickDeleteListing);
 
-			$(a2).appendTo($(col2));
-			$(a1).appendTo($(col2));
+				var a2 = $("<a></a>").addClass("btn btn-primary user-favorite-go")
+							.click({listingId: event[i].listing.listingId}, onClickGoToListing);
 
-			//Store listing inforation into variables.
-			var listingTitle = event[i].listing.title;
-			var listingImg = "data:image/png;base64,"+event[i].listing_images;
-			var listingAddress = event[i].address.streetName + " " + event[i].address.city + " " + event[i].address.state + ", " + event[i].address.zipcode;
-			var listingBed = event[i].listing_detail.numberOfBedrooms;
-			var listingBath = event[i].listing_detail.numberOfBathrooms;
-			var furnished;
-			if (event[i].listing_detail.furnishing == 1) {
-				furnished = "Yes";
-			} else {
-				furnished = "No";
+				$(a2).appendTo($(row3));
+				$(a1).appendTo($(row3));
+
+				//Store listing inforation into variables.
+				var listingTitle = event[i].listing.title;
+				var listingImg = "data:image/png;base64,"+event[i].listing_images;
+				var listingAddress = event[i].address.streetName + " " + event[i].address.city + " " + event[i].address.state + ", " + event[i].address.zipcode;
+				var listingBed = event[i].listing_detail.numberOfBedrooms;
+				var listingBath = event[i].listing_detail.numberOfBathrooms;
+				var furnished;
+				if (event[i].listing_detail.furnishing == 1) {
+					furnished = "Yes";
+				} else {
+					furnished = "No";
+				}
+				
+				if (event[i].address.approximateAddress == 1){
+						listingAddress = event[i].address.city + " " + event[i].address.state + ", " + event[i].address.zipcode;
+				} 
+				var distance = event[i].address.distance;
+				var listingPrice = event[i].listing.price;
+				var listingDescription = event[i].listing_detail.description;
+
+				//Insert listing information into HTML elements.
+				$(title).text(listingTitle);
+				$(img).attr("src", listingImg);
+				$(img).click({listingId: event[i].listing.listingId}, onClickGoToListing);
+				$(price).text("$" + listingPrice);
+				$(address).text(listingAddress);
+				$(basicInfo).text("Bed: " + listingBed + " | " + "Bath: " + listingBath + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance + " mi");
+				// $(description).text("Description: "+ listingDescription);
+				$(a1).text("Remove");
+				$(a2).text("Go to listing");
+
 			}
-			var distance = event[i].address.distance;
-			var listingPrice = event[i].listing.price;
-			var listingDescription = event[i].listing_detail.description;
-
-			//Insert listing information into HTML elements.
-			$(title).text(listingTitle);
-			$(img).attr("src", listingImg);
-			$(img).click({listingId: event[i].listing.listingId}, onClickGoToListing);
-			$(price).text("$" + listingPrice);
-			$(address).text(listingAddress);
-			$(basicInfo).text("Bed: " + listingBed + " | " + "Bath: " + listingBath + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance);
-			$(description).text("Description:"+ listingDescription);
-			$(a1).text("Remove");
-			$(a2).text("Go to listing");
-
 		}
 		
 	});

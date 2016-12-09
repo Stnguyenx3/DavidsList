@@ -40,7 +40,7 @@ function formatAllListingMessages(event) {
 
 		for (var i = 0; i < messages.length; i++){
 
-			var row0 = $("<div></div>").addClass("row user-listing linear-gradient-bg custom-border").appendTo($("#allListingMessages"));
+			var row0 = $("<div></div>").addClass("row user-listing").appendTo($("#allListingMessages"));
 
 			//Add unique ID for each row (remove if not needed!)
 			$(row0).attr("id", "message-thread-" + i);
@@ -81,7 +81,7 @@ function formatAllListingMessages(event) {
 			}
 
 			//Insert listing information into HTML elements.
-			$(h0).text("Listing title Here");
+			$(h0).text("Listing Title");
 			$(p0).text(senderUsername + ": " + message);
 			$(a0).text("Reply");
 			$(img).attr("src", "http://placehold.it/150x150");
