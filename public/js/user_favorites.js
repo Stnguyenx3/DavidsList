@@ -94,7 +94,7 @@ function formatUserListings(event) {
 				$(price).text("$" + listingPrice);
 				$(address).text(listingAddress);
 				$(basicInfo).text("Bed: " + listingBed + " | " + "Bath: " + listingBath + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance + " mi");
-				$(description).text("Description: "+ listingDescription);
+				// $(description).text("Description: "+ listingDescription);
 				$(a1).text("Remove");
 				$(a2).text("Go to listing");
 

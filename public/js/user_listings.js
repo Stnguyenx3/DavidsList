@@ -11,7 +11,13 @@ $(document).ready(function () {
 	var headerDiv = $("<div></div>").addClass("row").appendTo($("#listings"));
 	var header = $("<h2></h2>").addClass("centered-header").appendTo($("#listings"));
 
-	$(header).text("Your listings");
+	$(header).text("Your Listings");
+
+	var addButton = $("<div></div>").addClass("row").appendTo($("#listings"));
+	var button = $("<a></a>").addClass("btn btn-primary user-add")
+							.click(function(){window.location.replace(url+"/home/rentout")})
+							.appendTo($(addButton));
+	$(button).text("Create New Listing");
 
 	$.ajax({
 		type:'GET',

@@ -646,6 +646,12 @@ a[class*="user-favorite-remove-"],
     width: 100%;
 }
 
+.user-add {
+    font-size: 20px;
+    float: left;
+    margin: 30px;
+}
+
 .panel {
     background-color: transparent;
 }
