@@ -692,6 +692,10 @@ a[class*="user-favorite-remove-"],
     resize: none;
 }
 
+.vertical-divider {
+    border-right: 1px solid #FFA500;
+}
+
 
 /*All messages page*/
 .message-thread-message {
