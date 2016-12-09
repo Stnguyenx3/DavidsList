@@ -1,9 +1,9 @@
-<div class="container" style="margin-top: 25px">
+<div class="container main">
 	<div class="row">
 
 	<div class="col-md-1"></div>
 
-		<div class="col-md-10 user-overview custom-border linear-gradient-bg">
+		<div class="col-md-10 user-overview">
 
 			<h2 class="centered-header">Profile</h2>
 

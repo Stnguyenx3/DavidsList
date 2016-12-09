@@ -639,6 +639,8 @@ a[class*="user-favorite-remove-"],
 
 .user-overview {
     padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .user-change-pw {
