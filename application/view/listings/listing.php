@@ -72,18 +72,24 @@
 							<p class="listing-price"> $<?php echo $listingResponse["listing"]->getPrice() ?></p>
 						</div>
 						<div style="clear: both">
+
+							<?php
+								// check for approx address
+								$address = "";
+								if ($listingResponse["address"]->getApproximateAddress() == 0) {
+									$address = $listingResponse["address"]->getStreetName(); 
+								}
+								else $address = $listingResponse["address"]->getZipcode().", ".$listingResponse["address"]->getCity()." ".$listingResponse["address"]->getState();
+							?>
 								
-							<p class="listing-street-name"><?php echo $listingResponse["address"]->getStreetName() ?></p>
-							<p class="listing-city"><?php echo $listingResponse["address"]->getCity() ?></p>
-							<p class="listing-state"><?php echo $listingResponse["address"]->getState() ?></p>
-							<p class=listing-zipcode><?php echo $listingResponse["address"]->getZipcode() ?></p>
+							<span class="listing-subtitle" style="margin-left: 15px;"><?php echo $address?></span>
 
 							<br>
 
 							<ul class="listing-basic-info">
 								<li>Bed: <?php echo $listingResponse["listing_detail"]->getNumberOfBedrooms() ?></li>
 								<li>Bath: <?php echo $listingResponse["listing_detail"]->getNumberOfBathrooms() ?></li>
-								<li>Distance:</li>
+								<li>Distance: <?php echo $listingResponse["address"]->getDistance()?> mi</li>
 								<li id="output"> </li>
 							</ul>
 
@@ -156,7 +162,7 @@
   		var bounds = new google.maps.LatLngBounds;
   		var markersArray = [];
 
-  		var origin = "<?php echo $listingResponse["address"]->getStreetName() . $listingResponse["address"]->getCity() ?>";
+  		var origin = "<?php echo $address ?>";
   		var destination = '1600 Holloway Ave, San Francisco'; 
 
   		var destinationIcon = 'https://chart.googleapis.com/chart?' +
@@ -213,7 +219,7 @@
       				showGeocodedAddressOnMap(false));
       			geocoder.geocode({'address' : destinationList[0]},
       				showGeocodedAddressOnMap(true));
-           		    outputDiv.innerHTML += results[0].distance.text
+           		    // outputDiv.innerHTML += results[0].distance.text
     		}
   		});
 	}
