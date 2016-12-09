@@ -180,7 +180,6 @@ function buildPage(){
 function formatResults(event) {
 
 	var resultsPerPage = 5; //MAX NUMBER OF RESULTS PER PAGINATION PAGE.
-	console.log(event);
 	var result = JSON.parse(event);
 	var numOfResults = result.length;
 	var numOfPages = Math.ceil(numOfResults / resultsPerPage);
