@@ -15,7 +15,7 @@ $('#login-form').submit(function (e) {
 			} else if (event === "wrong") {
 				$("#inputPassword").notify("Invalid Username/Password combination!", {position: "right-middle"});
 			} else {
-				window.location.replace(url);
+				window.location.replace(event);
 			}
 		},
 		error: function(xhr, err, errThrown) {

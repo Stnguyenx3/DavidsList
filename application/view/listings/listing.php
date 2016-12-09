@@ -112,7 +112,7 @@
 
 		<div class="col-sm-4">
 			<div class="row buttons">
-				<div><button type="button" class="btn btn-primary rent-button">Rent</button></div>
+				<div><button type="button" class="btn btn-primary rent-button" onclick="onContactClick()">Rent</button></div>
 
 				<div><button type="button" rel="popover" id="listing-favorite-btn" class="btn btn-primary listing-favorite-btn" onclick="onFavoriteClick()">
 						<span class="glyphicon glyphicon-heart"></span> Favorite
@@ -142,13 +142,23 @@
 
 <script>
 
-	var clientUserID = <?php echo $_SESSION['userid'] ?>;
-
 	function onContactClick() {
 		var str = (window.location + '').split("/");
 		var listingID = str[str.length - 1];
 		var ownerID = "<?php echo $listingResponse["listing"]->getId() ?>"
-		window.location.replace(url+"messages/conversation/" + listingID + "/" + clientUserID);
+		// window.location.replace(url+"messages/conversation/" + listingID + "/" + clientUserID);
+		$.ajax({
+			type:'GET',
+			url: url+"messages/goToMessage/"+listingID,
+			success: function(event) {
+				window.location.replace(event);
+			},
+			error: function(xhr, err, errThrown) {
+				console.log("I failed");
+				console.log(err);
+				console.log(errThrown);
+			}
+		});
 	}
 
 	function initMap() {					
