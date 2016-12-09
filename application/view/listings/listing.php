@@ -68,7 +68,7 @@
 					<div class="col-sm-12">
 
 						<div>
-							<p class="listing-title">Listing Name</p>
+							<p class="listing-title"><?php echo $listingResponse["listing"]->getTitle()?></p>
 							<p class="listing-price"> $<?php echo $listingResponse["listing"]->getPrice() ?></p>
 						</div>
 						<div style="clear: both">
@@ -88,6 +88,7 @@
 							</ul>
 
 							<ul class="listing-expanded-info">
+								<li><p class="listing-subtitle">Type</p> <?php echo $listingResponse["listing"]->getType()?></li>
 								<li><p class="listing-subtitle">Internet</p> <?php echo $listingResponse["listing_detail"]->getInternet() ? "Yes" : "No" ?></li>
 								<li><p class="listing-subtitle">Pets</p> <?php echo $listingResponse["listing_detail"]->getPetPolicy() ?></li>
 								<li><p class="listing-subtitle">Elevator</p> <?php echo $listingResponse["listing_detail"]->getElevatorAccess() ?></li>

@@ -529,8 +529,10 @@ div#header.container {
 .user-favorite-img {
     margin-top: auto;
     margin-bottom: auto;
-    width: 100%;
-    height: auto;
+    /*width: 100%;
+    height: auto;*/
+    width: 200px;
+    height:200px;
 }
 
 .search-result-listing-null {
@@ -647,6 +649,10 @@ a[class*="user-favorite-remove-"],
 
 .panel {
     background-color: transparent;
+}
+
+.search-result-listing-null .no-center{
+    text-align: left;
 }
 
 /*User Chat Messages Page*/
