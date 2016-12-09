@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 25px">
+<div class="container main" style="margin-top: 25px">
 	<div class="row">
 
 	<div class="col-md-1"></div>
