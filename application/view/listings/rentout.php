@@ -10,23 +10,24 @@
 			<form class="form-rentout" id="rentout" action="#" method="post">
 
 				<div class="form-group row">
-					<label for="form-title" class="col-sm-2 text-right">Title <label class="text-danger">*</label></label>
+					<label for="form-title" class="col-sm-2">Title <label class="text-danger">*</label></label>
 					<div class="col-sm-10">
 						<input class="form-control" type="text" name="listingtitle" id="form-title" placeholder="Title">
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label for="form-price" class="col-sm-2 text-right">Price <label class="text-danger">*</label></label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="listingprice" id="form-price" placeholder="Price">
+					<p class="col-sm-2">Price <span class="text-danger">*</span></p>
+					<div class="col-sm-6">
+						<label for="form-price text-right" >$</label>
+						<input class="form-control" style="width: 60%; display:inline-block" type="text" name="listingprice" id="form-price" placeholder="Price">
 					</div>
 				</div>
 
 				<hr/>
 
 				<div class="form-group row">
-					<label for="form-address" class="col-sm-2 text-right">Address <label class="text-danger">*</label></label>
+					<label for="form-address" class="col-sm-2">Address <label class="text-danger">*</label></label>
 					<div class="col-sm-6">
 						<input class="form-control" type="text" name="listingaddress" id="form-address" placeholder="address">
 					</div>
@@ -34,14 +35,14 @@
 
 
 				<div class="form-group row">
-					<label for="form-city" class="col-sm-2 text-right">City <label class="text-danger">*</label></label>
+					<label for="form-city" class="col-sm-2">City <label class="text-danger">*</label></label>
 					<div class="col-sm-3">
 						<input class="form-control" type="text" name="listingcity" id="form-city" placeholder="city">
 					</div>
 
-					<label for="form-state" class="col-sm-1 text-right">State <label class="text-danger">*</label></label>
-					<div class="col-sm-2">
-						<select class="form-control" name="listingstate" id="form-state" style="width: auto;">
+					<div class="col-sm-4">
+					<p style="display:inline-block">State <span class="text-danger">*</span></p>		
+						<select class="form-control" name="listingstate" id="form-state" style="width: auto; display:inline-block">
 							<option value="">N/A</option>
 							<option value="AK">Alaska</option>
 							<option value="AL">Alabama</option>
@@ -98,15 +99,17 @@
 						</select>
 					</div>
 
-					<label for="form-zipcode" class="col-sm-2 text-right">Zip<label class="text-danger">*</label></label>
-					<div class="col-sm-2">
-						<input class="form-control" type="text" name="listingzipcode" id="form-zipcode" placeholder="Zipcode">
-					</div>
-
 				</div>
 
 				<div class="form-group row">
-					<label class="col-sm-2 text-right">Approximate Address<label class="text-danger">*</label></label>
+					<label for="form-zipcode" class="col-sm-2">Zip<label class="text-danger">*</label></label>
+					<div class="col-sm-2">
+						<input class="form-control" type="text" name="listingzipcode" id="form-zipcode" placeholder="Zipcode">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2">Approximate Address<label class="text-danger">*</label></label>
 					<div class="col-sm-10">
 						<label for="listing-internet">
 							<input type="checkbox" name="listingaddressapprox" id="form-approx" value="approximate">
@@ -118,7 +121,7 @@
 				<hr/>
 
 				<div class="form-group row">
-					<label for="form-numofbeds" class="col-sm-2 text-right">Bedrooms<label class="text-danger">*</label></label>
+					<label for="form-numofbeds" class="col-sm-2">Bedrooms<label class="text-danger">*</label></label>
 					<div class="col-sm-2">
 						<select class="form-control" name="listingnumofbeds" id="form-numofbeds" style="width: auto;">
 							<option value="">N/A</option>
@@ -135,7 +138,7 @@
 						</select>
 					</div>
 
-					<label for="form-numofbaths" class="col-sm-2 text-right">Bathrooms<label class="text-danger">*</label></label>
+					<label for="form-numofbaths" class="col-sm-2">Bathrooms<label class="text-danger">*</label></label>
 					<div class="col-sm-2">
 						<select class="form-control" name="listingnumofbaths" id="form-numofbaths" style="width: auto;">
 							<option value="">N/A</option>
@@ -155,7 +158,7 @@
 				</div>
 				
 				<div class="form-group row">
-					<label for="form-type" class="col-sm-2 text-right">Type<label class="text-danger">*</label></label>
+					<label for="form-type" class="col-sm-2">Type<label class="text-danger">*</label></label>
 					<div class="col-sm-10">
 						<label for="listing-apt">
 							<input type="radio" name="listingtype" id="listing-apt" value="apartment"> Apartment
@@ -173,7 +176,7 @@
 				</div>
 
 				<div class="form-group row">
-					<label class="col-sm-2 text-right">Benefits</label>
+					<label class="col-sm-2">Benefits</label>
 					<div class="col-sm-10">
 						<label for="listing-internet">
 							<input type="checkbox" name="listingmisc" id="listing-internet" value="internet"> Internet
@@ -194,7 +197,7 @@
 				</div>
 
 				<div class="form-group row">
-					<label for="listing-description" class="col-sm-2 text-right">Description</label>
+					<label for="listing-description" class="col-sm-2">Description</label>
 					<div class="col-sm-10">
 						<textarea class="form-control" id="listing-description" rows="4" placeholder="Description"></textarea>
 					</div>
@@ -203,7 +206,7 @@
 				<hr/>
 
 				<div class="form-group row">
-					<label for="form-image" class="col-sm-2 text-right">Image(s)<label class="text-danger">*</label></label>
+					<label for="form-image" class="col-sm-2">Image(s)<label class="text-danger">*</label></label>
 					<div class="col-sm-10">
 						<input type="file" name="listingimage" id="form-image" multiple>
 						<label style="color:#FFA500; font-weight:normal;">Choose one or more</label>

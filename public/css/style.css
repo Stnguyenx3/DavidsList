@@ -622,6 +622,11 @@ input[type=file] {
     color: #FFA500;
 }
 
+.text-right{
+    float: right;
+    display: inline-block;
+}
+
 
 /*User Listings, favorites, and overview*/
 .user-listings-edit {
