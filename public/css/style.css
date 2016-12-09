@@ -681,10 +681,13 @@ a[class*="user-favorite-remove-"],
 
 .user-message-history {
     /*height: 500px; TODO: Scroll bar when overflow 500px*/
+    background-color: rgba(226,226,226,1);
+    padding: 15px;
+    margin-bottom: 15px;
 }
 
 .user-message-to-send {
-    border-top:  3px solid #99CC99;
+    border-top: 1px solid #FFA500;
     padding: 15px;
 }
 
@@ -695,7 +698,6 @@ a[class*="user-favorite-remove-"],
 .vertical-divider {
     border-right: 1px solid #FFA500;
 }
-
 
 /*All messages page*/
 .message-thread-message {

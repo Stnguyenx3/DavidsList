@@ -3,15 +3,15 @@
 	<div class="row user-messages">
 
 		<div class="col-md-1"></div>
-		<div class="col-md-10 messages-content custom-border">
+		<div class="col-md-10 messages-content">
 
 		<!-- Main chat message window -->
 
-			<div class="row user-message-history linear-gradient-bg">
+			<div class="row">
 				<h3 class="messages-header centered-header" id="conversation-title">Message the owner!</h3>
 
 				<div class="col-md-1"></div>
-				<div class="col-md-10" id="all-conversation">
+				<div class="col-md-10  user-message-history" id="all-conversation">
 
 				</div>
 				<div class="col-md-1"></div>
