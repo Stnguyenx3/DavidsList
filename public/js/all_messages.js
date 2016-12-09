@@ -35,6 +35,7 @@ function formatAllListingMessages(event) {
 	$(document).ready(function() {
 
 		var details = event.listing_details;
+		var basic = event.listing;
 		var messages = event.messages;
 		var users = event.users;
 
@@ -80,11 +81,13 @@ function formatAllListingMessages(event) {
 				}
 			}
 
+			var basicInfo = basic.shift();
+
 			//Insert listing information into HTML elements.
-			$(h0).text("Listing Title");
+			$(h0).text(basicInfo[0].title);
 			$(p0).text(senderUsername + ": " + message);
 			$(a0).text("Reply");
-			$(img).attr("src", "http://placehold.it/150x150");
+			$(img).attr("src", "http://placehold.it/150x150"); //"data:image/png;base64," + images[i].imageThumbnail
 
 		}
 		
