@@ -57,7 +57,7 @@
 					if ($newListings["addresses"][$indexOne]->getApproximateAddress() == 0) {
 						$address = $newListings["addresses"][$indexOne]->getStreetName(); 
 					}
-					else $address = $newListings["addresses"][$indexOne]->getZipcode();
+					else $address = $newListings["addresses"][$indexOne]->getZipcode().", ".$newListings["addresses"][$indexOne]->getCity();
 				?>
 
 				<div>
@@ -89,7 +89,7 @@
 					if ($newListings["addresses"][$indexTwo]->getApproximateAddress() == 0) {
 						$address = $newListings["addresses"][$indexTwo]->getStreetName(); 
 					}
-					else $address = $newListings["addresses"][$indexTwo]->getZipcode();
+					else $address = $newListings["addresses"][$indexTwo]->getZipcode().", ".$newListings["addresses"][$indexTwo]->getCity();
 				?>
 
 				<div>
@@ -121,7 +121,7 @@
 					if ($newListings["addresses"][$indexThree]->getApproximateAddress() == 0) {
 						$address = $newListings["addresses"][$indexThree]->getStreetName(); 
 					}
-					else $address = $newListings["addresses"][$indexThree]->getZipcode();
+					else $address = $newListings["addresses"][$indexThree]->getZipcode().", ".$newListings["addresses"][$indexThree]->getCity();
 				?>
 
 				<div>
@@ -157,7 +157,7 @@
 					if ($newListings["addresses"][$indexFour]->getApproximateAddress() == 0) {
 						$address = $newListings["addresses"][$indexFour]->getStreetName(); 
 					}
-					else $address = $newListings["addresses"][$indexFour]->getZipcode();
+					else $address = $newListings["addresses"][$indexFour]->getZipcode().", ".$newListings["addresses"][$indexFour]->getCity();
 				?>
 
 				<div>
@@ -189,7 +189,7 @@
 					if ($newListings["addresses"][$indexFive]->getApproximateAddress() == 0) {
 						$address = $newListings["addresses"][$indexFive]->getStreetName(); 
 					}
-					else $address = $newListings["addresses"][$indexFive]->getZipcode();
+					else $address = $newListings["addresses"][$indexFive]->getZipcode().", ".$newListings["addresses"][$indexFive]->getCity();
 				?>
 
 				<div>
@@ -221,7 +221,7 @@
 					if ($newListings["addresses"][$indexSix]->getApproximateAddress() == 0) {
 						$address = $newListings["addresses"][$indexSix]->getStreetName(); 
 					}
-					else $address = $newListings["addresses"][$indexSix]->getZipcode();
+					else $address = $newListings["addresses"][$indexSix]->getZipcode().", ".$newListings["addresses"][$indexSix]->getCity();
 				?>
 
 				<div>
