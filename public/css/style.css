@@ -567,7 +567,8 @@ div#header.container {
 .user-favorite-remove {
     float: right;
     font-size: 16px;
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
+    /*margin-top: 0px;*/
 }
 
 .result-pagination {
@@ -624,14 +625,12 @@ input[type=file] {
 
 /*User Listings, favorites, and overview*/
 .user-listings-edit {
-    margin: 15px;
+    margin-left: 15px;
     float: right;
 }
 
-.user-listings-remove,
 a[class^="user-favorite-remove-"],
 a[class*="user-favorite-remove-"],
-.user-listings-go,
 .user-favorite-go {
     margin: 15px;
     float: right;
@@ -662,6 +661,7 @@ a[class*="user-favorite-remove-"],
 
 .user-messages {
     font-size: 15px;
+    float: left;
 }
 
 .messages-other-users {

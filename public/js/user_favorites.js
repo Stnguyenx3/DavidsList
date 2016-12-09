@@ -93,7 +93,7 @@ function formatUserListings(event) {
 				$(img).click({listingId: event[i].listing.listingId}, onClickGoToListing);
 				$(price).text("$" + listingPrice);
 				$(address).text(listingAddress);
-				$(basicInfo).text("Bed: " + listingBed + " | " + "Bath: " + listingBath + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance);
+				$(basicInfo).text("Bed: " + listingBed + " | " + "Bath: " + listingBath + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance + " mi");
 				$(description).text("Description: "+ listingDescription);
 				$(a1).text("Remove");
 				$(a2).text("Go to listing");
