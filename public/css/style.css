@@ -17,7 +17,7 @@ body,
 
 hr{
     border-top: 1px solid #FFA500;
-    width: 80%;
+    width: 90%;
 }
 
 .privacy > p {
@@ -46,7 +46,6 @@ hr{
     margin: 15px;
     padding: 15px;
     padding-top: 10px;
-    height: 180px;
     text-align: center;
 }
 
@@ -187,7 +186,7 @@ div#header.container {
     margin: 15px;
     padding: 5px;
     background-color: rgba(226,226,226,1);
-    height: 475px;
+    height: 485px;
 }
 
 .featured-listing {
@@ -211,7 +210,7 @@ div#header.container {
 
 .featured-listing-title {
     text-align: center;
-    height: 45px;
+    height: 30px;
     padding-left: 5px;
     padding-right: 5px;
 }
@@ -530,8 +529,10 @@ div#header.container {
 .user-favorite-img {
     margin-top: auto;
     margin-bottom: auto;
-    width: 100%;
-    height: auto;
+    /*width: 100%;
+    height: auto;*/
+    width: 200px;
+    height:200px;
 }
 
 .search-result-listing-null {
@@ -566,7 +567,8 @@ div#header.container {
 .user-favorite-remove {
     float: right;
     font-size: 16px;
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
+    /*margin-top: 0px;*/
 }
 
 .result-pagination {
@@ -623,14 +625,12 @@ input[type=file] {
 
 /*User Listings, favorites, and overview*/
 .user-listings-edit {
-    margin: 15px;
+    margin-left: 15px;
     float: right;
 }
 
-.user-listings-remove,
 a[class^="user-favorite-remove-"],
 a[class*="user-favorite-remove-"],
-.user-listings-go,
 .user-favorite-go {
     margin: 15px;
     float: right;
@@ -639,6 +639,8 @@ a[class*="user-favorite-remove-"],
 
 .user-overview {
     padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .user-change-pw {
@@ -646,8 +648,18 @@ a[class*="user-favorite-remove-"],
     width: 100%;
 }
 
+.user-add {
+    font-size: 20px;
+    float: left;
+    margin: 30px;
+}
+
 .panel {
     background-color: transparent;
+}
+
+.search-result-listing-null .no-center{
+    text-align: left;
 }
 
 /*User Chat Messages Page*/
@@ -657,6 +669,8 @@ a[class*="user-favorite-remove-"],
 
 .user-messages {
     font-size: 15px;
+    float: left;
+    margin-left: 15px;
 }
 
 .messages-other-users {
@@ -669,10 +683,13 @@ a[class*="user-favorite-remove-"],
 
 .user-message-history {
     /*height: 500px; TODO: Scroll bar when overflow 500px*/
+    background-color: rgba(226,226,226,1);
+    padding: 15px;
+    margin-bottom: 15px;
 }
 
 .user-message-to-send {
-    border-top:  3px solid #99CC99;
+    border-top: 1px solid #FFA500;
     padding: 15px;
 }
 
@@ -680,6 +697,9 @@ a[class*="user-favorite-remove-"],
     resize: none;
 }
 
+.vertical-divider {
+    border-right: 1px solid #FFA500;
+}
 
 /*All messages page*/
 .message-thread-message {

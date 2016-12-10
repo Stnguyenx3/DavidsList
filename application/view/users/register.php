@@ -57,7 +57,7 @@
 			
 	</form>
 
-	<div id="tosModal" class="modal">
+	<div id="tosModal" class="modal" style="z-index: 5">
 		<div class="modal-content">
 			<span class="close">X</span>
 

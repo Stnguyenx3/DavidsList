@@ -35,7 +35,7 @@ class Search extends Controller {
             if(strcmp(substr($searchInput, -6),"street")==0 || strcmp(substr($searchInput, -6),"st")==0 || strcmp(substr($searchInput, -6),"avenue")==0 || strcmp(substr($searchInput, -6),"ave")==0){
                 $searchInput = substr($searchInput, 0, -6);
             } elseif (strcmp(substr($searchInput, -2),"st")==0 || strcmp(substr($searchInput, -3),"ave")==0) {
-                    $compareStreetName = substr($compareStreetName, 0, -3);
+                    $searchInput = substr($searchInput, 0, -3);
             }
 
 

@@ -175,6 +175,7 @@ class Messages extends Controller{
 			$arrayOfListingIDs = [];
 			$arrayOfMessages = [];
 			$arrayOfListingDetails = [];
+			$arrayOfListingBasic = [];
 			$arrayOfUsers = [];
 
 			//Store listing ids in an array.
@@ -201,12 +202,14 @@ class Messages extends Controller{
 			//Get listing details for each listing that has messages.
 			foreach ($arrayOfListingIDs as $listingId) {
 				$arrayOfListingDetails[] = $listingDetailRepo->find($listingId, "listingId");
+				$arrayOfListingBasic[] = $listingRepo->find($listingId, "listingId");
 			}
 
 			//Create new array to send back to web client.
 			$data = array();
 			$data['messages'] = $arrayOfMessages;
 			$data['listing_details'] = $arrayOfListingDetails;
+			$data['listing'] = $arrayOfListingBasic;
 			$data['users'] = $arrayOfUsers;
 
 			echo json_encode($data);

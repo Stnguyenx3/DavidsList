@@ -35,22 +35,25 @@ function formatAllListingMessages(event) {
 	$(document).ready(function() {
 
 		var details = event.listing_details;
+		var basic = event.listing;
 		var messages = event.messages;
 		var users = event.users;
+		// var images = event.img;
 
 		for (var i = 0; i < messages.length; i++){
 
-			var row0 = $("<div></div>").addClass("row user-listing linear-gradient-bg custom-border").appendTo($("#allListingMessages"));
+			var row0 = $("<div></div>").addClass("row user-listing").appendTo($("#allListingMessages"));
 
 			//Add unique ID for each row (remove if not needed!)
 			$(row0).attr("id", "message-thread-" + i);
 
 			var col0 = $("<div></div>").addClass("col-sm-12").appendTo($(row0));
 			var row1 = $("<div></div>").addClass("row").appendTo($(col0));
-			var col1 = $("<div></div>").addClass("col-sm-3 user-listing-img").appendTo($(row1));
-			var img = $("<img></img>").appendTo($(col1));
-			var col2 = $("<div></div>").addClass("col-sm-9").appendTo($(row1));
-			var h0 = $("<h3></h3>").appendTo($(col2));
+			var col1 = $("<div></div>").addClass("col-sm-4 vertical-divider").appendTo($(row1));
+			// var img = $("<img></img>").appendTo($(col1));
+			var h0 = $("<h3></h3>").appendTo($(col1));
+			var info = $("<p></p>").appendTo($(col1));
+			var col2 = $("<div></div>").addClass("col-sm-8").appendTo($(row1));
 			var p0 = $("<p></p>").addClass("message-thread-message").appendTo($(col2));
 			var div = $("<div></div>").css("clear", "both").appendTo($(col2));
 			var a0 = $("<a></a>").addClass("btn btn-primary go-to-message")
@@ -80,11 +83,14 @@ function formatAllListingMessages(event) {
 				}
 			}
 
+			var basicInfo = basic.shift()[0];
+
 			//Insert listing information into HTML elements.
-			$(h0).text("Listing title Here");
+			$(h0).text(basicInfo.title);
+			$(info).text("$" + basicInfo.price)
 			$(p0).text(senderUsername + ": " + message);
 			$(a0).text("Reply");
-			$(img).attr("src", "http://placehold.it/150x150");
+			// $(img).attr("src", "http://placehold.it/150x150"); //"data:image/png;base64," + images[i].imageThumbnail
 
 		}
 		

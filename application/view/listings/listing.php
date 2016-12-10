@@ -68,26 +68,33 @@
 					<div class="col-sm-12">
 
 						<div>
-							<p class="listing-title">Listing Name</p>
+							<p class="listing-title"><?php echo $listingResponse["listing"]->getTitle()?></p>
 							<p class="listing-price"> $<?php echo $listingResponse["listing"]->getPrice() ?></p>
 						</div>
 						<div style="clear: both">
+
+							<?php
+								// check for approx address
+								$address = "";
+								if ($listingResponse["address"]->getApproximateAddress() == 0) {
+									$address = $listingResponse["address"]->getStreetName(); 
+								}
+								else $address = $listingResponse["address"]->getZipcode().", ".$listingResponse["address"]->getCity()." ".$listingResponse["address"]->getState();
+							?>
 								
-							<p class="listing-street-name"><?php echo $listingResponse["address"]->getStreetName() ?></p>
-							<p class="listing-city"><?php echo $listingResponse["address"]->getCity() ?></p>
-							<p class="listing-state"><?php echo $listingResponse["address"]->getState() ?></p>
-							<p class=listing-zipcode><?php echo $listingResponse["address"]->getZipcode() ?></p>
+							<span class="listing-subtitle" style="margin-left: 15px;"><?php echo $address?></span>
 
 							<br>
 
 							<ul class="listing-basic-info">
 								<li>Bed: <?php echo $listingResponse["listing_detail"]->getNumberOfBedrooms() ?></li>
 								<li>Bath: <?php echo $listingResponse["listing_detail"]->getNumberOfBathrooms() ?></li>
-								<li>Distance:</li>
+								<li>Distance: <?php echo $listingResponse["address"]->getDistance()?> mi</li>
 								<li id="output"> </li>
 							</ul>
 
 							<ul class="listing-expanded-info">
+								<li><p class="listing-subtitle">Type</p> <?php echo $listingResponse["listing"]->getType()?></li>
 								<li><p class="listing-subtitle">Internet</p> <?php echo $listingResponse["listing_detail"]->getInternet() ? "Yes" : "No" ?></li>
 								<li><p class="listing-subtitle">Pets</p> <?php echo $listingResponse["listing_detail"]->getPetPolicy() ?></li>
 								<li><p class="listing-subtitle">Elevator</p> <?php echo $listingResponse["listing_detail"]->getElevatorAccess() ?></li>
@@ -165,7 +172,7 @@
   		var bounds = new google.maps.LatLngBounds;
   		var markersArray = [];
 
-  		var origin = "<?php echo $listingResponse["address"]->getStreetName() . $listingResponse["address"]->getCity() ?>";
+  		var origin = "<?php echo $address ?>";
   		var destination = '1600 Holloway Ave, San Francisco'; 
 
   		var destinationIcon = 'https://chart.googleapis.com/chart?' +
@@ -222,7 +229,7 @@
       				showGeocodedAddressOnMap(false));
       			geocoder.geocode({'address' : destinationList[0]},
       				showGeocodedAddressOnMap(true));
-           		    outputDiv.innerHTML += results[0].distance.text
+           		    // outputDiv.innerHTML += results[0].distance.text
     		}
   		});
 	}

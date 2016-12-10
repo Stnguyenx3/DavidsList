@@ -187,10 +187,9 @@ function formatResults(event) {
 	// If no results, display message
 	if (numOfResults == 0) {
 		$(searchResultContent).find("#no-result").css("display", "block"); // show no result message
-	}
-	if (numOfResults == 0) {
 		toggleBlockDisplay("#result-pagination-wrapper", false);
 		toggleBlockDisplay("#result-number", false); // stop showing number of results
+		return; //quit rest of display
 	}
 
 	
@@ -393,6 +392,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 
     // handle no results
     if (numOfResultIDs == 0) {
+    	$(searchResultContent).find("#no-result-message").text("No results for these restrictions. Please use the filters."); // show no result message
 		$(searchResultContent).find("#no-result").css("display", "block"); // show no result message
 		toggleBlockDisplay("#result-number", false); // stop showing number of results
 		toggleBlockDisplay("#result-pagination-wrapper", false); // stop showing scroll bar 
@@ -419,6 +419,7 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 	            	var resultIndex = r % resultsPerPage;
 					var resultDiv = $(searchResultContent).find("#search-result-listing-" + resultIndex);
 					var furnished;
+					var address;
 
 					// Handle last page with possibly not 5 items
 					if (result[r] == undefined){
@@ -426,6 +427,11 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 							notShown[r-((page - 1) * resultsPerPage)-1] = true;
 					} else {
 
+						if (result[r].approximateAddress == 0){
+							address = result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode;
+						} else {
+							address = result[r].city + " " + result[r].state + ", " + result[r].zipcode;
+						}
 						// fix for missing distances
 						var distance = result[r].distance;
 						if (distance == null){ // if this happens more than once on a page it breaks
@@ -445,12 +451,12 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 
 						// put in divs on page
 						$(resultDiv).find(".search-result-listing-img").attr("src", "data:image/png;base64," + result[r].imageThumbnail);
-						$(resultDiv).find(".search-result-listing-img").click({listingId: result[r].listingId}, onClickToListings);
-						$(resultDiv).find(".search-result-listing-address").text(result[r].streetName + ", " + result[r].city + " " + result[r].state + ", " + result[r].zipcode);
+						$(resultDiv).find(".search-result-listing-img").unbind('click').click({listingId: result[r].listingId}, onClickToListings);
+						$(resultDiv).find(".search-result-listing-address").text(address);
 						$(resultDiv).find(".search-result-listing-price").text("$" + result[r].price);
 						$(resultDiv).find(".search-result-listing-title").text(result[r].title);
 						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance);
-						$(resultDiv).find(".search-result-listing-btn").click({listingId: result[r].listingId}, onClickToListings).text("Rent");
+						$(resultDiv).find(".search-result-listing-btn").unbind('click').click({listingId: result[r].listingId}, onClickToListings).text("Rent");
 
 						toggleBlockDisplay("#search-result-listing-" + resultIndex, true);
 
