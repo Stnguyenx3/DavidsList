@@ -663,6 +663,11 @@ a[class*="user-favorite-remove-"],
 }
 
 /*User Chat Messages Page*/
+.no-message-prompt {
+    font-size: 16px;
+    text-align: center;
+}
+
 .message {
     padding-left: 15px;
 }

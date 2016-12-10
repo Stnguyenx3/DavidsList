@@ -27,8 +27,10 @@
 
 <script>
 	
-	//Override the autofocus of the search bar to login input field for better usability.
-	$("#search-input").blur();
-	$("#inputEmail").focus();
+	$(document).ready(function() {
+		//Override the autofocus of the search bar to login input field for better usability.
+		$("#search-input").blur();
+		$("#inputEmail").focus();
+	});
 
 </script>
