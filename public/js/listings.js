@@ -115,6 +115,7 @@ function onEditLoad(data) {
  		listingId: listingID,
 		listing_price: $('#form-price').val(),
 		listing_type: type,
+		listing_title: $('#form-title').val(),
 		listing_status: 1,
 		listing_detail: {
 			listing_numBedrooms: $('#form-numofbeds').val(),
