@@ -1,4 +1,4 @@
-<div class="container main custom-border linear-gradient-bg" style="margin-top: 15px;">
+<div class="container main">
 	
 	<div class="row">
 		
