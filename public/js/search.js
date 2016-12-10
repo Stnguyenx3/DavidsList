@@ -187,12 +187,10 @@ function formatResults(event) {
 	// If no results, display message
 	if (numOfResults == 0) {
 		$(searchResultContent).find("#no-result").css("display", "block"); // show no result message
-	}
-	if (numOfResults == 0) {
 		toggleBlockDisplay("#result-pagination-wrapper", false);
 		toggleBlockDisplay("#result-number", false); // stop showing number of results
+		return; //quit rest of display
 	}
-	// else just quit!!
 
 	
 	// couple the onSelectFilter function to all checkboxes
