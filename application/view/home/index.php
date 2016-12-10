@@ -47,7 +47,14 @@
 
 			<div class="featured-listing-container" style="overflow:hidden">
 
-				<h3 class="featured-listing-title"><?php echo $newListings["listings"][$indexOne]->getTitle() ?></h3>
+				<?php 
+					$title = $newListings["listings"][$indexOne]->getTitle();
+					if (strlen($title) > 22){
+						$title = substr($title, 0, 22)."...";
+					}
+				?>
+
+				<h3 class="featured-listing-title"><?php echo $title ?></h3>
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexOne] ?>" alt="Image missing." style="width: 250px; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexOne]->getListingId() ?>")>
 
 
@@ -80,7 +87,14 @@
 
 			<div class="featured-listing-container" style="overflow:hidden">
 
-				<h3 class="featured-listing-title"><?php echo $newListings["listings"][$indexTwo]->getTitle() ?></h3>
+				<?php 
+					$title = $newListings["listings"][$indexTwo]->getTitle();
+					if (strlen($title) > 22){
+						$title = substr($title, 0, 22)."...";
+					}
+				?>
+
+				<h3 class="featured-listing-title"><?php echo $title ?></h3>
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexTwo] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexTwo]->getListingId() ?>")>
 
 				<?php
@@ -112,7 +126,14 @@
 
 			<div class="featured-listing-container" style="overflow:hidden">
 			
-				<h3 class="featured-listing-title"><?php echo $newListings["listings"][$indexThree]->getTitle() ?></h3>
+				<?php 
+					$title = $newListings["listings"][$indexThree]->getTitle();
+					if (strlen($title) > 22){
+						$title = substr($title, 0, 22)."...";
+					}
+				?>
+
+				<h3 class="featured-listing-title"><?php echo $title ?></h3>
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexThree] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexThree]->getListingId() ?>")>
 
 				<?php
@@ -148,7 +169,14 @@
 
 			<div class="featured-listing-container" style="overflow:hidden">
 			
-				<h3 class="featured-listing-title"><?php echo $newListings["listings"][$indexFour]->getTitle() ?></h3>
+				<?php 
+					$title = $newListings["listings"][$indexFour]->getTitle();
+					if (strlen($title) > 22){
+						$title = substr($title, 0, 22)."...";
+					}
+				?>
+
+				<h3 class="featured-listing-title"><?php echo $title ?></h3>
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexFour] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFour]->getListingId() ?>")>
 
 				<?php
@@ -180,7 +208,14 @@
 
 			<div class="featured-listing-container" style="overflow:hidden">
 
-				<h3 class="featured-listing-title"><?php echo $newListings["listings"][$indexFive]->getTitle() ?></h3>
+				<?php 
+					$title = $newListings["listings"][$indexFive]->getTitle();
+					if (strlen($title) > 22){
+						$title = substr($title, 0, 22)."...";
+					}
+				?>
+
+				<h3 class="featured-listing-title"><?php echo $title ?></h3>
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexFive] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFive]->getListingId() ?>")>
 				
 				<?php
@@ -212,7 +247,14 @@
 
 			<div class="featured-listing-container" style="overflow:hidden">
 
-				<h3 class="featured-listing-title"><?php echo $newListings["listings"][$indexSix]->getTitle() ?></h3>
+				<?php 
+					$title = $newListings["listings"][$indexSix]->getTitle();
+					if (strlen($title) > 22){
+						$title = substr($title, 0, 22)."...";
+					}
+				?>
+
+				<h3 class="featured-listing-title"><?php echo $title ?></h3>
 				<img class="featured-listing-img" src="<?php echo $newListingImages[$indexSix] ?>" alt="Image missing." style="width: 250px ; height: 250px;" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexSix]->getListingId() ?>")>
 
 				<?php
