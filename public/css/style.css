@@ -17,7 +17,7 @@ body,
 
 hr{
     border-top: 1px solid #FFA500;
-    width: 80%;
+    width: 90%;
 }
 
 .privacy > p {
@@ -639,6 +639,8 @@ a[class*="user-favorite-remove-"],
 
 .user-overview {
     padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .user-change-pw {
@@ -668,6 +670,7 @@ a[class*="user-favorite-remove-"],
 .user-messages {
     font-size: 15px;
     float: left;
+    margin-left: 15px;
 }
 
 .messages-other-users {
@@ -680,10 +683,13 @@ a[class*="user-favorite-remove-"],
 
 .user-message-history {
     /*height: 500px; TODO: Scroll bar when overflow 500px*/
+    background-color: rgba(226,226,226,1);
+    padding: 15px;
+    margin-bottom: 15px;
 }
 
 .user-message-to-send {
-    border-top:  3px solid #99CC99;
+    border-top: 1px solid #FFA500;
     padding: 15px;
 }
 
@@ -691,6 +697,9 @@ a[class*="user-favorite-remove-"],
     resize: none;
 }
 
+.vertical-divider {
+    border-right: 1px solid #FFA500;
+}
 
 /*All messages page*/
 .message-thread-message {
