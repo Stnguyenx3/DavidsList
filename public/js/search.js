@@ -192,6 +192,7 @@ function formatResults(event) {
 		toggleBlockDisplay("#result-pagination-wrapper", false);
 		toggleBlockDisplay("#result-number", false); // stop showing number of results
 	}
+	// else just quit!!
 
 	
 	// couple the onSelectFilter function to all checkboxes
