@@ -48,12 +48,14 @@ function formatAllListingMessages(event) {
 			//Hacky front-end fix to only display messages that a user is a part of.
 			if (userID == messages[i].recipientUserId || userID == messages[i].senderUserId) {
 
+				//Hide no message prompt.
+				$(noMessagePrompt).css("display", "none");
 
 
 				var row0 = $("<div></div>").addClass("row user-listing").appendTo($("#allListingMessages"));
 
 				//Add unique ID for each row (remove if not needed!)
-				$(row0).attr("id", "message-thread-" + i);
+				$(row0).attr("id", "message-thread-" + messages[i].listingId);
 
 				var col0 = $("<div></div>").addClass("col-sm-12").appendTo($(row0));
 				var row1 = $("<div></div>").addClass("row").appendTo($(col0));
@@ -67,8 +69,12 @@ function formatAllListingMessages(event) {
 				var a0 = $("<a></a>").addClass("btn btn-primary go-to-message")
 							.click({listingId: messages[i].listingId, clientId: messages[i].clientId}, onClickGoToThread)
 							.appendTo($(div));
+				var a1 = $("<a></a>").addClass("btn btn-primary go-to-listing")
+							.click({listingId: messages[i].listingId}, onClickGoToListing)
+ 							.appendTo($(div));
 
 				$(a0).css("float", "right");
+				$(a1).css("float", "right");
 
 				var message = messages[i].message;
 				var dateTime = messages[i].dateTime;
@@ -98,6 +104,7 @@ function formatAllListingMessages(event) {
 				$(info).text("$" + basicInfo.price)
 				$(p0).text(senderUsername + ": " + message);
 				$(a0).text("Reply");
+				$(a1).text("Go To Listing");
 				// $(img).attr("src", "http://placehold.it/150x150"); //"data:image/png;base64," + images[i].imageThumbnail
 			}
 		}
@@ -107,4 +114,8 @@ function formatAllListingMessages(event) {
 
 function onClickGoToThread(event) {
 	window.location.replace(url+"messages/conversation/"+event.data.listingId+"/"+event.data.clientId);
+}
+
+function onClickGoToListing(event) {
+ 	window.location.replace(url+"listings/getlisting/"+event.data.listingId);
 }
