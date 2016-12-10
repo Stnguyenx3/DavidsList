@@ -24,3 +24,11 @@
 </div>
 
 <script src = "<?php echo URL; ?>js/user_login.js"></script>
+
+<script>
+	
+	//Override the autofocus of the search bar to login input field for better usability.
+	$("#search-input").blur();
+	$("#inputEmail").focus();
+
+</script>

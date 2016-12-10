@@ -208,8 +208,7 @@
 	var modal = document.getElementById('tosModal');
 	var span = document.getElementsByClassName("close")[0];
 
-	function showTOS() 
-	{
+	function showTOS() {
 		modal.style.display = "block";
 		return false;
 	}
@@ -224,16 +223,17 @@
 		}
 	}
 
-$(document).ready(function() 
-{
+$(document).ready(function() {
 
-	$.validator.addMethod("letters", function(value, element) 
-		{
+	//Override the autofocus of the search bar to login input field for better usability.
+	$("#search-input").blur();
+	$("#form-first-name").focus();
+
+	$.validator.addMethod("letters", function(value, element) {
 			return this.optional(element) || /^[a-z ]+$/i.test(value);
 		}, "Alphabetical letters only!");
 
-	$("#registration").validate(
-	{
+	$("#registration").validate( {
 		rules: {
 
 			firstname: {
