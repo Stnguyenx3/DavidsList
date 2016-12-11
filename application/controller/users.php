@@ -212,6 +212,10 @@ class Users extends Controller {
 				$_SESSION["password"] = $password;
                 $_SESSION["userid"] = $user->getId();
 
+                if(!isset($_SESSION["previous_url"])) {
+                    $_SESSION["previous_url"] = URL;
+                }
+
                 echo $_SESSION["previous_url"];
 				//Don't need to do anything else as the ajax callback will redirect
 				//Maybe have it redirect to user page than homepage

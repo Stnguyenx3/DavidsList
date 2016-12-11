@@ -119,7 +119,7 @@
 
 		<div class="col-sm-4">
 			<div class="row buttons">
-				<div><button type="button" class="btn btn-primary rent-button" onclick="onContactClick()">Rent</button></div>
+				<div><button type="button" class="btn btn-primary rent-button" onclick="onContactClick()">Contact</button></div>
 
 				<div><button type="button" rel="popover" id="listing-favorite-btn" class="btn btn-primary listing-favorite-btn" onclick="onFavoriteClick()">
 						<span class="glyphicon glyphicon-heart"></span> Favorite
