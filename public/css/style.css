@@ -663,13 +663,17 @@ a[class*="user-favorite-remove-"],
 }
 
 /*User Chat Messages Page*/
+.no-message-prompt {
+    font-size: 16px;
+    text-align: center;
+}
+
 .message {
     padding-left: 15px;
 }
 
 .user-messages {
-    font-size: 15px;
-    float: left;
+    font-size: 16px;
     margin-left: 15px;
 }
 
@@ -706,8 +710,11 @@ a[class*="user-favorite-remove-"],
     padding: 15px;
 }
 
+.go-to-listing,
 .go-to-message {
-    vertical-align: bottom
+    vertical-align: bottom;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 

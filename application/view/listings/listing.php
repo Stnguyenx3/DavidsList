@@ -1,8 +1,3 @@
-<?php
-	//Remove this after page is complete.
-	//echo "count is " . count($listingResponse["listing_images"]);
- ?>
-
 <div class="container main">
 
 	<div class="row">
@@ -119,7 +114,7 @@
 
 		<div class="col-sm-4">
 			<div class="row buttons">
-				<div><button type="button" class="btn btn-primary rent-button" onclick="onContactClick()">Contact</button></div>
+				<div><button type="button" class="btn btn-primary rent-button" id="contact-btn" onclick="onContactClick()">Contact</button></div>
 
 				<div><button type="button" rel="popover" id="listing-favorite-btn" class="btn btn-primary listing-favorite-btn" onclick="onFavoriteClick()">
 						<span class="glyphicon glyphicon-heart"></span> Favorite
@@ -145,27 +140,55 @@
 
 </div>
 
-
-
 <script>
+
+	$(document).ready(function() {
+
+		var ownerID = "<?php echo $listingResponse["listing"]->getId() ?>";
+
+		if (<?php echo isset($_SESSION['userid']) ?>) {
+
+			var clientID = "<?php echo $_SESSION['userid']?>";
+		}
+
+		//If the owner owns the listing, display additional elements on the page to manage listing.
+		if (ownerID == clientID) {
+			console.log("You are the owner!");
+			$("#contact-btn").text("Messages");
+		}
+	});
 
 	function onContactClick() {
 		var str = (window.location + '').split("/");
 		var listingID = str[str.length - 1];
-		var ownerID = "<?php echo $listingResponse["listing"]->getId() ?>"
-		// window.location.replace(url+"messages/conversation/" + listingID + "/" + clientUserID);
-		$.ajax({
-			type:'GET',
-			url: url+"messages/goToMessage/"+listingID,
-			success: function(event) {
-				window.location.replace(event);
-			},
-			error: function(xhr, err, errThrown) {
-				console.log("I failed");
-				console.log(err);
-				console.log(errThrown);
+		var ownerID = "<?php echo $listingResponse["listing"]->getId() ?>";
+		
+		if (<?php echo isset($_SESSION['userid']) ?>) {
+
+			var clientID = "<?php echo $_SESSION['userid']?>";
+
+			if (ownerID == clientID) {
+				//Redirect to messages page.
+				window.location.href = "<?php echo URL . '/messages/allmessages/' ?>" + ownerID;
 			}
-		});
+
+		} else {
+
+			$.ajax({
+				type:'GET',
+				url: url+"messages/goToMessage/"+listingID,
+				success: function(event) {
+					//window.location.replace(event);
+					window.location.href = event;
+				},
+				error: function(xhr, err, errThrown) {
+					console.log("I failed");
+					console.log(err);
+					console.log(errThrown);
+				}
+			});
+
+		}
 	}
 
 	function initMap() {					

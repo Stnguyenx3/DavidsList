@@ -2,7 +2,7 @@
 
 	<div class="row">
 
-		<h3 class="centered-header">All Messages</h3>
+		<h2 class="centered-header">All Messages</h2>
 
 		<div class="col-md-1"></div>
 
