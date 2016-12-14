@@ -71,10 +71,15 @@
 							<?php
 								// check for approx address
 								$address = "";
+								$googleAddress = "";
 								if ($listingResponse["address"]->getApproximateAddress() == 0) {
 									$address = $listingResponse["address"]->getStreetName(); 
+									$googleAddress = $address . $listingResponse["address"]->getZipcode();
 								}
-								else $address = $listingResponse["address"]->getZipcode().", ".$listingResponse["address"]->getCity()." ".$listingResponse["address"]->getState();
+								else {
+									$address = $listingResponse["address"]->getZipcode().", ".$listingResponse["address"]->getCity()." ".$listingResponse["address"]->getState();
+									$googleAddress = $address;
+								}
 							?>
 								
 							<span class="listing-subtitle" style="margin-left: 15px;"><?php echo $address?></span>
@@ -195,7 +200,7 @@
   		var bounds = new google.maps.LatLngBounds;
   		var markersArray = [];
 
-  		var origin = "<?php echo $address ?>";
+  		var origin = "<?php echo $googleAddress ?>";
   		var destination = '1600 Holloway Ave, San Francisco'; 
 
   		var destinationIcon = 'https://chart.googleapis.com/chart?' +
