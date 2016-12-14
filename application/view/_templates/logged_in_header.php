@@ -22,26 +22,12 @@
 	<?php include_once("analyticstracking.php") ?>
 
 	<div class="container" id="header">
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="user">
-					<a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId() ; ?>"><?php echo "Signed in as " . $arrayOfUserObjects[0]->getUsername() ?></a>
-					<p style="display:inline">|</p>
-					<a href="<?php echo URL. "users/logout" ; ?>">Logout</a>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-3">
-				<img src="<?php echo URL; ?>img/logo.png" height="100" alt="logo" onclick="onLogoClick()">
-			</div>
-			<div class="col-sm-6 disclaimer">
-				<h3 class="centered-header">SFSU/FAU/Fulda Software Engineering Project, Fall 2016.  For Demonstration Only</h3>
-			</div>
-			<div class="col-sm-3"></div>
-		</div>
 		<div class="row navigation">
-			<div class="col-md-4">
+			<div class="col-md-1 logo" >
+				<img src="<?php echo URL; ?>img/logo.png" height="55px" alt="logo" onclick="onLogoClick()">
+			</div>
+
+			<div class="col-md-3" style="padding:0; margin:0;">
 				<div class="navbar-header">
 				    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#account-dropdown-links" aria-expanded="false">
 				        <span class="sr-only">Toggle navigation</span>
@@ -52,7 +38,7 @@
 			    </div>
 	    		<div class="collapse navbar-collapse" id="account-dropdown-links">
 	    			<ul class="nav navbar-nav">
-	    				<li><a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a></li>
+	    				<!-- <li><a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a></li> -->
 	    				<li><a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Rent Out</a></li>
 	    				<li class="dropdown">
 	    					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account<span class="caret"></span></a>
@@ -66,7 +52,7 @@
 	    			</ul>
 	    		</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4" style="padding:0; margin:0;">
 				<div class="input-group" id="search-bar">
 			      	<input id="search-input" type="text" class="form-control" placeholder="Enter an Address, City, or ZIP code..." onkeypress="return enterPressed(event)" required autofocus>
 			      	<span class="input-group-btn">
@@ -76,32 +62,22 @@
 			      	</span>
 			    </div>
 			</div>
-			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="user">
+					<a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId() ; ?>"><?php echo "Signed in as " . $arrayOfUserObjects[0]->getUsername() ?></a>
+					<p style="display:inline">|</p>
+					<a href="<?php echo URL. "users/logout" ; ?>">Logout</a>
+				</div>
+			</div>
 		</div>
 	</div>
 
-    <!--div class="navigation">
-    	<div class="row">
-	    	<div class="col-md-2 nav-link-div">
-	    		<a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a>
-	    		<a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Rent Out</a>
-	    	</div>
-	    	<div class="col-md-1 nav-link-div">
-				<div class="dropdown">
-					<a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId() ; ?>" class="dropdown-toggle" data-toggle="dropdown">My Profile <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="<?php echo URL. "users/userlistings/". $arrayOfUserObjects[0]->getId() ?>">My Listings</a></li>
-						<li><a href="<?php echo URL. "messages/allmessages/". $_SESSION['userid']?>">Messages</a></li>
-					</ul>
-				</div>	    		
-	    	</div>
-	    	<div class="col-md-9" id="search-bar">
-				<input id="search-input" type="text" placeholder="Enter an Address, City, or ZIP code..." onkeypress="return enterPressed(event)" required autofocus/><button id="search-get" type="button" class="btn btn-primary search-button" onclick="onSearchClick()">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                </button>
-	    	</div>
-    	</div>
-    </div-->
+	<div class="row" style="padding:0; margin:0;">
+		<div class="col-sm-12 disclaimer">
+			<p class="centered-header">SFSU/FAU/Fulda Software Engineering Project, Fall 2016.  For Demonstration Only</p>
+		</div>
+	</div>
+
 
 <script>
 

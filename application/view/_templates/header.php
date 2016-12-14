@@ -23,15 +23,9 @@
 
 	<div class="container" id="header">
 		<div class="row">
-			<div class="col-sm-12">
-				<div class="user">
-					<a href="<?php echo URL."home/login" ; ?>">Login</a>
-					<p style="display:inline">|</p>
-					<a href="<?php echo URL. "home/register" ; ?>">Register</a>
-				</div>
-			</div>
+			
 		</div>
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-sm-3">
 				<img src="<?php echo URL; ?>img/logo.png" height="100" alt="logo" onclick="onLogoClick()">
 			</div>
@@ -39,9 +33,12 @@
 				<h3 class="centered-header">SFSU/FAU/Fulda Software Engineering Project, Fall 2016.  For Demonstration Only</h3>
 			</div>
 			<div class="col-sm-3"></div>
-		</div>
+		</div> -->
 		<div class="row navigation">
-			<div class="col-md-4">
+			<div class="col-sm-1 logo" style="overflow:hidden">
+				<img src="<?php echo URL; ?>img/logo.png" height="55px" alt="logo" onclick="onLogoClick()">
+			</div>
+			<div class="col-md-3" style="padding:0; margin:0;">
 				<div class="navbar-header">
 				    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#account-dropdown-links-to-home" aria-expanded="false">
 				        <span class="sr-only">Toggle navigation</span>
@@ -52,17 +49,8 @@
 			    </div>
 	    		<div class="collapse navbar-collapse" id="account-dropdown-links-to-home">
 	    			<ul class="nav navbar-nav">
-	    				<li><a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a></li>
+	    				<!-- <li><a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a></li> -->
 	    				<li><a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Rent Out</a></li>
-	    				<!-- <li class="dropdown">
-	    					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account<span class="caret"></span></a>
-	    					<ul class="dropdown-menu">
-	    						<li><a href="<?php echo URL."home/login" ; ?>">Profile</a></li>
-	    						<li><a href ="<?php echo URL."home/login" ; ?>">Messages</a></li>
-	    						<li><a href="<?php echo URL."home/login" ; ?>">My Listings</a></li>
-	    						<li><a href="<?php echo URL."home/login" ; ?>">My Favorites</a></li>
-	    					</ul>
-	    				</li> -->
 	    			</ul>
 	    		</div>
 			</div>
@@ -76,10 +64,21 @@
 			      	</span>
 			    </div>
 			</div>
-			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="user">
+					<a href="<?php echo URL."home/login" ; ?>">Login</a>
+					<p style="display:inline">|</p>
+					<a href="<?php echo URL. "home/register" ; ?>">Register</a>
+				</div>
+			</div>
 		</div>
-
 </div><!--End header-->
+
+<div class="row" style="padding:0;  margin:0;">
+	<div class="col-sm-12 disclaimer">
+		<p class="centered-header">SFSU/FAU/Fulda Software Engineering Project, Fall 2016.  For Demonstration Only</p>
+	</div>
+</div>
 
 <script>
 	function onLogoClick() {
