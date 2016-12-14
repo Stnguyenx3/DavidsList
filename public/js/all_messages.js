@@ -97,11 +97,8 @@ function formatAllListingMessages(event) {
 					}
 				}
 
-				var basicInfo = basic.shift()[0];
-
-				//Insert listing information into HTML elements.
-				$(h0).text(basicInfo.title);
-				$(info).text("$" + basicInfo.price)
+				$(h0).text(basic[i][0].title);
+				$(info).text("$" + basic[i][0].price);
 				$(p0).text(senderUsername + ": " + message);
 				$(a0).text("Reply");
 				$(a1).text("Go To Listing");
