@@ -93,6 +93,7 @@ class Messages extends Controller{
 		}
 
 		$data = array();
+		$data['listingInfo'] = $arrayOfListingObjects;
 		$data['messages'] = $arrayOfMessages;
 		$data['users'] = $arrayOfUsers;
 

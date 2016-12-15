@@ -175,24 +175,24 @@
 			if (ownerID == clientID) {
 				//Redirect to messages page.
 				window.location.href = "<?php echo URL . '/messages/allmessages/' ?>" + ownerID;
-			}
+			} else {
 
+				$.ajax({
+					type:'GET',
+					url: url+"messages/goToMessage/"+listingID,
+					success: function(event) {
+						//window.location.replace(event);
+						window.location.href = event;
+					},
+					error: function(xhr, err, errThrown) {
+						console.log("I failed");
+						console.log(err);
+						console.log(errThrown);
+					}
+				});
+			}	
 		} else {
-
-			$.ajax({
-				type:'GET',
-				url: url+"messages/goToMessage/"+listingID,
-				success: function(event) {
-					//window.location.replace(event);
-					window.location.href = event;
-				},
-				error: function(xhr, err, errThrown) {
-					console.log("I failed");
-					console.log(err);
-					console.log(errThrown);
-				}
-			});
-
+			//Redirect to login page?
 		}
 	}
 
