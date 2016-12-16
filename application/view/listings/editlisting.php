@@ -585,9 +585,12 @@
 				return this.optional(element) || /^[a-z ]+$/i.test(value);
 			}, "Alphabetical letters only!");
 
-			$("#rentout").validate({
+			$("#edit").validate({
 				rules: {
-
+					listingtitle:{
+						required: true,
+						maxlength: 50
+					},
 					listingaddress: {
 						required: true,
 						minlength: 1

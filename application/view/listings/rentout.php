@@ -294,7 +294,8 @@
 				},
 				messages: {
 					listingtitle: {
-						required: "required"
+						required: "required",
+						maxlength: "50 characters max!"
 					},
 					listingprice: {
 						required: "required"
