@@ -6,9 +6,19 @@
 		<div class="col-md-10 messages-content">
 
 		<!-- Main chat message window -->
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-2">
+					<a class="btn btn-primary back-to-messages" onclick="backToMessages()">Back to messages</a>
+				</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-7">
+					<h3 class="messages-header centered-header" id="conversation-title">Message the owner!</h3>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
 
 			<div class="row">
-				<h3 class="messages-header centered-header" id="conversation-title">Message the owner!</h3>
 
 				<div class="col-md-1"></div>
 				<div class="col-md-10  user-message-history" id="all-conversation">
@@ -40,4 +50,8 @@
 <script type="text/javascript">
 	var userID = <?php echo $_SESSION['userid'] ?>;
 	<?php echo 'var webClientUserID = ' . json_encode($_SESSION['userid'])?>;
+
+	function backToMessages() {
+		window.location.href= url + "messages/allmessages/" + userID;
+	}
 </script>

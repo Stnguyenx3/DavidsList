@@ -252,7 +252,8 @@
 			$("#rentout").validate({
 				rules: {
 					listingtitle: {
-						required: true
+						required: true,
+						maxlength: 50
 					},
 					listingaddress: {
 						required: true,
@@ -294,7 +295,7 @@
 				},
 				messages: {
 					listingtitle: {
-						required: "required"
+						required: "required",
 					},
 					listingprice: {
 						required: "required"

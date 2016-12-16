@@ -7,6 +7,7 @@
 			
 				<div class="col-sm-12" style="margin-top: 25px; text-align: center;">
 					<a href="<?php echo URL. "info/contact"; ?>">contact</a>
+                    <p style="display:inline">|</p>
 					<a href="<?php echo URL. "info/privacy" ; ?>">privacy</a>
 				</div>
 				
