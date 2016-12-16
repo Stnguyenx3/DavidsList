@@ -158,8 +158,17 @@
 
 		//If the owner owns the listing, display additional elements on the page to manage listing.
 		if (ownerID == clientID) {
-			console.log("You are the owner!");
+			var str = (window.location + '').split("/");
+			var listingID = str[str.length - 1];
+			
 			$("#contact-btn").text("Messages");
+			var editBtn = $("<a></a>").addClass("btn btn-primary edit-listing-btn").appendTo($(".owner-info"));
+			$(editBtn).text("Edit listing");
+			$(editBtn).click(function() {
+				//Go to edit listing page.
+				window.location.href = url + "listings/edit/" + listingID;
+			});
+
 		}
 	});
 

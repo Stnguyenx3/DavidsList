@@ -461,6 +461,13 @@ div#header.container {
     display: inline-block;
 }
 
+.container .edit-listing-btn {
+
+    padding: 15px;
+    font-size: 20px;
+    display: inline-block;
+}
+
 
 /*Search page, User listings*/
 
