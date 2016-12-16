@@ -26,9 +26,11 @@ class Listings extends Controller {
 		
 		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingID);
 
+		$clientID = "";
 		if(isset($_SESSION["email"])) {
             $userRepo = RepositoryFactory::createRepository("user");
             $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+            $clientID = $_SESSION['userid'];
             require APP . "view/_templates/logged_in_header.php";
         } else {
             require APP . 'view/_templates/header.php';

@@ -151,16 +151,13 @@
 
 		var ownerID = "<?php echo $listingResponse["listing"]->getId() ?>";
 
-		if (<?php echo isset($_SESSION['userid']) ?>) {
-
-			var clientID = "<?php echo $_SESSION['userid']?>";
-		}
+		var clientID = "<?php echo $clientID; ?>";
 
 		//If the owner owns the listing, display additional elements on the page to manage listing.
 		if (ownerID == clientID) {
 			var str = (window.location + '').split("/");
 			var listingID = str[str.length - 1];
-			
+
 			$("#contact-btn").text("Messages");
 			var editBtn = $("<a></a>").addClass("btn btn-primary edit-listing-btn").appendTo($(".owner-info"));
 			$(editBtn).text("Edit listing");
@@ -177,32 +174,28 @@
 		var listingID = str[str.length - 1];
 		var ownerID = "<?php echo $listingResponse["listing"]->getId() ?>";
 		
-		if (<?php echo isset($_SESSION['userid']) ?>) {
+		var clientID = "<?php echo $clientID; ?>";
 
-			var clientID = "<?php echo $_SESSION['userid']?>";
-
-			if (ownerID == clientID) {
-				//Redirect to messages page.
-				window.location.href = "<?php echo URL . '/messages/allmessages/' ?>" + ownerID;
-			} else {
-
-				$.ajax({
-					type:'GET',
-					url: url+"messages/goToMessage/"+listingID,
-					success: function(event) {
-						//window.location.replace(event);
-						window.location.href = event;
-					},
-					error: function(xhr, err, errThrown) {
-						console.log("I failed");
-						console.log(err);
-						console.log(errThrown);
-					}
-				});
-			}	
+		if (ownerID == clientID) {
+			//Redirect to messages page.
+			window.location.href = "<?php echo URL . '/messages/allmessages/' ?>" + ownerID;
 		} else {
-			//Redirect to login page?
-		}
+
+			$.ajax({
+				type:'GET',
+				url: url+"messages/goToMessage/"+listingID,
+				success: function(event) {
+					//window.location.replace(event);
+					window.location.href = event;
+				},
+				error: function(xhr, err, errThrown) {
+					console.log("I failed");
+					console.log(err);
+					console.log(errThrown);
+				}
+			});
+		}	
+		
 	}
 
 	function initMap() {					
