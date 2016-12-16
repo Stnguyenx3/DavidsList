@@ -25,7 +25,16 @@ function formatConversation(event) {
 		var users = event.users;
 
 		if (messages.length != 0) {
-			$("#conversation-title").text("Chatting about listing #" + messages[0].listingId);
+			// $("#conversation-title").text("Chatting about listing #" + messages[0].listingId);
+			$("#conversation-title").text("");
+			var titleLink = $("<a></a>").appendTo($("#conversation-title"));
+			$(titleLink).text(event.listingInfo[0].title);
+			$(titleLink).click(function() {
+				goToListing();
+			});
+			// $("#conversation-title").click(function() {
+			// 	goToListing();
+			// });
 		}
 
 		for (var i = 0; i < messages.length; i++) {
@@ -89,4 +98,12 @@ function onClickSend() {
 			console.log(errThrown);
 		}
 	});
+}
+
+function goToListing() {
+	var str = (window.location + '').split("/");
+	var listingID = str[str.length - 2];
+
+	window.location.href = url + "listings/getlisting/" + listingID;
+
 }
