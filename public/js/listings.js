@@ -34,8 +34,8 @@ function submitListing(blobList) {
 		listing_status: 1,
 		listing_title: $('#form-title').val(),
 		listing_detail: {
-			listing_numBedrooms: $('#form-numofbeds').val(),
-			listing_numBathrooms: $('#form-numofbaths').val(),
+			listing_numBedrooms: $('#form-numofbeds option:selected').text() == "N/A" ? 0 : $('#form-numofbeds option:selected').text(),
+			listing_numBathrooms: $('#form-numofbaths option:selected').text()  == "N/A" ? 0 : $('#form-numofbaths option:selected').text(),
 			listing_internet: $('#listing-internet').is(":checked") ? 1 : 0,
 			listing_pet_policy: $('#listing-pets').is(":checked") ? "Yes" : "No",
 			listing_elevator_access: $('#listing-elevator').is(":checked") ? "Yes" : "No",
@@ -118,8 +118,8 @@ function onEditLoad(data) {
 		listing_title: $('#form-title').val(),
 		listing_status: 1,
 		listing_detail: {
-			listing_numBedrooms: $('#form-numofbeds').val(),
-			listing_numBathrooms: $('#form-numofbaths').val(),
+			listing_numBedrooms: $('#form-numofbeds option:selected').text() == "N/A" ? 0 : $('#form-numofbeds option:selected').text(),
+			listing_numBathrooms: $('#form-numofbaths option:selected').text()  == "N/A" ? 0 : $('#form-numofbaths option:selected').text(),
 			listing_internet: $('#listing-internet').is(":checked") ? 1 : 0,
 			listing_pet_policy: $('#listing-pets').is(":checked") ? "Yes" : "No",
 			listing_elevator_access: $('#listing-elevator').is(":checked") ? "Yes" : "No",
