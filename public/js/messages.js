@@ -55,7 +55,12 @@ function formatConversation(event) {
 				}
 			}
 
-			$(p0).text(senderUsername + ": " + messages[i].message);
+			//$(p0).text(senderUsername + ": " + messages[i].message);
+			var styledUsername = $("<p></p>").css({"font-weight": "700", "display": "inline"});
+			$(styledUsername).text(senderUsername);
+
+			$(p0).append(styledUsername);
+			$(p0).append(": " + messages[i].message);
 
 		}
 
@@ -85,8 +90,10 @@ function onClickSend() {
 			var sentMessageRow = $("<div></div>").addClass("row messages-single").appendTo($("#all-conversation"));
 			//$(sentMessageRow).attr("id", "message-thread-" + );
 			var sentMsg = $("<p></p>").addClass("message").appendTo($(sentMessageRow));
-
-			$(sentMsg).text("You: " + $("#message-box").val());
+			var styledUsername = $("<p>You</p>").css({"font-weight": "700", "display": "inline"});
+			$(sentMsg).append(styledUsername);
+			$(sentMsg).append(": " + $("#message-box").val());
+			//$(sentMsg).text("You: " + $("#message-box").val());
 
 			//Clear input textarea after clicking send.
 			$("#message-box").val('');
