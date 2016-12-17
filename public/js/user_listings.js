@@ -9,12 +9,14 @@ $(document).ready(function () {
 	console.log("userId = " + userId);
 
 	var headerDiv = $("<div></div>").addClass("row").appendTo($("#listings"));
-	var header = $("<h2></h2>").addClass("centered-header").appendTo($("#listings"));
+	//var header = $("<h2></h2>").addClass("centered-header").appendTo($("#listings"));
+	var header = $("<h2></h2>").addClass("centered-header").appendTo($(headerDiv));
 
 	$(header).text("Your Listings");
 
 	var addButton = $("<div></div>").addClass("row").appendTo($("#listings"));
 	var button = $("<a></a>").addClass("btn btn-primary user-add")
+							.attr("id", "new-listing-btn")
 							.click(function(){window.location.replace(url+"/home/rentout")})
 							.appendTo($(addButton));
 	$(button).text("Create New Listing");
@@ -23,6 +25,16 @@ $(document).ready(function () {
 		type:'GET',
 		url: url+"users/getalluserlistings/" + userId,
 		dataType: "json",
+		beforeSend: function() {
+
+			$("#new-listing-btn").hide();
+
+			$(headerDiv).append($("<p></p>").attr("id", "loading-container"));
+			var loadingAnimation = $("<i class=\"fa fa-circle-o-notch fa-spin\" id=\"loading-animation\" style=\"font-size:200px;\"></i>");
+			$("#loading-container").css("text-align", "center").append($(loadingAnimation));
+			$(header).css("text-align", "center").after($("#loading-container"));
+			
+		},
 		success: formatUserListings,
 		error: function(xhr, err, errThrown) {
 			console.log("I failed");
@@ -111,6 +123,10 @@ function formatUserListings(event) {
 
 			}
 		}
+
+		$("#loading-animation").css("display", "none");
+
+		$("#new-listing-btn").show();
 	});
 
 }
