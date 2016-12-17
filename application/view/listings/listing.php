@@ -106,8 +106,7 @@
 							<ul class="listing-basic-info">
 								<li>Bed: <?php echo $listingResponse["listing_detail"]->getNumberOfBedrooms() ?></li>
 								<li>Bath: <?php echo $listingResponse["listing_detail"]->getNumberOfBathrooms() ?></li>
-								<li>Distance: <?php echo $listingResponse["address"]->getDistance()?> mi</li>
-								<li id="output"> </li>
+								<li id="output">Distance: <?php echo $listingResponse["address"]->getDistance()?> mi</li>
 							</ul>
 
 							<ul class="listing-expanded-info">
@@ -239,20 +238,19 @@
 	    	origins: [origin],
 	    	destinations: [destination],
 	    	travelMode: google.maps.TravelMode.DRIVING,
-	    	unitSystem: google.maps.UnitSystem.METRIC,
+	    	unitSystem: google.maps.UnitSystem.IMPERIAL,
 	    	avoidHighways: false,
 	    	avoidTolls: false
   		}, 
 
   		function(response, status) {
     		if (status !== google.maps.DistanceMatrixStatus.OK) {
-      			alert('Error was: ' + status);
+      			// alert('Error was: ' + status);
     		} else {
     			var originList = response.originAddresses;
       			var destinationList = response.destinationAddresses;
       			var outputDiv = document.getElementById('output');
 
-      			outputDiv.innerHTML = '';
       			deleteMarkers(markersArray);
 
       			var showGeocodedAddressOnMap = function(asDestination) {
@@ -266,7 +264,7 @@
               				icon: icon
             				}));
           				} else {
-            				alert('Geocode was not successful due to: ' + status);
+            				// alert('Geocode was not successful due to: ' + status);
           				}
         			};
       			};
@@ -277,6 +275,30 @@
       			geocoder.geocode({'address' : destinationList[0]},
       				showGeocodedAddressOnMap(true));
            		    // outputDiv.innerHTML += results[0].distance.text
+           		var str = (window.location + '').split("/");
+				var listingID = str[str.length - 1];
+
+				if(outputDiv.innerHTML === "Distance:  mi" || 
+					outputDiv.innerHTML === "Distance: 2.1 mi") {
+					$.ajax({
+	           			type:'POST',
+						url: url+"/addresses/updatedistance/"+listingID,
+						data: {
+							"distance": results[0].distance.text.split(" ")[0]
+						},
+						success: function(event){
+							outputDiv.innerHTML = '';
+							outputDiv.innerHTML = "Distance: " + results[0].distance.text;
+						},
+						error: function(xhr, err, errThrown) {
+							console.log("I failed");
+							console.log(err);
+							console.log(errThrown);
+						},
+	           		});
+				} else {
+					console.log("Not empty");
+				}
     		}
   		});
 	}

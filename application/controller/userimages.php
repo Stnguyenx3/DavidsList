@@ -1,6 +1,13 @@
 <?php
 
 /*
+ * THIS FILE IS NOW DEPRECATED
+ * THE REASON WHY THIS FILE IS DEPRECATED IS BECAUSE WE DON'T WANT TO EXPOSE
+ * USER IMAGES RANDOMLY. IT MUST GO THROUGH A USER TO GET AN IMAGE
+ * ALSO ALL CONTROLLERS SHOULD CORRESPOND TO A PAGE
+ */
+
+/*
  *  Class: UserImages
  *   File: application/controller/userimages.php
  * Author: Paul Derugin
