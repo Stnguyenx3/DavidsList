@@ -15,6 +15,7 @@
 
     <!-- CSS -->
 	<link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">
+	<link href="<?php echo URL; ?>css/font-awesome.min.css" rel="stylesheet">
 	<link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
 </head>
 <body id="content">

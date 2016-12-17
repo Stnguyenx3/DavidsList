@@ -25,6 +25,12 @@ function onSearchClick() {
 			type:'POST',
 			url: url+"/search/searchapartments/",
 			data: searchQuery,
+			beforeSend: function() {
+
+				var loadingAnimation = $("<i class=\"fa fa-circle-o-notch fa-spin\" style=\"font-size:200px\"></i>");
+
+				$("#loading-container").css("text-align", "center").append($(loadingAnimation));
+			},
 			success: formatResults,
 			error: function(xhr, err, errThrown) {
 				console.log("I failed");
@@ -119,6 +125,7 @@ function buildPage(){
 	$(searchResultContent).attr("id", "searchResultContent");
 
 	$(searchResultContent).append($("<p>Results</p>").addClass("search-title"));
+	$(searchResultContent).append($("<p></p>").attr("id", "loading-container"));
 
 	// Add number of results displayed at top of page
 	var row = $("<div></div>").addClass("row search-result-number").appendTo($(searchResultContent));
@@ -178,6 +185,8 @@ function buildPage(){
 
 
 function formatResults(event) {
+
+	$("#loading-container").css("display", "none");
 
 	var resultsPerPage = 5; //MAX NUMBER OF RESULTS PER PAGINATION PAGE.
 	var result = JSON.parse(event);

@@ -88,6 +88,7 @@
 		<div class="col-sm-9">
 
 			<p class="search-title">Results</p>
+			<p id="loading-container"></p>
 
 			<!--Search results begin -->
 			<div class="row search-result-listing linear-gradient-bg">
