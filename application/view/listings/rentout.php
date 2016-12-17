@@ -240,7 +240,7 @@
 <script>
 
 	//Highlight the current pages' navbar link.
-	$("#nav-link-1").css("background-color", "rgba(226,226,226,1)");
+	$("#nav-link-1").css("color", "#2E3192");
 	
 	$(document).ready(function() {
 
