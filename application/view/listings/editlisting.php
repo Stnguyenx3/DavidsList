@@ -617,10 +617,10 @@
 					// 	required: true,
 					// 	number: true
 					// },
-					listingnumofbaths: {
-						required: true,
-						number: true
-					},
+					// listingnumofbaths: {
+					// 	required: true,
+					// 	number: true
+					// },
 					listingtype: {
 						required: true
 					}

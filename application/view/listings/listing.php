@@ -15,21 +15,38 @@
 			<div id="listingCarousel" class="col-sm-8 carousel slide" style="width: 100%; height: 100%" data-ride="carousel" data-interval="false">
 
 				<ol class="carousel-indicators">
-					<li data-target="#listingCarousel" data-slide-to="0" class="active"></li>
+				<?php 
+
+					for($i = 0; $i < count($listingResponse["listing_images"]); $i++) {
+						if($i == 0) {
+							echo "<li data-target=\"#listingCarousel\" data-slide-to=\"{$i}\" class=\"active\"></li>";
+						} else {
+							echo "<li data-target=\"#listingCarousel\" data-slide-to=\"{$i}\"></li>";
+						}
+					}
+				?>
+<!-- 					<li data-target="#listingCarousel" data-slide-to="0" class="active"></li>
 					<li data-target="#listingCarousel" data-slide-to="1"></li>
-					<li data-target="#listingCarousel" data-slide-to="2"></li>
+					<li data-target="#listingCarousel" data-slide-to="2"></li> -->
 				</ol>
 
 				<div class="carousel-inner" role="listbox">
-					<div class="item active" style="width: 350px; height: 350px">
-						<img src= "<?php echo 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][0]->getImage()) ?>"" alt="placeholder img." style="width: 350px; height: 350px">
-					</div>
-					<div class="item">
-						<img src="<?php echo count($listingResponse["listing_images"]) > 1 ? 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][1]->getImage()) : 'http://placehold.it/700x700' ?>" alt="placeholder img." style="width: 350px; height: 340px">
-					</div>
-					<div class="item">
-						<img src="<?php echo count($listingResponse["listing_images"]) > 2 ? 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][2]->getImage()) : 'http://placehold.it/700x700' ?>"  alt="placeholder img." style="width: 350px; height: 340px">
-					</div>
+					<?php 
+						for($i = 0; $i < count($listingResponse["listing_images"]); $i++) {
+							$image = $listingResponse["listing_images"][$i];
+							$encodedString = 'data:text/html;base64,' . base64_encode($image->getImage());
+							if($i == 0) {
+								echo "<div class=\"item active\" style=\"width: 350px; height: 350px\">
+									<img src= \"{$encodedString} \" alt=\"placeholder img.\" style=\"width: 350px; height: 350px\">
+								</div>";
+							} else {
+								echo "<div class=\"item\" style=\"width: 350px; height: 350px\">
+									<img src= \"{$encodedString} \" alt=\"placeholder img.\" style=\"width: 350px; height: 350px\">
+								</div>";
+							}
+						}
+
+					?>
 				</div>
 
 				<a class="left carousel-control" href="#listingCarousel" data-slide="prev">

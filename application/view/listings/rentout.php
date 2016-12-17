@@ -277,14 +277,14 @@
 						minlength: 5,
 						maxlength: 5
 					},
-					listingnumofbeds: {
-						required: true,
-						number: true
-					},
-					listingnumofbaths: {
-						required: true,
-						number: true
-					},
+					// listingnumofbeds: {
+					// 	required: true,
+					// 	number: true
+					// },
+					// listingnumofbaths: {
+					// 	required: true,
+					// 	number: true
+					// },
 					listingtype: {
 						required: true
 					},

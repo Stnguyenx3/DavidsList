@@ -455,8 +455,8 @@ function updateSearchResults(resultsPerPage, result, resultIDs) {
 						$(resultDiv).find(".search-result-listing-address").text(address);
 						$(resultDiv).find(".search-result-listing-price").text("$" + result[r].price);
 						$(resultDiv).find(".search-result-listing-title").text(result[r].title);
-						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance);
-						$(resultDiv).find(".search-result-listing-btn").unbind('click').click({listingId: result[r].listingId}, onClickToListings).text("Rent");
+						$(resultDiv).find(".search-result-listing-basic-info").text("Bed: " + result[r].numberOfBedrooms + " | " + "Bath: " + result[r].numberOfBathrooms + " | " + "Furnished: " + furnished + " | Distance To SFSU: " + distance);
+						$(resultDiv).find(".search-result-listing-btn").unbind('click').click({listingId: result[r].listingId}, onClickToListings).text("More Info");
 
 						toggleBlockDisplay("#search-result-listing-" + resultIndex, true);
 

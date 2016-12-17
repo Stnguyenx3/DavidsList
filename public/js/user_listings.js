@@ -99,6 +99,7 @@ function formatUserListings(event) {
 				//Insert listing information into HTML elements.
 				$(title).text(listingTitle);
 				$(img).attr("src", listingImg);
+				$(img).unbind('click').click({listingId: event[i].listing.listingId}, onClickToListing);
 				$(price).text("$" + listingPrice);
 				$(address).text(listingAddress);
 				$(basicInfo).text("Bed: " + listingBed + " | " + "Bath: " + listingBath + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance + " mi");
@@ -112,6 +113,11 @@ function formatUserListings(event) {
 		}
 	});
 
+}
+
+function onClickToListing(event) {
+	//console.log("Going to listing" + event.data.listingId);
+	window.location.href = url + "listings/getlisting/" + event.data.listingId;
 }
 
 function onClickDeleteListing(event) {

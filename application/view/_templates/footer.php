@@ -6,9 +6,11 @@
 			<div class="row">
 			
 				<div class="col-sm-12" style="margin-top: 25px; text-align: center;">
-					<a href="<?php echo URL. "info/contact"; ?>">contact</a>
+					<a href="<?php echo URL. "info/contact"; ?>">Contact</a>
                     <p style="display:inline">|</p>
-					<a href="<?php echo URL. "info/privacy" ; ?>">privacy</a>
+                    <a href="<?php echo URL. "info/about"; ?>">About Us</a>
+                    <p style="display:inline">|</p>
+					<a href="<?php echo URL. "info/privacy" ; ?>">Privacy</a>
 				</div>
 				
 			</div>
