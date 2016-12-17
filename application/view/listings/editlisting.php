@@ -334,7 +334,7 @@
 
 				<div class="form-group row">
 					<p class="col-sm-2">Bedrooms <span class="text-danger">*</span></p>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<!-- <input class="form-control" type="text" name="listingnumofbeds" id="form-numofbeds" value="<?php echo $listingResponse["listing_detail"]->getNumberOfBedrooms(); ?>"> -->
 						<select class="form-control" name="listingnumofbeds" id="form-numofbeds">
 							<option value="">N/A</option>

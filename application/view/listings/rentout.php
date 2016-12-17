@@ -103,7 +103,7 @@
 
 				<div class="form-group row">
 					<p class="col-sm-2">Zipcode <span class="text-danger">*</span></p>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<input class="form-control" type="text" name="listingzipcode" id="form-zipcode" placeholder="Zipcode">
 					</div>
 				</div>
@@ -122,7 +122,7 @@
 
 				<div class="form-group row">
 					<p class="col-sm-2">Bedrooms <span class="text-danger">*</span></p>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<select class="form-control" name="listingnumofbeds" id="form-numofbeds" style="width: auto;">
 							<option value="">N/A</option>
 							<option value="1">1</option>
@@ -139,7 +139,7 @@
 					</div>
 
 					<p class="col-sm-2">Bathrooms <span class="text-danger">*</span></p>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<select class="form-control" name="listingnumofbaths" id="form-numofbaths" style="width: auto;">
 							<option value="">N/A</option>
 							<option value="1">1</option>
