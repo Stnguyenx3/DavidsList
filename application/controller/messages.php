@@ -151,22 +151,23 @@ class Messages extends Controller{
 			$messageRepo = RepositoryFactory::createRepository("message");
 			$allMessageObjects = $messageRepo->fetch();
 
-			// $tmp = array();
-			// foreach($allMessageObjects as $k => $v)
-			// 	$tmp[$k] = $v->getListingId();
+			//Make a temp array to keep listingId of messages
+			$tmp = array();
+			foreach($allMessageObjects as $k => $v)
+				$tmp[$k] = $v->getClientId();
 
-			// //Reverse the array since the newer messages(towards the end) are what we want
-			// $tmp = array_reverse($tmp);
-			// $allMessageObjects = array_reverse($allMessageObjects);
+			//Reverse the array since the newer messages(towards the end) are what we want
+			$tmp = array_reverse($tmp);
+			$allMessageObjects = array_reverse($allMessageObjects);
 
-			// // Find duplicates in temporary array
-			// $tmp = array_unique($tmp);
+			// Find duplicates in temporary array
+			$tmp = array_unique($tmp);
 
-			// // Remove the duplicates from original array
-			// foreach($allMessageObjects as $k => $v){
-			//     if (!array_key_exists($k, $tmp))
-			//         unset($allMessageObjects[$k]);
-			// }
+			// Remove the duplicates from original array
+			foreach($allMessageObjects as $k => $v){
+			    if (!array_key_exists($k, $tmp))
+			        unset($allMessageObjects[$k]);
+			}
 
 			//Get additional information about listings.
 			$listingRepo = RepositoryFactory::createRepository("listing");
