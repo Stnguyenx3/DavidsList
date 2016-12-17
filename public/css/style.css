@@ -138,6 +138,7 @@ hr{
 
 .navbar-nav>li>a:hover {
     background-color: rgba(226,226,226,1);/*#23527c;*/
+    color: #074ba1;
 
 }
 
