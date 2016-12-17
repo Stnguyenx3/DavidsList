@@ -28,6 +28,10 @@ function submitListing(blobList) {
 		var type = $("input[type='radio'][name='listingtype']:checked").val();
 	}
 
+	if($('#form-title').val() === "") {
+		return;
+	}
+
  	var listingInformation = {
 		listing_price: $('#form-price').val(),
 		listing_type: type,
@@ -106,6 +110,10 @@ function onEditLoad(data) {
 
 	if($("input[type='radio'][name='listingtype']").is(':checked')) {
 		var type = $("input[type='radio'][name='listingtype']:checked").val();
+	}
+
+	if($('#form-title').val() === "") {
+		return;
 	}
 
 	var str = (window.location + '').split("/");
