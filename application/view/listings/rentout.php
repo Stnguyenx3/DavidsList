@@ -223,9 +223,9 @@
 				<div class="row">
 
 					<div class="col-sm-12">
-						<a href="<?php echo URL. "home/index" ; ?>" class="btn btn-primary" style="display:inline-block; float:left;">Cancel</a>
+						<a href="<?php echo URL. "home/index" ; ?>" class="btn btn-primary btn-lg" style="display:inline-block; float:left;">Cancel</a>
 	
-						<button class="btn btn-primary" id="submit-listing" type="submit" style="display:inline-block; float:right;">Post Listing</button>
+						<button class="btn btn-primary btn-lg" id="submit-listing" type="submit" style="display:inline-block; float:right;">Post Listing</button>
 					</div>
 				</div>
 

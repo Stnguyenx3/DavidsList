@@ -1,61 +1,74 @@
 <div class="container main">
 
-	<form class="form-signup center-block" id="registration" action="<?php echo URL . "users/newuser/" ?>" method="post">
+	<div class="row rent-out">
+		<div class="col-sm-2"></div>
 
-		<h3 style="margin-bottom: 30px">Register</h3>
+		<div class="col-sm-8">
 
-		<div class="form-group row">
-			  <label for="form-first-name" class="col-sm-2">First Name</label>
-			  <div class="col-sm-10">
-				<input class="form-control" type="text" name="firstname" id="form-first-name">
-			  </div>
+			<h2 class="centered-header">Register</h2>
+
+			<form class="form-signup" id="registration" action="<?php echo URL . "users/newuser/" ?>" method="post">
+
+				<div class="form-group row">
+					<p class="col-sm-2"> First Name</p>
+					<div class="col-sm-6">
+						<input class="form-control" type="text" name="firstname" id="form-first-name">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<p class="col-sm-2"> Last Name</p>
+					<div class="col-sm-6">
+						<input class="form-control" type="text" name="lastname" id="form-last-name">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<p class="col-sm-2"> Email</p>
+					<div class="col-sm-6">
+						<input class="form-control" type="email" name="email" id="form-email">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<p class="col-sm-2"> Username</p>
+					<div class="col-sm-6">
+						<input class="form-control" type="text" name="username" id="form-username">
+					  </div>
+				</div>
+
+				<div class="form-group row">
+					<p class="col-sm-2"> Password</p>
+					<div class="col-sm-6">
+						<input class="form-control" type="password" name="password" id="form-password">
+					  </div>
+				</div>
+
+				<div class="form-group row">
+					<p class="col-sm-2">  Confirm Password</p>
+					<div class="col-sm-6">
+						<input class="form-control" type="password" name="confirmpassword" id="form-confirm-password">
+					  </div>
+				</div>
+
+				<div class="form-group row">
+					<label for="form-TOS" class="col-sm-8" style="text-align:center">
+						I have read and accept the TOS <a href="#" onclick="return showTOS();">here</a>.
+						<input class="form-check" type="checkbox" value="" name="tos" id="form-TOS">
+					</label>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-2"></div>
+					<button class="btn btn-primary btn-lg col-sm-4" type="submit">Register</button> <!-- btn-register center-block -->
+					<div class="col-sm-2"></div>
+				</div>
+			</form>
 		</div>
 
-		<div class="form-group row">
-			  <label for="form-last-name" class="col-sm-2">Last Name</label>
-			  <div class="col-sm-10">
-				<input class="form-control" type="text" name="lastname" id="form-last-name">
-			  </div>
-		</div>
+		<div class="col-sm-2"></div>
 
-		<div class="form-group row">
-			  <label for="form-email" class="col-sm-2">Email</label>
-			  <div class="col-sm-10">
-				<input class="form-control" type="email" name="email" id="form-email">
-			  </div>
-		</div>
-
-		<div class="form-group row">
-			  <label for="form-username" class="col-sm-2">Username</label>
-			  <div class="col-sm-10">
-				<input class="form-control" type="text" name="username" id="form-username">
-			  </div>
-		</div>
-
-		<div class="form-group row">
-			  <label for="form-password" class="col-sm-2">Password</label>
-			  <div class="col-sm-10">
-				<input class="form-control" type="password" name="password" id="form-password">
-			  </div>
-		</div>
-
-		<div class="form-group row">
-			  <label for="form-confirm-password" class="col-sm-2">Confirm Password</label>
-			  <div class="col-sm-10">
-				<input class="form-control" type="password" name="confirmpassword" id="form-confirm-password">
-			  </div>
-		</div>
-
-		<div class="form-group row">
-			<label for="form-TOS" class="col-sm-12" style="text-align:center">
-				I have read and accept the TOS <a href="#" onclick="return showTOS();">here</a>.
-				<input class="form-check" type="checkbox" value="" name="tos" id="form-TOS">
-			</label>
-		</div>
-		
-		<button class="btn btn-primary btn-lg btn-block btn-register center-block" type="submit">Register</button>
-			
-	</form>
+	</div>
 
 	<div id="tosModal" class="modal" style="z-index: 5">
 		<div class="modal-content">

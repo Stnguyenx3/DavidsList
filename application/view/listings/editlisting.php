@@ -571,7 +571,7 @@
 
 				<div class="row">
 					<div class="col-sm-3"></div>
-					<button class="btn btn-primary col-sm-6" id="submit-listing" type="submit">Save Changes</button>
+					<button class="btn btn-primary btn-lg col-sm-6" id="submit-listing" type="submit">Save Changes</button>
 					<div class="col-sm-3"></div>
 				</div>
 
