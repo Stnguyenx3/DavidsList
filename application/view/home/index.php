@@ -23,7 +23,7 @@
 				<span class="glyphicon glyphicon-tasks home-icon" aria-hidden="true"></span>
 				<h3 style="font-weight: bold;">EASY</h3>
 				<p>
-					Manage your listings in 'My Profile'.
+					Manage your listings in 'My Account'.
 				</p>
 			</div>
 		</div>

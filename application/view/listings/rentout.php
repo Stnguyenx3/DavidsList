@@ -103,7 +103,7 @@
 
 				<div class="form-group row">
 					<p class="col-sm-2">Zipcode <span class="text-danger">*</span></p>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<input class="form-control" type="text" name="listingzipcode" id="form-zipcode" placeholder="Zipcode">
 					</div>
 				</div>
@@ -122,7 +122,7 @@
 
 				<div class="form-group row">
 					<p class="col-sm-2">Bedrooms <span class="text-danger">*</span></p>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<select class="form-control" name="listingnumofbeds" id="form-numofbeds" style="width: auto;">
 							<option value="">N/A</option>
 							<option value="1">1</option>
@@ -139,7 +139,7 @@
 					</div>
 
 					<p class="col-sm-2">Bathrooms <span class="text-danger">*</span></p>
-					<div class="col-sm-2">
+					<div class="col-sm-3">
 						<select class="form-control" name="listingnumofbaths" id="form-numofbaths" style="width: auto;">
 							<option value="">N/A</option>
 							<option value="1">1</option>
@@ -223,9 +223,9 @@
 				<div class="row">
 
 					<div class="col-sm-12">
-						<a href="<?php echo URL. "home/index" ; ?>" class="btn btn-primary" style="display:inline-block; float:left;">Cancel</a>
+						<a href="<?php echo URL. "home/index" ; ?>" class="btn btn-primary btn-lg" style="display:inline-block; float:left;">Cancel</a>
 	
-						<button class="btn btn-primary" id="submit-listing" type="submit" style="display:inline-block; float:right;">Post Listing</button>
+						<button class="btn btn-primary btn-lg" id="submit-listing" type="submit" style="display:inline-block; float:right;">Post Listing</button>
 					</div>
 				</div>
 
@@ -240,7 +240,7 @@
 <script>
 
 	//Highlight the current pages' navbar link.
-	$("#nav-link-1").css("background-color", "#23527c");
+	$("#nav-link-1").css("color", "#2E3192");
 	
 	$(document).ready(function() {
 
@@ -330,7 +330,7 @@
 				},
 				errorPlacement: function(error, element) {
 					error.insertAfter(element);
-					error.css('color', '#ff0000');
+					error.css('color', 'rgba(226,226,226,1)');
 				}
 				// submitHandler: function(form) {
 				// 	form.submit();

@@ -2,6 +2,7 @@
 <head>
     <meta charset="utf-8">
     <title>David's List</title>
+    <link rel="icon" type="image/ico" href="<?php echo URL; ?>img/browser_logo.ico">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
 
@@ -42,7 +43,7 @@
 	    				<!-- <li><a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a></li> -->
 	    				<li><a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Rent Out</a></li>
 	    				<li class="dropdown">
-	    					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account<span class="caret"></span></a>
+	    					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="nav-link-2">My Account<span class="caret"></span></a>
 	    					<ul class="dropdown-menu">
 	    						<li><a href="<?php echo URL."users/getuser/" . $arrayOfUserObjects[0]->getId(); ?>">Profile</a></li>
 	    						<li><a href ="<?php echo URL. "messages/allmessages/" . $arrayOfUserObjects[0]->getId(); ?>">Messages</a></li>

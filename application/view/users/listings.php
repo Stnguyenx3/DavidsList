@@ -8,3 +8,8 @@
 </div>
 
 <script type="text/javascript" src="<?php echo URL; ?>js/user_listings.js"></script>
+
+<script>
+	//Highlight the current pages' navbar link.
+	$("#nav-link-2").css("color", "#2E3192");
+</script>

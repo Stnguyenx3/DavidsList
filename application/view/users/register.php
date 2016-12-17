@@ -2,7 +2,7 @@
 
 	<form class="form-signup center-block" id="registration" action="<?php echo URL . "users/newuser/" ?>" method="post">
 
-		<h3 style="margin-bottom: 30px">Register</h3>
+		<h3 style="margin-bottom: 30px; text-align:center">Register</h3>
 
 		<div class="form-group row">
 			  <label for="form-first-name" class="col-sm-2">First Name</label>

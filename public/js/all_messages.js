@@ -3,6 +3,9 @@ $(document).ready(function () {
 	var str = (window.location + '').split("/");
 	var listingId = str[str.length - 1];
 
+	//Highlight the current pages' navbar link.
+	$("#nav-link-2").css("color", "#2E3192");
+
 	$.ajax({
 		type:'GET',
 		url: url+"messages/getallmessages/" + userID,
