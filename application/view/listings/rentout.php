@@ -240,7 +240,7 @@
 <script>
 
 	//Highlight the current pages' navbar link.
-	$("#nav-link-1").css("background-color", "#23527c");
+	$("#nav-link-1").css("background-color", "rgba(226,226,226,1)");
 	
 	$(document).ready(function() {
 
@@ -329,7 +329,7 @@
 				},
 				errorPlacement: function(error, element) {
 					error.insertAfter(element);
-					error.css('color', '#ff0000');
+					error.css('color', 'rgba(226,226,226,1)');
 				}
 				// submitHandler: function(form) {
 				// 	form.submit();
