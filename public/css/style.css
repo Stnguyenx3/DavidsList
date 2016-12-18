@@ -6,6 +6,11 @@ body,
     background-color: rgba(226,226,226,1);
 }
 
+.confirmation-btn {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .form-control {
     font-size: 16px;
 }
@@ -280,7 +285,7 @@ div#header.container {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 1041; /*Must be above 1040 to be shown above modal backdrop*/
     left: 0;
     top: 0;
     width: 100%;
