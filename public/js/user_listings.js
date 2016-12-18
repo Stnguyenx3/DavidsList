@@ -176,6 +176,7 @@ $(document).on('click', '.notifyjs-remove-confirmation-base .no', function() {
   $(this).trigger('notify-hide');
 });
 $(document).on('click', '.notifyjs-remove-confirmation-base .yes', function() {
+	console.log(listingIDToDelete);
 		$.ajax({
 		type: 'POST',
 		url: url + "listings/deletelisting/",

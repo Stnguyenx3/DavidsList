@@ -225,6 +225,7 @@ class Listings extends Controller {
 			echo $listingID;
 		} else {
 			//message it created bad
+			echo "Bad create";
 		}
 	}
 	
