@@ -192,6 +192,27 @@ function deleteListing(id) {
 		success: function(e) {
 			$("#user-favorite-"+id).remove();
 			$.notify("Listing has been deleted!", {position: "top center"});
+
+					//Handle modal events
+			$("#confirmation-modal").on('show.bs.modal', function(event) {
+				var invoker = $(event.relatedTarget);
+
+				// console.log($(invoker).attr('id'));
+
+				var arr = $(invoker).attr('id').split("-");
+				var listingIdToDelete = arr[2];
+
+				$("#delete-confirmed").on('click', function() {
+					console.log("Deleting listing with id " + listingIdToDelete);
+					deleteListing(listingIdToDelete);
+				});
+				
+			});
+
+			//Unbind modal events to prevent multiple notifications.
+			$("#confirmation-modal").on('hidden.bs.modal', function() {
+				$("#confirmation-modal").off();
+			});
 		},
 		error: function(xhr, err, errThrown) {
 			console.log("I failed");

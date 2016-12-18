@@ -68,6 +68,11 @@ class Messages extends Controller{
 		$messageRepo = RepositoryFactory::createRepository("message");
 		$arrayOfMessageObjects = $messageRepo->find($listingId, "listingId");
 
+		if (empty($arrayOfMessageObjects)) {
+			echo "null";
+			return;
+		}
+
 		//Used to get the userid of the listing owner.
 		$listingRepo = RepositoryFactory::createRepository("listing");
 		$arrayOfListingObjects = $listingRepo->find($listingId, "listingId");
@@ -78,6 +83,7 @@ class Messages extends Controller{
 		$arrayOfUsers[] = $userRepo->find($userId, "userid");
 
 		$listingOwner = $userRepo->find($arrayOfListingObjects[0]->getId(), "userid");
+		//$listingOwner = $userRepo->find($arrayOfListingObjects[0]->getId(), "userid");
 
 		$arrayOfUsers[] = $listingOwner; //Add the listing owners userid to array.
 

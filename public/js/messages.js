@@ -21,49 +21,53 @@ function formatConversation(event) {
 
 	$(document).ready(function() {
 
-		var messages = event.messages;
-		var users = event.users;
+		if (event === null) {
+			console.log("Server returned with null!");
+			$(".user-message-history").hide();
+		} else {
 
-		if (messages.length != 0) {
-			// $("#conversation-title").text("Chatting about listing #" + messages[0].listingId);
-			$("#conversation-title").text("");
-			var titleLink = $("<a></a>").appendTo($("#conversation-title"));
-			$(titleLink).text(event.listingInfo[0].title);
-			$(titleLink).click(function() {
-				goToListing();
-			});
-			// $("#conversation-title").click(function() {
-			// 	goToListing();
-			// });
-		}
+			$(".user-message-history").show();
 
-		for (var i = 0; i < messages.length; i++) {
-			var row0 = $("<div></div>").addClass("row messages-single").appendTo($("#all-conversation"));
+			var messages = event.messages;
+			var users = event.users;
 
-			$(row0).attr("id", "message-thread-" + i);
-
-			var p0 = $("<p></p>").addClass("message").appendTo($(row0));
-
-			//Determine the correct username from senderUserId to display.
-			var senderUserId = messages[i].senderUserId;
-			var senderUsername;
-
-			for (var j = 0; j < users.length; j++) {
-
-				if (senderUserId == users[j][0].userid) {
-					senderUsername = users[j][0].username;
-				}
+			if (messages.length != 0) {
+				// $("#conversation-title").text("Chatting about listing #" + messages[0].listingId);
+				$("#conversation-title").text("");
+				var titleLink = $("<a></a>").appendTo($("#conversation-title"));
+				$(titleLink).text(event.listingInfo[0].title);
+				$(titleLink).click(function() {
+					goToListing();
+				});
 			}
 
-			//$(p0).text(senderUsername + ": " + messages[i].message);
-			var styledUsername = $("<p></p>").css({"font-weight": "700", "display": "inline"});
-			$(styledUsername).text(senderUsername);
+			for (var i = 0; i < messages.length; i++) {
+				var row0 = $("<div></div>").addClass("row messages-single").appendTo($("#all-conversation"));
 
-			$(p0).append(styledUsername);
-			$(p0).append(": " + messages[i].message);
+				$(row0).attr("id", "message-thread-" + i);
 
+				var p0 = $("<p></p>").addClass("message").appendTo($(row0));
+
+				//Determine the correct username from senderUserId to display.
+				var senderUserId = messages[i].senderUserId;
+				var senderUsername;
+
+				for (var j = 0; j < users.length; j++) {
+
+					if (senderUserId == users[j][0].userid) {
+						senderUsername = users[j][0].username;
+					}
+				}
+
+				//$(p0).text(senderUsername + ": " + messages[i].message);
+				var styledUsername = $("<p></p>").css({"font-weight": "700", "display": "inline"});
+				$(styledUsername).text(senderUsername);
+
+				$(p0).append(styledUsername);
+				$(p0).append(": " + messages[i].message);
+
+			}
 		}
-
 	});
 }
 
