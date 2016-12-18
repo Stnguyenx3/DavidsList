@@ -64,10 +64,12 @@ function submitListing(blobList) {
 		url: url+"/listings/newlisting/",
 		data: listingInformation,
 		success: function(event){
-			let splitString = event.split(" ");
-			let listingId = splitString[11];
-			listingId = listingId.replace(/\'/g, "");
-			window.location.replace(url+"listings/getlisting/"+listingId);
+			if(event !== "Bad create") {
+				let splitString = event.split(" ");
+				let listingId = splitString[11];
+				listingId = listingId.replace(/\'/g, "");
+				window.location.replace(url+"listings/getlisting/"+listingId);
+			}
 		},
 		error: function(xhr, err, errThrown) {
 			console.log("I failed");

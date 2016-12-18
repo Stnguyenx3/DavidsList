@@ -29,12 +29,19 @@ class Home extends Controller{
                "data:image/png;base64," . base64_encode($image->getImageThumbNail());
         }
         $size = count($newListings["addresses"])-1;
-        $indexOne = mt_rand(0, $size);
-        $indexTwo = mt_rand(0, $size);
-        $indexThree = mt_rand(0, $size);
-        $indexFour = mt_rand(0, $size);
-        $indexFive = mt_rand(0, $size);
-        $indexSix = mt_rand(0, $size);
+        // $indexOne = mt_rand(0, $size);
+        // $indexTwo = mt_rand(0, $size);
+        // $indexThree = mt_rand(0, $size);
+        // $indexFour = mt_rand(0, $size);
+        // $indexFive = mt_rand(0, $size);
+        // $indexSix = mt_rand(0, $size);
+
+        $indexOne = count($newListings["addresses"])-1;
+        $indexTwo = count($newListings["addresses"])-2;
+        $indexThree = count($newListings["addresses"])-3;
+        $indexFour = count($newListings["addresses"])-4;
+        $indexFive = count($newListings["addresses"])-5;
+        $indexSix = count($newListings["addresses"])-6;
         // load views
 
         if(isset($_SESSION["email"])) {

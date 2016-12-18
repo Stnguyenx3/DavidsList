@@ -17,7 +17,7 @@
 							$outputImage = "";
 							count($userResponse["user_images"]) > 0 ? $outputImage = "data:image/png;base64," .base64_encode($userResponse["user_images"][0]->getImage()) : $outputImage = "http://placehold.it/175x175";
 						?>
-						<img src="<?php echo $outputImage ?>" alt="placeholder img." width="175" height="175">
+						<img id="user-image" src="<?php echo $outputImage ?>" alt="placeholder img." width="175" height="175">
 					</div>
 					<div class="col-md-5">
 						<div class="row">
