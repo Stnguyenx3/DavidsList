@@ -125,8 +125,6 @@ function formatUserListings(event) {
 				$(a0).text("Edit");
 				//$(a1).text("Remove");
 				$(a2).text("Messages");
-
-
 			}
 		}
 
@@ -137,24 +135,15 @@ function formatUserListings(event) {
 		//Handle modal events
 		$("#confirmation-modal").on('show.bs.modal', function(event) {
 			var invoker = $(event.relatedTarget);
-
-			// console.log($(invoker).attr('id'));
-
 			var arr = $(invoker).attr('id').split("-");
 			var listingIdToDelete = arr[2];
 
-			$("#delete-confirmed").on('click', function() {
+			console.log("clicked delete number " + listingIdToDelete);
+			$("#delete-confirmed").off('click').on('click', function() {
 				console.log("Deleting listing with id " + listingIdToDelete);
 				deleteListing(listingIdToDelete);
 			});
-			
 		});
-
-		//Unbind modal events to prevent multiple notifications.
-		$("#confirmation-modal").on('hidden.bs.modal', function() {
-			$("#confirmation-modal").off();
-		});
-
 	});
 
 }
@@ -163,12 +152,6 @@ function onClickToListing(event) {
 	//console.log("Going to listing" + event.data.listingId);
 	window.location.href = url + "listings/getlisting/" + event.data.listingId;
 }
-
-// function onClickDeleteListing(event) {
-// 	var str = (window.location + '').split("/");
-// 	var userId = str[str.length - 1];
-// 	listingIDToDelete = event.data.listingId;
-// }
 
 //Maybe edit this so that it sends the user id as well?
 //That way, no other user can try to edit the page
@@ -183,6 +166,7 @@ function onClickMessages(event) {
 }
 
 function deleteListing(id) {
+
 	$.ajax({
 		type: 'POST',
 		url: url + "listings/deletelisting/",
@@ -190,29 +174,10 @@ function deleteListing(id) {
 			listingId: id
 		},
 		success: function(e) {
-			$("#user-favorite-"+id).remove();
+			$("#user-favorite-"+id).fadeOut("slow");
+			//$("#user-favorite-"+id).remove();
+
 			$.notify("Listing has been deleted!", {position: "top center"});
-
-					//Handle modal events
-			$("#confirmation-modal").on('show.bs.modal', function(event) {
-				var invoker = $(event.relatedTarget);
-
-				// console.log($(invoker).attr('id'));
-
-				var arr = $(invoker).attr('id').split("-");
-				var listingIdToDelete = arr[2];
-
-				$("#delete-confirmed").on('click', function() {
-					console.log("Deleting listing with id " + listingIdToDelete);
-					deleteListing(listingIdToDelete);
-				});
-				
-			});
-
-			//Unbind modal events to prevent multiple notifications.
-			$("#confirmation-modal").on('hidden.bs.modal', function() {
-				$("#confirmation-modal").off();
-			});
 		},
 		error: function(xhr, err, errThrown) {
 			console.log("I failed");
