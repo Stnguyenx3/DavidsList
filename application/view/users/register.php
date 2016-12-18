@@ -48,7 +48,7 @@
 
 		<div class="form-group row">
 			<label for="form-TOS" class="col-sm-12" style="text-align:center">
-				I have read and accept the TOS <a href="#" onclick="return showTOS();">here</a>.
+				I have read and accept the Terms of Service <a href="#" onclick="return showTOS();">here</a>.
 				<input class="form-check" type="checkbox" value="" name="tos" id="form-TOS">
 			</label>
 		</div>
