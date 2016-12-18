@@ -702,7 +702,8 @@ a[class*="user-favorite-remove-"],
 }
 
 .user-message-history {
-    /*height: 500px; TODO: Scroll bar when overflow 500px*/
+    max-height: 600px;
+    overflow: scroll;
     background-color: rgba(226,226,226,1);
     padding: 15px;
     margin-bottom: 15px;

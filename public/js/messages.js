@@ -67,6 +67,8 @@ function formatConversation(event) {
 				$(p0).append(": " + messages[i].message);
 
 			}
+
+			$(".user-message-history").scrollTop($(".user-message-history")[0].scrollHeight);
 		}
 	});
 }
