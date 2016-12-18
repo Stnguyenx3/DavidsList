@@ -1,46 +1,8 @@
 <div class="container main">
 	<div class="row">
 		<h1 class="centered-header">Welcome To DavidsList</h1>
-		<div class="col-md-4">
-			<div class="home-info">	
-				<span class="glyphicon glyphicon-check home-icon" aria-hidden="true"></span>
-				<h3 style="font-weight: bold;" >SECURE</h3>
-				<p>
-					SFSU students are verified on DavidsList. 
-					
-					<!-- DavidsList is an apartment rental website created by SFSU students for SFSU students. We believe that
-					students are more willing to rent from other students because they share something in common, going to
-					 an awesome school such as SFSU. </br>
-					 Although we do not guarantee that your experience will be 100% safe,
-					it is much more safer than searching for an apartment posted by a complete stranger! We hope that you
-					will find a place to rent and have an awesome academic career!  -->
-				</p>
-			</div>
-		</div>
-
-		<div class="col-md-4">
-			<div class="home-info">
-				<span class="glyphicon glyphicon-tasks home-icon" aria-hidden="true"></span>
-				<h3 style="font-weight: bold;">EASY</h3>
-				<p>
-					Manage your listings in 'My Account'.
-				</p>
-			</div>
-		</div>
-
-		<div class="col-md-4">
-			<div class="home-info">	
-				<span class="glyphicon glyphicon-send home-icon" aria-hidden="true"></span>
-				<h3 style="font-weight: bold;">QUICK</h3>
-				<p>
-					Message the owner in one click.
-				</p>
-			</div>
-		</div>
+		<hr/>
 	</div>
-
-	<div class="row divider"></div>
-
 	<div class="row">
 		<h1 class="centered-header">Recently Added Listings</h1>
 		<div class="col-md-4">
