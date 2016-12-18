@@ -159,18 +159,18 @@
 				
 				<div class="form-group row">
 					<p class="col-sm-2">Type <span class="text-danger">*</span></p>
-					<div class="col-sm-8">
+					<div class="col-sm-8" >
 						<label for="listing-apt">
-							<input type="radio" name="listingtype" id="listing-apt" value="apartment"> Apartment
+							<input type="radio" name="listingtype" id="listing-apt" value="apartment" /> Apartment
 						</label>
 						<label for="listing-house">
-							<input type="radio" name="listingtype" id="listing-house" value="house"> House
+							<input type="radio" id="listing-house" value="house" /> House
 						</label>
 						<label for="listing-room">
-							<input type="radio" name="listingtype" id="listing-room" value="room"> Room
+							<input type="radio" id="listing-room" value="room" /> Room
 						</label>
-						<label for="listing-shared-room">
-							<input type="radio" name="listingtype" id="listing-shared-room" value="sharedroom"> Shared room
+						<label for="listing-shared-room" id="listing-type">
+							<input type="radio" id="listing-shared-room" value="sharedroom" /> Shared room
 						</label>
 					</div>
 				</div>
@@ -329,8 +329,9 @@
 					$(element).removeClass("form-error");
 				},
 				errorPlacement: function(error, element) {
-					error.insertAfter(element);
-					error.css('color', 'rgba(226,226,226,1)');
+					elementToPlace = element[0].name === "listingtype" ? $('#listing-type') : element;
+					error.insertAfter(elementToPlace);
+					error.css('color', 'rgba(255,0,0,1)');
 				}
 				// submitHandler: function(form) {
 				// 	form.submit();
