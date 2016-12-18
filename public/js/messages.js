@@ -90,7 +90,7 @@ function onClickSend() {
 		url: url+"messages/createmessage/",
 		data: message,
 		success: function(event) {
-			$.notify(event, "success");
+			$.notify(event, "eventSuccess");
 
 			//Display sent message in chatbox.
 			var sentMessageRow = $("<div></div>").addClass("row messages-single").appendTo($("#all-conversation"));

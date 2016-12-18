@@ -12,6 +12,7 @@
     <script type="text/javascript" src="<?php echo URL; ?>js/listings.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>js/jquery.twbsPagination.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>js/notify.js"></script>
+    <script type="text/javascript" src="<?php echo URL; ?>js/notifications.js"></script>
 
     <!-- CSS -->
 	<link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">
