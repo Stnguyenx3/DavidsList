@@ -42,16 +42,16 @@
 	<div class="row divider"></div>
 
 	<div class="row">
-		<h1 class="centered-header">Featured Listings</h1>
+		<h1 class="centered-header">Recently Added Listings</h1>
 		<div class="col-md-4">
 
 			<div class="featured-listing-container" style="overflow:hidden">
 
 				<?php 
 					$title = $newListings["listings"][$indexOne]->getTitle();
-					if (strlen($title) > 22){
-						$title = substr($title, 0, 22)."...";
-					}
+					// if (strlen($title) > 22){
+					// 	$title = substr($title, 0, 22)."...";
+					// }
 				?>
 
 				<h3 class="featured-listing-title"><?php echo $title ?></h3>
@@ -89,9 +89,9 @@
 
 				<?php 
 					$title = $newListings["listings"][$indexTwo]->getTitle();
-					if (strlen($title) > 22){
-						$title = substr($title, 0, 22)."...";
-					}
+					// if (strlen($title) > 22){
+					// 	$title = substr($title, 0, 22)."...";
+					// }
 				?>
 
 				<h3 class="featured-listing-title"><?php echo $title ?></h3>
@@ -128,9 +128,9 @@
 			
 				<?php 
 					$title = $newListings["listings"][$indexThree]->getTitle();
-					if (strlen($title) > 22){
-						$title = substr($title, 0, 22)."...";
-					}
+					// if (strlen($title) > 22){
+					// 	$title = substr($title, 0, 22)."...";
+					// }
 				?>
 
 				<h3 class="featured-listing-title"><?php echo $title ?></h3>
@@ -171,9 +171,9 @@
 			
 				<?php 
 					$title = $newListings["listings"][$indexFour]->getTitle();
-					if (strlen($title) > 22){
-						$title = substr($title, 0, 22)."...";
-					}
+					// if (strlen($title) > 22){
+					// 	$title = substr($title, 0, 22)."...";
+					// }
 				?>
 
 				<h3 class="featured-listing-title"><?php echo $title ?></h3>
@@ -210,9 +210,9 @@
 
 				<?php 
 					$title = $newListings["listings"][$indexFive]->getTitle();
-					if (strlen($title) > 22){
-						$title = substr($title, 0, 22)."...";
-					}
+					// if (strlen($title) > 22){
+					// 	$title = substr($title, 0, 22)."...";
+					// }
 				?>
 
 				<h3 class="featured-listing-title"><?php echo $title ?></h3>
@@ -249,9 +249,9 @@
 
 				<?php 
 					$title = $newListings["listings"][$indexSix]->getTitle();
-					if (strlen($title) > 22){
-						$title = substr($title, 0, 22)."...";
-					}
+					// if (strlen($title) > 22){
+					// 	$title = substr($title, 0, 22)."...";
+					// }
 				?>
 
 				<h3 class="featured-listing-title"><?php echo $title ?></h3>
