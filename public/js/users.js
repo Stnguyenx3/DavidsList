@@ -67,6 +67,7 @@ function onSaveLoad(data) {
 			//Display change successful
 			$.notify("User profile is saved!", "success");
 			console.log(event);
+			$("#user-image").attr("src", data.target.result);
 		},
 		error: function(xhr, err, errThrown) {
 			console.log("I failed");
