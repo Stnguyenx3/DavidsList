@@ -26,8 +26,8 @@ function formatConversation(event) {
 
 		if (messages.length != 0) {
 			// $("#conversation-title").text("Chatting about listing #" + messages[0].listingId);
-			$("#conversation-title").text("");
-			var titleLink = $("<a></a>").appendTo($("#conversation-title"));
+			// $("#conversation-title").text("");
+			var titleLink = $("#conversation-title");
 			$(titleLink).text(event.listingInfo[0].title);
 			$(titleLink).click(function() {
 				goToListing();

@@ -72,12 +72,14 @@
 
 	<div class="row">
 
+		<hr/>
+
 		<div class="col-sm-8">
 
 			<div class="listing-details">
 
 				<div class="row">
-					<div class="col-sm-12">
+					<div class="col-sm-12" style="padding-left: 0px">
 
 						<div>
 							<p class="listing-title"><?php echo $listingResponse["listing"]->getTitle()?></p>
@@ -99,7 +101,7 @@
 								}
 							?>
 								
-							<span class="listing-subtitle" style="margin-left: 15px;"><?php echo $address?></span>
+							<span class="listing-subtitle"><?php echo $address?></span>
 
 							<br>
 
@@ -148,7 +150,7 @@
 				<?php  
 					$verifiedCss = "";
 					if($userResponse->getVerified() == 1) {
-						$verifiedCss = "<span style=\"color: #FFA500\"> verified </span>";
+						$verifiedCss = "<span style=\"color: #6de3b0\"> verified </span>";
 					}
 				?>
 				<p class="owner-username">Name: <?php echo $verifiedCss ?> <?php echo $userResponse->getUsername(); ?></p>

@@ -4,7 +4,7 @@ $(document).ready(function () {
 	var listingId = str[str.length - 1];
 
 	//Highlight the current pages' navbar link.
-	$("#nav-link-2").css("color", "#2E3192");
+	$("#nav-link-2").css("color", "#6de3b0");
 
 	$.ajax({
 		type:'GET',

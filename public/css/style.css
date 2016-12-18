@@ -3,7 +3,7 @@ body,
 	font-family: Helvetica;
     font-size: 16px;
     overflow: scroll;
-    background-color: rgba(226,226,226,1);
+    background-color: #fff;/*rgba(226,226,226,1);*/
 }
 
 .form-control {
@@ -12,7 +12,7 @@ body,
 
 .disclaimer {
     color: #ffffff;
-    background-color: #FFA500; /*#4682b4;*/
+    background-color: #6de3b0; /*#FFA500;*/
     padding-top: 10px;
 }
 
@@ -21,7 +21,7 @@ body,
 }
 
 hr{
-    border-top: 1px solid #FFA500;
+    border-top: 1px solid #6de3b0;
     width: 90%;
 }
 
@@ -38,7 +38,7 @@ hr{
 
 .divider{
     height: 50px;
-    background-color: rgba(226,226,226,1);
+    background-color: #fff;/* rgba(226,226,226,1);*/
     margin-top: 5px; 
 }
 
@@ -83,14 +83,13 @@ hr{
 }
 
 /*Home page*/
+.logo{
+    padding-left: 0px;
+}
+.messages-header:hover,
 .logo:hover {
     cursor: pointer;
-/*    font-size: 100px;
-    font-weight: bolder;
-    letter-spacing: -6px;
-    color: #222;
-    margin: 20px 30px;
-    float: left;*/
+    text-decoration: none;
 }
 
 
@@ -107,13 +106,13 @@ hr{
 .dropdown-menu li.active > a,
 .dropdown-menu li.active > a:hover,
 .dropdown-menu li.active > a:focus {
-    background-color:  #a3dbf6;
+    background-color:  #4b4949;
     /*color: #fff;*/
-    color: #2E3192;
+    color: #6de3b0;
 }
 
 .dropdown-menu {
-    background-color: #a3dbf6;/*#4682b4;*/
+    background-color: #4b4949;/*#4682b4;*/
     border-top: 0px;
     box-shadow-top: 0px;
 }
@@ -124,7 +123,7 @@ hr{
 }
 
 .navigation {
-    background-color:  #a3dbf6;/*#4682b4;*/
+    background-color:  #4b4949;/* #a3dbf6;*//*#4682b4;*/
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -142,8 +141,8 @@ hr{
     /*color: rgba(226,226,226,1);*/
 
 .navbar-nav>li>a:hover {
-    color: #2E3192;
-    background-color:  #a3dbf6;
+    color: #6de3b0;
+    background-color:  #4b4949;
 }
 
 .user {
@@ -155,8 +154,9 @@ hr{
 .user a {
     font-size: 16px;
 }
+
 .user a:hover {
-    color: #074ba1;
+    color: #6de3b0;
     text-decoration: none;
 }
 
@@ -184,7 +184,7 @@ hr{
 
 #header {
     margin: 0px;
-    background-color: #a3dbf6;
+    background-color: #6de3b0;
 }
 
 div#header.container {
@@ -223,6 +223,11 @@ div#header.container {
     padding-left: 5px;
     padding-right: 5px;
 }
+
+ .featured-info{
+    padding-left: 15px;
+    padding-right: 15px;
+ }
 
 .featured-listing-price {
     margin: 15px;
@@ -329,9 +334,12 @@ div#header.container {
 
 .owner-info {
     margin: 15px;
+    margin-left: 0px;
+    margin-right: 15px;
     padding: 15px;
     width: 100%;
     height: auto;
+    background-color: rgba(226,226,226,1);
     /*border: 3px solid #99CC99;*/
     /*border-radius: 10px;*/
     /*box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);*/
@@ -374,6 +382,7 @@ div#header.container {
     float: left;
     padding: 15px;
     padding-top: 0px;
+    padding-left: 0px;
     margin-top: 0px;
     font-size: 24px;
     font-weight: bold
@@ -382,7 +391,7 @@ div#header.container {
 .listing-price {
     float: right;
     padding: 0px;
-    padding-right: 15px;
+    padding-right: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
     font-size: 24px;
@@ -422,19 +431,19 @@ div#header.container {
 .listing-basic-info li{
     display: inline;
     font-size: 16px;
-    padding-left: 15px;
+    padding-left: 0px;
     padding-right: 15px;
 }
 
 .listing-expanded-info li{
     font-size: 16px;
-    padding-left: 15px;
+    padding-left: 0px;
 }
 
 .listing-desc {
     font-size: 16px;
     padding-top: 15px;
-    padding-left: 15px;
+    padding-left: 0px;
     padding-right: 15px;
 }
 
@@ -517,6 +526,7 @@ div#header.container {
 .user-favorite {
     margin: 15px;
     padding: 15px;
+    padding-right: 30px;
     /*border: 3px solid #99CC99;*/
     background-color: rgba(226,226,226,1);
     /*border-radius: 10px;*/
@@ -525,7 +535,7 @@ div#header.container {
 
 .search-result-listing-address{
     font-size: 16px;
-    padding-left: 15px;
+    padding-left: 0px;
     /*margin: 0px;*/
     margin-top: 20px;
     display: inline;
@@ -533,7 +543,7 @@ div#header.container {
 }
 .search-result-listing-basic-info {
     font-size: 16px;
-    padding-left: 15px;
+    padding-left: 0px;
     /*margin: 10px;*/
     display: inline;
     float: left;
@@ -634,7 +644,7 @@ input[type=file] {
 }
 
 .text-danger{
-    color: #FFA500;
+    color: #6de3b0;
 }
 
 
@@ -689,7 +699,7 @@ a[class*="user-favorite-remove-"],
 
 .user-messages {
     font-size: 16px;
-    margin-left: 15px;
+    margin-left: 0px;
 }
 
 .messages-other-users {
@@ -700,6 +710,11 @@ a[class*="user-favorite-remove-"],
     margin: 15px;
 }
 
+.messages-header{
+    margin-top: 25px;
+    color: #454545;
+}
+
 .user-message-history {
     /*height: 500px; TODO: Scroll bar when overflow 500px*/
     background-color: rgba(226,226,226,1);
@@ -708,7 +723,7 @@ a[class*="user-favorite-remove-"],
 }
 
 .user-message-to-send {
-    border-top: 1px solid #FFA500;
+    border-top: 1px solid #6de3b0;
     padding: 15px;
 }
 
@@ -717,7 +732,7 @@ a[class*="user-favorite-remove-"],
 }
 
 .vertical-divider {
-    border-right: 1px solid #FFA500;
+    border-right: 1px solid #6de3b0;
 }
 
 .back-to-messages {

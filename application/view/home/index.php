@@ -67,7 +67,7 @@
 					else $address = $newListings["addresses"][$indexOne]->getZipcode().", ".$newListings["addresses"][$indexOne]->getCity();
 				?>
 
-				<div>
+				<div class="featured-info">
 					<p class="listing-price">$<?php echo $newListings["listings"][$indexOne]->getPrice() ?></p>
 					<ul class="listing-expanded-info">
 						<li><p class="listing-subtitle">Bed</p> <?php echo $newListings["listing_details"][$indexOne]->getNumberOfBedrooms() ?></li>
@@ -106,7 +106,7 @@
 					else $address = $newListings["addresses"][$indexTwo]->getZipcode().", ".$newListings["addresses"][$indexTwo]->getCity();
 				?>
 
-				<div>
+				<div class="featured-info">
 					<p class="listing-price">$<?php echo $newListings["listings"][$indexTwo]->getPrice() ?></p>
 					<ul class="listing-expanded-info">
 						<li><p class="listing-subtitle">Bed</p> <?php echo $newListings["listing_details"][$indexTwo]->getNumberOfBedrooms() ?></li>
@@ -145,7 +145,7 @@
 					else $address = $newListings["addresses"][$indexThree]->getZipcode().", ".$newListings["addresses"][$indexThree]->getCity();
 				?>
 
-				<div>
+				<div class="featured-info">
 					<p class="listing-price"> $<?php echo $newListings["listings"][$indexThree]->getPrice() ?></p>
 					<ul class="listing-expanded-info">
 						<li><span class="listing-subtitle">Bed</span> <?php echo $newListings["listing_details"][$indexThree]->getNumberOfBedrooms() ?></li>
@@ -188,7 +188,7 @@
 					else $address = $newListings["addresses"][$indexFour]->getZipcode().", ".$newListings["addresses"][$indexFour]->getCity();
 				?>
 
-				<div>
+				<div class="featured-info">
 					<p class="listing-price"> $<?php echo $newListings["listings"][$indexFour]->getPrice() ?></p>
 					<ul class="listing-expanded-info">
 						<li><p class="listing-subtitle">Bed</p> <?php echo $newListings["listing_details"][$indexFour]->getNumberOfBedrooms() ?></li>
@@ -227,7 +227,7 @@
 					else $address = $newListings["addresses"][$indexFive]->getZipcode().", ".$newListings["addresses"][$indexFive]->getCity();
 				?>
 
-				<div>
+				<div class="featured-info">
 					<p class="listing-price"> $<?php echo $newListings["listings"][$indexFive]->getPrice() ?></p>
 					<ul class="listing-expanded-info">
 						<li><p class="listing-subtitle">Bed</p> <?php echo $newListings["listing_details"][$indexFive]->getNumberOfBedrooms() ?></li>
@@ -266,7 +266,7 @@
 					else $address = $newListings["addresses"][$indexSix]->getZipcode().", ".$newListings["addresses"][$indexSix]->getCity();
 				?>
 
-				<div>
+				<div class="featured-info">
 					<p class="listing-price"> $<?php echo $newListings["listings"][$indexSix]->getPrice() ?></p>
 					<ul class="listing-expanded-info">
 						<li><p class="listing-subtitle">Bed</p> <?php echo $newListings["listing_details"][$indexSix]->getNumberOfBedrooms() ?></li>

@@ -11,5 +11,5 @@
 
 <script>
 	//Highlight the current pages' navbar link.
-	$("#nav-link-2").css("color", "#2E3192");
+	$("#nav-link-2").css("color", "#6de3b0");
 </script>

@@ -8,13 +8,13 @@
 		<!-- Main chat message window -->
 			<div class="row">
 				<div class="col-md-1"></div>
-				<div class="col-md-2">
+				<div class="col-md-3" style="padding-left: 0px">
 					<a class="btn btn-primary back-to-messages" onclick="backToMessages()">Back to messages</a>
 				</div>
-				<div class="col-md-1"></div>
-				<div class="col-md-7">
-					<h3 class="messages-header centered-header" id="conversation-title">Message the owner!</h3>
-				</div>
+				<!-- <div class="col-md-1"></div> -->
+				<!-- <div class="col-md-7"> -->
+					<h3 class="messages-header col-md-7" id="conversation-title">Message the owner!</h3>
+				<!-- </div> -->
 				<div class="col-md-1"></div>
 			</div>
 

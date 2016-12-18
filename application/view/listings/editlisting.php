@@ -326,7 +326,7 @@
 							?>
 							>
 						</label>
-						<label style="color:#FFA500; font-weight:normal;">Please check this box when you don't want the exact location of the home displayed.</label>
+						<label style="color:#6de3b0; font-weight:normal;">Please check this box when you don't want the exact location of the home displayed.</label>
 					</div>
 				</div>
 
@@ -557,7 +557,7 @@
 					<p class="col-sm-2">Image(s) <span class="text-danger">*</span></p>
 					<div class="col-sm-10">
 						<input type="file" name="listingimage" id="form-image" multiple>
-						<label style="color:#FFA500; font-weight:normal;">Choose one or more</label>
+						<label style="color:#6de3b0; font-weight:normal;">Choose one or more</label>
 					</div>
 
 				</div>
@@ -566,7 +566,7 @@
 
 				<div class="form-group row">
 					<div class="col-sm-2"></div>
-					<label class="col-sm-10" style="color:#FFA500; font-weight:normal;">All fields marked with * must be filled in</label>
+					<label class="col-sm-10" style="color:#6de3b0; font-weight:normal;">All fields marked with * must be filled in</label>
 				</div>
 
 				<div class="row">
