@@ -186,11 +186,11 @@ function onFavoriteClick() {
 		success: function(event) {
 
 			if(event == 1) {
-				$.notify("Listing added to favorites!", {position: "top center", autoHideDelay: 5000});
+				$.notify("Listing added to favorites!", "success");
 			} else if (event === "You are not logged in") {
 				window.location.replace(url+"home/login/");
 			} else {
-				$.notify(event, {position: "top center", autoHideDelay: 5000});
+				$.notify(event, "error");
 			}
 		},
 		error: function(xhr, err, errThrown) {

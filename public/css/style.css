@@ -6,6 +6,11 @@ body,
     background-color: #fff;/*rgba(226,226,226,1);*/
 }
 
+.confirmation-btn {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .form-control {
     font-size: 16px;
 }
@@ -289,7 +294,7 @@ div#header.container {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 1041; /*Must be above 1040 to be shown above modal backdrop*/
     left: 0;
     top: 0;
     width: 100%;
@@ -654,9 +659,10 @@ input[type=file] {
     float: right;
 }
 
-a[class^="user-favorite-remove-"],
-a[class*="user-favorite-remove-"],
-.user-favorite-go {
+/*a[class^="user-favorite-remove-"],
+a[class*="user-favorite-remove-"],*/
+.user-favorite-go,
+.user-favorite-remove {
     margin: 15px;
     float: right;
     font-size: 16px;
@@ -716,7 +722,8 @@ a[class*="user-favorite-remove-"],
 }
 
 .user-message-history {
-    /*height: 500px; TODO: Scroll bar when overflow 500px*/
+    max-height: 600px;
+    overflow: scroll;
     background-color: rgba(226,226,226,1);
     padding: 15px;
     margin-bottom: 15px;

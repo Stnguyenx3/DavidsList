@@ -64,8 +64,6 @@ function formatUserListings(event) {
 		} else {
 			for (var i = 0; i < numOfListings; i++){
 
-				
-
 				var row0 = $("<div></div>").addClass("row search-result-listing").appendTo($("#listings"));
 
 				//Add unique ID for each row (remove if not needed!)
@@ -85,12 +83,20 @@ function formatUserListings(event) {
 				var a0 = $("<a></a>").addClass("btn btn-primary user-listings-edit")
 							.click({listingId: event[i].listing.listingId}, onClickEditListing)
 							.appendTo($(row4));
-				var a1 = $("<a></a>").addClass("btn btn-primary user-listings-remove")
-							.click({listingId: event[i].listing.listingId}, onClickDeleteListing)
-							.appendTo($(row4));
+				// var a1 = $("<a></a>").addClass("btn btn-primary user-listings-remove")
+				// 			.click({listingId: event[i].listing.listingId}, onClickDeleteListing)
+				// 			.appendTo($(row4));
 				var a2 = $("<a></a>").addClass("btn btn-primary user-messages")
 							.click({listingId: event[i].listing.listingId}, onClickMessages)
 							.appendTo($(row4));
+
+				var deleteButton = $("<button></button>").appendTo($(row4));
+				$(deleteButton).attr("type", "button");
+				$(deleteButton).attr("data-toggle", "modal");
+				$(deleteButton).attr("data-target", "#confirmation-modal");
+				$(deleteButton).attr("id", "delete-listing-" + event[i].listing.listingId);
+				$(deleteButton).addClass("btn btn-primary user-listings-remove");
+				$(deleteButton).text("Delete");
 
 				//Store listing inforation into variables.
 				var listingTitle = event[i].listing.title;
@@ -117,16 +123,27 @@ function formatUserListings(event) {
 				$(basicInfo).text("Bed: " + listingBed + " | " + "Bath: " + listingBath + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance + " mi");
 				// $(description).text("Description: "+ listingDescription);
 				$(a0).text("Edit");
-				$(a1).text("Remove");
+				//$(a1).text("Remove");
 				$(a2).text("Messages");
-
-
 			}
 		}
 
 		$("#loading-animation").css("display", "none");
 
 		$("#new-listing-btn").show();
+
+		//Handle modal events
+		$("#confirmation-modal").on('show.bs.modal', function(event) {
+			var invoker = $(event.relatedTarget);
+			var arr = $(invoker).attr('id').split("-");
+			var listingIdToDelete = arr[2];
+
+			console.log("clicked delete number " + listingIdToDelete);
+			$("#delete-confirmed").off('click').on('click', function() {
+				console.log("Deleting listing with id " + listingIdToDelete);
+				deleteListing(listingIdToDelete);
+			});
+		});
 	});
 
 }
@@ -134,16 +151,6 @@ function formatUserListings(event) {
 function onClickToListing(event) {
 	//console.log("Going to listing" + event.data.listingId);
 	window.location.href = url + "listings/getlisting/" + event.data.listingId;
-}
-
-function onClickDeleteListing(event) {
-	var str = (window.location + '').split("/");
-	var userId = str[str.length - 1];
-
-	listingIDToDelete = event.data.listingId;
-
-	$.notify({title: "Are you sure?", button: "Yes"}, {style: "remove-confirmation", position: "top center", autoHide: false});
-
 }
 
 //Maybe edit this so that it sends the user id as well?
@@ -158,17 +165,7 @@ function onClickMessages(event) {
 	window.location.replace(url+"messages/allmessages/"+event.data.listingId);
 }
 
-$.notify.addStyle('remove-confirmation', {
-	html: "<div>" +
-      "<div class='clearfix'>" +
-        "<div class='title' data-notify-html='title'/>" +
-        "<div class='buttons'>" +
-          "<button class='no'>No</button>" +
-          "<button class='yes' data-notify-text='button'></button>" +
-        "</div>" +
-      "</div>" +
-    "</div>"
-});
+function deleteListing(id) {
 
 //listen for click events from this style
 $(document).on('click', '.notifyjs-remove-confirmation-base .no', function() {
@@ -177,14 +174,16 @@ $(document).on('click', '.notifyjs-remove-confirmation-base .no', function() {
 });
 $(document).on('click', '.notifyjs-remove-confirmation-base .yes', function() {
 	console.log(listingIDToDelete);
-		$.ajax({
+	$.ajax({
 		type: 'POST',
 		url: url + "listings/deletelisting/",
 		data: {
-			listingId: listingIDToDelete
+			listingId: id
 		},
 		success: function(e) {
-			$("#user-listing-"+listingIDToDelete).remove();
+			$("#user-favorite-"+id).fadeOut("slow");
+			//$("#user-favorite-"+id).remove();
+
 			$.notify("Listing has been deleted!", {position: "top center"});
 		},
 		error: function(xhr, err, errThrown) {
@@ -193,6 +192,4 @@ $(document).on('click', '.notifyjs-remove-confirmation-base .yes', function() {
 			console.log(errThrown);
 		}
 	});
-  //hide notification
-  $(this).trigger('notify-hide');
-});
+}

@@ -77,7 +77,7 @@
 					</ul>
 				</div>
 			
-				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexOne]->getListingId() ?>")>Rent</button>
+				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexOne]->getListingId() ?>")>More Info</button>
 
 			</div>
 
@@ -116,7 +116,7 @@
 					</ul>
 				</div>
 
-				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexTwo]->getListingId() ?>")>Rent</button>
+				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexTwo]->getListingId() ?>")>More Info</button>
 
 			</div>
 
@@ -155,7 +155,7 @@
 					</ul>
 				</div>
 
-			<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexThree]->getListingId() ?>")>Rent</button>
+			<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexThree]->getListingId() ?>")>More Info</button>
 			
 			</div>
 
@@ -198,7 +198,7 @@
 					</ul>
 				</div>
 
-				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFour]->getListingId() ?>")>Rent</button>
+				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFour]->getListingId() ?>")>More Info</button>
 
 			</div>
 
@@ -237,7 +237,7 @@
 					</ul>
 				</div>
 
-				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFive]->getListingId() ?>")>Rent</button>
+				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexFive]->getListingId() ?>")>More Info</button>
 
 			</div>
 
@@ -276,7 +276,7 @@
 					</ul>
 				</div>
 
-				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexSix]->getListingId() ?>")>Rent</button>
+				<button type="button" class="btn btn-primary featured-listing-btn" onclick= window.open("<?php echo URL . "listings/getlisting/" . $newListings["listings"][$indexSix]->getListingId() ?>")>More Info</button>
 
 			</div>
 

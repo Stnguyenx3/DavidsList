@@ -62,14 +62,14 @@ function formatUserListings(event) {
 				var basicInfo = $("<p></p>").addClass("search-result-listing-basic-info").appendTo($(row3));
 				var description= $("<p></p>").addClass("search-result-listing-basic-info").appendTo($(row3));
 
-				var a1 = $("<a></a>").addClass("btn btn-primary user-favorite-remove-" + event[i].listing.listingId)
-							.click({listingId: event[i].listing.listingId}, onClickDeleteListing);
+				//var a1 = $("<a></a>").addClass("btn btn-primary user-favorite-remove-" + event[i].listing.listingId)
+							//.click({listingId: event[i].listing.listingId}, onClickDeleteListing);
 
 				var a2 = $("<a></a>").addClass("btn btn-primary user-favorite-go")
 							.click({listingId: event[i].listing.listingId}, onClickGoToListing);
 
 				$(a2).appendTo($(row3));
-				$(a1).appendTo($(row3));
+				//$(a1).appendTo($(row3));
 
 				//Store listing inforation into variables.
 				var listingTitle = event[i].listing.title;
@@ -99,10 +99,32 @@ function formatUserListings(event) {
 				$(address).text(listingAddress);
 				$(basicInfo).text("Bed: " + listingBed + " | " + "Bath: " + listingBath + " | " + "Furnished: " + furnished + " | Distance from campus: " + distance + " mi");
 				// $(description).text("Description: "+ listingDescription);
-				$(a1).text("Remove");
+				//$(a1).text("Remove");
 				$(a2).text("Go to listing");
 
+				var deleteButton = $("<button></button>").appendTo($(row3));
+				$(deleteButton).attr("type", "button");
+				$(deleteButton).attr("data-toggle", "modal");
+				$(deleteButton).attr("data-target", "#confirmation-modal");
+				$(deleteButton).attr("id", "delete-favorite-" + event[i].listing.listingId);
+				$(deleteButton).addClass("btn btn-primary user-favorite-remove");
+				$(deleteButton).text("Delete");
+
 			}
+
+			//Handle modal events
+			$("#confirmation-modal").on('show.bs.modal', function(event) {
+				var invoker = $(event.relatedTarget);
+				var arr = $(invoker).attr('id').split("-");
+				var listingIdToDelete = arr[2];
+
+				console.log("clicked delete number " + listingIdToDelete);
+				$("#delete-confirmed").off('click').on('click', function() {
+					console.log("Deleting listing with id " + listingIdToDelete);
+					deleteListing(listingIdToDelete);
+				});
+			});
+
 		}
 		
 	});
@@ -112,44 +134,24 @@ function formatUserListings(event) {
 function onClickDeleteListing(event) {
 	var str = (window.location + '').split("/");
 	var userId = str[str.length - 1];
-
 	listingIDToDelete = event.data.listingId;
-
-	$.notify({title: "Are you sure?", button: "Yes"}, {style: "remove-confirmation", position: "top center", autoHide: false});
-
 }
 
 function onClickGoToListing(event) {
 	window.location.replace(url + "listings/getlisting/" + event.data.listingId);
 }
 
-$.notify.addStyle('remove-confirmation', {
-	html: "<div>" +
-      "<div class='clearfix'>" +
-        "<div class='title' data-notify-html='title'/>" +
-        "<div class='buttons'>" +
-          "<button class='no'>No</button>" +
-          "<button class='yes' data-notify-text='button'></button>" +
-        "</div>" +
-      "</div>" +
-    "</div>"
-});
-
-//listen for click events from this style
-$(document).on('click', '.notifyjs-remove-confirmation-base .no', function() {
-  //programmatically trigger propogating hide event
-  $(this).trigger('notify-hide');
-});
-$(document).on('click', '.notifyjs-remove-confirmation-base .yes', function() {
+function deleteListing(id) {
+	console.log("Making ajax to delete listing number " + id);
 	$.ajax({
 		type: 'POST',
 		url: url + "favoritelistings/deletefavorite/",
 		data: {
-			listingId: listingIDToDelete
+			listingId: id
 		},
 		success: function(e) {
-			$("#user-favorite-"+listingIDToDelete).remove();
-			$.notify("Listing has been deleted from your favorites!", {position: "top center"});
+			$("#user-favorite-"+id).fadeOut("slow");
+			$.notify("Listing has been deleted from your favorites!", "success");
 		},
 		error: function(xhr, err, errThrown) {
 			console.log("I failed");
@@ -157,6 +159,4 @@ $(document).on('click', '.notifyjs-remove-confirmation-base .yes', function() {
 			console.log(errThrown);
 		}
 	});
-  //hide notification
-  $(this).trigger('notify-hide');
-});
+}

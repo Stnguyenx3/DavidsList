@@ -100,16 +100,21 @@ function formatAllListingMessages(event) {
 					}
 				}
 
-				$(h0).text(basic[i][0].title);
-				$(info).text("$" + basic[i][0].price);
-				var styledUsername = $("<p></p>").css({"font-weight": "700", "display": "inline"});
-				$(styledUsername).text(senderUsername);
-				//$(p0).text(senderUsername + ": " + message);
-				$(p0).append(styledUsername);
-				$(p0).append(": " + message);
-				$(a0).text("Reply");
-				$(a1).text("Go To Listing");
-				// $(img).attr("src", "http://placehold.it/150x150"); //"data:image/png;base64," + images[i].imageThumbnail
+				if (basic[i].length > 0) {
+					$(h0).text(basic[i][0].title);
+					$(info).text("$" + basic[i][0].price);
+					var styledUsername = $("<p></p>").css({"font-weight": "700", "display": "inline"});
+					$(styledUsername).text(senderUsername);
+					//$(p0).text(senderUsername + ": " + message);
+					$(p0).append(styledUsername);
+					$(p0).append(": " + message);
+					$(a0).text("Reply");
+					$(a1).text("Go To Listing");
+					// $(img).attr("src", "http://placehold.it/150x150"); //"data:image/png;base64," + images[i].imageThumbnail
+				} else {
+					//Remove the message containers for undefined messages (when user deletes a listing).
+					$(row0).hide();
+				}
 			}
 		}
 		
