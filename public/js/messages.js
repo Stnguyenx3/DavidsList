@@ -23,9 +23,10 @@ function formatConversation(event) {
 
 		if (event === null) {
 			console.log("Server returned with null!");
-			$(".user-message-history").hide();
+			//$(".user-message-history").hide();
+			$(".user-message-history").text("You have not interacted with this person yet. Start the conversation by sending them a message!");
 		} else {
-
+			$(".user-message-history").text("");
 			$(".user-message-history").show();
 
 			var messages = event.messages;
