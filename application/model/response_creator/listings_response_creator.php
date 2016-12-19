@@ -87,6 +87,15 @@ class ListingsResponseCreator {
 		//delete messages related to listing
 		//TODO
 
+		$favoriteListing = new FavoriteListing();
+		$favoriteListing->setUserId(1);
+		$favoriteListing->setListingId($listingID);
+		
+		// remove the FavoriteListing from the DB
+        $favoriteListingsRepo = RepositoryFactory::createRepository(
+				"favorite_listing");		
+		$favoriteListingsRepo->remove($favoriteListing);	
+
 		return $removedCorrectlyListing and $removedCorrectlyAddress and 
 			$removedCorrectlyImages and $removedCorrectlyDetails;
 	}

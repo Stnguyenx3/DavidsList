@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <title>David's List</title>
-    <link rel="icon" type="image/png" href="<?php echo URL; ?>img/logo2.png">
+    <link rel="icon" type="image/ico" href="<?php echo URL; ?>img/browser_logo.ico">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
 
