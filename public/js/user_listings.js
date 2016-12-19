@@ -166,14 +166,6 @@ function onClickMessages(event) {
 }
 
 function deleteListing(id) {
-
-//listen for click events from this style
-$(document).on('click', '.notifyjs-remove-confirmation-base .no', function() {
-  //programmatically trigger propogating hide event
-  $(this).trigger('notify-hide');
-});
-$(document).on('click', '.notifyjs-remove-confirmation-base .yes', function() {
-	console.log(listingIDToDelete);
 	$.ajax({
 		type: 'POST',
 		url: url + "listings/deletelisting/",
