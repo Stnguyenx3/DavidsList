@@ -10,13 +10,16 @@ $('#rentout').submit(function (e) {
 	$.each(fileUploadField.files, function(i, j) {
 		var reader = new FileReader();
 		reader.readAsDataURL(j);
-		reader.onload = function(data) {
-			index++;
-			blobList.push(data.target.result);
-
-			if(index === fileUploadField.files.length) {
-				submitListing(blobList);
+		if(j.name.includes("jpg") || j.name.includes("jpeg") || j.name.includes("png")) {
+			reader.onload = function(data) {
+				index++;
+				blobList.push(data.target.result);
+				if(index === fileUploadField.files.length) {
+					submitListing(blobList);
+				}
 			}
+		} else {
+			$.notify("We only accept jpg, jpeg, or png", {position: "top center", autoHideDelay: 5000});
 		}
 	});
 });
@@ -91,6 +94,7 @@ $('#edit').submit(function (e) {
 	$.each(fileUploadField.files, function(i, j) {
 		var reader = new FileReader();
 		reader.readAsDataURL(j);
+		console.log(j);
 		reader.onload = function(data) {
 			index++;
 			blobList.push(data.target.result);
