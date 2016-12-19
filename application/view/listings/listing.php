@@ -97,7 +97,7 @@
 								}
 								else {
 									$googleAddress = $listingResponse["address"]->getCity() . ", ". $listingResponse["address"]->getState() . " " . $listingResponse["address"]->getZipcode();
-									$address = $googleAddress.", ".$listingResponse["address"]->getCity()." ".$listingResponse["address"]->getState();
+									$address = $googleAddress;
 								}
 							?>
 								
