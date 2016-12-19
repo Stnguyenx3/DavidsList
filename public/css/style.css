@@ -227,7 +227,7 @@ div#header.container {
     height: 30px;
     padding-left: 5px;
     padding-right: 5px;
-    font-size: 2vw;
+    /*font-size: 2vw;*/
     overflow: hidden;
 }
 
