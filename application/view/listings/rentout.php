@@ -329,8 +329,7 @@
 					$(element).removeClass("form-error");
 				},
 				errorPlacement: function(error, element) {
-					elementToPlace = element[0].name === "listingtype" ? $('#listing-type') : element;
-					error.insertAfter(elementToPlace);
+					element[0].name === "listingtype" ? error.insertBefore(element) : error.insertAfter(element);
 					error.css('color', 'rgba(255,0,0,1)');
 				}
 				// submitHandler: function(form) {
