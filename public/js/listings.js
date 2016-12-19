@@ -62,6 +62,8 @@ function submitListing(blobList) {
 		}
 	};
 	
+	$("#submit-listing").prop("disabled", true);
+	
 	$.ajax({
 		type:'POST',
 		url: url+"/listings/newlisting/",
@@ -155,6 +157,8 @@ function onEditLoad(data) {
 			image: data
 		};
 	}
+
+	$("#submit-listing").prop("disabled", true);
 
 	$.ajax({
 		type:'POST',
