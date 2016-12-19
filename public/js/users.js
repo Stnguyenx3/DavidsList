@@ -28,8 +28,14 @@ function onSaveClick() {
 	reader.onload = function(data) {
 	 	onSaveLoad(data);
 	}
+
+	if(!logo.name.includes("jpg") && !logo.name.includes("jpeg") && !logo.name.includes("png")) {
+		$.notify("We only accept jpg, jpeg, or png", {position: "top center", autoHideDelay: 5000});
+		return;
+	}
+
 	if (logo instanceof Blob) {
-		reader.readAsDataURL(logo);
+			reader.readAsDataURL(logo);
 	} else {
 		onSaveLoad();
 	}
