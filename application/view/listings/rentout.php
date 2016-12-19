@@ -164,13 +164,13 @@
 							<input type="radio" name="listingtype" id="listing-apt" value="apartment" /> Apartment
 						</label>
 						<label for="listing-house">
-							<input type="radio" id="listing-house" value="house" /> House
+							<input type="radio" name="listingtype" id="listing-house" value="house" /> House
 						</label>
 						<label for="listing-room">
-							<input type="radio" id="listing-room" value="room" /> Room
+							<input type="radio" name="listingtype" id="listing-room" value="room" /> Room
 						</label>
 						<label for="listing-shared-room" id="listing-type">
-							<input type="radio" id="listing-shared-room" value="sharedroom" /> Shared room
+							<input type="radio" name="listingtype" id="listing-shared-room" value="sharedroom" /> Shared room
 						</label>
 					</div>
 				</div>
