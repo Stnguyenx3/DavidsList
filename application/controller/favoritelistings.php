@@ -25,7 +25,7 @@ class FavoriteListings extends Controller{
 	 */
 	public function addFavorite(){
 		// build FavoriteListing object from external JSON data
-		if(!empty($_SESSION)) {
+		if(isset($_SESSION["email"])) {
 			$userRepo = RepositoryFactory::createRepository("user");
         	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
 
@@ -52,6 +52,7 @@ class FavoriteListings extends Controller{
 	        }
 
 		} else {
+			$_SESSION["previous_url"] = URL . 'listings/getlisting/' . $_POST["listingId"];
 			echo "You are not logged in";
 		}
 	} // end function addFavorite

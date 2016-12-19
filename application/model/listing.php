@@ -11,6 +11,7 @@ class Listing implements JsonSerializable{
 	private $price;
 	private $type;
 	private $status;
+	private $title;
 
 	public function __construct() {
 
@@ -36,6 +37,10 @@ class Listing implements JsonSerializable{
 		return $this->status;
 	}
 
+	public function getTitle() {
+		return $this->title;
+	}
+
 	public function setId($newId) {
 		$this->userid = $newId;
 	}
@@ -56,9 +61,13 @@ class Listing implements JsonSerializable{
 		$this->status = $newStatus;
 	}
 
+	public function setTitle($newTitle) {
+		$this->title = $newTitle;
+	}
+
 	public function __toString() {
 		return "{$this->userid}, {$this->listingId}, {$this->price}," . 
-				" {$this->type}, {$this->status}";
+				" {$this->type}, {$this->status}, {$this->title}";
 	}
 
 	public function jsonSerialize() {
@@ -67,7 +76,8 @@ class Listing implements JsonSerializable{
 			"listingId" => $this->listingId,
 			"price" => $this->price,
 			"type" => $this->type,
-			"status" => $this->status
+			"status" => $this->status,
+			"title" => $this->title
 		);	
 	}
 }

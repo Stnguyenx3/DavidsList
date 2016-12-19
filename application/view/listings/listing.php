@@ -1,32 +1,52 @@
-<?php
-	//Remove this after page is complete.
-	//echo "count is " . count($listingResponse["listing_images"]);
- ?>
-
 <div class="container main">
+
+	<div class="row">
+		<div class="col-sm-5"></div>
+		<div class="col-sm-3">
+			<label><h1>Listing Detail</h1></label>
+		</div>
+		<div class="col-sm-4"></div>
+	</div>
 
 	<div class="row">
 
 		<div class="col-sm-4">
 
-			<div id="listingCarousel" class="col-sm-8 carousel slide" style="width: 350px; height: 350px" data-ride="carousel" data-interval="false">
+			<div id="listingCarousel" class="col-sm-8 carousel slide" style="width: 100%; height: 100%" data-ride="carousel" data-interval="false">
 
 				<ol class="carousel-indicators">
-					<li data-target="#listingCarousel" data-slide-to="0" class="active"></li>
+				<?php 
+
+					for($i = 0; $i < count($listingResponse["listing_images"]); $i++) {
+						if($i == 0) {
+							echo "<li data-target=\"#listingCarousel\" data-slide-to=\"{$i}\" class=\"active\"></li>";
+						} else {
+							echo "<li data-target=\"#listingCarousel\" data-slide-to=\"{$i}\"></li>";
+						}
+					}
+				?>
+<!-- 					<li data-target="#listingCarousel" data-slide-to="0" class="active"></li>
 					<li data-target="#listingCarousel" data-slide-to="1"></li>
-					<li data-target="#listingCarousel" data-slide-to="2"></li>
+					<li data-target="#listingCarousel" data-slide-to="2"></li> -->
 				</ol>
 
 				<div class="carousel-inner" role="listbox">
-					<div class="item active">
-						<img src= "<?php echo 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][0]->getImage()) ?>"" alt="placeholder img." style="width: 350px; height: 340px">
-					</div>
-					<div class="item">
-						<img src="<?php echo count($listingResponse["listing_images"]) > 1 ? 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][1]->getImage()) : 'http://placehold.it/700x700' ?>" alt="placeholder img." style="width: 350px; height: 340px">
-					</div>
-					<div class="item">
-						<img src="<?php echo count($listingResponse["listing_images"]) > 2 ? 'data:text/html;base64,' . base64_encode($listingResponse["listing_images"][2]->getImage()) : 'http://placehold.it/700x700' ?>"  alt="placeholder img." style="width: 350px; height: 340px">
-					</div>
+					<?php 
+						for($i = 0; $i < count($listingResponse["listing_images"]); $i++) {
+							$image = $listingResponse["listing_images"][$i];
+							$encodedString = 'data:text/html;base64,' . base64_encode($image->getImage());
+							if($i == 0) {
+								echo "<div class=\"item active\" style=\"width: 350px; height: 350px\">
+									<img src= \"{$encodedString} \" alt=\"placeholder img.\" style=\"width: 350px; height: 350px\">
+								</div>";
+							} else {
+								echo "<div class=\"item\" style=\"width: 350px; height: 350px\">
+									<img src= \"{$encodedString} \" alt=\"placeholder img.\" style=\"width: 350px; height: 350px\">
+								</div>";
+							}
+						}
+
+					?>
 				</div>
 
 				<a class="left carousel-control" href="#listingCarousel" data-slide="prev">
@@ -52,55 +72,58 @@
 
 	<div class="row">
 
+		<hr/>
+
 		<div class="col-sm-8">
 
-			<div class="listing-details linear-gradient-bg">
+			<div class="listing-details">
 
 				<div class="row">
-					<div class="col-sm-12">
+					<div class="col-sm-12" style="padding-left: 0px">
 
-
-						<h3 class="listing-title">Listing Name</h3>
-						<p class="listing-price"> $<?php echo $listingResponse["listing"]->getPrice() ?></p>
+						<div>
+							<p class="listing-title"><?php echo $listingResponse["listing"]->getTitle()?></p>
+							<p class="listing-price"> $<?php echo $listingResponse["listing"]->getPrice() ?></p>
+						</div>
 						<div style="clear: both">
+
+							<?php
+								// check for approx address
+								$address = "";
+								$googleAddress = "";
+								if ($listingResponse["address"]->getApproximateAddress() == 0) {
+									$address = $listingResponse["address"]->getStreetName(); 
+									$googleAddress = $address . $listingResponse["address"]->getZipcode();
+								}
+								else {
+									$googleAddress = $listingResponse["address"]->getCity() . ", ". $listingResponse["address"]->getState() . " " . $listingResponse["address"]->getZipcode();
+									$address = $googleAddress;
+								}
+							?>
 								
-							<p class="listing-street-name"><?php echo $listingResponse["address"]->getStreetName() ?></p>
-							<p class="listing-city"><?php echo $listingResponse["address"]->getCity() ?></p>
-							<p class="listing-state"><?php echo $listingResponse["address"]->getState() ?></p>
-							<p class=listing-zipcode><?php echo $listingResponse["address"]->getZipcode() ?></p>
+							<span class="listing-subtitle"><?php echo $address?></span>
 
 							<br>
 
 							<ul class="listing-basic-info">
 								<li>Bed: <?php echo $listingResponse["listing_detail"]->getNumberOfBedrooms() ?></li>
 								<li>Bath: <?php echo $listingResponse["listing_detail"]->getNumberOfBathrooms() ?></li>
-								<li>Distance:</li>
-								<li id="output"> </li>
+								<li id="output">Distance: <?php echo $listingResponse["address"]->getDistance()?> mi</li>
 							</ul>
 
 							<ul class="listing-expanded-info">
-								<li>Internet: <?php echo $listingResponse["listing_detail"]->getInternet() ? "Yes" : "No" ?></li>
-								<li>Pets: <?php echo $listingResponse["listing_detail"]->getPetPolicy() ?></li>
-								<li>Elevator: <?php echo $listingResponse["listing_detail"]->getElevatorAccess() ?></li>
-								<li>Furnished: <?php echo $listingResponse["listing_detail"]->getFurnishing() ? "Yes" : "No" ?></li>
-								<li>A/C: <?php echo $listingResponse["listing_detail"]->getAirConditioning() ? "Yes" : "No" ?></li>
+								<li><p class="listing-subtitle">Type</p> <?php echo $listingResponse["listing"]->getType()?></li>
+								<li><p class="listing-subtitle">Internet</p> <?php echo $listingResponse["listing_detail"]->getInternet() ? "Yes" : "No" ?></li>
+								<li><p class="listing-subtitle">Pets</p> <?php echo $listingResponse["listing_detail"]->getPetPolicy() ?></li>
+								<li><p class="listing-subtitle">Elevator</p> <?php echo $listingResponse["listing_detail"]->getElevatorAccess() ?></li>
+								<li><p class="listing-subtitle">Furnished</p> <?php echo $listingResponse["listing_detail"]->getFurnishing() ? "Yes" : "No" ?></li>
+								<li><p class="listing-subtitle">A/C</p> <?php echo $listingResponse["listing_detail"]->getAirConditioning() ? "Yes" : "No" ?></li>
 							</ul>
-
-
-
 
 							<ul class="listing-desc">
-								<li>
-									Description: <br>
-									<?php echo $listingResponse["listing_detail"]->getDescription() ?>
-								</li>
+								<li> <p class="listing-subtitle"> Description </p></br> </li>
+								<li> <?php echo $listingResponse["listing_detail"]->getDescription() ?></li>
 							</ul>
-
-							<button type="button" class="btn btn-primary rent-button">Rent</button>
-
-							<button type="button" rel="popover" id="listing-favorite-btn" class="btn btn-primary listing-favorite-btn" onclick="onFavoriteClick()">
-								<span class="glyphicon glyphicon-heart"></span> Favorite
-							</button>
 							
 						</div>
 
@@ -113,16 +136,23 @@
 		</div>
 
 		<div class="col-sm-4">
+			<div class="row buttons">
+				<div><button type="button" class="btn btn-primary rent-button" id="contact-btn" onclick="onContactClick()">Contact</button></div>
 
-			<div class="owner-info linear-gradient-bg">
+				<div><button type="button" rel="popover" id="listing-favorite-btn" class="btn btn-primary listing-favorite-btn" onclick="onFavoriteClick()">
+						<span class="glyphicon glyphicon-heart"></span> Favorite
+				</button></div>
+			</div>
+
+			<div class="row owner-info">
 				<p style="font-size:24px; font-weight: bold">Landlord</p>
 				<?php  
 					$verifiedCss = "";
 					if($userResponse->getVerified() == 1) {
-						$verifiedCss = "style=\"color: purple\"";
+						$verifiedCss = "<span style=\"color: #6de3b0\"> verified </span>";
 					}
 				?>
-				<p class="owner-username" <?php echo $verifiedCss ?>>Name: <?php echo $userResponse->getUsername(); ?></p>
+				<p class="owner-username">Name: <?php echo $verifiedCss ?> <?php echo $userResponse->getUsername(); ?></p>
 				<p class="owner-email">Email: <?php echo $userResponse->getEmail(); ?></p>
 
 			</div>
@@ -133,14 +163,64 @@
 
 </div>
 
+<script>
 
+	$(document).ready(function() {
 
-<script>                                    
+		var ownerID = "<?php echo $listingResponse["listing"]->getId() ?>";
+
+		var clientID = "<?php echo $clientID; ?>";
+
+		//If the owner owns the listing, display additional elements on the page to manage listing.
+		if (ownerID == clientID) {
+			var str = (window.location + '').split("/");
+			var listingID = str[str.length - 1];
+
+			$("#contact-btn").text("Messages");
+			var editBtn = $("<a></a>").addClass("btn btn-primary edit-listing-btn").appendTo($(".owner-info"));
+			$(editBtn).text("Edit listing");
+			$(editBtn).click(function() {
+				//Go to edit listing page.
+				window.location.href = url + "listings/edit/" + listingID;
+			});
+
+		}
+	});
+
+	function onContactClick() {
+		var str = (window.location + '').split("/");
+		var listingID = str[str.length - 1];
+		var ownerID = "<?php echo $listingResponse["listing"]->getId() ?>";
+		
+		var clientID = "<?php echo $clientID; ?>";
+
+		if (ownerID == clientID) {
+			//Redirect to messages page.
+			window.location.href = "<?php echo URL . '/messages/allmessages/' ?>" + ownerID;
+		} else {
+
+			$.ajax({
+				type:'GET',
+				url: url+"messages/goToMessage/"+listingID,
+				success: function(event) {
+					//window.location.replace(event);
+					window.location.href = event;
+				},
+				error: function(xhr, err, errThrown) {
+					console.log("I failed");
+					console.log(err);
+					console.log(errThrown);
+				}
+			});
+		}	
+		
+	}
+
 	function initMap() {					
   		var bounds = new google.maps.LatLngBounds;
   		var markersArray = [];
 
-  		var origin = "<?php echo $listingResponse["address"]->getStreetName() . $listingResponse["address"]->getCity() ?>";
+  		var origin = "<?php echo $googleAddress ?>";
   		var destination = '1600 Holloway Ave, San Francisco'; 
 
   		var destinationIcon = 'https://chart.googleapis.com/chart?' +
@@ -160,20 +240,19 @@
 	    	origins: [origin],
 	    	destinations: [destination],
 	    	travelMode: google.maps.TravelMode.DRIVING,
-	    	unitSystem: google.maps.UnitSystem.METRIC,
+	    	unitSystem: google.maps.UnitSystem.IMPERIAL,
 	    	avoidHighways: false,
 	    	avoidTolls: false
   		}, 
 
   		function(response, status) {
     		if (status !== google.maps.DistanceMatrixStatus.OK) {
-      			alert('Error was: ' + status);
+      			// alert('Error was: ' + status);
     		} else {
     			var originList = response.originAddresses;
       			var destinationList = response.destinationAddresses;
       			var outputDiv = document.getElementById('output');
 
-      			outputDiv.innerHTML = '';
       			deleteMarkers(markersArray);
 
       			var showGeocodedAddressOnMap = function(asDestination) {
@@ -187,7 +266,7 @@
               				icon: icon
             				}));
           				} else {
-            				alert('Geocode was not successful due to: ' + status);
+            				// alert('Geocode was not successful due to: ' + status);
           				}
         			};
       			};
@@ -197,7 +276,31 @@
       				showGeocodedAddressOnMap(false));
       			geocoder.geocode({'address' : destinationList[0]},
       				showGeocodedAddressOnMap(true));
-           		    outputDiv.innerHTML += results[0].distance.text
+           		    // outputDiv.innerHTML += results[0].distance.text
+           		var str = (window.location + '').split("/");
+				var listingID = str[str.length - 1];
+
+				if(outputDiv.innerHTML === "Distance:  mi" || 
+					outputDiv.innerHTML === "Distance: 2.1 mi") {
+					$.ajax({
+	           			type:'POST',
+						url: url+"/addresses/updatedistance/"+listingID,
+						data: {
+							"distance": results[0].distance.text.split(" ")[0]
+						},
+						success: function(event){
+							outputDiv.innerHTML = '';
+							outputDiv.innerHTML = "Distance: " + results[0].distance.text;
+						},
+						error: function(xhr, err, errThrown) {
+							console.log("I failed");
+							console.log(err);
+							console.log(errThrown);
+						},
+	           		});
+				} else {
+					console.log("Not empty");
+				}
     		}
   		});
 	}

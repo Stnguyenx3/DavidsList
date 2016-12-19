@@ -10,13 +10,16 @@ $('#rentout').submit(function (e) {
 	$.each(fileUploadField.files, function(i, j) {
 		var reader = new FileReader();
 		reader.readAsDataURL(j);
-		reader.onload = function(data) {
-			index++;
-			blobList.push(data.target.result);
-
-			if(index === fileUploadField.files.length) {
-				submitListing(blobList);
+		if(j.name.includes("jpg") || j.name.includes("jpeg") || j.name.includes("png")) {
+			reader.onload = function(data) {
+				index++;
+				blobList.push(data.target.result);
+				if(index === fileUploadField.files.length) {
+					submitListing(blobList);
+				}
 			}
+		} else {
+			$.notify("We only accept jpg, jpeg, or png", {position: "top center", autoHideDelay: 5000});
 		}
 	});
 });
@@ -28,13 +31,18 @@ function submitListing(blobList) {
 		var type = $("input[type='radio'][name='listingtype']:checked").val();
 	}
 
+	if($('#form-title').val() === "") {
+		return;
+	}
+
  	var listingInformation = {
 		listing_price: $('#form-price').val(),
 		listing_type: type,
 		listing_status: 1,
+		listing_title: $('#form-title').val(),
 		listing_detail: {
-			listing_numBedrooms: $('#form-numofbeds').val(),
-			listing_numBathrooms: $('#form-numofbaths').val(),
+			listing_numBedrooms: $('#form-numofbeds option:selected').text() == "N/A" ? 0 : $('#form-numofbeds option:selected').text(),
+			listing_numBathrooms: $('#form-numofbaths option:selected').text()  == "N/A" ? 0 : $('#form-numofbaths option:selected').text(),
 			listing_internet: $('#listing-internet').is(":checked") ? 1 : 0,
 			listing_pet_policy: $('#listing-pets').is(":checked") ? "Yes" : "No",
 			listing_elevator_access: $('#listing-elevator').is(":checked") ? "Yes" : "No",
@@ -59,10 +67,12 @@ function submitListing(blobList) {
 		url: url+"/listings/newlisting/",
 		data: listingInformation,
 		success: function(event){
-			let splitString = event.split(" ");
-			let listingId = splitString[11];
-			listingId = listingId.replace(/\'/g, "");
-			window.location.replace(url+"listings/getlisting/"+listingId);
+			if(event !== "Bad create") {
+				let splitString = event.split(" ");
+				let listingId = splitString[11];
+				listingId = listingId.replace(/\'/g, "");
+				window.location.replace(url+"listings/getlisting/"+listingId);
+			}
 		},
 		error: function(xhr, err, errThrown) {
 			console.log("I failed");
@@ -84,6 +94,7 @@ $('#edit').submit(function (e) {
 	$.each(fileUploadField.files, function(i, j) {
 		var reader = new FileReader();
 		reader.readAsDataURL(j);
+		console.log(j);
 		reader.onload = function(data) {
 			index++;
 			blobList.push(data.target.result);
@@ -107,6 +118,10 @@ function onEditLoad(data) {
 		var type = $("input[type='radio'][name='listingtype']:checked").val();
 	}
 
+	if($('#form-title').val() === "") {
+		return;
+	}
+
 	var str = (window.location + '').split("/");
 	var listingID = str[str.length - 1];
 
@@ -114,10 +129,11 @@ function onEditLoad(data) {
  		listingId: listingID,
 		listing_price: $('#form-price').val(),
 		listing_type: type,
+		listing_title: $('#form-title').val(),
 		listing_status: 1,
 		listing_detail: {
-			listing_numBedrooms: $('#form-numofbeds').val(),
-			listing_numBathrooms: $('#form-numofbaths').val(),
+			listing_numBedrooms: $('#form-numofbeds option:selected').text() == "N/A" ? 0 : $('#form-numofbeds option:selected').text(),
+			listing_numBathrooms: $('#form-numofbaths option:selected').text()  == "N/A" ? 0 : $('#form-numofbaths option:selected').text(),
 			listing_internet: $('#listing-internet').is(":checked") ? 1 : 0,
 			listing_pet_policy: $('#listing-pets').is(":checked") ? "Yes" : "No",
 			listing_elevator_access: $('#listing-elevator').is(":checked") ? "Yes" : "No",
@@ -168,12 +184,13 @@ function onFavoriteClick() {
 		url: url+"favoritelistings/addfavorite/",
 		data: favoriteInformation,
 		success: function(event) {
+
 			if(event == 1) {
-				$.notify("It favorited!", "success");
+				$.notify("Listing added to favorites!", "success");
 			} else if (event === "You are not logged in") {
 				window.location.replace(url+"home/login/");
 			} else {
-				$.notify(event, {position: "top center"});
+				$.notify(event, "error");
 			}
 		},
 		error: function(xhr, err, errThrown) {

@@ -1,14 +1,13 @@
-<div class="container" style="margin-top: 25px">
-	<div class="row">
-		<div class="col-md-2">
-			<ul id="myPills" class="nav nav-pills nav-stacked" style="margin-top: 45PX">
-				<li class="active"><a href="<?php echo URL. "users/getuser/{$userID}";?>"><h4>Overview</h4></a></li>
-				<li><a href="<?php echo URL. "users/favorites/{$userID}";?>"><h4>Favorite</h4></a></li>
-				<li><a href="<?php echo URL. "users/userlistings/{$userID}"?>"><h4>My Listing</h4></a></li>
-			</ul>
-		</div>
+<div class="container main">
 
-		<div class="col-md-10 user-overview custom-border linear-gradient-bg">
+	<div class="row">
+
+		<div class="col-md-1"></div>
+
+		<div class="col-md-10 user-overview">
+
+			<h2 class="centered-header">Profile</h2>
+
 			<form id="accountoverview">
 				<div class="form-group row">
 
@@ -18,7 +17,7 @@
 							$outputImage = "";
 							count($userResponse["user_images"]) > 0 ? $outputImage = "data:image/png;base64," .base64_encode($userResponse["user_images"][0]->getImage()) : $outputImage = "http://placehold.it/175x175";
 						?>
-						<img src="<?php echo $outputImage ?>" alt="placeholder img." width="175" height="175">
+						<img id="user-image" src="<?php echo $outputImage ?>" alt="placeholder img." width="175" height="175">
 					</div>
 					<div class="col-md-5">
 						<div class="row">
@@ -179,9 +178,17 @@
 
 				</form>
 			</div>
+
+			<div class="col-md-1"></div>
+			
 		</div>
 		<!-- <div class="col-md-2"></div> -->
 	</div>
 </div>
 
 <script src= "<?php echo URL; ?>js/users.js"></script>
+
+<script>
+	//Highlight the current pages' navbar link.
+	$("#nav-link-2").css("color", "#6de3b0");
+</script>

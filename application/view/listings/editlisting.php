@@ -1,54 +1,47 @@
 <div class="container main">
+
 	<div class="row rent-out">
-		<div class="col-sm-1"></div>
-		<div class="col-sm-10">
-			<form class="form-rentout linear-gradient-bg" id="edit" action="#" method="post">
+		<div class="col-sm-2"></div>
+
+		<div class="col-sm-8">
+
+			<h2 class="centered-header">Edit Listing</h2>
+
+			<form class="form-rentout" id="edit" action="#" method="post">
 
 				<div class="form-group row">
-					<label for="form-image" class="col-sm-2 text-right">Image</label>
-					<div class="col-sm-10">
-						<input type="file" name="listing-image" id="form-image" multiple>
-					</div>
-
-				</div>
-
-				<div class="form-group row">
-					<label for="form-price" class="col-sm-2 text-right">Price</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="listingprice" id="form-price" value="<?php echo $listingResponse["listing"]->getPrice(); ?>">
+					<p class="col-sm-2">Title <span class="text-danger">*</span></p>
+					<div class="col-sm-8">
+						<input class="form-control" type="text" name="listingtitle" id="form-title" value="<?php echo $listingResponse["listing"]->getTitle(); ?>">
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label for="form-address" class="col-sm-2 text-right">Address</label>
-					<div class="col-sm-10">
+					<p class="col-sm-2">Price <span class="text-danger">*</span></p>
+					<div class="col-sm-4">
+						<label for="form-price" style="font-weight: normal">$</label>
+						<input class="form-control" style="width: 60%; display:inline-block" type="text" name="listingprice" id="form-price" value="<?php echo $listingResponse["listing"]->getPrice(); ?>">
+					</div>
+				</div>
+
+				<hr/>
+
+				<div class="form-group row">
+					<p class="col-sm-2">Address <span class="text-danger">*</span></p>
+					<div class="col-sm-8">
 						<input class="form-control" type="text" name="listingaddress" id="form-address" value="<?php echo $listingResponse["address"]->getStreetName(); ?>">
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label class="col-sm-2 text-right">Approximate Address</label>
-					<div class="col-sm-10">
-						<label for="listing-internet">
-							<input type="checkbox" name="listingaddressapprox" id="form-approx" value="approximate"
-							<?php 
-								if ($listingResponse["address"]->getApproximateAddress() == 1) {
-									echo "checked";
-								}
-							?>
-							>
-						</label>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="form-city" class="col-sm-2 text-right">City</label>
+					<p class="col-sm-2">City <span class="text-danger">*</span></p>
 					<div class="col-sm-3">
 						<input class="form-control" type="text" name="listingcity" id="form-city" value="<?php echo $listingResponse["address"]->getCity(); ?>">
 					</div>
-					<label for="form-state" class="col-sm-1 text-right">State</label>
-					<div class="col-sm-2">
-						<select class="form-control" name="listingstate" id="form-state" style="width: auto;">
+					
+					<div class="col-sm-6">
+					<p style="display:inline-block">State <span class="text-danger">*</span></p>
+						<select class="form-control" name="listingstate" id="form-state" style="width: auto; display:inline-block">
 							<option value="">N/A</option>
 							<option value="AK" <?php
 								if (!strcmp($listingResponse["address"]->getState(), "AK")) {
@@ -312,30 +305,155 @@
 							?>>Wyoming</option>
 						</select>
 					</div>
-					<label for="form-zipcode" class="col-sm-2 text-right">Zip</label>
+				</div>
+
+				<div class="form-group row">
+					<p class="col-sm-2">Zipcode <span class="text-danger">*</span></p>
 					<div class="col-sm-2">
 						<input class="form-control" type="text" name="listingzipcode" id="form-zipcode" value="<?php echo $listingResponse["address"]->getZipcode(); ?>">
 					</div>
-
 				</div>
 
 				<div class="form-group row">
-					<label for="form-numofbeds" class="col-sm-2 text-right">Number of Bedrooms</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="listingnumofbeds" id="form-numofbeds" value="<?php echo $listingResponse["listing_detail"]->getNumberOfBedrooms(); ?>">
+					<p class="col-sm-2">Approximate Address <span class="text-danger">*</span></p>
+					<div class="col-sm-8">
+						<label for="listing-internet">
+							<input type="checkbox" name="listingaddressapprox" id="form-approx" value="approximate"
+							<?php 
+								if ($listingResponse["address"]->getApproximateAddress() == 1) {
+									echo "checked";
+								}
+							?>
+							>
+						</label>
+						<label style="color:#6de3b0; font-weight:normal;">Please check this box when you don't want the exact location of the home displayed.</label>
 					</div>
 				</div>
 
+				<hr/>
+
 				<div class="form-group row">
-					<label for="form-numofbaths" class="col-sm-2 text-right">Number of Bathrooms</label>
-					<div class="col-sm-10">
-						<input class="form-control" type="text" name="listingnumofbaths" id="form-numofbaths" value="<?php echo $listingResponse["listing_detail"]->getNumberOfBathrooms(); ?>">
+					<p class="col-sm-2">Bedrooms <span class="text-danger">*</span></p>
+					<div class="col-sm-3">
+						<!-- <input class="form-control" type="text" name="listingnumofbeds" id="form-numofbeds" value="<?php echo $listingResponse["listing_detail"]->getNumberOfBedrooms(); ?>"> -->
+						<select class="form-control" name="listingnumofbeds" id="form-numofbeds">
+							<option value="">N/A</option>
+							<option value="1" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBedrooms(), "1")) {
+									echo "selected=selected";
+								}
+							?>>1</option>
+							<option value="2" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBedrooms(), "2")) {
+									echo "selected=selected";
+								}
+							?>>2</option>
+							<option value="3" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBedrooms(), "3")) {
+									echo "selected=selected";
+								}
+							?>>3</option>
+							<option value="4" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBedrooms(), "4")) {
+									echo "selected=selected";
+								}
+							?>>4</option>
+							<option value="5" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBedrooms(), "5")) {
+									echo "selected=selected";
+								}
+							?>>5</option>
+							<option value="6" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBedrooms(), "6")) {
+									echo "selected=selected";
+								}
+							?>>6</option>
+							<option value="7" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBedrooms(), "7")) {
+									echo "selected=selected";
+								}
+							?>>7</option>
+							<option value="8" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBedrooms(), "8")) {
+									echo "selected=selected";
+								}
+							?>>8</option>
+							<option value="9" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBedrooms(), "9")) {
+									echo "selected=selected";
+								}
+							?>>9</option>
+							<option value="10" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBedrooms(), "10")) {
+									echo "selected=selected";
+								}
+							?>>10</option>
+						</select>
 					</div>
+
+					<p class="col-sm-2">Bathrooms <span class="text-danger">*</span></p>
+					<div class="col-sm-2">
+						<!-- <input class="form-control" type="text" name="listingnumofbaths" id="form-numofbaths" value="<?php echo $listingResponse["listing_detail"]->getNumberOfBathrooms(); ?>"> -->
+						<select class="form-control" name="listingnumofbaths" id="form-numofbaths">
+							<option value="">N/A</option>
+							<option value="1" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBathrooms(), "1")) {
+									echo "selected=selected";
+								}
+							?>>1</option>
+							<option value="2" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBathrooms(), "2")) {
+									echo "selected=selected";
+								}
+							?>>2</option>
+							<option value="3" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBathrooms(), "3")) {
+									echo "selected=selected";
+								}
+							?>>3</option>
+							<option value="4" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBathrooms(), "4")) {
+									echo "selected=selected";
+								}
+							?>>4</option>
+							<option value="5" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBathrooms(), "5")) {
+									echo "selected=selected";
+								}
+							?>>5</option>
+							<option value="6" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBathrooms(), "6")) {
+									echo "selected=selected";
+								}
+							?>>6</option>
+							<option value="7" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBathrooms(), "7")) {
+									echo "selected=selected";
+								}
+							?>>7</option>
+							<option value="8" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBathrooms(), "8")) {
+									echo "selected=selected";
+								}
+							?>>8</option>
+							<option value="9" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBathrooms(), "9")) {
+									echo "selected=selected";
+								}
+							?>>9</option>
+							<option value="10" <?php
+								if (!strcmp($listingResponse["listing_detail"]->getNumberOfBathrooms(), "10")) {
+									echo "selected=selected";
+								}
+							?>>10</option>
+						</select>
+					</div>
+					<div class="col-sm-4"></div>
 				</div>
 				
 				<div class="form-group row">
-					<label class="col-sm-2 text-right">Type</label>
-					<div class="col-sm-10">
+					<p class="col-sm-2">Type <span class="text-danger">*</span></p>
+					<div class="col-sm-8">
 						<label for="listing-apt">
 							<input type="radio" name="listingtype" id="listing-apt" value="apartment"
 							<?php 
@@ -376,8 +494,8 @@
 				</div>
 
 				<div class="form-group row">
-					<label class="col-sm-2 text-right">Misc</label>
-					<div class="col-sm-10">
+					<p class="col-sm-2">Benefits</p>
+					<div class="col-sm-8">
 						<label for="listing-internet">
 							<input type="checkbox" name="listingmisc" id="listing-internet" value="internet" 
 							<?php 
@@ -427,15 +545,33 @@
 				</div>
 
 				<div class="form-group row">
-					<label for="listing-description" class="col-sm-2 text-right">Description</label>
-					<div class="col-sm-10">
+					<p class="col-sm-2">Description</p>
+					<div class="col-sm-8">
 						<textarea class="form-control" id="listing-description" rows="4"><?php echo $listingResponse["listing_detail"]->getDescription(); ?></textarea>
 					</div>
 				</div>
 
+				<hr/>
+
+				<div class="form-group row">
+					<p class="col-sm-2">Image(s) <span class="text-danger">*</span></p>
+					<div class="col-sm-10">
+						<input type="file" name="listingimage" id="form-image" multiple>
+						<label style="color:#6de3b0; font-weight:normal;">Choose one or more</label>
+					</div>
+
+				</div>
+
+				<hr/>
+
+				<div class="form-group row">
+					<div class="col-sm-2"></div>
+					<label class="col-sm-10" style="color:#6de3b0; font-weight:normal;">All fields marked with * must be filled in</label>
+				</div>
+
 				<div class="row">
 					<div class="col-sm-3"></div>
-					<button class="btn btn-primary col-sm-6" id="submit-listing" type="submit">Save Changes</button>
+					<button class="btn btn-primary btn-lg col-sm-6" id="submit-listing" type="submit">Save Changes</button>
 					<div class="col-sm-3"></div>
 				</div>
 
@@ -454,8 +590,12 @@
 				return this.optional(element) || /^[a-z ]+$/i.test(value);
 			}, "Alphabetical letters only!");
 
-			$("#rentout").validate({
+			$("#edit").validate({
 				rules: {
+					listingtitle:{
+						required: true,
+						maxlength: 50
+					},
 					listingaddress: {
 						required: true,
 						minlength: 1
@@ -478,20 +618,23 @@
 						minlength: 5,
 						maxlength: 5
 					},
-					listingnumofbeds: {
-						required: true,
-						number: true
-					},
-					listingnumofbaths: {
-						required: true,
-						number: true
-					},
+					// listingnumofbeds: {
+					// 	required: true,
+					// 	number: true
+					// },
+					// listingnumofbaths: {
+					// 	required: true,
+					// 	number: true
+					// },
 					listingtype: {
 						required: true
 					}
 
 				},
 				messages: {
+					listingprice: {
+						required: "required"
+					},
 					listingaddress: {
 						required: "required"
 					},

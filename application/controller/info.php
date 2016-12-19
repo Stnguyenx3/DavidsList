@@ -13,7 +13,7 @@ class Info extends Controller{
      * PAGE: all static information pages **/
   
     public function privacy() {
-        if(!empty($_SESSION)) {
+        if(isset($_SESSION["email"])) {
             $userRepo = RepositoryFactory::createRepository("user");
             $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
             require APP . "view/_templates/logged_in_header.php";
@@ -26,7 +26,7 @@ class Info extends Controller{
     }
 
     public function contact() {
-        if(!empty($_SESSION)) {
+        if(isset($_SESSION["email"])) {
             $userRepo = RepositoryFactory::createRepository("user");
             $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
             require APP . "view/_templates/logged_in_header.php";
@@ -39,7 +39,7 @@ class Info extends Controller{
     }
 
     public function about() {
-        if(!empty($_SESSION)) {
+        if(isset($_SESSION["email"])) {
             $userRepo = RepositoryFactory::createRepository("user");
             $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
             require APP . "view/_templates/logged_in_header.php";

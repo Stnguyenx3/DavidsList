@@ -1,8 +1,8 @@
 <div class="container main">
 
-	<form class="form-signup center-block linear-gradient-bg" id="registration" action="<?php echo URL . "users/newuser/" ?>" method="post">
+	<form class="form-signup center-block" id="registration" action="<?php echo URL . "users/newuser/" ?>" method="post">
 
-		<h3 style="margin-bottom: 30px">Register</h3>
+		<h3 style="margin-bottom: 30px; text-align:center">Register</h3>
 
 		<div class="form-group row">
 			  <label for="form-first-name" class="col-sm-2">First Name</label>
@@ -47,17 +47,21 @@
 		</div>
 
 		<div class="form-group row">
-			<label for="form-TOS" class="col-sm-12" style="text-align:center">
-				I have read and accept the TOS <a href="#" onclick="return showTOS();">here</a>.
-				<input class="form-check" type="checkbox" value="" name="tos" id="form-TOS">
-			</label>
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<label for="form-TOS" style="text-align:center">
+					I have read and accept the Terms of Service <a href="#" onclick="return showTOS();">here</a>.
+					<input class="form-check" type="checkbox" value="" name="tos" id="form-TOS">
+				</label>				
+			</div>
+			<div class="col-sm-2"></div>
 		</div>
 		
 		<button class="btn btn-primary btn-lg btn-block btn-register center-block" type="submit">Register</button>
 			
 	</form>
 
-	<div id="tosModal" class="modal">
+	<div id="tosModal" class="modal" style="z-index: 5">
 		<div class="modal-content">
 			<span class="close">X</span>
 
@@ -208,8 +212,7 @@
 	var modal = document.getElementById('tosModal');
 	var span = document.getElementsByClassName("close")[0];
 
-	function showTOS() 
-	{
+	function showTOS() {
 		modal.style.display = "block";
 		return false;
 	}
@@ -224,16 +227,17 @@
 		}
 	}
 
-$(document).ready(function() 
-{
+$(document).ready(function() {
 
-	$.validator.addMethod("letters", function(value, element) 
-		{
+	//Override the autofocus of the search bar to login input field for better usability.
+	$("#search-input").blur();
+	$("#form-first-name").focus();
+
+	$.validator.addMethod("letters", function(value, element) {
 			return this.optional(element) || /^[a-z ]+$/i.test(value);
 		}, "Alphabetical letters only!");
 
-	$("#registration").validate(
-	{
+	$("#registration").validate( {
 		rules: {
 
 			firstname: {

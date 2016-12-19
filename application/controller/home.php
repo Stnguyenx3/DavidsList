@@ -29,15 +29,22 @@ class Home extends Controller{
                "data:image/png;base64," . base64_encode($image->getImageThumbNail());
         }
         $size = count($newListings["addresses"])-1;
-        $indexOne = mt_rand(0, $size);
-        $indexTwo = mt_rand(0, $size);
-        $indexThree = mt_rand(0, $size);
-        $indexFour = mt_rand(0, $size);
-        $indexFive = mt_rand(0, $size);
-        $indexSix = mt_rand(0, $size);
+        // $indexOne = mt_rand(0, $size);
+        // $indexTwo = mt_rand(0, $size);
+        // $indexThree = mt_rand(0, $size);
+        // $indexFour = mt_rand(0, $size);
+        // $indexFive = mt_rand(0, $size);
+        // $indexSix = mt_rand(0, $size);
+
+        $indexOne = count($newListings["addresses"])-1;
+        $indexTwo = count($newListings["addresses"])-2;
+        $indexThree = count($newListings["addresses"])-3;
+        $indexFour = count($newListings["addresses"])-4;
+        $indexFive = count($newListings["addresses"])-5;
+        $indexSix = count($newListings["addresses"])-6;
         // load views
 
-        if(!empty($_SESSION)) {
+        if(isset($_SESSION["email"])) {
             $userRepo = RepositoryFactory::createRepository("user");
             $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
             require APP . "view/_templates/logged_in_header.php";
@@ -49,14 +56,9 @@ class Home extends Controller{
         require APP . 'view/_templates/footer.php';
     }
 
-    public function search() {
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/home/search.php';
-        require APP . 'view/_templates/footer.php';
-    }
-
     public function rentout() {
-        if(empty($_SESSION)) {
+        if(!isset($_SESSION["email"])) {
+            $_SESSION["previous_url"] = URL . 'home/rentout';
             header('Location: ' . URL . 'home/login/');
         } else {
             $userRepo = RepositoryFactory::createRepository("user");

@@ -1,4 +1,4 @@
-<div class="container privacy" id="image-container">
+<div class="container main privacy" id="image-container">
     <h2 class="centered-header">Privacy Policy</h2>
     <p>
     	

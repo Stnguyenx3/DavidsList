@@ -1,8 +1,8 @@
-<div class="container main" style="margin-top: 15px">
+<div class="container main">
 
 	<div class="row">
 
-		<h3 class="centered-header">All Messages</h3>
+		<h2 class="centered-header">All Messages</h2>
 
 		<div class="col-md-1"></div>
 
@@ -19,3 +19,9 @@
 </div>
 
 <script type="text/javascript" src="<?php echo URL; ?>js/all_messages.js"></script>
+
+<script>
+	
+	var userID = <?php echo $_SESSION['userid'] ?>;
+
+</script>

@@ -134,4 +134,14 @@ class Addresses extends Controller{
 				
         } // end else			
 	} // end function udpateAddress
+
+	public function updateDistance($listingId) {
+		$addressRepo = RepositoryFactory::createRepository("address");
+        $arrayOfAddresses = $addressRepo->find($listingId, "listingId");
+
+        $address = $arrayOfAddresses[0];
+        $address->setDistance($_POST["distance"]);
+        $addressRepo->update($address);
+	}
+
 } // end class FavoritesListingsController

@@ -67,6 +67,26 @@ class Messages extends Controller{
 	public function getConversation($listingId, $userId){
 		$messageRepo = RepositoryFactory::createRepository("message");
 		$arrayOfMessageObjects = $messageRepo->find($listingId, "listingId");
+
+		if (empty($arrayOfMessageObjects)) {
+			echo "null";
+			return;
+		}
+
+		//Used to get the userid of the listing owner.
+		$listingRepo = RepositoryFactory::createRepository("listing");
+		$arrayOfListingObjects = $listingRepo->find($listingId, "listingId");
+
+		$userRepo = RepositoryFactory::createRepository("user");
+
+		$arrayOfMessages = [];
+		$arrayOfUsers[] = $userRepo->find($userId, "userid");
+
+		$listingOwner = $userRepo->find($arrayOfListingObjects[0]->getId(), "userid");
+		//$listingOwner = $userRepo->find($arrayOfListingObjects[0]->getId(), "userid");
+
+		$arrayOfUsers[] = $listingOwner; //Add the listing owners userid to array.
+
 		// Need to filter by userId as well
 		foreach($arrayOfMessageObjects as $key => $messageObjects) {
 			if($messageObjects->getClientId() != $userId) {
@@ -74,12 +94,21 @@ class Messages extends Controller{
 			}
 		}
 
-		//Send back users as well? ie call UserRepository
-		echo json_encode($arrayOfMessageObjects);
+		foreach ($arrayOfMessageObjects as $msg) {
+			$arrayOfMessages[] = $msg;
+		}
+
+		$data = array();
+		$data['listingInfo'] = $arrayOfListingObjects;
+		$data['messages'] = $arrayOfMessages;
+		$data['users'] = $arrayOfUsers;
+
+		echo json_encode($data);
+
 	}
 
 	public function conversation($listingId, $userId) {
-		if(!empty($_SESSION)) {
+		if(isset($_SESSION["email"])) {
     		$userRepo = RepositoryFactory::createRepository("user");
         	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
 
@@ -123,8 +152,82 @@ class Messages extends Controller{
 		echo json_encode($allMessageObjects);
 	}
 
+	public function getAllMessages($userid) {
+		if(isset($_SESSION["email"])) {
+			$messageRepo = RepositoryFactory::createRepository("message");
+			$allMessageObjects = $messageRepo->fetch();
+
+			//Make a temp array to keep listingId of messages
+			$tmp = array();
+			foreach($allMessageObjects as $k => $v)
+				$tmp[$k] = $v->getClientId();
+
+			//Reverse the array since the newer messages(towards the end) are what we want
+			$tmp = array_reverse($tmp);
+			$allMessageObjects = array_reverse($allMessageObjects);
+
+			// Find duplicates in temporary array
+			$tmp = array_unique($tmp);
+
+			// Remove the duplicates from original array
+			foreach($allMessageObjects as $k => $v){
+			    if (!array_key_exists($k, $tmp))
+			        unset($allMessageObjects[$k]);
+			}
+
+			//Get additional information about listings.
+			$listingRepo = RepositoryFactory::createRepository("listing");
+			$listingDetailRepo = RepositoryFactory::createRepository("listing_detail");
+			$userRepo = RepositoryFactory::createRepository("user");
+			
+			$arrayOfListingIDs = [];
+			$arrayOfMessages = [];
+			$arrayOfListingDetails = [];
+			$arrayOfListingBasic = [];
+			$arrayOfUsers = [];
+
+			//Store listing ids in an array.
+			foreach($allMessageObjects as $item){
+
+				$arrayOfMessages[] = $item; //Store single message into array.
+				$arrayOfListingIDs[] = $item->getListingId();
+
+				//Get the user information based on userid associated with this message.
+				$msgSender = $userRepo->find($item->getSenderUserId(), "userid");
+				$msgReceiver = $userRepo->find($item->getRecipientUserId(), "userid");
+
+				//Do not push to array if user already exists!
+				if (!in_array($msgSender, $arrayOfUsers)) {
+					$arrayOfUsers[] = $msgSender;
+				}
+
+				if (!in_array($msgReceiver, $arrayOfUsers)) {
+					$arrayOfUsers[] = $msgReceiver;
+				}
+
+			}
+
+			//Get listing details for each listing that has messages.
+			foreach ($arrayOfListingIDs as $listingId) {
+				$arrayOfListingDetails[] = $listingDetailRepo->find($listingId, "listingId");
+				$arrayOfListingBasic[] = $listingRepo->find($listingId, "listingId");
+			}
+
+			//Create new array to send back to web client.
+			$data = array();
+			$data['messages'] = $arrayOfMessages;
+			$data['listing_details'] = $arrayOfListingDetails;
+			$data['listing'] = $arrayOfListingBasic;
+			$data['users'] = $arrayOfUsers;
+
+			echo json_encode($data);
+		} else {
+			echo "You are not logged in";
+		}
+	}
+
 	public function allMessages($listingId) {
-		if(!empty($_SESSION)) {
+		if(isset($_SESSION["email"])) {
     		$userRepo = RepositoryFactory::createRepository("user");
         	$arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
 
@@ -151,4 +254,16 @@ class Messages extends Controller{
 		$arrayOfMessageObjects = $messageRepo->find($_POST["listingId"], "listingId");
 		$messageRepo->remove($arrayOfMessageObjects[0]);		
 	} // end function deleteMessage()
+
+	public function goToMessage($listingID) {
+
+		if(!isset($_SESSION['userid'])){
+			$_SESSION["previous_url"] = URL . 'listings/getlisting/' . $listingID;
+			echo URL . 'home/login';
+
+		} else {
+			echo URL . 'messages/conversation/' . $listingID . '/' . $_SESSION['userid'];
+		}
+
+	}
 } // end class Messages

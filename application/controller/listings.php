@@ -26,9 +26,11 @@ class Listings extends Controller {
 		
 		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingID);
 
-		if(!empty($_SESSION)) {
+		$clientID = "";
+		if(isset($_SESSION["email"])) {
             $userRepo = RepositoryFactory::createRepository("user");
             $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
+            $clientID = $_SESSION['userid'];
             require APP . "view/_templates/logged_in_header.php";
         } else {
             require APP . 'view/_templates/header.php';
@@ -99,7 +101,7 @@ class Listings extends Controller {
 	public function edit($listingID) {
 		$listingResponse = ListingsResponseCreator::createGetListingResponse($listingID);
 
-		if(!empty($_SESSION)) {
+		if(isset($_SESSION["email"])) {
             $userRepo = RepositoryFactory::createRepository("user");
             $arrayOfUserObjects = $userRepo->find($_SESSION["email"], "email");
             require APP . "view/_templates/logged_in_header.php";
@@ -223,6 +225,7 @@ class Listings extends Controller {
 			echo $listingID;
 		} else {
 			//message it created bad
+			echo "Bad create";
 		}
 	}
 	

@@ -2,48 +2,29 @@
 
 	<div class="row user-messages">
 
-		<div class="col-md-2 messages-other-users custom-border linear-gradient-bg">
-			<!-- Links to other users that this user has messaged. -->
-			<h3 class="messages-header centered-header">Contacts</h3>
-			<ul>
-			<li>AnotherUser1</li>
-			<li>AnotherUser2</li>
-			<li>AnotherUser3</li>
-			</ul>
-
-		</div>
-
 		<div class="col-md-1"></div>
-
-		<div class="col-md-9 messages-content custom-border">
+		<div class="col-md-10 messages-content">
 
 		<!-- Main chat message window -->
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-3" style="padding-left: 0px">
+					<a class="btn btn-primary back-to-messages" onclick="backToMessages()">Back to messages</a>
+				</div>
+				<!-- <div class="col-md-1"></div> -->
+				<!-- <div class="col-md-7"> -->
+					<h3 class="messages-header col-md-7" id="conversation-title">Message the owner!</h3>
+				<!-- </div> -->
+				<div class="col-md-1"></div>
+			</div>
 
-			<div class="row user-message-history linear-gradient-bg">
-			<h3 class="messages-header centered-header">Messages</h3>
+			<div class="row">
 
-				<div class="col-md-12" id="all-conversation">
-
-					<!-- <div class="row messages-single" id="message-1">
-						<p>
-							Other User: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed lacus ac turpis feugiat rhoncus. Mauris scelerisque nec nibh et facilisis. Etiam imperdiet dui nibh. Suspendisse maximus tellus sed neque hendrerit, ac commodo ipsum facilisis. Duis hendrerit consequat tortor, vitae condimentum enim consectetur ac. Aenean iaculis eleifend metus nec rhoncus. Nulla auctor et neque ac rutrum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In hendrerit rhoncus nulla, id malesuada odio varius sed. Aenean porttitor elit eu commodo rutrum. Nullam aliquet, diam ut ultrices feugiat, odio orci placerat enim, et mattis nulla neque non ante. Pellentesque quis libero velit. Nulla et ultricies nisl, eget bibendum enim. Donec ut purus laoreet, cursus ligula vel, tempor leo. Sed porta in purus quis porta.
-						</p>
-					</div>
-
-					<div class="row messages-single" id="message-2">
-						<p>
-							Other User: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed lacus ac turpis feugiat rhoncus. Mauris scelerisque nec nibh et facilisis. Etiam imperdiet dui nibh. Suspendisse maximus tellus sed neque hendrerit, ac commodo ipsum facilisis. Duis hendrerit consequat tortor, vitae condimentum enim consectetur ac. Aenean iaculis eleifend metus nec rhoncus. Nulla auctor et neque ac rutrum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In hendrerit rhoncus nulla, id malesuada odio varius sed. Aenean porttitor elit eu commodo rutrum. Nullam aliquet, diam ut ultrices feugiat, odio orci placerat enim, et mattis nulla neque non ante. Pellentesque quis libero velit. Nulla et ultricies nisl, eget bibendum enim. Donec ut purus laoreet, cursus ligula vel, tempor leo. Sed porta in purus quis porta.
-						</p>
-					</div>
-
-					<div class="row messages-single" id="message-3">
-						<p>
-							Other User: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed lacus ac turpis feugiat rhoncus. Mauris scelerisque nec nibh et facilisis. Etiam imperdiet dui nibh. Suspendisse maximus tellus sed neque hendrerit, ac commodo ipsum facilisis. Duis hendrerit consequat tortor, vitae condimentum enim consectetur ac. Aenean iaculis eleifend metus nec rhoncus. Nulla auctor et neque ac rutrum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In hendrerit rhoncus nulla, id malesuada odio varius sed. Aenean porttitor elit eu commodo rutrum. Nullam aliquet, diam ut ultrices feugiat, odio orci placerat enim, et mattis nulla neque non ante. Pellentesque quis libero velit. Nulla et ultricies nisl, eget bibendum enim. Donec ut purus laoreet, cursus ligula vel, tempor leo. Sed porta in purus quis porta.
-						</p>
-					</div> -->
+				<div class="col-md-1"></div>
+				<div class="col-md-10  user-message-history" id="all-conversation">
 
 				</div>
-
+				<div class="col-md-1"></div>
 
 			</div>
 
@@ -58,10 +39,19 @@
 			</div>
 
 		</div>
-
+		<div class="col-md-1"></div>
 
 	</div>
 
 </div>
 
 <script type="text/javascript" src="<?php echo URL; ?>js/messages.js"></script>
+
+<script type="text/javascript">
+	var userID = <?php echo $_SESSION['userid'] ?>;
+	<?php echo 'var webClientUserID = ' . json_encode($_SESSION['userid'])?>;
+
+	function backToMessages() {
+		window.location.href= url + "messages/allmessages/" + userID;
+	}
+</script>
