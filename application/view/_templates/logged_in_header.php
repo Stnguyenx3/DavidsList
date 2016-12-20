@@ -42,7 +42,7 @@
 	    		<div class="collapse navbar-collapse" id="account-dropdown-links">
 	    			<ul class="nav navbar-nav">
 	    				<!-- <li><a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a></li> -->
-	    				<li><a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Rent Out</a></li>
+	    				<li><a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Create Listing</a></li>
 	    				<li class="dropdown">
 	    					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="nav-link-2">My Account<span class="caret"></span></a>
 	    					<ul class="dropdown-menu">

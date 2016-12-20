@@ -53,7 +53,7 @@
 	    		<div class="collapse navbar-collapse" id="account-dropdown-links-to-home">
 	    			<ul class="nav navbar-nav">
 	    				<!-- <li><a href="<?php echo URL. "home/index" ; ?>" id="nav-link-0">Home</a></li> -->
-	    				<li><a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Rent Out</a></li>
+	    				<li><a href="<?php echo URL. "home/rentout" ; ?>" id="nav-link-1">Create Listing</a></li>
 	    			</ul>
 	    		</div>
 			</div>

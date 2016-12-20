@@ -5,7 +5,7 @@
 
 		<div class="col-sm-8">
 
-			<h2 class="centered-header">Rent Out</h2>
+			<h2 class="centered-header">Create a Listing</h2>
 
 			<form class="form-rentout" id="rentout" action="#" method="post">
 
